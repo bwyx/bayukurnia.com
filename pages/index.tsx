@@ -1,16 +1,11 @@
-import MainLayout from '~/layouts/Main.layout'
-import Link from 'next/link'
+import { attachMainLayout } from '~/layouts/Main.layout'
 
-import type { NextPage } from 'next'
+import { Page } from '~/types/page.type'
 
-const Home: NextPage = () => {
-  return (
-    <MainLayout>
-      <Link href="/blog">
-        <a>Blog</a>
-      </Link>
-    </MainLayout>
-  )
+const Home: Page = () => {
+  return <div>Hi there! </div>
 }
+
+Home.layout = attachMainLayout
 
 export default Home

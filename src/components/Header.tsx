@@ -1,25 +1,30 @@
 import Link from 'next/link'
 import { styled } from '~/styles'
 import Container from '~/components/commons/Container'
+import AnimatedLogo from '~/components/vectors/AnimatedLogo'
 
 const StyledHeader = styled('header', {
-  position: 'fixed',
+  position: 'sticky',
+  top: 0,
   width: '100%',
-  height: '4rem',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: 'rgba(255, 255, 255, 0.85)',
-  backdropFilter: 'blur(8px)',
+  pointerEvents: 'none',
+  // backgroundColor: 'rgba(255, 255, 255, 0.6)',
+  // backdropFilter: 'saturate(180%) blur(20px)',
   '& .logo': {
-    p: '0.5rem'
+    pointerEvents: 'auto',
+    padding: '0.5rem',
+    color: '$brand'
   },
   '& nav': {
+    pointerEvents: 'auto',
     display: 'flex',
     alignItems: 'center',
     '& a': {
       mx: '0.5rem',
-      p: '0.5rem'
+      padding: '0.5rem'
     }
   }
 })
@@ -29,7 +34,9 @@ const Header = () => {
     <StyledHeader>
       <Container>
         <Link href="/">
-          <a className="logo">Bayu Kurnia</a>
+          <a className="logo">
+            <AnimatedLogo height={45} />
+          </a>
         </Link>
         <nav>
           <Link href="/about">
