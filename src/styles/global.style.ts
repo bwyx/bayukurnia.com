@@ -6,7 +6,13 @@ const globalStyles = globalCss({
   },
   body: {
     fontFamily: '$sans',
-    color: '$text'
+    color: '$text',
+    lineHeight: '1.75'
+  },
+  '#__next': {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh'
   }
 })
 

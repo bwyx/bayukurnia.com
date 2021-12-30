@@ -66,21 +66,21 @@ export const { styled, css, getCssText } = createStitches({
     '2xl': '(min-width: 1536px)'
   },
   utils: {
-    m: (n: number) => ({ margin: n }),
-    ml: (n: number) => ({ marginLeft: n }),
-    mr: (n: number) => ({ marginRight: n }),
-    mt: (n: number) => ({ marginTop: n }),
-    mb: (n: number) => ({ marginBottom: n }),
-    mx: (n: number) => ({ marginLeft: n, marginRight: n }),
-    my: (n: number) => ({ marginTop: n, marginBottom: n }),
+    m: (n: number | string) => ({ margin: n }),
+    ml: (n: number | string) => ({ marginLeft: n }),
+    mr: (n: number | string) => ({ marginRight: n }),
+    mt: (n: number | string) => ({ marginTop: n }),
+    mb: (n: number | string) => ({ marginBottom: n }),
+    mx: (n: number | string) => ({ marginLeft: n, marginRight: n }),
+    my: (n: number | string) => ({ marginTop: n, marginBottom: n }),
 
-    p: (n: number) => ({ padding: n }),
-    pl: (n: number) => ({ paddingLeft: n }),
-    pr: (n: number) => ({ paddingRight: n }),
-    pt: (n: number) => ({ paddingTop: n }),
-    pb: (n: number) => ({ paddingBottom: n }),
-    px: (n: number) => ({ paddingLeft: n, paddingRight: n }),
-    py: (n: number) => ({ paddingTop: n, paddingBottom: n }),
+    p: (n: number | string) => ({ padding: n }),
+    pl: (n: number | string) => ({ paddingLeft: n }),
+    pr: (n: number | string) => ({ paddingRight: n }),
+    pt: (n: number | string) => ({ paddingTop: n }),
+    pb: (n: number | string) => ({ paddingBottom: n }),
+    px: (n: number | string) => ({ paddingLeft: n, paddingRight: n }),
+    py: (n: number | string) => ({ paddingTop: n, paddingBottom: n }),
 
     size: (n: number) => ({ width: n, height: n })
   }
