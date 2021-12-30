@@ -1,13 +1,11 @@
 import { styled } from '~/styles'
 import Block from '~/components/Block'
-import Container from '~/components/commons/Container'
 import notion from '~/lib/notion'
 import config from '~/config'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
 
 const StyledArticle = styled('article', {
-  mt: 80,
   width: '100%',
   '& p': {
     pt: '1rem'
@@ -16,18 +14,16 @@ const StyledArticle = styled('article', {
 
 const Post = ({ post, blocks }: any) => {
   return (
-    <Container size="medium">
-      <StyledArticle>
-        <h1 style={{ fontSize: '3rem' }}>
-          {post?.properties?.title?.title[0]?.plain_text}
-        </h1>
-        {blocks?.results?.length
-          ? blocks.results.map((block: any) => (
-              <Block key={block.id} block={block} />
-            ))
-          : null}
-      </StyledArticle>
-    </Container>
+    <StyledArticle>
+      <h1 style={{ fontSize: '2rem' }}>
+        {post?.properties?.title?.title[0]?.plain_text}
+      </h1>
+      {blocks?.results?.length
+        ? blocks.results.map((block: any) => (
+            <Block key={block.id} block={block} />
+          ))
+        : null}
+    </StyledArticle>
   )
 }
 Post.layout = attachMainLayout

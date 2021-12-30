@@ -6,7 +6,7 @@ const StyledSpan = styled('span', {
   textDecoration: 'inherit',
   variants: {
     color: {
-      default: { color: '$black' },
+      default: { color: 'inherit' },
       black: { color: '$black' },
       gray: { color: '$gray' },
       brown: { color: '$brown' },
@@ -17,7 +17,7 @@ const StyledSpan = styled('span', {
       purple: { color: '$purple' },
       pink: { color: '$pink' },
       red: { color: '$red' },
-      default_background: { backgroundColor: '$black' },
+      default_background: { backgroundColor: 'inherit' },
       black_background: { backgroundColor: '$black' },
       gray_background: { backgroundColor: '$gray' },
       brown_background: { backgroundColor: '$brown' },
@@ -30,7 +30,7 @@ const StyledSpan = styled('span', {
       red_background: { backgroundColor: '$red' }
     },
     bold: {
-      true: { fontWeight: '900' }
+      true: { fontWeight: 'bolder' }
     },
     italic: {
       true: { fontStyle: 'italic' }
@@ -49,7 +49,16 @@ const StyledSpan = styled('span', {
         borderRadius: '0.3rem'
       }
     }
-  }
+  },
+  compoundVariants: [
+    {
+      strikethrough: true,
+      underline: true,
+      css: {
+        textDecoration: 'line-through underline'
+      }
+    }
+  ]
 })
 
 const Text = ({ text }: any) => {
@@ -62,10 +71,7 @@ const Text = ({ text }: any) => {
     return (
       <StyledSpan key={i} {...annotations}>
         {text.link ? (
-          <a
-            style={{ textDecoration: 'underline', color: '$blue' }}
-            href={text.link.url}
-          >
+          <a style={{ textDecoration: 'underline' }} href={text.link.url}>
             {text.content}
           </a>
         ) : (

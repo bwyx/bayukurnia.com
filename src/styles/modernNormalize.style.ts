@@ -260,31 +260,13 @@ Add the correct display in Chrome and Safari.
 })
 
 export const globalStyles = globalCss({
-  '@font-face': [
-    {
-      fontFamily: 'Inter var',
-      fontWeight: '100 900',
-      fontDisplay: 'swap',
-      fontStyle: 'normal',
-      src: "url(/fonts/Inter-roman-latin.var.woff2) format('woff2')"
-    },
-    {
-      fontFamily: 'Inter var',
-      fontWeight: '100 900',
-      fontDisplay: 'swap',
-      fontStyle: 'italic',
-      src: "url(/fonts/Inter-italic-latin.var.woff2) format('woff2')"
-    }
-  ],
   html: {
     fontFeatureSettings: "'cv02','cv03','cv04','cv11'"
   },
   body: {
     fontFamily: '$sans',
     color: '$text',
-    lineHeight: '1.75',
-    width: '100vw',
-    overflowX: 'hidden'
+    lineHeight: '1.75'
   },
   '#__next': {
     display: 'flex',

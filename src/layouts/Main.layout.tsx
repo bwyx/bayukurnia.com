@@ -16,7 +16,7 @@ const MainLayout: React.FC = ({ children }) => {
     <>
       <Header />
       <StyledMain>
-        <Container>{children}</Container>
+        <Container size="small">{children}</Container>
       </StyledMain>
       <Footer />
     </>

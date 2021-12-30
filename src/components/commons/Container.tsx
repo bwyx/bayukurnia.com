@@ -3,8 +3,8 @@ const StyledContainer = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
-  maxWidth: '72rem',
   px: '1rem',
+  margin: '0 auto',
   variants: {
     size: {
       small: {
@@ -18,7 +18,7 @@ const StyledContainer = styled('div', {
       }
     }
   },
-  defaultVariant: {
+  defaultVariants: {
     size: 'medium'
   }
 })
