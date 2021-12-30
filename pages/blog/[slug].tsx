@@ -1,19 +1,36 @@
+import { styled } from '~/styles'
 import Block from '~/components/Block'
+import Container from '~/components/commons/Container'
 import notion from '~/lib/notion'
 import config from '~/config'
 
+import { attachMainLayout } from '~/layouts/Main.layout'
+
+const StyledArticle = styled('article', {
+  mt: 80,
+  width: '100%',
+  '& p': {
+    pt: '1rem'
+  }
+})
+
 const Post = ({ post, blocks }: any) => {
   return (
-    <article>
-      <h1 style={{ color: 'red', fontSize: '5rem' }}>
-        {post?.properties?.title?.title[0]?.plain_text}
-      </h1>
-      {blocks?.length
-        ? blocks.map((block: any) => <Block key={block.id} block={block} />)
-        : null}
-    </article>
+    <Container size="medium">
+      <StyledArticle>
+        <h1 style={{ fontSize: '3rem' }}>
+          {post?.properties?.title?.title[0]?.plain_text}
+        </h1>
+        {blocks?.results?.length
+          ? blocks.results.map((block: any) => (
+              <Block key={block.id} block={block} />
+            ))
+          : null}
+      </StyledArticle>
+    </Container>
   )
 }
+Post.layout = attachMainLayout
 
 export const getStaticProps = async (req: any) => {
   const { results: postResults } = await notion.databases.query({
@@ -36,14 +53,14 @@ export const getStaticProps = async (req: any) => {
     }
   })
 
-  const { results: blockResults } = await notion.blocks.children.list({
+  const blocks = await notion.blocks.children.list({
     block_id: postResults[0].id
   })
 
   return {
     props: {
       post: postResults[0],
-      blocks: blockResults
+      blocks
     },
     revalidate: 10
   }

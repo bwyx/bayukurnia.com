@@ -1,8 +1,21 @@
+import { styled } from '~/styles'
+
+const StyledFooter = styled('footer', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  py: '1rem',
+  '& p': {
+    fontSize: '0.8rem',
+    color: '$gray'
+  }
+})
+
 const Footer = () => {
   return (
-    <footer>
-      <p>credit</p>
-    </footer>
+    <StyledFooter>
+      <p>© Bayu Kurnia 2021</p>
+    </StyledFooter>
   )
 }
 
