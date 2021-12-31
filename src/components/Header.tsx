@@ -11,20 +11,39 @@ const StyledHeader = styled('header', {
   alignItems: 'center',
   justifyContent: 'center',
   pointerEvents: 'none',
-  // backgroundColor: 'rgba(255, 255, 255, 0.6)',
-  // backdropFilter: 'saturate(180%) blur(20px)',
+  padding: '0.75rem 0',
+  fontSize: '0.875rem',
+  '@md': {
+    height: 80
+  },
   '& .logo': {
     pointerEvents: 'auto',
-    padding: '0.5rem',
-    color: '$brand'
+    display: 'inherit',
+    color: '$brand',
+    // filter: 'drop-shadow(2px 4px 5px var(--colors-brand))',
+    '&:hover': {
+      color: '$accent'
+    }
   },
   '& nav': {
     pointerEvents: 'auto',
     display: 'flex',
     alignItems: 'center',
+    borderRadius: '0.5rem',
+    padding: '0 0.5rem',
+    backgroundColor: 'rgb(184 187 38 / 80%)',
+    backdropFilter: 'saturate(180%) blur(1rem)',
+    border: '1px solid $brand',
     '& a': {
-      mx: '0.5rem',
-      padding: '0.5rem'
+      padding: '0.5rem',
+      color: 'white',
+      textDecoration: 'none',
+      fontWeight: '500',
+      '&:first-child': {},
+      '&:last-child': {},
+      '&:hover': {
+        background: '$brand'
+      }
     }
   }
 })
@@ -32,7 +51,7 @@ const StyledHeader = styled('header', {
 const Header = () => {
   return (
     <StyledHeader>
-      <Container>
+      <Container css={{ alignItems: 'center' }}>
         <Link href="/">
           <a className="logo">
             <AnimatedLogo height={45} />

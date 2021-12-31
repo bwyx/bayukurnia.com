@@ -1,9 +1,9 @@
 import { styled } from '~/styles'
-const StyledContainer = styled('div', {
+const Container = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
-  px: '1rem',
+  padding: '0 1rem',
   margin: '0 auto',
   variants: {
     size: {
@@ -23,4 +23,4 @@ const StyledContainer = styled('div', {
   }
 })
 
-export default StyledContainer
+export default Container

@@ -1,19 +1,17 @@
 import { createStitches } from '@stitches/react'
 
-export const { styled, css, getCssText } = createStitches({
+export const { styled, css, getCssText, globalCss } = createStitches({
   theme: {
     colors: {
       brand: '#b8bb26',
       brandShade: '#9e9e1b',
-      brandShadeActive: '#89890e',
-      accent: '#ff4081',
-      accentShade: '#ff79b0',
-      accentShadeActive: '#ffa3d7',
-      text: '#334155',
+      accent: '#f97316',
+      accentShade: '#f95d0e',
+      fg: '#334155',
       bg: '#fafafa',
       bgShade: '#f5f5f5',
       border: '#e0e0e0',
-      black: '#000000',
+      black: '#000',
       gray: '#6b7280',
       brown: '#78350f',
       orange: '#f97316',
@@ -25,7 +23,7 @@ export const { styled, css, getCssText } = createStitches({
       red: '#ef4444'
     },
     space: {},
-    fontSize: {
+    fontSizes: {
       xs: '0.75rem',
       sm: '0.875rem',
       base: '1rem',
@@ -43,7 +41,7 @@ export const { styled, css, getCssText } = createStitches({
     fonts: {
       sans: "Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol'",
       serif: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
-      mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+      mono: "'Iosevka Term Curly', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
       untitled: 'Untitled Sans, apple-system, sans-serif'
     },
     radii: {
@@ -64,24 +62,5 @@ export const { styled, css, getCssText } = createStitches({
     lg: '(min-width: 1024px)',
     xl: '(min-width: 1280px)',
     '2xl': '(min-width: 1536px)'
-  },
-  utils: {
-    m: (n: number | string) => ({ margin: n }),
-    ml: (n: number | string) => ({ marginLeft: n }),
-    mr: (n: number | string) => ({ marginRight: n }),
-    mt: (n: number | string) => ({ marginTop: n }),
-    mb: (n: number | string) => ({ marginBottom: n }),
-    mx: (n: number | string) => ({ marginLeft: n, marginRight: n }),
-    my: (n: number | string) => ({ marginTop: n, marginBottom: n }),
-
-    p: (n: number | string) => ({ padding: n }),
-    pl: (n: number | string) => ({ paddingLeft: n }),
-    pr: (n: number | string) => ({ paddingRight: n }),
-    pt: (n: number | string) => ({ paddingTop: n }),
-    pb: (n: number | string) => ({ paddingBottom: n }),
-    px: (n: number | string) => ({ paddingLeft: n, paddingRight: n }),
-    py: (n: number | string) => ({ paddingTop: n, paddingBottom: n }),
-
-    size: (n: number) => ({ width: n, height: n })
   }
 })
