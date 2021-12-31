@@ -1,29 +1,24 @@
-import { styled } from '~/styles'
 import Block from '~/components/Block'
+import Article from '~/components/Article'
 import notion from '~/lib/notion'
 import config from '~/config'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
 
-const StyledArticle = styled('article', {
-  width: '100%',
-  '& p': {
-    pt: '1rem'
-  }
-})
-
 const Post = ({ post, blocks }: any) => {
   return (
-    <StyledArticle>
+    <>
       <h1 style={{ fontSize: '2rem' }}>
         {post?.properties?.title?.title[0]?.plain_text}
       </h1>
-      {blocks?.results?.length
-        ? blocks.results.map((block: any) => (
-            <Block key={block.id} block={block} />
-          ))
-        : null}
-    </StyledArticle>
+      <Article prose="lg">
+        {blocks?.results?.length
+          ? blocks.results.map((block: any) => (
+              <Block key={block.id} block={block} />
+            ))
+          : null}
+      </Article>
+    </>
   )
 }
 Post.layout = attachMainLayout
@@ -58,7 +53,7 @@ export const getStaticProps = async (req: any) => {
       post: postResults[0],
       blocks
     },
-    revalidate: 10
+    revalidate: 300
   }
 }
 

@@ -3,7 +3,7 @@ import { attachMainLayout } from '~/layouts/Main.layout'
 import { Page } from '~/types/page.type'
 
 const Home: Page = () => {
-  return <div>Hi there! </div>
+  return <div>Ngga ada apa-apa di sini.</div>
 }
 
 Home.layout = attachMainLayout

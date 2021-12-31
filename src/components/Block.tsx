@@ -1,5 +1,4 @@
 import Text from '~/components/blocks/Text'
-import { H1, H2, H3 } from '~/components/Headings'
 
 const Block = ({ block }: any) => {
   const { type } = block
@@ -8,21 +7,21 @@ const Block = ({ block }: any) => {
   switch (type) {
     case 'heading_1':
       return (
-        <H1>
+        <h2>
           <Text text={value.text} />
-        </H1>
+        </h2>
       )
     case 'heading_2':
       return (
-        <H2>
+        <h3>
           <Text text={value.text} />
-        </H2>
+        </h3>
       )
     case 'heading_3':
       return (
-        <H3>
+        <h4>
           <Text text={value.text} />
-        </H3>
+        </h4>
       )
     case 'paragraph':
       return (
@@ -39,7 +38,9 @@ const Block = ({ block }: any) => {
         </pre>
       )
     default:
-      return <code style={{ color: 'red' }}>..redacted..</code>
+      return (
+        <code style={{ color: 'red', display: 'block' }}>..redacted..</code>
+      )
     // return <pre>{JSON.stringify(block, null, 2)}</pre>
   }
 }

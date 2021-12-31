@@ -4,7 +4,7 @@ const StyledFooter = styled('footer', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  py: '1rem',
+  padding: '1rem 0',
   '& p': {
     fontSize: '0.8rem',
     color: '$gray'

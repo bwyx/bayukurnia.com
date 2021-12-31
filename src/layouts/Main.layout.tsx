@@ -6,9 +6,7 @@ import { styled } from '~/styles'
 const StyledMain = styled('main', {
   display: 'flex',
   flexDirection: 'column',
-  flexGrow: 1,
-  alignItems: 'center',
-  justifyContent: 'center'
+  flexGrow: 1
 })
 
 const MainLayout: React.FC = ({ children }) => {
@@ -16,7 +14,9 @@ const MainLayout: React.FC = ({ children }) => {
     <>
       <Header />
       <StyledMain>
-        <Container size="small">{children}</Container>
+        <Container size="small" css={{ flexDirection: 'column' }}>
+          {children}
+        </Container>
       </StyledMain>
       <Footer />
     </>
