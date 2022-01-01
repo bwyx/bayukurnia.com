@@ -41,7 +41,7 @@ const StyledSpan = styled('span', {
     },
     code: {
       true: {
-        fontFamily: 'monospace',
+        fontFamily: '$mono',
         backgroundColor: 'rgba(0, 0, 0, 0.05)',
         padding: '0.2rem 0.4rem',
         borderRadius: '0.3rem'
