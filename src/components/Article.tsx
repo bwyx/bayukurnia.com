@@ -1,4 +1,7 @@
+import Prism from 'prismjs'
+import { useEffect } from 'react'
 import { styled } from '~/styles'
+import prismNord from '~/styles/prism/nord.style'
 
 const round = (num: number) =>
   num
@@ -21,7 +24,7 @@ const slate = {
   900: '#0f172a'
 }
 
-const Article = styled('article', {
+const vars = {
   '--tw-prose-body': slate[700],
   '--tw-prose-headings': slate[900],
   '--tw-prose-lead': slate[600],
@@ -53,7 +56,10 @@ const Article = styled('article', {
   '--tw-prose-invert-pre-code': slate[300],
   '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
   '--tw-prose-invert-th-borders': slate[600],
-  '--tw-prose-invert-td-borders': slate[700],
+  '--tw-prose-invert-td-borders': slate[700]
+}
+
+const prose = {
   color: 'var(--tw-prose-body)',
   maxWidth: '65ch',
   '[class~="lead"]': {
@@ -226,7 +232,13 @@ const Article = styled('article', {
   },
   '> :last-child': {
     marginBottom: '0'
-  },
+  }
+}
+
+const StyledArticle = styled('article', {
+  ...prismNord,
+  ...vars,
+  ...prose,
   variants: {
     prose: {
       sm: {
@@ -1065,5 +1077,24 @@ const Article = styled('article', {
     prose: 'base'
   }
 })
+
+interface Props {}
+
+const Article = (props: React.PropsWithChildren<Props>) => {
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
+
+  return (
+    <StyledArticle
+      prose={{
+        '@initial': 'base',
+        '@md': 'lg'
+      }}
+    >
+      {props.children}
+    </StyledArticle>
+  )
+}
 
 export default Article

@@ -30,10 +30,11 @@ const Block = ({ block }: any) => {
         </p>
       )
     case 'code':
+      const { text, language } = value
       return (
-        <pre style={{ fontSize: '0.8215em' }}>
-          <code>
-            <Text text={value.text} />
+        <pre>
+          <code className={`language-${language}`}>
+            <Text text={text} />
           </code>
         </pre>
       )
