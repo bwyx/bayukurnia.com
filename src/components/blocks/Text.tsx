@@ -1,9 +1,7 @@
 import { styled } from '~/styles'
 
 const StyledSpan = styled('span', {
-  fontWeight: 'inherit',
-  fontStyle: 'inherit',
-  textDecoration: 'inherit',
+  wordBreak: 'break-word',
   variants: {
     color: {
       default: { color: 'inherit' },
