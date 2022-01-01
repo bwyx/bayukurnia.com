@@ -2,8 +2,7 @@ const prismNord = {
   'code[class*="language-"],\n pre[class*="language-"]': {
     color: '#f8f8f2',
     background: 'none',
-    fontFamily:
-      "'Iosevka Term Curly', 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
+    fontFamily: '$mono',
     textAlign: 'left',
     whiteSpace: 'pre',
     wordSpacing: 'normal',

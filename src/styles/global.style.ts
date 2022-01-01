@@ -16,6 +16,14 @@ export const globalStyles = globalCss({
       fontDisplay: 'swap',
       fontStyle: 'italic',
       src: "url(/fonts/Inter-italic-latin.var.woff2) format('woff2')"
+    },
+    {
+      fontFamily: 'Iosevka Web',
+      fontDisplay: 'swap',
+      fontWeight: 400,
+      fontStretch: 'normal',
+      fontStyle: 'normal',
+      src: "url('/fonts/iosevka-web-regular.woff2') format('woff2')"
     }
   ],
   html: {

@@ -41,7 +41,7 @@ export const { styled, css, getCssText, globalCss } = createStitches({
     fonts: {
       sans: "Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol'",
       serif: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
-      mono: "'Iosevka Term Curly', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+      mono: "'Iosevka Web', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
       untitled: 'Untitled Sans, apple-system, sans-serif'
     },
     radii: {
