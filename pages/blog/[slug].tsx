@@ -11,7 +11,7 @@ const Post = ({ post, blocks }: any) => {
       <h1 style={{ fontSize: '2rem' }}>
         {post?.properties?.title?.title[0]?.plain_text}
       </h1>
-      <Article prose="lg">
+      <Article>
         {blocks?.results?.length
           ? blocks.results.map((block: any) => (
               <Block key={block.id} block={block} />
