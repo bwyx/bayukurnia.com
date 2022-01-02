@@ -18,12 +18,20 @@ export const globalStyles = globalCss({
       src: "url(/fonts/Inter-italic-latin.var.woff2) format('woff2')"
     },
     {
-      fontFamily: 'Iosevka Web',
+      fontFamily: "'Iosevka'",
       fontDisplay: 'swap',
       fontWeight: 400,
       fontStretch: 'normal',
       fontStyle: 'normal',
-      src: "url('/fonts/iosevka-web-regular.woff2') format('woff2')"
+      src: "url('/fonts/iosevka-regular.woff2') format('woff2')"
+    },
+    {
+      fontFamily: "'Iosevka'",
+      fontDisplay: 'swap',
+      fontWeight: 600,
+      fontStretch: 'normal',
+      fontStyle: 'normal',
+      src: "url('/fonts/iosevka-semibold.woff2') format('woff2')"
     }
   ],
   html: {
