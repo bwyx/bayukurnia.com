@@ -1,4 +1,5 @@
 import { styled } from '~/styles'
+import ToggleTheme from './ToggleTheme'
 
 const StyledFooter = styled('footer', {
   display: 'flex',
@@ -14,7 +15,9 @@ const StyledFooter = styled('footer', {
 const Footer = () => {
   return (
     <StyledFooter>
-      <p>© Bayu Kurnia 2021</p>
+      <p>
+        <ToggleTheme /> © Bayu Kurnia 2021
+      </p>
     </StyledFooter>
   )
 }
