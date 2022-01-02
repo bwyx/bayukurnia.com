@@ -10,39 +10,44 @@ const StyledHeader = styled('header', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  pointerEvents: 'none',
-  padding: '0.75rem 0',
-  fontSize: '0.875rem',
+  background: 'rgb($bg / .7)',
+  backdropFilter: 'saturate(180%) blur(1rem)',
+  height: 60,
   '@md': {
     height: 80
   },
+  [`& ${Container}`]: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
   '& .logo': {
-    pointerEvents: 'auto',
     display: 'inherit',
-    color: '$brand',
-    // filter: 'drop-shadow(2px 4px 5px var(--colors-brand))',
+    color: 'rgb($brand)',
+    '& svg': {
+      width: 'auto',
+      height: 40,
+      '@md': {
+        height: 45
+      }
+    },
     '&:hover': {
-      color: '$accent'
+      color: 'rgb($accent)'
     }
   },
-  '& nav': {
-    pointerEvents: 'auto',
+  '& nav ul': {
     display: 'flex',
     alignItems: 'center',
-    borderRadius: '0.5rem',
-    padding: '0 0.5rem',
-    backgroundColor: 'rgb(184 187 38 / 80%)',
-    backdropFilter: 'saturate(180%) blur(1rem)',
-    border: '1px solid $brand',
+    '& li:not(:last-child)': {
+      marginRight: '0.5rem'
+    },
     '& a': {
-      padding: '0.5rem',
-      color: 'white',
       textDecoration: 'none',
+      fontSize: '$base',
       fontWeight: '500',
-      '&:first-child': {},
-      '&:last-child': {},
+      color: 'rgb($brand)',
       '&:hover': {
-        background: '$brand'
+        color: 'rgb($accent)'
       }
     }
   }
@@ -51,19 +56,25 @@ const StyledHeader = styled('header', {
 const Header = () => {
   return (
     <StyledHeader>
-      <Container css={{ alignItems: 'center' }}>
+      <Container>
         <Link href="/">
           <a className="logo">
             <AnimatedLogo height={45} />
           </a>
         </Link>
         <nav>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-          <Link href="/blog">
-            <a>Blog</a>
-          </Link>
+          <ul>
+            <li>
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog">
+                <a>Blog</a>
+              </Link>
+            </li>
+          </ul>
         </nav>
       </Container>
     </StyledHeader>
