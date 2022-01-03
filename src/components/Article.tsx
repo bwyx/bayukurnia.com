@@ -1089,7 +1089,7 @@ const Article = (props: React.PropsWithChildren<Props>) => {
     <StyledArticle
       prose={{
         '@initial': 'base',
-        '@md': 'lg'
+        '@sm': 'lg'
       }}
     >
       {props.children}
