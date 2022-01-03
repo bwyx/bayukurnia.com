@@ -1,64 +1,71 @@
 import { keyframes } from '@stitches/react'
 import { styled } from '~/styles'
 
-type Props =
+type Props = {
+  animated?: boolean
+} & (
   | {
       height: number
     }
   | {
       width: number
     }
+)
 
 const drawPath = keyframes({
   '0%': { strokeDashoffset: 300 },
   '100%': { strokeDashoffset: 0 }
 })
 
-const AnimatedLogo = styled('svg', {
-  strokeDasharray: 300,
-  strokeDashoffset: 300,
-  '& [name="b"]': {
-    animation: `${drawPath} 0.8s linear forwards`,
-    animationDelay: '0.5s'
-  },
-  '& [name="ayu"]': {
-    animation: `${drawPath} 1s ease-in-out forwards`,
-    animationDelay: '0.8s'
-  },
-  '& [name="k1"]': {
-    animation: `${drawPath} 0.4s ease-in-out forwards`,
-    animationDelay: '1.8s'
-  },
-  '& [name="k2"]': {
-    animation: `${drawPath} 0.6s ease-in-out forwards`,
-    animationDelay: '2s'
-  },
-  '& [name="ur"]': {
-    animation: `${drawPath} 0.8s linear forwards`,
-    animationDelay: '2.2s'
-  },
-  '& [name="ni"]': {
-    animation: `${drawPath} 0.7s linear forwards`,
-    animationDelay: '2.6s'
-  },
-  '& [name="dot"]': {
-    animation: `${drawPath} 0.3s linear forwards`,
-    animationDelay: '3.2s'
-  },
-  '& [name="a"]': {
-    animation: `${drawPath} 1s linear forwards`,
-    animationDelay: '2.8s'
-  },
-  '& [name="decor"]': {
-    animation: `${drawPath} 1s ease-in-out forwards`,
-    animationDelay: '3.5s'
+const Svg = styled('svg', {
+  '&.animated': {
+    strokeDasharray: 300,
+    strokeDashoffset: 300,
+    willChange: 'stroke-dashoffset',
+    '& [name="b"]': {
+      animation: `${drawPath} 0.8s linear forwards`,
+      animationDelay: '0.5s'
+    },
+    '& [name="ayu"]': {
+      animation: `${drawPath} 1s ease-in-out forwards`,
+      animationDelay: '0.8s'
+    },
+    '& [name="k1"]': {
+      animation: `${drawPath} 0.4s ease-in-out forwards`,
+      animationDelay: '1.8s'
+    },
+    '& [name="k2"]': {
+      animation: `${drawPath} 0.6s ease-in-out forwards`,
+      animationDelay: '2s'
+    },
+    '& [name="ur"]': {
+      animation: `${drawPath} 0.8s linear forwards`,
+      animationDelay: '2.2s'
+    },
+    '& [name="ni"]': {
+      animation: `${drawPath} 0.7s linear forwards`,
+      animationDelay: '2.6s'
+    },
+    '& [name="dot"]': {
+      animation: `${drawPath} 0.3s linear forwards`,
+      animationDelay: '3.2s'
+    },
+    '& [name="a"]': {
+      animation: `${drawPath} 1s linear forwards`,
+      animationDelay: '2.8s'
+    },
+    '& [name="decor"]': {
+      animation: `${drawPath} 1s ease-in-out forwards`,
+      animationDelay: '3.5s'
+    }
   }
 })
 
-const Bayu = (props: Props) => {
+const Logo = (props: Props) => {
   return (
-    <AnimatedLogo
+    <Svg
       {...props}
+      className={props.animated ? 'animated' : ''}
       viewBox="0 0 147 115"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -126,8 +133,8 @@ const Bayu = (props: Props) => {
         strokeWidth="4"
         strokeLinecap="round"
       />
-    </AnimatedLogo>
+    </Svg>
   )
 }
 
-export default Bayu
+export default Logo

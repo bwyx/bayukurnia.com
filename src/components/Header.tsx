@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { styled } from '~/styles'
 import Container from '~/components/commons/Container'
-import AnimatedLogo from '~/components/vectors/AnimatedLogo'
+import Logo from '~/components/vectors/Logo'
 
 const StyledHeader = styled('header', {
   position: 'sticky',
@@ -59,7 +59,7 @@ const Header = () => {
       <Container>
         <Link href="/">
           <a className="logo">
-            <AnimatedLogo height={45} />
+            <Logo height={45} />
           </a>
         </Link>
         <nav>
