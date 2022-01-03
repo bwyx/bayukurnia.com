@@ -1,4 +1,5 @@
 import Text from '~/components/blocks/Text'
+import CodeBlock from './CodeBlock'
 
 const Block = ({ block }: any) => {
   const { type } = block
@@ -31,13 +32,9 @@ const Block = ({ block }: any) => {
       )
     case 'code':
       const { text, language } = value
-      return (
-        <pre>
-          <code className={`language-${language}`}>
-            <Text text={text} />
-          </code>
-        </pre>
-      )
+      const code = text.map((t: any) => t.plain_text).join('')
+
+      return <CodeBlock language={language}>{code}</CodeBlock>
     default:
       return (
         <code style={{ color: 'red', display: 'block' }}>..redacted..</code>

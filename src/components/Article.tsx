@@ -1,7 +1,4 @@
-import Prism from 'prismjs'
-import { useEffect } from 'react'
 import { styled } from '~/styles'
-import prismNord from '~/styles/prism/nord.style'
 
 const round = (num: number) =>
   num
@@ -236,7 +233,6 @@ const prose = {
 }
 
 const StyledArticle = styled('article', {
-  ...prismNord,
   ...vars,
   ...prose,
   variants: {
@@ -1081,10 +1077,6 @@ const StyledArticle = styled('article', {
 interface Props {}
 
 const Article = (props: React.PropsWithChildren<Props>) => {
-  useEffect(() => {
-    Prism.highlightAll()
-  }, [])
-
   return (
     <StyledArticle
       prose={{
