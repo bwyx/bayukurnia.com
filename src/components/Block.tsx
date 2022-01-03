@@ -8,21 +8,21 @@ const Block = ({ block }: any) => {
   switch (type) {
     case 'heading_1':
       return (
+        <h1>
+          <Text text={value.text} />
+        </h1>
+      )
+    case 'heading_2':
+      return (
         <h2>
           <Text text={value.text} />
         </h2>
       )
-    case 'heading_2':
+    case 'heading_3':
       return (
         <h3>
           <Text text={value.text} />
         </h3>
-      )
-    case 'heading_3':
-      return (
-        <h4>
-          <Text text={value.text} />
-        </h4>
       )
     case 'paragraph':
       return (
