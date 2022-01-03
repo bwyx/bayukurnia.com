@@ -1,7 +1,5 @@
 import { styled } from '~/styles'
 const Container = styled('div', {
-  display: 'flex',
-  justifyContent: 'space-between',
   width: '100%',
   padding: '0 1rem',
   margin: '0 auto',
@@ -19,7 +17,7 @@ const Container = styled('div', {
     }
   },
   defaultVariants: {
-    size: 'medium'
+    size: 'small'
   }
 })
 
