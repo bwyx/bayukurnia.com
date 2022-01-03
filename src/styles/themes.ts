@@ -1,16 +1,12 @@
 import { createTheme } from '~/styles'
 
-export const lightTheme = createTheme('light', {
+export const lightTheme = {
   colors: {
     brand: '121 116 14',
-    brandShade: '#98971a',
     accent: '181 118 20',
-    accentShade: '215 153 33',
-    fg: '#334155',
+    fg: '51 65 85',
     bg: '250 250 250',
-    bgShade: '#f5f5f5',
-    border: '#e0e0e0',
-    black: '0 0 0',
+    black: '#000',
     gray: '#6b7280',
     brown: '#78350f',
     orange: '#f97316',
@@ -21,19 +17,15 @@ export const lightTheme = createTheme('light', {
     pink: '#ec4899',
     red: '#ef4444'
   }
-})
+}
 
-export const darkTheme = createTheme('dark', {
+export const darkTheme = {
   colors: {
     brand: '184 187 38',
-    brandShade: '#98971a',
     accent: '250 189 47',
-    accentShade: '215 153 33',
-    fg: '#fff',
+    fg: '255, 255, 255',
     bg: '13 13 13',
-    bgShade: '#f5f5f5',
-    border: '#e0e0e0',
-    black: '0 0 0',
+    black: '#000',
     gray: '#6b7280',
     brown: '#78350f',
     orange: '#f97316',
@@ -44,4 +36,11 @@ export const darkTheme = createTheme('dark', {
     pink: '#ec4899',
     red: '#ef4444'
   }
-})
+}
+
+const themes = {
+  light: createTheme('light', lightTheme),
+  dark: createTheme('dark', darkTheme)
+}
+
+export default themes

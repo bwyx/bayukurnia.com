@@ -1,4 +1,5 @@
 import { globalCss } from '~/styles'
+import { darkTheme, lightTheme } from '~/styles/themes'
 
 export const globalStyles = globalCss({
   // Fonts
@@ -51,13 +52,24 @@ export const globalStyles = globalCss({
     WebkitTextSizeAdjust: '100%',
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-    fontFeatureSettings: "'cv02','cv03','cv04','cv11'"
+    fontFeatureSettings: "'cv02','cv03','cv04','cv11'",
+
+    // Fallback colors to disable flashing on color scheme changes
+    '--colors-brand': darkTheme.colors.brand,
+    color: `rgb(${darkTheme.colors.fg})`,
+    background: `rgb(${darkTheme.colors.bg})`,
+
+    '@media (prefers-color-scheme: light)': {
+      '--colors-brand': lightTheme.colors.brand,
+      color: `rgb(${lightTheme.colors.fg})`,
+      background: `rgb(${lightTheme.colors.bg})`
+    }
   },
   body: {
     margin: 0,
     fontFamily: '$sans',
     fontSize: '$lg',
-    color: '$fg',
+    color: 'rgb($fg)',
     background: 'rgb($bg)',
     lineHeight: 1.75,
     width: '100vw',
