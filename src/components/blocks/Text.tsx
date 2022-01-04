@@ -1,6 +1,9 @@
+import React from 'react'
 import { styled } from '~/styles'
 
-const StyledSpan = styled('span', {
+import type { RichText } from '~/types/notion.type'
+
+const Token = styled('span', {
   wordBreak: 'break-word',
   variants: {
     color: {
@@ -59,25 +62,45 @@ const StyledSpan = styled('span', {
   ]
 })
 
-const Text = ({ text }: any) => {
-  if (!text) {
+interface Props {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div'
+  children: RichText[]
+}
+
+const Text = ({ as, children }: Props) => {
+  const Component = as || React.Fragment
+
+  if (!children) {
     return null
   }
-  return text.map((value: any, i: number) => {
-    const { annotations, text } = value
+  return (
+    <Component>
+      {children.map((child: RichText, i: number) => {
+        if (child.type !== 'text') {
+          return (
+            <div>
+              not yet supported:{' '}
+              <span style={{ color: 'red' }}>RichText type {child.type}</span>
+            </div>
+          )
+        }
 
-    return (
-      <StyledSpan key={i} {...annotations}>
-        {text.link ? (
-          <a style={{ textDecoration: 'underline' }} href={text.link.url}>
-            {text.content}
-          </a>
-        ) : (
-          text.content
-        )}
-      </StyledSpan>
-    )
-  })
+        const { annotations, text } = child
+
+        return (
+          <Token key={i} {...annotations}>
+            {text.link ? (
+              <a style={{ textDecoration: 'underline' }} href={text.link.url}>
+                {text.content}
+              </a>
+            ) : (
+              text.content
+            )}
+          </Token>
+        )
+      })}
+    </Component>
+  )
 }
 
 export default Text
