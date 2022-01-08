@@ -1,9 +1,10 @@
 import { attachMainLayout } from '~/layouts/Main.layout'
+import Container from '~/components/commons/Container'
 
 import { Page } from '~/types/page.type'
 
 const About: Page = () => {
-  return <div>Di sini juga ngga ada apa-apa.</div>
+  return <Container size="small">Di sini juga ngga ada apa-apa.</Container>
 }
 
 About.layout = attachMainLayout

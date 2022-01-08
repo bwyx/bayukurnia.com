@@ -6,12 +6,16 @@ import Logo from '~/components/vectors/Logo'
 const StyledHeader = styled('header', {
   position: 'sticky',
   top: 0,
+  zIndex: 50,
   width: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: 'rgb($bg / .7)',
+  background: 'rgb($bg / .6)',
   backdropFilter: 'saturate(180%) blur(1rem)',
+  borderBottom: '1px solid transparent',
+  borderImage:
+    'linear-gradient(to right, rgba($bg / 5%), rgba($bg / 80%) 30%, rgba($bg / 20%) 80%, rgba($bg / 90%) 90%) 1',
   height: 60,
   '@md': {
     height: 80
@@ -56,7 +60,7 @@ const StyledHeader = styled('header', {
 const Header = () => {
   return (
     <StyledHeader>
-      <Container>
+      <Container size="large">
         <Link href="/">
           <a className="logo">
             <Logo height={45} />

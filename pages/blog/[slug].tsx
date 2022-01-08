@@ -1,7 +1,8 @@
 import { attachMainLayout } from '~/layouts/Main.layout'
+import SEO from '~/components/SEO'
+import Hero from '~/components/Hero'
 import ContentBlock from '~/components/ContentBlock'
 import Article from '~/components/Article'
-import SEO from '~/components/SEO'
 import notion from '~/lib/notion'
 import config from '~/config'
 
@@ -14,6 +15,7 @@ import type {
   PostResult
 } from '~/types/notion.type'
 import { hasOwnProperty } from '~/utils'
+import Container from '~/components/commons/Container'
 
 // TODO: Not sure if this is the best way to do this.
 type PickedBlock = Pick<Block, 'id' | 'type'> & {
@@ -22,30 +24,24 @@ type PickedBlock = Pick<Block, 'id' | 'type'> & {
 
 interface PageProps {
   title: string
+  cover: string | null
   blocks: PickedBlock[]
 }
 
-const Post = ({ title, blocks }: PageProps) => {
+const Post = ({ title, cover, blocks }: PageProps) => {
   return (
     <>
       <SEO title={title} />
-      <h1
-        style={{
-          fontSize: '2.25rem',
-          lineHeight: '2.5rem',
-          fontWeight: 800,
-          margin: '3rem 0'
-        }}
-      >
-        {title}
-      </h1>
-      <Article>
-        {Array.isArray(blocks) && blocks.length
-          ? blocks.map((block: any) => (
-              <ContentBlock key={block.id} block={block} />
-            ))
-          : null}
-      </Article>
+      <Hero title={title} cover={cover} />
+      <Container size="small">
+        <Article>
+          {Array.isArray(blocks) && blocks.length
+            ? blocks.map((block: any) => (
+                <ContentBlock key={block.id} block={block} />
+              ))
+            : null}
+        </Article>
+      </Container>
     </>
   )
 }
@@ -73,10 +69,14 @@ export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
     }
   })
 
-  const postResults = postResponse.results[0]
-  const { id, properties } = postResults as PostResult
+  const postResults = postResponse.results[0] as PostResult
+  const { id, properties } = postResults
   const { Name } = properties as PostProperties
   const title = Name.title[0].plain_text
+  const cover =
+    postResults.cover?.type === 'external'
+      ? postResults.cover.external.url
+      : null
 
   // Retrieve content blocks
   const blockResponse = await notion.blocks.children.list({
@@ -98,6 +98,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
   return {
     props: {
       title,
+      cover,
       blocks
     },
     revalidate: 300

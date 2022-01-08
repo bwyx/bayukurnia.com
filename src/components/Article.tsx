@@ -235,6 +235,15 @@ const prose = {
 const StyledArticle = styled('article', {
   ...vars,
   ...prose,
+  '&:before': {
+    padding: '2rem 0',
+    margin: '0 auto',
+    textAlign: 'center',
+    content: '• • •',
+    fontSize: '$sm',
+    display: 'block',
+    '@sm': { padding: '3rem 0' }
+  },
   variants: {
     prose: {
       sm: {

@@ -1,8 +1,18 @@
 import { styled } from '~/styles'
 const Container = styled('div', {
+  position: 'relative',
   width: '100%',
-  padding: '0 1rem',
+  paddingRight: '8vw',
+  paddingLeft: '8vw',
   margin: '0 auto',
+  '@md': {
+    paddingRight: '4vw',
+    paddingLeft: '4vw'
+  },
+  '@lg': {
+    paddingRight: '2rem',
+    paddingLeft: '2rem'
+  },
   variants: {
     size: {
       small: {
@@ -17,7 +27,7 @@ const Container = styled('div', {
     }
   },
   defaultVariants: {
-    size: 'small'
+    size: 'medium'
   }
 })
 
