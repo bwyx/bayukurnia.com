@@ -4,6 +4,8 @@ import Container from './commons/Container'
 
 interface Props {
   title: string
+  snippet: string
+  publishedDate: string
   cover: string | null
 }
 
@@ -167,16 +169,13 @@ const GlassBackground = () => (
   </svg>
 )
 
-const Hero = ({ title, cover }: Props) => {
+const Hero = ({ title, snippet, publishedDate, cover }: Props) => {
   return (
     <Outer>
       <Container size="large">
         <PostDetails>
           <PostTitle>{title}</PostTitle>
-          <PostSnippet>
-            Membangun website super ringan kombinasi SSG dan WYSIWYG canggih
-            Notion
-          </PostSnippet>
+          <PostSnippet>{snippet}</PostSnippet>
         </PostDetails>
         <PostAuthor>
           <AuthorPicture>
@@ -184,7 +183,7 @@ const Hero = ({ title, cover }: Props) => {
           </AuthorPicture>
           <AuthorDetails>
             <AuthorName>Bayu Kurnia</AuthorName>
-            <PublishedDate>22 Feb 2022</PublishedDate>
+            <PublishedDate>{publishedDate}</PublishedDate>
           </AuthorDetails>
         </PostAuthor>
         <Cover>

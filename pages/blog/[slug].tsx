@@ -24,15 +24,22 @@ type PickedBlock = Pick<Block, 'id' | 'type'> & {
 
 interface PageProps {
   title: string
+  snippet: string
+  publishedDate: string
   cover: string | null
   blocks: PickedBlock[]
 }
 
-const Post = ({ title, cover, blocks }: PageProps) => {
+const Post = ({ title, snippet, publishedDate, cover, blocks }: PageProps) => {
   return (
     <>
       <SEO title={title} />
-      <Hero title={title} cover={cover} />
+      <Hero
+        title={title}
+        cover={cover}
+        snippet={snippet}
+        publishedDate={publishedDate}
+      />
       <Container size="small">
         <Article>
           {Array.isArray(blocks) && blocks.length
@@ -70,9 +77,17 @@ export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
   })
 
   const postResults = postResponse.results[0] as PostResult
-  const { id, properties } = postResults
-  const { Name } = properties as PostProperties
+  const { id, properties, created_time } = postResults
+  const { Name, Snippet, PublishedDate } = properties as PostProperties
   const title = Name.title[0].plain_text
+  const snippet = Snippet.rich_text.map((text) => text.plain_text).join('')
+  const unformattedDate = PublishedDate.date?.start ?? created_time
+  const publishedDate = new Date(unformattedDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit'
+  })
+
   const cover =
     postResults.cover?.type === 'external'
       ? postResults.cover.external.url
@@ -98,6 +113,8 @@ export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
   return {
     props: {
       title,
+      snippet,
+      publishedDate,
       cover,
       blocks
     },
@@ -107,7 +124,13 @@ export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
 
 export const getStaticPaths = async () => {
   const response = await notion.databases.query({
-    database_id: config.NOTION_BLOG_DATABASE_ID
+    database_id: config.NOTION_BLOG_DATABASE_ID,
+    filter: {
+      property: 'Published',
+      checkbox: {
+        equals: true
+      }
+    }
   })
 
   const slug = response.results.map((post: any) => post.properties['Slug'].url)
