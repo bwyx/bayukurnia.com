@@ -60,12 +60,10 @@ export const globalStyles = globalCss({
   body: {
     margin: 0,
     fontFamily: '$sans',
-    fontSize: '$lg',
+    fontSize: '$base',
     color: 'rgb($fg)',
     background: 'rgb($bg)',
-    lineHeight: 1.75,
-    width: '100vw',
-    overflowX: 'hidden'
+    lineHeight: 1.75
   },
   hr: { height: '0', color: 'inherit', borderTopWidth: '1px' },
   'abbr[title]': {

@@ -25,10 +25,10 @@ const ContentBlock = ({ block }: Props) => {
 
       return <CodeBlock language={language}>{code}</CodeBlock>
     default:
-      // return (
-      //   <code style={{ color: 'red', display: 'block' }}>..redacted..</code>
-      // )
-      return <pre>{JSON.stringify(block, null, 2)}</pre>
+      return (
+        <code style={{ color: 'red', display: 'block' }}>..redacted..</code>
+      )
+    // return <pre>{JSON.stringify(block, null, 2)}</pre>
   }
 }
 
