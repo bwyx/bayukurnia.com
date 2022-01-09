@@ -1,4 +1,5 @@
 import { styled } from '~/styles'
+import prismNord from '~/styles/prism/nord.style'
 
 const round = (num: number) =>
   num
@@ -235,6 +236,7 @@ const prose = {
 const StyledArticle = styled('article', {
   ...vars,
   ...prose,
+  ...prismNord,
   '&:before': {
     padding: '2rem 0',
     margin: '0 auto',
