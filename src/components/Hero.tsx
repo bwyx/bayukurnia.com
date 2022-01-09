@@ -101,18 +101,18 @@ const Cover = styled('figure', {
   position: 'relative',
   pointerEvents: 'none',
   margin: '0 auto',
-  maxWidth: 280,
+  maxWidth: 282,
   zIndex: 1,
   '@sm': {
     margin: 0,
-    width: 340
+    width: 342
   },
   '@md': {
     maxWidth: '40vw',
     margin: 0
   },
   '@lg': {
-    width: 420
+    width: 422
   }
 })
 
@@ -250,6 +250,7 @@ const Hero = ({ title, snippet, publishedDate, cover }: Props) => {
                 alt={`${title} Cover Image`}
                 layout="fill"
                 objectFit="cover"
+                quality={100}
               />
             </div>
           ) : null}
