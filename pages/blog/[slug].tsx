@@ -12,7 +12,8 @@ import type {
   Block,
   BlockType,
   ExtractedBlockType,
-  PostResult
+  PostResult,
+  RichText
 } from '~/types/notion.type'
 import { hasOwnProperty } from '~/utils'
 import Container from '~/components/commons/Container'
@@ -24,20 +25,26 @@ type PickedBlock = Pick<Block, 'id' | 'type'> & {
 
 interface PageProps {
   title: string
-  snippet: string
+  richSnippet: RichText[]
   publishedDate: string
   cover: string | null
   blocks: PickedBlock[]
 }
 
-const Post = ({ title, snippet, publishedDate, cover, blocks }: PageProps) => {
+const Post = ({
+  title,
+  richSnippet,
+  publishedDate,
+  cover,
+  blocks
+}: PageProps) => {
   return (
     <>
       <SEO title={title} />
       <Hero
         title={title}
         cover={cover}
-        snippet={snippet}
+        richSnippet={richSnippet}
         publishedDate={publishedDate}
       />
       <Container size="small">
@@ -80,7 +87,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
   const { id, properties, created_time } = postResults
   const { Name, Snippet, PublishedDate } = properties as PostProperties
   const title = Name.title[0].plain_text
-  const snippet = Snippet.rich_text.map((text) => text.plain_text).join('')
+  const richSnippet = Snippet.rich_text as RichText[]
   const unformattedDate = PublishedDate.date?.start ?? created_time
   const publishedDate = new Date(unformattedDate).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -111,13 +118,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
   }) as unknown as PickedBlock[]
 
   return {
-    props: {
-      title,
-      snippet,
-      publishedDate,
-      cover,
-      blocks
-    },
+    props: { title, richSnippet, publishedDate, cover, blocks },
     revalidate: 300
   }
 }
