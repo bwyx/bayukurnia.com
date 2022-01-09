@@ -1,47 +1,48 @@
-import { highlight, languages } from 'prismjs'
-import prismNord from '~/styles/prism/nord.style'
-import { styled } from '~/styles'
+import Highlight, { Prism } from 'prism-react-renderer'
+
+import type { Language } from 'prism-react-renderer'
 
 interface Props {
   children: string
   language?: string
 }
 
-const Pre = styled('pre', {
-  // TODO: add dark theme variant
-  ...prismNord
-})
-
 const CodeBlock = ({ children, language }: Props) => {
   // if no language is specified, dont highlight
   if (!language) {
     return (
-      <Pre>
+      <pre>
         <code>{children}</code>
-      </Pre>
+      </pre>
     )
   }
 
-  // check if language is supported by prismjs
-  // if not, use plain text
-  const availableLanguages = Object.keys(languages)
-  if (!availableLanguages.includes(language) || language === 'plain text') {
+  if (language === 'plain text') {
     return (
-      <Pre className="language-plaintext">
+      <pre className="language-plaintext">
         <code className="language-plaintext">{children}</code>
-      </Pre>
+      </pre>
     )
   }
 
-  // get highlighted code tree directly (better performance)
-  const highlighted = highlight(children, languages[language], language)
   return (
-    <Pre className={`language-${language}`}>
-      <code
-        className={`language-${language}`}
-        dangerouslySetInnerHTML={{ __html: highlighted }}
-      ></code>
-    </Pre>
+    <Highlight Prism={Prism} code={children} language={language as Language}>
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <pre className={className} style={style}>
+          <code className={className}>
+            {tokens.map((line, i) => (
+              // eslint-disable-next-line react/jsx-key
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  // eslint-disable-next-line react/jsx-key
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </code>
+        </pre>
+      )}
+    </Highlight>
   )
 }
 

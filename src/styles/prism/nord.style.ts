@@ -8,7 +8,7 @@ const prismNord = {
     wordSpacing: 'normal',
     wordBreak: 'normal',
     wordWrap: 'normal',
-    lineHeight: 1.5,
+    lineHeight: 1.6,
     MozTabSize: '4',
     OTabSize: '4',
     tabSize: 4,

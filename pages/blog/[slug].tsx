@@ -60,12 +60,12 @@ export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
     database_id: config.NOTION_BLOG_DATABASE_ID,
     filter: {
       and: [
-        {
-          property: 'Published',
-          checkbox: {
-            equals: true
-          }
-        },
+        // {
+        //   property: 'Published',
+        //   checkbox: {
+        //     equals: true
+        //   }
+        // },
         {
           property: 'Slug',
           text: {
