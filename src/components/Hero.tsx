@@ -74,7 +74,8 @@ const AuthorPicture = styled('div', {
   position: 'relative',
   height: 48,
   width: 48,
-  border: '2px solid rgb($brand)',
+  outline: '2px solid rgb($brand)',
+  border: '2px solid rgb($bg)',
   borderRadius: '50%',
   marginRight: '1rem',
   display: 'inherit',
@@ -184,7 +185,12 @@ const Hero = ({ title, richSnippet, publishedDate, cover }: Props) => {
         </PostDetails>
         <PostAuthor>
           <AuthorPicture>
-            <Image src="/profile.png" layout="fill" alt="Author Picture" />
+            <Image
+              src="/profile.png"
+              alt="Author Picture"
+              width={54}
+              height={54}
+            />
           </AuthorPicture>
           <AuthorDetails>
             <AuthorName>Bayu Kurnia</AuthorName>
