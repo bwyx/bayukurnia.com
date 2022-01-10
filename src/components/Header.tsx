@@ -11,12 +11,15 @@ const StyledHeader = styled('header', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: 'rgb($bg / .6)',
-  backdropFilter: 'saturate(180%) blur(1rem)',
+  background: 'rgb($bg)',
   borderBottom: '1px solid transparent',
   borderImage:
     'linear-gradient(to right, rgba($bg / 5%), rgba($bg / 80%) 30%, rgba($bg / 20%) 80%, rgba($bg / 90%) 90%) 1',
   height: 60,
+  '@supports (backdrop-filter: saturate(180%) blur(1rem))': {
+    background: 'rgb($bg / .6)',
+    backdropFilter: 'saturate(180%) blur(1rem)'
+  },
   '@md': {
     height: 80
   },
