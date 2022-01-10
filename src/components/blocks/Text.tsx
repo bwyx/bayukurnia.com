@@ -7,7 +7,7 @@ const Token = styled('span', {
   wordBreak: 'break-word',
   variants: {
     color: {
-      default: { color: 'inherit' },
+      default: {},
       black: { color: '$black' },
       gray: { color: '$gray' },
       brown: { color: '$brown' },
@@ -18,7 +18,7 @@ const Token = styled('span', {
       purple: { color: '$purple' },
       pink: { color: '$pink' },
       red: { color: '$red' },
-      default_background: { backgroundColor: 'inherit' },
+      default_background: {},
       black_background: { backgroundColor: '$black' },
       gray_background: { backgroundColor: '$gray' },
       brown_background: { backgroundColor: '$brown' },
@@ -30,22 +30,17 @@ const Token = styled('span', {
       pink_background: { backgroundColor: '$pink' },
       red_background: { backgroundColor: '$red' }
     },
-    bold: {
-      true: { fontWeight: 'bolder' }
-    },
-    italic: {
-      true: { fontStyle: 'italic' }
-    },
-    underline: {
-      true: { textDecoration: 'underline' }
-    },
-    strikethrough: {
-      true: { textDecoration: 'line-through' }
-    },
+    bold: { true: { fontWeight: 'bolder' } },
+    italic: { true: { fontStyle: 'italic' } },
+    underline: { true: { textDecoration: 'underline' } },
+    strikethrough: { true: { textDecoration: 'line-through' } },
     code: {
       true: {
         fontFamily: '$mono',
-        backgroundColor: 'rgba(0, 0, 0, 0.05)',
+        fontSize: '$sm',
+        fontWeight: 600,
+        color: 'rgb($brand)',
+        backgroundColor: 'rgb($brand / 10%)',
         padding: '0.2rem 0.4rem',
         borderRadius: '0.3rem'
       }
