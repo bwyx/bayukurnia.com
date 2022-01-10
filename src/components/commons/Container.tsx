@@ -2,8 +2,8 @@ import { styled } from '~/styles'
 const Container = styled('div', {
   position: 'relative',
   width: '100%',
-  paddingRight: '8vw',
-  paddingLeft: '8vw',
+  paddingRight: '6vw',
+  paddingLeft: '6vw',
   margin: '0 auto',
   '@md': {
     paddingRight: '4vw',
