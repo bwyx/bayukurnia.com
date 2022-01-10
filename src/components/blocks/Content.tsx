@@ -1,13 +1,12 @@
-import Text from '~/components/blocks/Text'
-import CodeBlock from './CodeBlock'
+import { Text, Code } from '~/components/blocks'
 
-import type { Block } from '~/types/notion.type'
+import type { PickedBlock } from '~/types'
 
 interface Props {
-  block: Block
+  block: PickedBlock
 }
 
-const ContentBlock = ({ block }: Props) => {
+const Content = ({ block }: Props) => {
   const { type } = block
 
   switch (type) {
@@ -21,9 +20,9 @@ const ContentBlock = ({ block }: Props) => {
       return <Text as="p">{block[type].text}</Text>
     case 'code':
       const { text, language } = block[type]
-      const code = text.map((t: any) => t.plain_text).join('')
+      const code = text.map((t) => t.plain_text).join('')
 
-      return <CodeBlock language={language}>{code}</CodeBlock>
+      return <Code language={language}>{code}</Code>
     default:
       return (
         <code style={{ color: 'red', display: 'block' }}>..redacted..</code>
@@ -32,4 +31,4 @@ const ContentBlock = ({ block }: Props) => {
   }
 }
 
-export default ContentBlock
+export default Content

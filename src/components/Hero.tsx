@@ -1,11 +1,11 @@
 import Image from 'next/image'
+import { Container } from '~/components/commons'
+import { Text } from '~/components/blocks'
 import { styled } from '~/styles'
-import Container from './commons/Container'
-import Text from '~/components/blocks/Text'
 
 import type { RichText } from '~/types/notion.type'
 
-interface Props {
+export interface HeroProps {
   title: string
   richSnippet: RichText[]
   publishedDate: string
@@ -172,7 +172,7 @@ const GlassBackground = () => (
   </svg>
 )
 
-const Hero = ({ title, richSnippet, publishedDate, cover }: Props) => {
+const Hero = ({ title, richSnippet, publishedDate, cover }: HeroProps) => {
   return (
     <Outer>
       <Container size="large">

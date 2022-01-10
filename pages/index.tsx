@@ -1,5 +1,5 @@
 import { attachMainLayout } from '~/layouts/Main.layout'
-import Container from '~/components/commons/Container'
+import { Container } from '~/components/commons'
 
 import { Page } from '~/types/page.type'
 

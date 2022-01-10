@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { styled } from '~/styles'
-import Container from '~/components/commons/Container'
+import { Container } from '~/components/commons'
 import Logo from '~/components/vectors/Logo'
 
 const StyledHeader = styled('header', {
