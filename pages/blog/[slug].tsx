@@ -1,43 +1,18 @@
 import { attachMainLayout } from '~/layouts/Main.layout'
-import SEO from '~/components/SEO'
-import Hero from '~/components/Hero'
-import ContentBlock from '~/components/ContentBlock'
-import Article from '~/components/Article'
-import notion from '~/lib/notion'
-import config from '~/config'
+import { SEO, Hero, Article } from '~/components'
+import { Container } from '~/components/commons'
+import { Content } from '~/components/blocks'
+import { getAllPosts, getPostBySlug, getBlocksByPostId } from '~/lib/notion'
 
+import type { HeroProps } from '~/components/Hero'
 import type { GetStaticProps } from 'next'
-import type { PostProperties } from '~/types'
-import type {
-  Block,
-  BlockType,
-  ExtractedBlockType,
-  PostResult,
-  RichText
-} from '~/types/notion.type'
-import { hasOwnProperty } from '~/utils'
-import Container from '~/components/commons/Container'
+import type { PickedBlock } from '~/types'
 
-// TODO: Not sure if this is the best way to do this.
-type PickedBlock = Pick<Block, 'id' | 'type'> & {
-  [key in BlockType]: ExtractedBlockType<BlockType>
-}
-
-interface PageProps {
-  title: string
-  richSnippet: RichText[]
-  publishedDate: string
-  cover: string | null
+interface Props extends HeroProps {
   blocks: PickedBlock[]
 }
 
-const Post = ({
-  title,
-  richSnippet,
-  publishedDate,
-  cover,
-  blocks
-}: PageProps) => {
+const Post = ({ title, richSnippet, publishedDate, cover, blocks }: Props) => {
   return (
     <>
       <SEO title={title} />
@@ -50,9 +25,7 @@ const Post = ({
       <Container size="small">
         <Article>
           {Array.isArray(blocks) && blocks.length
-            ? blocks.map((block: any) => (
-                <ContentBlock key={block.id} block={block} />
-              ))
+            ? blocks.map((block) => <Content key={block.id} block={block} />)
             : null}
         </Article>
       </Container>
@@ -61,80 +34,21 @@ const Post = ({
 }
 Post.layout = attachMainLayout
 
-export const getStaticProps: GetStaticProps<PageProps> = async (req: any) => {
+export const getStaticProps: GetStaticProps<Props> = async (req: any) => {
   // Retrieve the post from the slug
-  const postResponse = await notion.databases.query({
-    database_id: config.NOTION_BLOG_DATABASE_ID,
-    filter: {
-      and: [
-        {
-          property: 'Published',
-          checkbox: {
-            equals: true
-          }
-        },
-        {
-          property: 'Slug',
-          text: {
-            equals: req.params.slug
-          }
-        }
-      ]
-    }
-  })
-
-  const postResults = postResponse.results[0] as PostResult
-  const { id, properties, created_time } = postResults
-  const { Name, Snippet, PublishedDate } = properties as PostProperties
-  const title = Name.title[0].plain_text
-  const richSnippet = Snippet.rich_text as RichText[]
-  const unformattedDate = PublishedDate.date?.start ?? created_time
-  const publishedDate = new Date(unformattedDate).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: '2-digit'
-  })
-
-  const cover =
-    postResults.cover?.type === 'external'
-      ? postResults.cover.external.url
-      : null
-
-  // Retrieve content blocks
-  const blockResponse = await notion.blocks.children.list({
-    block_id: id
-  })
-  const blocks = blockResponse.results.map((block) => {
-    if (!hasOwnProperty(block, 'type')) return
-    const { id, type } = block as Block
-    const blockData = block[type as keyof Block]
-
-    return {
-      // Don't fully expose notion ids
-      id: id.split('-')[0],
-      type,
-      [type]: blockData
-    }
-  }) as unknown as PickedBlock[]
+  const post = await getPostBySlug(req.params.slug)
+  const blocks = await getBlocksByPostId(post.id)
 
   return {
-    props: { title, richSnippet, publishedDate, cover, blocks },
+    props: { ...post, blocks },
     revalidate: 300
   }
 }
 
 export const getStaticPaths = async () => {
-  const response = await notion.databases.query({
-    database_id: config.NOTION_BLOG_DATABASE_ID,
-    filter: {
-      property: 'Published',
-      checkbox: {
-        equals: true
-      }
-    }
-  })
+  const posts = await getAllPosts()
 
-  const slug = response.results.map((post: any) => post.properties['Slug'].url)
+  const slug = posts.results.map((post: any) => post.properties['Slug'].url)
 
   return {
     paths: slug.map((s: string) => '/blog/' + s),

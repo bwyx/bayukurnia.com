@@ -1,6 +1,5 @@
 import React from 'react'
 import { Header, Footer } from '~/components'
-import Container from '~/components/commons/Container'
 import { styled } from '~/styles'
 
 const StyledMain = styled('main', {

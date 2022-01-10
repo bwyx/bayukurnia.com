@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { attachMainLayout } from '~/layouts/Main.layout'
-import Container from '~/components/commons/Container'
+import { Container } from '~/components/commons'
 import notion from '~/lib/notion'
 import config from '~/config'
 
 import type { GetStaticProps } from 'next'
-import type { PostProperties } from '~/types'
+import type { NotionPostProperties } from '~/types'
 import type { PostResult } from '~/types/notion.type'
 
 interface PageProps {
-  posts: PostProperties[]
+  posts: NotionPostProperties[]
 }
 
 const BlogIndex = ({ posts }: PageProps) => {
@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const posts = results.map((post) => {
     const { properties } = post as PostResult
-    const { Slug, Name } = properties as PostProperties
+    const { Slug, Name } = properties as NotionPostProperties
 
     return {
       slug: Slug.url,
