@@ -261,6 +261,7 @@ const Hero = ({ title, richSnippet, publishedDate, cover }: Props) => {
                 layout="fill"
                 objectFit="cover"
                 quality={100}
+                priority={true}
               />
             </div>
           ) : null}
