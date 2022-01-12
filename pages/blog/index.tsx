@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { Container } from '~/components/commons'
 import config from '~/config'
+
+import container from '~/styles/container.style'
 
 import notion from '~/lib/notion'
 import { getPostData } from '~/lib/post'
@@ -16,13 +17,13 @@ interface PageProps {
 
 const BlogIndex = ({ posts }: PageProps) => {
   return (
-    <Container>
+    <div className={container({ size: 'small' })}>
       {posts.map(({ id, title, slug }) => (
         <Link key={id} href={`/blog/${slug}`}>
           <a>{title}</a>
         </Link>
       ))}
-    </Container>
+    </div>
   )
 }
 

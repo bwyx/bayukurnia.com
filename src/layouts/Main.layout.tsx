@@ -1,8 +1,8 @@
 import React from 'react'
 import { Header, Footer } from '~/components'
-import { styled } from '~/styles'
+import { css } from '~/styles'
 
-const StyledMain = styled('main', {
+const main = css({
   overflow: 'hidden',
   flexGrow: 1
 })
@@ -11,7 +11,7 @@ const MainLayout: React.FC = ({ children }) => {
   return (
     <>
       <Header />
-      <StyledMain>{children}</StyledMain>
+      <main className={main()}>{children}</main>
       <Footer />
     </>
   )
