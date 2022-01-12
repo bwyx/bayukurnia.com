@@ -3,14 +3,7 @@ import { Container } from '~/components/commons'
 import { Text } from '~/components/blocks'
 import { styled } from '~/styles'
 
-import type { RichText } from '~/types/notion.type'
-
-export interface HeroProps {
-  title: string
-  richSnippet: RichText[]
-  publishedDate: string
-  cover: string | null
-}
+import type { PostProperties } from '~/types'
 
 const Outer = styled('header', {
   paddingTop: '2rem',
@@ -172,14 +165,14 @@ const GlassBackground = () => (
   </svg>
 )
 
-const Hero = ({ title, richSnippet, publishedDate, cover }: HeroProps) => {
+const Hero = ({ title, richDescription, date, cover }: PostProperties) => {
   return (
     <Outer>
       <Container size="large">
         <PostDetails>
           <PostTitle>{title}</PostTitle>
           <PostSnippet>
-            <Text>{richSnippet}</Text>
+            <Text>{richDescription}</Text>
           </PostSnippet>
         </PostDetails>
         <PostAuthor>
@@ -193,7 +186,7 @@ const Hero = ({ title, richSnippet, publishedDate, cover }: HeroProps) => {
           </AuthorPicture>
           <AuthorDetails>
             <AuthorName>Bayu Kurnia</AuthorName>
-            <PublishedDate>{publishedDate}</PublishedDate>
+            <PublishedDate>{date}</PublishedDate>
           </AuthorDetails>
         </PostAuthor>
         <Cover>

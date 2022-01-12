@@ -4,24 +4,14 @@ import { Container } from '~/components/commons'
 import { Content } from '~/components/blocks'
 import { getAllPosts, getPostBySlug, getBlocksByPostId } from '~/lib/notion'
 
-import type { HeroProps } from '~/components/Hero'
 import type { GetStaticProps } from 'next'
-import type { PickedBlock } from '~/types'
+import type { PostPropertiesWithBlocks } from '~/types'
 
-interface Props extends HeroProps {
-  blocks: PickedBlock[]
-}
-
-const Post = ({ title, richSnippet, publishedDate, cover, blocks }: Props) => {
+const Post = ({ blocks, ...post }: PostPropertiesWithBlocks) => {
   return (
     <>
-      <SEO title={title} />
-      <Hero
-        title={title}
-        cover={cover}
-        richSnippet={richSnippet}
-        publishedDate={publishedDate}
-      />
+      <SEO title={post.title} />
+      <Hero {...post} />
       <Container size="small">
         <Article>
           {Array.isArray(blocks) && blocks.length
@@ -34,10 +24,12 @@ const Post = ({ title, richSnippet, publishedDate, cover, blocks }: Props) => {
 }
 Post.layout = attachMainLayout
 
-export const getStaticProps: GetStaticProps<Props> = async (req: any) => {
+export const getStaticProps: GetStaticProps<PostPropertiesWithBlocks> = async (
+  req: any
+) => {
   // Retrieve the post from the slug
-  const post = await getPostBySlug(req.params.slug)
-  const blocks = await getBlocksByPostId(post.id)
+  const { rawId, ...post } = await getPostBySlug(req.params.slug)
+  const blocks = await getBlocksByPostId(rawId)
 
   return {
     props: { ...post, blocks },

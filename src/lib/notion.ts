@@ -4,7 +4,7 @@ import { hasOwnProperty } from '~/utils'
 import config from '~/config'
 
 import type { Block, PostResult } from '~/types/notion.type'
-import type { PickedBlock } from '~/types'
+import type { PickedBlock, PostPropertiesWithRawId } from '~/types'
 
 const notion = new Client({ auth: config.NOTION_API_KEY })
 
@@ -40,14 +40,18 @@ export const getPostBySlug = async (slug: string) => {
     }
   })
 
-  return getPostData(postResponse.results[0] as PostResult)
+  return <PostPropertiesWithRawId>(
+    getPostData(postResponse.results[0] as PostResult, {
+      withRawId: true
+    })
+  )
 }
 
 export const getBlocksByPostId = async (block_id: string) => {
   const blocksResult = await notion.blocks.children.list({ block_id })
 
   // Exclude unused properties
-  return blocksResult.results.map((block) => {
+  return <PickedBlock[]>blocksResult.results.map((block) => {
     if (!hasOwnProperty(block, 'type')) return block
     const { id, type } = block as Block
 
@@ -57,7 +61,7 @@ export const getBlocksByPostId = async (block_id: string) => {
       type,
       [type]: block[type as keyof Block]
     }
-  }) as PickedBlock[]
+  })
 }
 
 export default notion
