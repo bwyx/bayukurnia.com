@@ -1,5 +1,5 @@
-import { styled } from '~/styles'
-const Container = styled('div', {
+import { css } from '~/styles'
+const container = css({
   position: 'relative',
   width: '100%',
   paddingRight: '6vw',
@@ -31,4 +31,4 @@ const Container = styled('div', {
   }
 })
 
-export default Container
+export default container

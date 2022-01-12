@@ -1,123 +1,116 @@
 import Image from 'next/image'
-import { Container } from '~/components/commons'
 import { Text } from '~/components/blocks'
-import { styled } from '~/styles'
+
+import { css } from '~/styles'
+import container from '~/styles/container.style'
 
 import type { PostProperties } from '~/types'
 
-const Outer = styled('header', {
-  paddingTop: '2rem',
-  '@md': {
-    paddingBottom: '1.5rem',
-    [`& ${Container}`]: {
-      display: 'grid',
-      gridTemplateRows: 'auto 1fr auto',
-      gridTemplateColumns: '1fr',
-      gridTemplateAreas: `
+const styles = {
+  header: css({
+    paddingTop: '2rem',
+    '@md': {
+      paddingBottom: '1.5rem',
+      [`& .${container}`]: {
+        display: 'grid',
+        gridTemplateRows: 'auto 1fr auto',
+        gridTemplateColumns: '1fr',
+        gridTemplateAreas: `
       "... cover"
       "details cover"
       "author cover"
       `,
-      alignItems: 'center'
+        alignItems: 'center'
+      }
+    },
+    '@lg': {
+      paddingTop: '3rem',
+      paddingBottom: '2rem'
     }
-  },
-  '@lg': {
-    paddingTop: '3rem',
-    paddingBottom: '2rem'
-  }
-})
-
-const PostDetails = styled('div', {
-  gridArea: 'details'
-})
-
-const PostTitle = styled('h1', {
-  fontSize: '$3xl',
-  lineHeight: 1.2,
-  fontWeight: '800',
-  maxWidth: '15ch',
-  '@sm': { fontSize: '$4xl' },
-  '@lg': { fontSize: '$5xl' }
-})
-
-const PostSnippet = styled('p', {
-  marginTop: '0.5rem',
-  color: 'rgb($fg / 50%)',
-  maxWidth: '35ch',
-  lineHeight: 1.5,
-  '@lg': {
-    fontSize: '$xl'
-  }
-})
-
-const PostAuthor = styled('div', {
-  gridArea: 'author',
-  display: 'flex',
-  alignItems: 'center',
-  margin: '2rem 0',
-  '@md': { margin: 0 }
-})
-
-const AuthorDetails = styled('div', {
-  display: 'flex',
-  flexDirection: 'column'
-})
-
-const AuthorPicture = styled('div', {
-  position: 'relative',
-  height: 48,
-  width: 48,
-  boxShadow: '0 0px 0px 2px rgb($colors$bg), 0 0 0px 4px rgb($colors$brand)',
-  borderRadius: '50%',
-  marginRight: '1rem',
-  display: 'inherit',
-  overflow: 'hidden',
-  '@lg': { width: 54, height: 54 }
-})
-
-const AuthorName = styled('div', {
-  lineHeight: 1,
-  fontWeight: 500,
-  color: 'rgb($fg)'
-})
-
-const PublishedDate = styled('div', {
-  lineHeight: 1,
-  marginTop: '0.5rem',
-  gridArea: 'date',
-  fontSize: '$xs',
-  color: 'rgb($fg / 50%)',
-  fontWeight: 500
-})
-
-const Cover = styled('figure', {
-  gridArea: 'cover',
-  width: '100%',
-  height: '100%',
-  position: 'relative',
-  pointerEvents: 'none',
-  margin: '0 auto',
-  maxWidth: 282,
-  zIndex: 1,
-  '@sm': {
-    margin: 0,
-    width: 342
-  },
-  '@md': {
-    maxWidth: '40vw',
-    margin: 0
-  },
-  '@lg': {
-    width: 422
-  }
-})
-
-const GradientBackground = styled('svg', {
-  width: '240%',
-  position: 'absolute',
-  right: '-50%',
-  bottom: '-55%'
-})
+  }),
+  postDetails: css({
+    gridArea: 'details'
+  }),
+  postTitle: css({
+    fontSize: '$3xl',
+    lineHeight: 1.2,
+    fontWeight: '800',
+    maxWidth: '15ch',
+    '@sm': { fontSize: '$4xl' },
+    '@lg': { fontSize: '$5xl' }
+  }),
+  postSnippet: css({
+    marginTop: '0.5rem',
+    color: 'rgb($fg / 50%)',
+    maxWidth: '35ch',
+    lineHeight: 1.5,
+    '@lg': {
+      fontSize: '$xl'
+    }
+  }),
+  postAuthor: css({
+    gridArea: 'author',
+    display: 'flex',
+    alignItems: 'center',
+    margin: '2rem 0',
+    '@md': { margin: 0 }
+  }),
+  authorDetails: css({
+    display: 'flex',
+    flexDirection: 'column'
+  }),
+  authorPicture: css({
+    position: 'relative',
+    height: 48,
+    width: 48,
+    boxShadow: '0 0px 0px 2px rgb($colors$bg), 0 0 0px 4px rgb($colors$brand)',
+    borderRadius: '50%',
+    marginRight: '1rem',
+    display: 'inherit',
+    overflow: 'hidden',
+    '@lg': { width: 54, height: 54 }
+  }),
+  authorName: css({
+    lineHeight: 1,
+    fontWeight: 500,
+    color: 'rgb($fg)'
+  }),
+  publishedDate: css({
+    lineHeight: 1,
+    marginTop: '0.5rem',
+    gridArea: 'date',
+    fontSize: '$xs',
+    color: 'rgb($fg / 50%)',
+    fontWeight: 500
+  }),
+  cover: css({
+    gridArea: 'cover',
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    pointerEvents: 'none',
+    margin: '0 auto',
+    maxWidth: 282,
+    zIndex: 1,
+    '@sm': {
+      margin: 0,
+      width: 342
+    },
+    '@md': {
+      maxWidth: '40vw',
+      margin: 0
+    },
+    '@lg': {
+      width: 422
+    }
+  }),
+  gradientBackground: css({
+    width: '240%',
+    position: 'absolute',
+    right: '-50%',
+    bottom: '-55%'
+  })
+}
 
 const GlassBackground = () => (
   <svg viewBox="0 0 422 422" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -167,30 +160,31 @@ const GlassBackground = () => (
 
 const Hero = ({ title, richDescription, date, cover }: PostProperties) => {
   return (
-    <Outer>
-      <Container size="large">
-        <PostDetails>
-          <PostTitle>{title}</PostTitle>
-          <PostSnippet>
+    <header className={styles.header()}>
+      <div className={container({ size: 'large' })}>
+        <div className={styles.postDetails()}>
+          <div className={styles.postTitle()}>{title}</div>
+          <div className={styles.postSnippet()}>
             <Text>{richDescription}</Text>
-          </PostSnippet>
-        </PostDetails>
-        <PostAuthor>
-          <AuthorPicture>
+          </div>
+        </div>
+        <div className={styles.postAuthor()}>
+          <div className={styles.authorPicture()}>
             <Image
               src="/profile.png"
               alt="Author Picture"
               width={54}
               height={54}
             />
-          </AuthorPicture>
-          <AuthorDetails>
-            <AuthorName>Bayu Kurnia</AuthorName>
-            <PublishedDate>{date}</PublishedDate>
-          </AuthorDetails>
-        </PostAuthor>
-        <Cover>
-          <GradientBackground
+          </div>
+          <div className={styles.authorDetails()}>
+            <div className={styles.authorName()}>Bayu Kurnia</div>
+            <div className={styles.publishedDate()}>{date}</div>
+          </div>
+        </div>
+        <figure className={styles.cover()}>
+          <svg
+            className={styles.gradientBackground()}
             viewBox="0 0 1008 772"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +230,7 @@ const Hero = ({ title, richDescription, date, cover }: PostProperties) => {
                 <stop offset="1" stopColor="#26BBBB" />
               </linearGradient>
             </defs>
-          </GradientBackground>
+          </svg>
           <GlassBackground />
           {cover ? (
             <div
@@ -258,9 +252,9 @@ const Hero = ({ title, richDescription, date, cover }: PostProperties) => {
               />
             </div>
           ) : null}
-        </Cover>
-      </Container>
-    </Outer>
+        </figure>
+      </div>
+    </header>
   )
 }
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import { styled } from '~/styles'
+import { css } from '~/styles'
 
 import type { RichText } from '~/types/notion.type'
 
-const Token = styled('span', {
+const token = css({
   wordBreak: 'break-word',
   variants: {
     color: {
@@ -83,7 +83,7 @@ const Text = ({ as, children }: Props) => {
         const { annotations, text } = child
 
         return (
-          <Token key={i} {...annotations}>
+          <span className={token({ ...annotations })} key={i}>
             {text.link ? (
               <a style={{ textDecoration: 'underline' }} href={text.link.url}>
                 {text.content}
@@ -91,7 +91,7 @@ const Text = ({ as, children }: Props) => {
             ) : (
               text.content
             )}
-          </Token>
+          </span>
         )
       })}
     </Component>

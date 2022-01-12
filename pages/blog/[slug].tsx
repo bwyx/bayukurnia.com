@@ -1,7 +1,9 @@
 import { attachMainLayout } from '~/layouts/Main.layout'
 import { SEO, Hero, Article } from '~/components'
-import { Container } from '~/components/commons'
 import { Content } from '~/components/blocks'
+
+import container from '~/styles/container.style'
+
 import { getAllPosts, getPostBySlug, getBlocksByPostId } from '~/lib/notion'
 
 import type { GetStaticProps } from 'next'
@@ -12,13 +14,13 @@ const Post = ({ blocks, ...post }: PostPropertiesWithBlocks) => {
     <>
       <SEO title={post.title} />
       <Hero {...post} />
-      <Container size="small">
+      <div className={container({ size: 'small' })}>
         <Article>
           {Array.isArray(blocks) && blocks.length
             ? blocks.map((block) => <Content key={block.id} block={block} />)
             : null}
         </Article>
-      </Container>
+      </div>
     </>
   )
 }
