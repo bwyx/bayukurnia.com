@@ -1,19 +1,27 @@
 import type { PostResult } from '~/types/notion.type'
-import type { NotionPostProperties } from '~/types'
+import type {
+  NotionPostProperties,
+  PostDataOptions,
+  PostProperties,
+  PostPropertiesWithRawId
+} from '~/types'
 
-export const getPostData = ({ id, ...post }: PostResult) => {
-  const { Name, Snippet, PublishedDate } =
+export const getPostData = (
+  { id, ...post }: PostResult,
+  options: PostDataOptions = { withRawId: false }
+) => {
+  const { Name, Description, PublishedDate, Slug } =
     post.properties as NotionPostProperties
 
   // Title
   const title = Name.title[0].plain_text
 
   // Snippet
-  const richSnippet = Snippet.rich_text
+  const richDescription = Description.rich_text
 
   // Published Date
-  const unformattedDate = PublishedDate.date?.start ?? post.created_time
-  const publishedDate = new Date(unformattedDate).toLocaleDateString('en-US', {
+  const rawDate = PublishedDate.date?.start ?? post.created_time
+  const date = new Date(rawDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: '2-digit'
@@ -22,5 +30,20 @@ export const getPostData = ({ id, ...post }: PostResult) => {
   // Cover Image
   const cover = post.cover?.type === 'external' ? post.cover.external.url : null
 
-  return { id, title, richSnippet, publishedDate, cover }
+  // Slug
+  const slug = Slug.url
+
+  const properties: PostProperties = {
+    id: id.split('-')[0],
+    title,
+    richDescription,
+    date,
+    cover,
+    slug
+  }
+
+  if (options.withRawId)
+    return <PostPropertiesWithRawId>{ ...properties, rawId: id }
+
+  return properties
 }

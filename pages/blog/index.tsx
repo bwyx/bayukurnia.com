@@ -1,55 +1,53 @@
 import Link from 'next/link'
 import { attachMainLayout } from '~/layouts/Main.layout'
 import { Container } from '~/components/commons'
-import notion from '~/lib/notion'
 import config from '~/config'
 
+import notion from '~/lib/notion'
+import { getPostData } from '~/lib/post'
+
 import type { GetStaticProps } from 'next'
-import type { NotionPostProperties } from '~/types'
+import type { PostProperties } from '~/types'
 import type { PostResult } from '~/types/notion.type'
 
 interface PageProps {
-  posts: NotionPostProperties[]
+  posts: PostProperties[]
 }
 
 const BlogIndex = ({ posts }: PageProps) => {
   return (
-    <Container size="small">
-      {posts.map((post: any, i: number) => {
-        const { title, slug } = post
-
-        return (
-          <Link key={i} href={`/blog/[slug]`} as={`/blog/${slug}`}>
-            <a>{title}</a>
-          </Link>
-        )
-      })}
+    <Container>
+      {posts.map(({ id, title, slug }) => (
+        <Link key={id} href={`/blog/${slug}`}>
+          <a>{title}</a>
+        </Link>
+      ))}
     </Container>
   )
 }
 
 BlogIndex.layout = attachMainLayout
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const { results } = await notion.databases.query({
     database_id: config.NOTION_BLOG_DATABASE_ID,
     filter: {
-      property: 'Published',
-      checkbox: {
-        equals: true
-      }
+      and: [
+        {
+          property: 'Published',
+          checkbox: {
+            equals: true
+          }
+        },
+        {
+          property: 'Slug',
+          url: { is_not_empty: true }
+        }
+      ]
     }
   })
 
-  const posts = results.map((post) => {
-    const { properties } = post as PostResult
-    const { Slug, Name } = properties as NotionPostProperties
-
-    return {
-      slug: Slug.url,
-      title: Name.title[0].plain_text
-    }
-  })
+  const posts = results.map((post) => getPostData(post as PostResult))
 
   return {
     props: { posts },
