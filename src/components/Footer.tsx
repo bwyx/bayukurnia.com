@@ -1,6 +1,6 @@
-import { styled } from '~/styles'
+import { css } from '~/styles'
 
-const StyledFooter = styled('footer', {
+const footer = css({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -13,9 +13,9 @@ const StyledFooter = styled('footer', {
 
 const Footer = () => {
   return (
-    <StyledFooter>
+    <footer className={footer()}>
       <p>© Bayu Kurnia 2021</p>
-    </StyledFooter>
+    </footer>
   )
 }
 
