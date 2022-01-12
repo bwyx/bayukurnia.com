@@ -1,5 +1,4 @@
-import { keyframes } from '@stitches/react'
-import { css } from '~/styles'
+import { css, keyframes } from '~/styles'
 
 type Props = {
   animated?: boolean
