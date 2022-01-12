@@ -1,4 +1,4 @@
-import { styled } from '~/styles'
+import { css } from '~/styles'
 import prismGruvbox from '~/styles/prism/gruvbox.style'
 
 const round = (num: number) =>
@@ -57,7 +57,7 @@ const vars = {
   '--tw-prose-invert-td-borders': slate[700]
 }
 
-const prose = {
+const baseProse = {
   color: 'var(--tw-prose-body)',
   maxWidth: '65ch',
   '[class~="lead"]': {
@@ -233,9 +233,9 @@ const prose = {
   }
 }
 
-const StyledArticle = styled('article', {
+const prose = css({
   ...vars,
-  ...prose,
+  ...baseProse,
   ...prismGruvbox,
   '&:before': {
     padding: '2rem 0',
@@ -247,7 +247,7 @@ const StyledArticle = styled('article', {
     '@sm': { padding: '3rem 0' }
   },
   variants: {
-    prose: {
+    size: {
       sm: {
         fontSize: rem(14),
         lineHeight: round(24 / 14),
@@ -1081,7 +1081,7 @@ const StyledArticle = styled('article', {
     }
   },
   defaultVariants: {
-    prose: 'base'
+    size: 'base'
   }
 })
 
@@ -1089,14 +1089,16 @@ interface Props {}
 
 const Article = (props: React.PropsWithChildren<Props>) => {
   return (
-    <StyledArticle
-      prose={{
-        '@initial': 'base',
-        '@sm': 'lg'
-      }}
+    <article
+      className={prose({
+        prose: {
+          '@initial': 'base',
+          '@sm': 'lg'
+        }
+      })}
     >
       {props.children}
-    </StyledArticle>
+    </article>
   )
 }
 

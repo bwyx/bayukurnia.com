@@ -1,6 +1,6 @@
-import { createStitches } from '@stitches/react'
+import { createStitches } from '@stitches/core'
 
-export const { styled, css, getCssText, globalCss, createTheme } =
+export const { css, keyframes, getCssText, globalCss, createTheme } =
   createStitches({
     theme: {
       space: {},

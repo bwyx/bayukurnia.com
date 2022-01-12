@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { styled } from '~/styles'
-import { Container } from '~/components/commons'
 import Logo from '~/components/vectors/Logo'
 
-const StyledHeader = styled('header', {
+import { css } from '~/styles'
+import container from '~/styles/container.style'
+
+const header = css({
   position: 'sticky',
   top: 0,
   zIndex: 50,
@@ -23,7 +24,7 @@ const StyledHeader = styled('header', {
   '@md': {
     height: 80
   },
-  [`& ${Container}`]: {
+  [`& .${container}`]: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'
@@ -62,8 +63,8 @@ const StyledHeader = styled('header', {
 
 const Header = () => {
   return (
-    <StyledHeader>
-      <Container size="large">
+    <header className={header()}>
+      <div className={container({ size: 'large' })}>
         <Link href="/">
           <a className="logo">
             <Logo height={45} />
@@ -83,8 +84,8 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-      </Container>
-    </StyledHeader>
+      </div>
+    </header>
   )
 }
 
