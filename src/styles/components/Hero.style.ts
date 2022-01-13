@@ -12,7 +12,7 @@ const styles = {
   container: container({
     size: 'large',
     css: {
-      '@md': {
+      '@sm': {
         display: 'grid',
         alignItems: 'center',
         gridTemplateRows: 'auto 1fr auto',
@@ -26,12 +26,13 @@ const styles = {
     }
   }),
   postDetails: css({
-    gridArea: 'details'
+    gridArea: 'details',
+    mr: '$4'
   })(),
   postTitle: text({
     size: {
       '@initial': '3xl',
-      '@sm': '4xl',
+      '@md': '4xl',
       '@lg': '5xl'
     },
     leading: 'tight',
@@ -41,6 +42,7 @@ const styles = {
   postSnippet: text({
     size: {
       '@initial': 'base',
+      '@md': 'lg',
       '@lg': 'xl'
     },
     css: {
@@ -56,30 +58,37 @@ const styles = {
     css: {
       gridArea: 'author',
       my: '$8',
-      '@md': { my: '$0' }
+      '@sm': { my: '$0' }
     }
   }),
   authorDetails: stack({ dir: 'col' }),
   authorPicture: css({
     position: 'relative',
-    height: 48,
-    width: 48,
+    height: 38,
+    width: 38,
     boxShadow: '0 0px 0px 2px rgb($rgb$bg), 0 0 0px 4px rgb($rgb$brand)',
     borderRadius: '$full',
     marginRight: '1rem',
     display: 'inherit',
     overflow: 'hidden',
-    '@lg': { width: 54, height: 54 }
+    '@md': { width: 48, height: 48 }
   })(),
   authorName: text({
     weight: 'medium',
     leading: 'none',
+    size: {
+      '@initial': 'sm',
+      '@md': 'base'
+    },
     css: { xColor: '$fg' }
   }),
   publishedDate: text({
-    size: 'xs',
     leading: 'none',
     weight: 'medium',
+    size: {
+      '@initial': 'xs',
+      '@md': 'sm'
+    },
     css: {
       xColor: '$fg',
       xColorOpacity: 0.5,
@@ -89,19 +98,17 @@ const styles = {
   }),
   cover: css({
     gridArea: 'cover',
-    width: '100%',
-    height: '100%',
     position: 'relative',
     pointerEvents: 'none',
     margin: '0 auto',
     maxWidth: 282,
     zIndex: 1,
     '@sm': {
-      margin: 0,
+      marginRight: '-$20',
       width: 342
     },
     '@md': {
-      maxWidth: '40vw',
+      maxWidth: '38vw',
       margin: 0
     },
     '@lg': {

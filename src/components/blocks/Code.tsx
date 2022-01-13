@@ -1,15 +1,25 @@
 import { highlight, languages } from 'prismjs'
 
+import prism from '~/styles/prism.style'
+
 interface Props {
   children: string
   language?: string
 }
 
 const Code = ({ children, language }: Props) => {
+  const className = prism({
+    theme: 'gruvbox',
+    size: {
+      '@initial': 'small',
+      '@md': 'base'
+    }
+  })
+
   // if no language is specified, dont highlight
   if (!language) {
     return (
-      <pre>
+      <pre className={className}>
         <code>{children}</code>
       </pre>
     )
@@ -20,8 +30,8 @@ const Code = ({ children, language }: Props) => {
   const availableLanguages = Object.keys(languages)
   if (language === 'plain text' || !availableLanguages.includes(language)) {
     return (
-      <pre className="language-plaintext">
-        <code className="language-plaintext">{children}</code>
+      <pre className={className}>
+        <code>{children}</code>
       </pre>
     )
   }
@@ -29,11 +39,8 @@ const Code = ({ children, language }: Props) => {
   // get highlighted code tree directly (better performance)
   const highlighted = highlight(children, languages[language], language)
   return (
-    <pre className={`language-${language}`}>
-      <code
-        className={`language-${language}`}
-        dangerouslySetInnerHTML={{ __html: highlighted }}
-      ></code>
+    <pre className={className}>
+      <code dangerouslySetInnerHTML={{ __html: highlighted }}></code>
     </pre>
   )
 }

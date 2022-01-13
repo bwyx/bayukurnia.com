@@ -5,12 +5,26 @@ import type * as Stitches from '@stitches/core'
 export type CSS = Stitches.CSS<typeof config>
 type Space = Stitches.ScaleValue<'space'>
 type RGBS = keyof typeof darkTheme.rgb & keyof typeof lightTheme.rgb
-type RGB = `$${RGBS}`
+type RGB = `$${RGBS}` | Stitches.ScaleValue<'rgb'>
 type Opacity = Stitches.PropertyValue<'opacity'>
+
+export type RGBColor = keyof typeof config.theme.rgb
 
 export const { css, keyframes, getCssText, globalCss, createTheme, config } =
   createStitches({
     theme: {
+      rgb: {
+        'text-50': '251 251 251',
+        'text-100': '230 230 229',
+        'text-200': '186 188 185',
+        'text-300': '143 145 141',
+        'text-400': '100 101 97',
+        'text-500': '56 57 55',
+        'text-600': '49 49 47',
+        'text-700': '41 42 40',
+        'text-800': '33 34 32',
+        'text-900': '26 26 2)'
+      },
       colors: {
         black: '#000',
         gray: '#6b7280',
