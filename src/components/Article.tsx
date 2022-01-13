@@ -251,7 +251,7 @@ const prose = css({
       sm: {
         fontSize: rem(14),
         lineHeight: round(24 / 14),
-        p: {
+        '& p': {
           marginTop: em(16, 14),
           marginBottom: em(16, 14)
         },
@@ -417,7 +417,7 @@ const prose = css({
       base: {
         fontSize: rem(16),
         lineHeight: round(28 / 16),
-        p: {
+        '& p': {
           marginTop: em(20, 16),
           marginBottom: em(20, 16)
         },
@@ -583,7 +583,7 @@ const prose = css({
       lg: {
         fontSize: rem(18),
         lineHeight: round(32 / 18),
-        p: {
+        '& p': {
           marginTop: em(24, 18),
           marginBottom: em(24, 18)
         },
@@ -749,7 +749,7 @@ const prose = css({
       xl: {
         fontSize: rem(20),
         lineHeight: round(36 / 20),
-        p: {
+        '& p': {
           marginTop: em(24, 20),
           marginBottom: em(24, 20)
         },
@@ -915,7 +915,7 @@ const prose = css({
       '2xl': {
         fontSize: rem(24),
         lineHeight: round(40 / 24),
-        p: {
+        '& p': {
           marginTop: em(32, 24),
           marginBottom: em(32, 24)
         },
@@ -1091,7 +1091,7 @@ const Article = (props: React.PropsWithChildren<Props>) => {
   return (
     <article
       className={prose({
-        prose: {
+        size: {
           '@initial': 'base',
           '@sm': 'lg'
         }

@@ -36,11 +36,12 @@ const token = css({
     strikethrough: { true: { textDecoration: 'line-through' } },
     code: {
       true: {
+        xColor: '$brand',
+        xBackground: '$brand',
+        xBackgroundOpacity: 0.1,
         fontFamily: '$mono',
         fontSize: '$sm',
         fontWeight: 600,
-        color: 'rgb($brand)',
-        backgroundColor: 'rgb($brand / 10%)',
         padding: '0.2rem 0.4rem',
         borderRadius: '0.3rem'
       }

@@ -2,36 +2,35 @@ import Link from 'next/link'
 import Logo from '~/components/vectors/Logo'
 
 import { css } from '~/styles'
+import styles from '~/styles/components/Header.style'
 import container from '~/styles/container.style'
 
 const header = css({
+  xBackground: '$bg',
   position: 'sticky',
   top: 0,
   zIndex: 50,
+  height: 60,
   width: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  background: 'rgb($bg)',
   borderBottom: '1px solid transparent',
   borderImage:
-    'linear-gradient(to right, rgba($bg / 5%), rgba($bg / 80%) 30%, rgba($bg / 20%) 80%, rgba($bg / 90%) 90%) 1',
-  height: 60,
+    'linear-gradient(to right, rgb($rgb$bg / 5%), rgb($rgb$bg / 80%) 30%, rgb($rgb$bg / 20%) 80%, rgb($rgb$bg / 90%) 90%) 1',
   '@supports (backdrop-filter: saturate(180%) blur(1rem))': {
-    background: 'rgb($bg / .6)',
+    xBackgroundOpacity: 0.6,
     backdropFilter: 'saturate(180%) blur(1rem)'
   },
-  '@md': {
-    height: 80
-  },
+  '@md': { height: 80 },
   [`& .${container}`]: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center'
   },
   '& .logo': {
+    xColor: '$brand',
     display: 'inherit',
-    color: 'rgb($brand)',
     '& svg': {
       width: 'auto',
       height: 40,
@@ -39,47 +38,41 @@ const header = css({
         height: 45
       }
     },
-    '&:hover': {
-      color: 'rgb($accent)'
-    }
+    '&:hover': { xColor: '$accent' }
   },
   '& nav ul': {
     display: 'flex',
     alignItems: 'center',
-    '& li:not(:last-child)': {
-      marginRight: '0.5rem'
-    },
+    '& li:not(:last-child)': { marginRight: '0.5rem' },
     '& a': {
+      xColor: '$brand',
       textDecoration: 'none',
       fontSize: '$base',
       fontWeight: '500',
-      color: 'rgb($brand)',
-      '&:hover': {
-        color: 'rgb($accent)'
-      }
+      '&:hover': { xColor: '$accent' }
     }
   }
 })
 
 const Header = () => {
   return (
-    <header className={header()}>
-      <div className={container({ size: 'large' })}>
+    <header className={styles.header}>
+      <div className={styles.container}>
         <Link href="/">
-          <a className="logo">
+          <a className={styles.logo}>
             <Logo height={45} />
           </a>
         </Link>
         <nav>
-          <ul>
+          <ul className={styles.menuList}>
             <li>
               <Link href="/about">
-                <a>About</a>
+                <a className={styles.menuItem}>About</a>
               </Link>
             </li>
             <li>
               <Link href="/blog">
-                <a>Blog</a>
+                <a className={styles.menuItem}>Blog</a>
               </Link>
             </li>
           </ul>

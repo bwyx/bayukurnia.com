@@ -43,7 +43,8 @@ const gruvboxPrism = {
         background: '#a89984'
       },
     ':not(pre) > code[class*="language-"], pre[class*="language-"]': {
-      background: 'rgb($brand / 10%)'
+      xBackground: '$brand',
+      xBackgroundOpacity: 0.1
     },
     ':not(pre) > code[class*="language-"]': {
       padding: '0.1em',
