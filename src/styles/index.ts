@@ -140,19 +140,19 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
     },
     utils: {
       xColor: (color: RGB) => ({
-        $$colorOpacity: 1,
-        color: `rgb($rgb${color} / $$colorOpacity)`
+        '$$color-opacity': 1,
+        color: `rgb($rgb${color} / $$color-opacity)`
       }),
       xColorOpacity: (opacity: Opacity) => ({
-        $$colorOpacity: `${opacity} !important`
+        '$$color-opacity': `${opacity} !important`
       }),
 
       xBackground: (color: RGB) => ({
-        $$bgOpacity: 1,
-        backgroundColor: `rgb($rgb${color} / $$bgOpacity)`
+        '$$bg-opacity': 1,
+        backgroundColor: `rgb($rgb${color} / $$bg-opacity)`
       }),
       xBackgroundOpacity: (opacity: Opacity) => ({
-        $$bgOpacity: `${opacity} !important`
+        '$$bg-opacity': `${opacity} !important`
       }),
 
       // Abbreviated margin properties
