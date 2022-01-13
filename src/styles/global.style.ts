@@ -1,5 +1,14 @@
 import { globalCss } from '~/styles'
-import { darkTheme, lightTheme } from '~/styles/themes'
+import themes, { darkTheme, lightTheme } from '~/styles/themes'
+
+const mapThemeVariables = (name: keyof typeof themes) =>
+  Object.entries(themes[name].rgb).reduce((styles, [token, { value }]) => {
+    const vars = {
+      [`--rgb-${token}`]: value
+    }
+
+    return { ...styles, ...vars }
+  }, {})
 
 export const globalStyles = globalCss({
   // Fonts
@@ -45,24 +54,23 @@ export const globalStyles = globalCss({
     fontFamily:
       'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
     fontFeatureSettings: "'cv02','cv03','cv04','cv11'",
-
     // Fallback colors to disable flashing on color scheme changes
-    '--colors-brand': darkTheme.colors.brand,
-    color: `rgb(${darkTheme.colors.fg})`,
-    background: `rgb(${darkTheme.colors.bg})`,
+    ...mapThemeVariables('dark'),
+    color: `rgb(${darkTheme.rgb.fg})`,
+    background: `rgb(${darkTheme.rgb.bg})`,
 
     '@media (prefers-color-scheme: light)': {
-      '--colors-brand': lightTheme.colors.brand,
-      color: `rgb(${lightTheme.colors.fg})`,
-      background: `rgb(${lightTheme.colors.bg})`
+      ...mapThemeVariables('light'),
+      color: `rgb(${lightTheme.rgb.fg})`,
+      background: `rgb(${lightTheme.rgb.bg})`
     }
   },
   body: {
+    xColor: '$fg',
+    xBackground: '$bg',
     margin: 0,
     fontFamily: '$sans',
     fontSize: '$base',
-    color: 'rgb($fg)',
-    background: 'rgb($bg)',
     lineHeight: 1.75
   },
   hr: { height: '0', color: 'inherit', borderTopWidth: '1px' },
