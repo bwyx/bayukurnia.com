@@ -1,10 +1,6 @@
 import { css } from '~/styles'
 
 const text = css({
-  fontSize: '$md',
-  fontFamily: '$sans',
-  fontWeight: '$normal',
-  lineHeight: '$normal',
   variants: {
     size: {
       xs: { fontSize: '$xs' },
