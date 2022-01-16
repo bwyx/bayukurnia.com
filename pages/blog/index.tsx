@@ -48,7 +48,9 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
     }
   })
 
-  const posts = results.map((post) => getPostData(post as PostResult))
+  const posts = await Promise.all(
+    results.map((post) => getPostData(post as PostResult))
+  )
 
   return {
     props: { posts },

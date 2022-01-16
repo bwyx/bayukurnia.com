@@ -23,13 +23,18 @@ type ExcludedProperties =
 
 export type PickedBlock = Exclude<Block, ExcludedProperties>
 
+export type Cover = {
+  blurDataURL: string
+  src: string
+}
+
 export type PostProperties = {
   id: string
   title: string
   richDescription: RichText[]
   date: string
   slug: string | null
-  cover: string | null
+  cover?: Cover
 }
 
 export type PostPropertiesWithRawId = PostProperties & {

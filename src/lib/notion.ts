@@ -40,7 +40,7 @@ export const getPostBySlug = async (slug: string) => {
     }
   })
 
-  return <PostPropertiesWithRawId>(
+  return <Promise<PostPropertiesWithRawId>>(
     getPostData(postResponse.results[0] as PostResult, {
       withRawId: true
     })

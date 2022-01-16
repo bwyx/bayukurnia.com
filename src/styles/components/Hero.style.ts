@@ -101,19 +101,40 @@ const styles = {
     position: 'relative',
     pointerEvents: 'none',
     margin: '0 auto',
-    maxWidth: 282,
+    width: 280,
+    height: 280,
     zIndex: 1,
     '@sm': {
       marginRight: '-$20',
-      width: 342
+      width: 340,
+      height: 340
     },
     '@md': {
       maxWidth: '38vw',
+      maxHeight: '38vw',
       margin: 0
     },
     '@lg': {
-      width: 422
+      width: 420,
+      height: 420
     }
+  })(),
+  imgOuter: css({
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    borderRadius: '3.75%',
+    overflow: 'hidden'
+  })(),
+  img: css({
+    transitionDuration: '0.5s',
+    transitionTimingFunction: 'ease-in-out'
+  })(),
+  imgBlur: css({
+    willChange: 'transform, filter, opacity',
+    transform: 'scale(1.05)',
+    filter: 'blur(8px) saturate(0) !important',
+    opacity: 0.1
   })(),
   gradientBackground: css({
     width: '240%',
