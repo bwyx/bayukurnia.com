@@ -1,12 +1,15 @@
+import { getPlaiceholder } from 'plaiceholder'
+
 import type { PostResult } from '~/types/notion.type'
 import type {
+  Cover,
   NotionPostProperties,
   PostDataOptions,
   PostProperties,
   PostPropertiesWithRawId
 } from '~/types'
 
-export const getPostData = (
+export const getPostData = async (
   { id, ...post }: PostResult,
   options: PostDataOptions = { withRawId: false }
 ) => {
@@ -27,9 +30,6 @@ export const getPostData = (
     day: '2-digit'
   })
 
-  // Cover Image
-  const cover = post.cover?.type === 'external' ? post.cover.external.url : null
-
   // Slug
   const slug = Slug.url
 
@@ -38,8 +38,19 @@ export const getPostData = (
     title,
     richDescription,
     date,
-    cover,
     slug
+  }
+
+  // Cover Image
+  const coverUrl =
+    post.cover?.type === 'external' ? post.cover.external.url : null
+
+  if (coverUrl) {
+    const { base64, img } = await getPlaiceholder(coverUrl)
+    properties.cover = <Cover>{
+      blurDataURL: base64,
+      ...img
+    }
   }
 
   if (options.withRawId)
