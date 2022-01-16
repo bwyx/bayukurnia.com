@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { BlurImage } from '~/components'
 import { Text } from '~/components/blocks'
 
 import styles from '~/styles/components/Hero.style'
@@ -6,7 +7,17 @@ import styles from '~/styles/components/Hero.style'
 import type { PostProperties } from '~/types'
 
 const GlassBackground = () => (
-  <svg viewBox="0 0 422 422" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    style={{
+      position: 'absolute',
+      width: 'calc(100% + 2px)',
+      height: 'calc(100% + 2px)',
+      margin: '-1px -1px 0 -1px'
+    }}
+    viewBox="0 0 422 422"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <rect
       x="0.5"
       y="0.5"
@@ -64,10 +75,10 @@ const Hero = ({ title, richDescription, date, cover }: PostProperties) => {
         <div className={styles.postAuthor}>
           <div className={styles.authorPicture}>
             <Image
-              src="/profile.png"
-              alt="Author Picture"
-              width={54}
-              height={54}
+              src="/bayukurnia.png"
+              alt="Bayu Kurnia's Avatar"
+              width={48}
+              height={48}
             />
           </div>
           <div className={styles.authorDetails}>
@@ -126,21 +137,15 @@ const Hero = ({ title, richDescription, date, cover }: PostProperties) => {
           </svg>
           <GlassBackground />
           {cover ? (
-            <div
-              style={{
-                position: 'absolute',
-                inset: 1,
-                borderRadius: '3.75%',
-                overflow: 'hidden',
-                objectFit: 'cover'
-              }}
-            >
-              <Image
-                src={cover}
+            <div className={styles.imgOuter}>
+              <BlurImage
+                {...cover}
+                className={styles.img}
+                blurClassName={styles.imgBlur}
                 alt={`${title} Cover Image`}
                 layout="fill"
-                objectFit="cover"
-                quality={100}
+                sizes="50vw"
+                placeholder="blur"
                 priority={true}
               />
             </div>
