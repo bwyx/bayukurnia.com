@@ -12,10 +12,18 @@ export const getAllPosts = () =>
   notion.databases.query({
     database_id: config.NOTION_BLOG_DATABASE_ID,
     filter: {
-      property: 'Published',
-      checkbox: {
-        equals: true
-      }
+      and: [
+        {
+          property: 'Published',
+          checkbox: {
+            equals: true
+          }
+        },
+        {
+          property: 'Slug',
+          url: { is_not_empty: true }
+        }
+      ]
     }
   })
 
