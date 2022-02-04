@@ -63,7 +63,6 @@ const styles = {
       xColor: '$fg2',
       fontSize: '$sm',
       '@sm': {
-        ml: '$6',
         fontSize: '$base'
       },
       '& strong': {
