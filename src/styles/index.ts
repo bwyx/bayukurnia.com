@@ -150,7 +150,8 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
       md: '(min-width: 768px)',
       lg: '(min-width: 1024px)',
       xl: '(min-width: 1280px)',
-      '2xl': '(min-width: 1536px)'
+      '2xl': '(min-width: 1536px)',
+      motionOK: '(prefers-reduced-motion: no-preference)'
     },
     utils: {
       xColor: (color: RGB) => ({
