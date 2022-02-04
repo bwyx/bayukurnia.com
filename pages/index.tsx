@@ -110,7 +110,6 @@ const Home = ({ posts, authorImage }: PageProps) => {
         <div className={styles.aboutImage}>
           <BlurImage
             {...authorImage}
-            placeholder="blur"
             width={88}
             height={88}
             alt="Bayu Kurnia's Picture"
