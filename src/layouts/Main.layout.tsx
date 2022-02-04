@@ -1,17 +1,21 @@
 import React from 'react'
 import { Header, Footer } from '~/components'
-import { css } from '~/styles'
 
-const main = css({
-  overflow: 'hidden',
-  flexGrow: 1
+import stack from '~/styles/stack.style'
+
+const main = stack({
+  dir: 'col',
+  grow: true,
+  css: {
+    overflow: 'hidden'
+  }
 })
 
 const MainLayout: React.FC = ({ children }) => {
   return (
     <>
       <Header />
-      <main className={main()}>{children}</main>
+      <main className={main}>{children}</main>
       <Footer />
     </>
   )
