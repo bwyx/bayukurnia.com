@@ -56,13 +56,13 @@ const animated = css({
     animation: `${drawPath} 1s ease-in-out forwards`,
     animationDelay: '3.5s'
   }
-})
+})()
 
 const Logo = (props: Props) => {
   return (
     <svg
       {...props}
-      className={props.animated ? animated() : ''}
+      className={props.animated ? animated : ''}
       viewBox="0 0 147 115"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
