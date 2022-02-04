@@ -1,7 +1,7 @@
 import { getPlaiceholder } from 'plaiceholder'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { BlurImage } from '~/components'
+import { BlurImage, VisuallyHidden } from '~/components'
 import { PostCard } from '~/components/blog'
 import GitHubLogo from '~/components/vectors/GitHubLogo'
 import TwitterLogo from '~/components/vectors/TwitterLogo'
@@ -128,6 +128,7 @@ const Home = ({ posts, authorImage }: PageProps) => {
                 target="_blank"
                 rel="noreferrer"
               >
+                <VisuallyHidden>0x4b70&apos;s Twitter</VisuallyHidden>
                 <TwitterLogo />
               </a>
             </li>
@@ -137,6 +138,7 @@ const Home = ({ posts, authorImage }: PageProps) => {
                 target="_blank"
                 rel="noreferrer"
               >
+                <VisuallyHidden>bwyx&apos;s GitHub</VisuallyHidden>
                 <GitHubLogo />
               </a>
             </li>
