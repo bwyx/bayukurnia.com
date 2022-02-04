@@ -11,25 +11,27 @@ const em = (px: number, base: number) => `${round(px / base)}em`
 const color = (color: RGBColor) => `rgb($rgb$${color})`
 
 const vars = {
-  '$$prose-body': color('text-300'),
-  '$$prose-headings': '#fff',
-  '$$prose-lead': color('text-400'),
-  '$$prose-links': '#fff',
-  '$$prose-bold': '#fff',
-  '$$prose-counters': color('text-400'),
-  '$$prose-bullets': color('text-600'),
-  '$$prose-hr': color('text-700'),
-  '$$prose-quotes': color('text-100'),
-  '$$prose-quote-borders': color('text-700'),
-  '$$prose-captions': color('text-400'),
-  '$$prose-code': '#fff',
-  '$$prose-pre-code': color('text-300'),
-  '$$prose-pre-bg': 'rgb(0 0 0 / 50%)',
-  '$$prose-th-borders': color('text-600'),
-  '$$prose-td-borders': color('text-700'),
+  '.dark': {
+    '$$prose-body': color('text-300'),
+    '$$prose-headings': '#fff',
+    '$$prose-lead': color('text-400'),
+    '$$prose-links': '#fff',
+    '$$prose-bold': '#fff',
+    '$$prose-counters': color('text-400'),
+    '$$prose-bullets': color('text-600'),
+    '$$prose-hr': color('text-700'),
+    '$$prose-quotes': color('text-100'),
+    '$$prose-quote-borders': color('text-700'),
+    '$$prose-captions': color('text-400'),
+    '$$prose-code': '#fff',
+    '$$prose-pre-code': color('text-300'),
+    '$$prose-pre-bg': 'rgb(0 0 0 / 50%)',
+    '$$prose-th-borders': color('text-600'),
+    '$$prose-td-borders': color('text-700')
+  },
 
   // Light
-  '@media (prefers-color-scheme: light)': {
+  '.light': {
     '$$prose-body': color('text-700'),
     '$$prose-headings': color('text-900'),
     '$$prose-lead': color('text-600'),
