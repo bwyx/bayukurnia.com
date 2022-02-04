@@ -7,13 +7,13 @@ const footer = css({
   padding: '1rem 0',
   '& p': {
     fontSize: '0.8rem',
-    color: '$gray'
+    xColor: '$fg3'
   }
-})
+})()
 
 const Footer = () => {
   return (
-    <footer className={footer()}>
+    <footer className={footer}>
       <p>© Bayu Kurnia 2021</p>
     </footer>
   )
