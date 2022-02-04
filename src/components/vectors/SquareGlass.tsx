@@ -76,7 +76,7 @@ const Glass = ({ width = 420, height = 420, ratio = 1 }: Props) => (
         y="0.5"
         width={width + 1}
         height={(ratio ? height / ratio : height) + 1}
-        rx="1rem"
+        rx="24"
         fill="url(#paint0_radial_21_350)"
         fillOpacity="0.5"
       />
@@ -85,7 +85,7 @@ const Glass = ({ width = 420, height = 420, ratio = 1 }: Props) => (
         y="0.5"
         width={width + 1}
         height={(ratio ? height / ratio : height) + 1}
-        rx="1rem"
+        rx="24"
         stroke="url(#paint1_linear_21_350)"
       />
       <defs>
