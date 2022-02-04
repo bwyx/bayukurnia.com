@@ -42,7 +42,6 @@ const Hero = ({ title, richDescription, date, cover }: PostProperties) => {
                 alt={`${title} Cover Image`}
                 layout="fill"
                 sizes="50vw"
-                placeholder="blur"
                 priority={true}
               />
             </div>

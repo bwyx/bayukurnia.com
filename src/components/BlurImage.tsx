@@ -1,13 +1,15 @@
 import Image, { ImageProps } from 'next/image'
 import { useState } from 'react'
 
+import styles from '~/styles/components/BlurImage.style'
+
 interface Props {
   blurClassName?: string
 }
 
 const BlurImage = ({
-  className,
-  blurClassName,
+  className = styles.img,
+  blurClassName = styles.imgBlur,
   ...imgProps
 }: ImageProps & Props) => {
   const [loading, setLoading] = useState(true)
@@ -16,6 +18,7 @@ const BlurImage = ({
     <Image
       {...imgProps}
       alt={imgProps.alt}
+      placeholder="blur"
       className={`${className} ${loading ? blurClassName : null}`}
       onLoadingComplete={() => setLoading(false)}
     />
