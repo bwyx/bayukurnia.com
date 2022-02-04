@@ -1,3 +1,5 @@
+import { getPlaiceholder } from 'plaiceholder'
+
 import { attachMainLayout } from '~/layouts/Main.layout'
 import { BlurImage } from '~/components'
 import { PostCard } from '~/components/blog'
@@ -17,6 +19,10 @@ import type { PostResult } from '~/types/notion.type'
 
 interface PageProps {
   posts: PostProperties[]
+  authorImage: {
+    blurDataURL: string
+    src: string
+  }
 }
 
 const styles = {
@@ -97,12 +103,18 @@ const styles = {
   })
 }
 
-const Home = ({ posts }: PageProps) => {
+const Home = ({ posts, authorImage }: PageProps) => {
   return (
     <div className={container({ size: 'small' })}>
       <div className={styles.about}>
         <div className={styles.aboutImage}>
-          <BlurImage width={88} height={88} src="/bayukurnia.png" />
+          <BlurImage
+            {...authorImage}
+            placeholder="blur"
+            width={88}
+            height={88}
+            alt="Bayu Kurnia's Picture"
+          />
         </div>
         <div className={styles.aboutText}>
           <p className={styles.greet}>
@@ -150,9 +162,15 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
     results.map((post) => getPostData(post as PostResult))
   )
 
+  const { base64, img } = await getPlaiceholder('/bayukurnia.png')
+  const authorImage = {
+    blurDataURL: base64,
+    ...img
+  }
+
   return {
-    props: { posts },
-    revalidate: 300
+    props: { posts, authorImage },
+    revalidate: process.env.ENV === 'local' ? 1 : 300
   }
 }
 
