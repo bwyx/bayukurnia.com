@@ -42,10 +42,10 @@ export const getStaticProps: GetStaticProps<PostPropertiesWithBlocks> = async (
 export const getStaticPaths = async () => {
   const posts = await getAllPosts()
 
-  const slug = posts.results.map((post: any) => post.properties['Slug'].url)
+  const slugs = posts.results.map((post: any) => post.properties['Slug'].url)
 
   return {
-    paths: slug.map((s: string) => '/blog/' + s),
+    paths: slugs.map((s: string) => '/blog/' + s),
     fallback: true
   }
 }
