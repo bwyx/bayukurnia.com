@@ -1,4 +1,5 @@
 import { css, RGBColor } from '~/styles'
+import themes from '~/styles/themes'
 
 const round = (num: number) =>
   num
@@ -11,7 +12,7 @@ const em = (px: number, base: number) => `${round(px / base)}em`
 const color = (color: RGBColor) => `rgb($rgb$${color})`
 
 const vars = {
-  '.dark': {
+  [`.${themes.dark} &`]: {
     '$$prose-body': color('text-300'),
     '$$prose-headings': '#fff',
     '$$prose-lead': color('text-400'),
@@ -31,7 +32,7 @@ const vars = {
   },
 
   // Light
-  '.light': {
+  [`.${themes.light} &`]: {
     '$$prose-body': color('text-700'),
     '$$prose-headings': color('text-900'),
     '$$prose-lead': color('text-600'),
