@@ -5,24 +5,28 @@ import themes from '~/styles/themes'
 type ThemeName = keyof typeof themes
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState<ThemeName>('dark')
+  const [themeIndex, setThemeIndex] = useState<number>(0)
   const themeNames = Object.keys(themes) as ThemeName[]
 
-  const toggle = () => setTheme(theme === 'dark' ? 'light' : 'dark')
+  const toggle = () =>
+    setThemeIndex(themeIndex === themeNames.length - 1 ? 0 : themeIndex + 1)
 
   useEffect(() => {
     const classes = document.documentElement.classList
-    classes.remove(...themeNames)
-    classes.add(themes[theme as ThemeName].className)
-  }, [theme, themeNames])
+    const allClasses = Object.entries(themes).map(([k, v]) => v.className)
+
+    classes.remove(...allClasses)
+    classes.add(themes[themeNames[themeIndex]].className)
+  }, [themeNames, themeIndex])
 
   useEffect(() => {
-    for (const themeName in themes) {
-      if (Object.prototype.hasOwnProperty.call(themes, themeName)) {
-        const scheme = window.matchMedia(`(prefers-color-scheme: ${themeName})`)
+    for (const theme in themes) {
+      if (Object.prototype.hasOwnProperty.call(themes, theme)) {
+        const scheme = window.matchMedia(`(prefers-color-scheme: ${theme})`)
 
         const applyScheme = (scheme: MediaQueryList) => {
-          if (scheme.matches) setTheme(themeName as ThemeName)
+          if (scheme.matches)
+            setThemeIndex(themeNames.indexOf(theme as ThemeName))
         }
 
         applyScheme(scheme)

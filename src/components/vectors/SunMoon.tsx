@@ -1,4 +1,5 @@
 import { css } from '~/styles'
+import themes from '~/styles/themes'
 
 const styles = css({
   width: 20,
@@ -23,7 +24,7 @@ const styles = css({
       stroke: '#ffc120'
     }
   },
-  '.dark &': {
+  [`.${themes.dark} &`]: {
     '.sun': {
       transform: 'scale(1.75)'
     },
@@ -54,7 +55,7 @@ const styles = css({
         transition: 'cx .25s var(--ease-out-5)'
       }
     },
-    '.dark &': {
+    [`.${themes.dark} &`]: {
       '.sun': {
         transform: 'scale(1.75)',
         transitionTimingFunction: 'var(--ease-3)',

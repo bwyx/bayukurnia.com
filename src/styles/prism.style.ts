@@ -1,4 +1,5 @@
 import { css } from '~/styles'
+import themes from '~/styles/themes'
 
 const prism = css({
   // Base
@@ -37,7 +38,7 @@ const prism = css({
     },
     theme: {
       gruvbox: {
-        '.dark &': {
+        [`.${themes.dark} &`]: {
           // Default to Gruvbox Dark
           color: '#ebdbb2',
           background: '#1d2021',
@@ -78,7 +79,7 @@ const prism = css({
           '.token.deleted': { background: '#fb4934' }
         },
         // Gruvox Light
-        '.light &': {
+        [`.${themes.light} &`]: {
           color: '#3c3836',
           xBackground: '$brand',
           xBackgroundOpacity: 0.1,
