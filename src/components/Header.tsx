@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import { VisuallyHidden } from '~/components'
+import { VisuallyHidden, ThemeToggle } from '~/components'
 import Logo from '~/components/vectors/Logo'
 
 import styles from '~/styles/components/Header.style'
@@ -18,20 +18,7 @@ const Header = () => {
             <Logo animated={isHome} height={45} />
           </a>
         </Link>
-        {/* <nav>
-          <ul className={styles.menuList}>
-            <li>
-              <Link href="/about">
-                <a className={styles.menuItem}>About</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/blog">
-                <a className={styles.menuItem}>Blog</a>
-              </Link>
-            </li>
-          </ul>
-        </nav> */}
+        <ThemeToggle />
       </div>
     </header>
   )
