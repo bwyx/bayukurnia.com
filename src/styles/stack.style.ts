@@ -15,6 +15,9 @@ const stack = css({
       spaceBetween: {
         justifyContent: 'space-between !important'
       }
+    },
+    grow: {
+      true: { flexGrow: 1 }
     }
   },
 

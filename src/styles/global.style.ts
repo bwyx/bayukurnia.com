@@ -56,17 +56,17 @@ export const globalStyles = globalCss({
     fontFeatureSettings: "'cv02','cv03','cv04','cv11'",
     // Fallback colors to disable flashing on color scheme changes
     ...mapThemeVariables('dark'),
-    color: `rgb(${darkTheme.rgb.fg})`,
+    color: `rgb(${darkTheme.rgb.fg1})`,
     background: `rgb(${darkTheme.rgb.bg})`,
 
     '@media (prefers-color-scheme: light)': {
       ...mapThemeVariables('light'),
-      color: `rgb(${lightTheme.rgb.fg})`,
+      color: `rgb(${lightTheme.rgb.fg1})`,
       background: `rgb(${lightTheme.rgb.bg})`
     }
   },
   body: {
-    xColor: '$fg',
+    xColor: '$fg1',
     xBackground: '$bg',
     margin: 0,
     fontFamily: '$sans',
