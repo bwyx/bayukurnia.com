@@ -1,5 +1,7 @@
-import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+import { VisuallyHidden } from '~/components'
 import Logo from '~/components/vectors/Logo'
 
 import styles from '~/styles/components/Header.style'
@@ -12,6 +14,7 @@ const Header = () => {
       <div className={styles.container}>
         <Link href="/">
           <a className={styles.logo}>
+            <VisuallyHidden>Beranda</VisuallyHidden>
             <Logo animated={isHome} height={45} />
           </a>
         </Link>
