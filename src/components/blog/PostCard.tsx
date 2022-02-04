@@ -16,21 +16,17 @@ const styles = {
   })(),
   postTitle: css({
     xColor: '$fg1',
-    fontSize: '$xl',
-    fontWeight: '600',
+    fontSize: '$2xl',
+    fontWeight: '$bold',
     '&:hover': {
       xColor: '$brand'
     },
     '@sm': {
-      fontSize: '$2xl'
+      fontSize: '$3xl'
     }
   })(),
   postDescription: css({
-    fontSize: '$sm',
-    xColor: '$fg3',
-    '@sm': {
-      fontSize: '$base'
-    }
+    xColor: '$fg3'
   })()
 }
 
