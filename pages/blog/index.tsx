@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { attachMainLayout } from '~/layouts/Main.layout'
+import { PostCard } from '~/components/blog'
 
 import container from '~/styles/container.style'
 
@@ -17,10 +17,8 @@ interface PageProps {
 const BlogIndex = ({ posts }: PageProps) => {
   return (
     <div className={container({ size: 'small' })}>
-      {posts.map(({ id, title, slug }) => (
-        <Link key={id} href={`/blog/${slug}`}>
-          <a>{title}</a>
-        </Link>
+      {posts.map((props) => (
+        <PostCard key={props.id} {...props} />
       ))}
     </div>
   )

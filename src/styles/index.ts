@@ -198,29 +198,29 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
 
       // Abbreviated padding properties
       p: (value: Space) => ({
-        margin: value
+        padding: value
       }),
 
       pt: (value: Space) => ({
-        marginTop: value
+        paddingTop: value
       }),
       pr: (value: Space) => ({
-        marginRight: value
+        paddingRight: value
       }),
       pb: (value: Space) => ({
-        marginBottom: value
+        paddingBottom: value
       }),
       pl: (value: Space) => ({
-        marginLeft: value
+        paddingLeft: value
       }),
 
       px: (value: Space) => ({
-        marginLeft: value,
-        marginRight: value
+        paddingLeft: value,
+        paddingRight: value
       }),
       py: (value: Space) => ({
-        marginTop: value,
-        marginBottom: value
+        paddingTop: value,
+        paddingBottom: value
       })
     }
   })
