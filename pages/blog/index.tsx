@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
 
   return {
     props: { posts },
-    revalidate: 300
+    revalidate: process.env.ENV === 'local' ? 1 : 300
   }
 }
 

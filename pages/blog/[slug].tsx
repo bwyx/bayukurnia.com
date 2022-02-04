@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps<PostPropertiesWithBlocks> = async (
 
   return {
     props: { ...post, blocks },
-    revalidate: 300
+    revalidate: process.env.ENV === 'local' ? 1 : 300
   }
 }
 
