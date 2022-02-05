@@ -25,7 +25,7 @@ const Content = ({ block }: Props) => {
       return <Code language={language}>{code}</Code>
     default:
       return (
-        <code style={{ color: 'red', display: 'block' }}>..redacted..</code>
+        <code style={{ color: 'red', display: 'block' }}>..unsupported..</code>
       )
     // return <pre>{JSON.stringify(block, null, 2)}</pre>
   }
