@@ -1,6 +1,6 @@
 import { attachMainLayout } from '~/layouts/Main.layout'
 import { SEO, Hero, Article } from '~/components'
-import { Content } from '~/components/blocks'
+import { Block } from '~/components/blocks'
 
 import container from '~/styles/container.style'
 
@@ -17,7 +17,7 @@ const Post = ({ blocks, ...post }: PostPropertiesWithBlocks) => {
       <div className={container({ size: 'small' })}>
         <Article>
           {Array.isArray(blocks) && blocks.length
-            ? blocks.map((block) => <Content key={block.id} block={block} />)
+            ? blocks.map((block) => <Block key={block.id} block={block} />)
             : null}
         </Article>
       </div>

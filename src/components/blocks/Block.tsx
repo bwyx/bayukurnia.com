@@ -6,7 +6,7 @@ interface Props {
   block: PickedBlock
 }
 
-const Content = ({ block }: Props) => {
+const Block = ({ block }: Props) => {
   const { type } = block
 
   switch (type) {
@@ -31,4 +31,4 @@ const Content = ({ block }: Props) => {
   }
 }
 
-export default Content
+export default Block
