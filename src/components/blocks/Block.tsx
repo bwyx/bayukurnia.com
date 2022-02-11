@@ -19,11 +19,7 @@ const Block = ({ block }: Props) => {
     case 'paragraph':
       return <Text as="p">{block[type].text}</Text>
     case 'callout':
-      return (
-        <Callout>
-          <Text as="p">{block[type].text}</Text>
-        </Callout>
-      )
+      return <Callout {...block} />
     case 'image':
       return <ImageBlock data={block} />
     case 'code':

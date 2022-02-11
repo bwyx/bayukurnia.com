@@ -1,4 +1,8 @@
+import { Text } from '~/components/blocks'
+
 import { css } from '~/styles'
+
+import type { CalloutBlock } from '~/types/notion.type'
 
 const styles = css({
   xBackground: '$brand',
@@ -11,12 +15,10 @@ const styles = css({
   }
 })()
 
-interface Props {
-  children: React.ReactNode
-}
-
-const Callout = ({ children }: Props) => (
-  <div className={styles}>{children}</div>
+const Callout = ({ callout }: CalloutBlock) => (
+  <div className={styles}>
+    <Text as="p">{callout.text}</Text>
+  </div>
 )
 
 export default Callout
