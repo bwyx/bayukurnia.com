@@ -33,7 +33,7 @@ const styles = {
 const PostCard = (props: PostProperties) => {
   return (
     <article className={styles.outer}>
-      <Link href={`/blog/${props.slug}`}>
+      <Link href={`/notion-blog/${props.slug}`}>
         <a className={styles.postTitle}>
           <h2>{props.title}</h2>
         </a>
