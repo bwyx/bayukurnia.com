@@ -5,10 +5,10 @@ import { attachMainLayout } from '~/layouts/Main.layout'
 
 import container from '~/styles/container.style'
 
-import { allBlogs } from '.contentlayer/data'
+import { allBlogs } from 'contentlayer/generated'
 
 import type { GetStaticProps } from 'next'
-import { Blog } from '.contentlayer/types'
+import { Blog } from 'contentlayer/generated'
 
 interface PageProps {
   posts: Blog[]
