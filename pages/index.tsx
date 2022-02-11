@@ -1,5 +1,5 @@
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { PostCard } from '~/components/blog'
+import { PostCard } from '~/components/notion-blog'
 
 import container from '~/styles/container.style'
 import stack from '~/styles/stack.style'

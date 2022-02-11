@@ -45,7 +45,7 @@ export const getStaticPaths = async () => {
   const slugs = posts.results.map((post: any) => post.properties['Slug'].url)
 
   return {
-    paths: slugs.map((s: string) => '/blog/' + s),
+    paths: slugs.map((s: string) => '/notion-blog/' + s),
     fallback: true
   }
 }
