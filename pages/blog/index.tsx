@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { compareDesc, format, parseISO } from 'date-fns'
+import { compareDesc } from 'date-fns'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
+import { PostCard } from '~/components/blog'
 
 import container from '~/styles/container.style'
 
@@ -19,21 +19,6 @@ export const getStaticProps: GetStaticProps<PageProps> = () => {
     return compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
   })
   return { props: { posts } }
-}
-
-function PostCard({ title, slug, publishedAt, _raw }: Blog) {
-  return (
-    <div>
-      <time dateTime={publishedAt}>
-        {format(parseISO(publishedAt), 'LLLL d, yyyy')}
-      </time>
-      <h2>
-        <Link href={`/${_raw.sourceFileDir}/${slug}`}>
-          <a>{title}</a>
-        </Link>
-      </h2>
-    </div>
-  )
 }
 
 const BlogIndex = ({ posts }: PageProps) => {
