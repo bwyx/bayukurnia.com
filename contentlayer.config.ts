@@ -4,16 +4,10 @@ export const Blog = defineDocumentType(() => ({
   name: 'Blog',
   filePathPattern: `blog/*.md`,
   fields: {
-    title: {
-      type: 'string',
-      description: 'The title of the post',
-      required: true
-    },
-    publishedAt: {
-      type: 'date',
-      description: 'The date of the post',
-      required: true
-    }
+    title: { type: 'string', required: true },
+    publishedAt: { type: 'string', required: true },
+    summary: { type: 'string', required: true },
+    cover: { type: 'string', required: true }
   },
   computedFields: {
     slug: {
