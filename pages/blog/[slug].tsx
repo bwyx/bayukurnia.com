@@ -7,10 +7,10 @@ import { Article } from '~/components'
 
 import container from '~/styles/container.style'
 
-import { allBlogs } from '.contentlayer/data'
+import { allBlogs } from 'contentlayer/generated'
 
 import type { GetStaticProps } from 'next'
-import type { Blog } from '.contentlayer/types'
+import type { Blog } from 'contentlayer/generated'
 
 export async function getStaticPaths() {
   return {
