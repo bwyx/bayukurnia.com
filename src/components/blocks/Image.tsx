@@ -2,11 +2,7 @@ import NextImage from 'next/image'
 import { useState } from 'react'
 import { ImageBlock } from '~/types/notion.type'
 
-interface Props {
-  data: ImageBlock
-}
-
-const Image = ({ data: { image } }: Props) => {
+const Image = ({ image }: ImageBlock) => {
   const [ratio, setRatio] = useState(1)
 
   const { url } = image.type === 'file' ? image.file : image.external

@@ -21,7 +21,7 @@ const Block = ({ block }: Props) => {
     case 'callout':
       return <Callout {...block} />
     case 'image':
-      return <ImageBlock data={block} />
+      return <ImageBlock {...block} />
     case 'code':
       const { text, language } = block[type]
       const code = text.map((t) => t.plain_text).join('')
