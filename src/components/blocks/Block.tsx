@@ -1,4 +1,4 @@
-import { Text, Code, Callout, ImageBlock } from '~/components/blocks'
+import { Text, Code, Callout, ImageBlock, Quote } from '~/components/blocks'
 
 import type { PickedBlock } from '~/types'
 
@@ -20,6 +20,8 @@ const Block = ({ block }: Props) => {
       return <Text as="p">{block[type].text}</Text>
     case 'callout':
       return <Callout {...block} />
+    case 'quote':
+      return <Quote {...block} />
     case 'image':
       return <ImageBlock {...block} />
     case 'code':
