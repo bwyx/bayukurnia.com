@@ -25,18 +25,6 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
         'text-800': '56 58 54',
         'text-900': '28 29 27'
       },
-      colors: {
-        black: '#000',
-        gray: '#6b7280',
-        brown: '#78350f',
-        orange: '#f97316',
-        yellow: '#eab308',
-        green: '#22c55e',
-        blue: '#3b82f6',
-        purple: '#a855f7',
-        pink: '#ec4899',
-        red: '#ef4444'
-      },
       fonts: {
         sans: "Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol'",
         serif: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
