@@ -16,7 +16,7 @@ const drawPath = keyframes({
   '100%': { strokeDashoffset: 0 }
 })
 
-const animated = css({
+const animatedClass = css({
   '@motionOK': {
     strokeDasharray: 300,
     strokeDashoffset: 300,
@@ -60,11 +60,11 @@ const animated = css({
   }
 })()
 
-const Logo = (props: Props) => {
+const Logo = ({ animated, ...props }: Props) => {
   return (
     <svg
       {...props}
-      className={props.animated ? animated : ''}
+      className={animated ? animatedClass : ''}
       viewBox="0 0 147 115"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
