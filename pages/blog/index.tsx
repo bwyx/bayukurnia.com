@@ -21,15 +21,15 @@ export const getStaticProps: GetStaticProps<PageProps> = () => {
   return { props: { posts } }
 }
 
-function PostCard(post: Blog) {
+function PostCard({ title, slug, publishedAt, _raw }: Blog) {
   return (
-    <div className="mb-6">
-      <time dateTime={post.publishedAt} className="block text-sm text-gray-600">
-        {format(parseISO(post.publishedAt), 'LLLL d, yyyy')}
+    <div>
+      <time dateTime={publishedAt}>
+        {format(parseISO(publishedAt), 'LLLL d, yyyy')}
       </time>
-      <h2 className="text-lg">
-        <Link href={`/blog/${post.slug}`}>
-          <a className="text-blue-700 hover:text-blue-900">{post.title}</a>
+      <h2>
+        <Link href={`/${_raw.sourceFileDir}/${slug}`}>
+          <a>{title}</a>
         </Link>
       </h2>
     </div>

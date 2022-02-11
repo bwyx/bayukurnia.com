@@ -1,9 +1,8 @@
-import Head from 'next/head'
 import Link from 'next/link'
-import { format, parseISO } from 'date-fns'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { Article } from '~/components'
+import { SEO, Article } from '~/components'
+import { Hero } from '~/components/blog'
 
 import container from '~/styles/container.style'
 
@@ -12,22 +11,6 @@ import { allBlogs } from 'contentlayer/generated'
 import type { GetStaticProps } from 'next'
 import type { Blog } from 'contentlayer/generated'
 
-export async function getStaticPaths() {
-  return {
-    paths: allBlogs.map((p) => ({ params: { slug: p.slug } })),
-    fallback: false
-  }
-}
-export const getStaticProps: GetStaticProps = ({ params }) => {
-  const post = allBlogs.find((post) => post.slug === params?.slug)
-
-  return {
-    props: {
-      post
-    }
-  }
-}
-
 interface PageProps {
   post: Blog
 }
@@ -35,21 +18,9 @@ interface PageProps {
 const BlogIndex = ({ post }: PageProps) => {
   return (
     <>
-      <Head>
-        <title>{post.title}</title>
-      </Head>
+      <SEO title={post.title} />
+      <Hero {...post} />
       <div className={container({ size: 'small' })}>
-        <div>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        </div>
-        <div>
-          <h1>{post.title}</h1>
-          <time dateTime={post.publishedAt}>
-            {format(parseISO(post.publishedAt), 'LLLL d, yyyy')}
-          </time>
-        </div>
         <Article>
           <div
             className="cl-post-body"
@@ -62,5 +33,22 @@ const BlogIndex = ({ post }: PageProps) => {
 }
 
 BlogIndex.layout = attachMainLayout
+
+export const getStaticPaths = () => {
+  return {
+    paths: allBlogs.map((p) => ({ params: { slug: p.slug } })),
+    fallback: false
+  }
+}
+
+export const getStaticProps: GetStaticProps = ({ params }) => {
+  const post = allBlogs.find((post) => post.slug === params?.slug)
+
+  return {
+    props: {
+      post
+    }
+  }
+}
 
 export default BlogIndex
