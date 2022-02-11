@@ -1,4 +1,4 @@
-import { Text, Code, Callout } from '~/components/blocks'
+import { Text, Code, Callout, ImageBlock } from '~/components/blocks'
 
 import type { PickedBlock } from '~/types'
 
@@ -24,6 +24,8 @@ const Block = ({ block }: Props) => {
           <Text as="p">{block[type].text}</Text>
         </Callout>
       )
+    case 'image':
+      return <ImageBlock data={block} />
     case 'code':
       const { text, language } = block[type]
       const code = text.map((t) => t.plain_text).join('')
