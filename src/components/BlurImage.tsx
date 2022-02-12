@@ -20,6 +20,7 @@ const BlurImage = ({
       alt={imgProps.alt}
       className={`${className} ${loading ? blurClassName : null}`}
       onLoadingComplete={() => setLoading(false)}
+      placeholder="blur"
     />
   )
 }

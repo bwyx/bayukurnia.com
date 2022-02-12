@@ -6,14 +6,14 @@ import { Hero } from '~/components/blog'
 
 import container from '~/styles/container.style'
 
-import { allBlogs } from 'contentlayer/generated'
+import { pick } from 'contentlayer/client'
+import { allBlogs, Blog } from 'contentlayer/generated'
 
 import type { GetStaticProps } from 'next'
-import type { Blog } from 'contentlayer/generated'
+import type { PostWithCoverAndBody } from '~/types/blog.type'
+import { generateCoverPlaceholder } from '~/lib/plaiceholder'
 
-interface PageProps {
-  post: Blog
-}
+const Post = ({ body, ...post }: PostWithCoverAndBody) => {
 
 const BlogIndex = ({ post }: PageProps) => {
   return (
@@ -32,7 +32,7 @@ const BlogIndex = ({ post }: PageProps) => {
   )
 }
 
-BlogIndex.layout = attachMainLayout
+Post.layout = attachMainLayout
 
 export const getStaticPaths = () => {
   return {
@@ -41,14 +41,30 @@ export const getStaticPaths = () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = ({ params }) => {
-  const post = allBlogs.find((post) => post.slug === params?.slug)
+export const getStaticProps: GetStaticProps<PostWithCoverAndBody> = async ({
+  params
+}) => {
+  const blog = allBlogs.find((post) => post.slug === params?.slug)!
+
+  const cover = await generateCoverPlaceholder(
+    `/static/images/${blog.path}/${blog.slug}/${blog.cover}`
+  )
+
+  const postProperties: (keyof Blog)[] = [
+    'title',
+    'summary',
+    'publishedAt',
+    'path',
+    'slug',
+    'body'
+  ]
 
   return {
     props: {
-      post
+      ...pick(blog, postProperties),
+      cover
     }
   }
 }
 
-export default BlogIndex
+export default Post
