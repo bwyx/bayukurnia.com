@@ -1,19 +1,16 @@
-import Link from 'next/link'
-
 import { attachMainLayout } from '~/layouts/Main.layout'
 import { SEO, Article } from '~/components'
 import { Hero } from '~/components/blog'
-
 import container from '~/styles/container.style'
 
 import { pick } from 'contentlayer/client'
-import { allBlogs, Blog } from 'contentlayer/generated'
+import { allBlogs } from 'contentlayer/generated'
+import { generateCoverPlaceholder } from '~/lib/plaiceholder'
 
 import type { GetStaticProps } from 'next'
 import type { PostWithCoverAndBody } from '~/types/blog.type'
-import { generateCoverPlaceholder } from '~/lib/plaiceholder'
 
-const Post = ({ body, ...post }: PostWithCoverAndBody) => {
+const BlogItem = ({ body, ...post }: PostWithCoverAndBody) => {
   return (
     <>
       <SEO title={post.title} />
@@ -30,7 +27,7 @@ const Post = ({ body, ...post }: PostWithCoverAndBody) => {
   )
 }
 
-Post.layout = attachMainLayout
+BlogItem.layout = attachMainLayout
 
 export const getStaticPaths = () => {
   return {
@@ -48,21 +45,19 @@ export const getStaticProps: GetStaticProps<PostWithCoverAndBody> = async ({
     `/static/images/${blog.path}/${blog.slug}/${blog.cover}`
   )
 
-  const postProperties: (keyof Blog)[] = [
-    'title',
-    'summary',
-    'publishedAt',
-    'path',
-    'slug',
-    'body'
-  ]
-
   return {
     props: {
-      ...pick(blog, postProperties),
+      ...pick(blog, [
+        'title',
+        'summary',
+        'publishedAt',
+        'path',
+        'slug',
+        'body'
+      ]),
       cover
     }
   }
 }
 
-export default Post
+export default BlogItem
