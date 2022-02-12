@@ -1,21 +1,14 @@
 import { format, parseISO } from 'date-fns'
 import { BlurImage } from '~/components'
 import SquareGlass from '~/components/vectors/SquareGlass'
+import config from '~/config'
 
 import styles from '~/styles/components/Hero.style'
 
 import type { PostWithCover } from '~/types/blog.type'
 
 const Hero = ({ title, summary, publishedAt, cover }: PostWithCover) => {
-  const avatar = {
-    blurDataURL:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAP0lEQVQImQE0AMv/AAUEDwEACSsrM7W1xACSk6L/+/neyshtbnwASUpW9uXmrpuYFxgfAEE/QjAqMQEAByMjKRJ7Evg6EQWIAAAAAElFTkSuQmCC',
-    src: '/images/bayukurnia.png',
-    type: 'png',
-    alt: "Bayu Kurnia's Avatar",
-    width: 48,
-    height: 48
-  }
+  const { width, height, ...img } = cover
 
   return (
     <header className={styles.header}>
@@ -26,7 +19,7 @@ const Hero = ({ title, summary, publishedAt, cover }: PostWithCover) => {
         </div>
         <div className={styles.postAuthor}>
           <div className={styles.authorPicture}>
-            <BlurImage {...avatar} />
+            <BlurImage {...config.avatar} width={48} height={48} />
           </div>
           <div className={styles.authorDetails}>
             <strong className={styles.authorName}>Bayu Kurnia</strong>
@@ -37,19 +30,17 @@ const Hero = ({ title, summary, publishedAt, cover }: PostWithCover) => {
         </div>
         <figure className={styles.cover}>
           <SquareGlass />
-          {cover ? (
-            <div className={styles.imgOuter}>
-              <BlurImage
-                {...cover}
-                className={styles.img}
-                blurClassName={styles.imgBlur}
-                alt={`${title} Cover Image`}
-                layout="fill"
-                sizes="50vw"
-                priority={true}
-              />
-            </div>
-          ) : null}
+          <div className={styles.imgOuter}>
+            <BlurImage
+              {...img}
+              className={styles.img}
+              blurClassName={styles.imgBlur}
+              alt={`${title} Cover Image`}
+              layout="fill"
+              sizes="50vw"
+              priority={true}
+            />
+          </div>
         </figure>
       </div>
     </header>

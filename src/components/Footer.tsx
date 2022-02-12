@@ -2,6 +2,7 @@ import { BlurImage, VisuallyHidden } from '~/components'
 import GitHubLogo from '~/components/vectors/GitHubLogo'
 import TwitterLogo from '~/components/vectors/TwitterLogo'
 import SquareGlass from '~/components/vectors/SquareGlass'
+import config from '~/config'
 
 import { css } from '~/styles'
 import stack from '~/styles/stack.style'
@@ -89,13 +90,7 @@ const Footer = () => {
       <div className={styles.about}>
         <SquareGlass />
         <div className={styles.aboutImage}>
-          <BlurImage
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAP0lEQVQImQE0AMv/AAUEDwEACSsrM7W1xACSk6L/+/neyshtbnwASUpW9uXmrpuYFxgfAEE/QjAqMQEAByMjKRJ7Evg6EQWIAAAAAElFTkSuQmCC"
-            src="/bayukurnia.png"
-            width={88}
-            height={88}
-            alt="Bayu Kurnia's Picture"
-          />
+          <BlurImage {...config.avatar} width={88} height={88} />
         </div>
         <div className={styles.aboutText}>
           <p className={styles.greet}>
