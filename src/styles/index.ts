@@ -14,28 +14,16 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
   createStitches({
     theme: {
       rgb: {
-        'text-50': '251 251 251',
-        'text-100': '230 230 229',
-        'text-200': '186 188 185',
-        'text-300': '143 145 141',
-        'text-400': '100 101 97',
-        'text-500': '56 57 55',
-        'text-600': '49 49 47',
-        'text-700': '41 42 40',
-        'text-800': '33 34 32',
-        'text-900': '26 26 2)'
-      },
-      colors: {
-        black: '#000',
-        gray: '#6b7280',
-        brown: '#78350f',
-        orange: '#f97316',
-        yellow: '#eab308',
-        green: '#22c55e',
-        blue: '#3b82f6',
-        purple: '#a855f7',
-        pink: '#ec4899',
-        red: '#ef4444'
+        'text-50': '255 255 255',
+        'text-100': '242 243 242',
+        'text-200': '217 218 216',
+        'text-300': '191 193 189',
+        'text-400': '166 168 163',
+        'text-500': '140 144 137',
+        'text-600': '112 116 109',
+        'text-700': '84 87 82',
+        'text-800': '56 58 54',
+        'text-900': '28 29 27'
       },
       fonts: {
         sans: "Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol'",
@@ -150,7 +138,8 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
       md: '(min-width: 768px)',
       lg: '(min-width: 1024px)',
       xl: '(min-width: 1280px)',
-      '2xl': '(min-width: 1536px)'
+      '2xl': '(min-width: 1536px)',
+      motionOK: '(prefers-reduced-motion: no-preference)'
     },
     utils: {
       xColor: (color: RGB) => ({
@@ -198,29 +187,29 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
 
       // Abbreviated padding properties
       p: (value: Space) => ({
-        margin: value
+        padding: value
       }),
 
       pt: (value: Space) => ({
-        marginTop: value
+        paddingTop: value
       }),
       pr: (value: Space) => ({
-        marginRight: value
+        paddingRight: value
       }),
       pb: (value: Space) => ({
-        marginBottom: value
+        paddingBottom: value
       }),
       pl: (value: Space) => ({
-        marginLeft: value
+        paddingLeft: value
       }),
 
       px: (value: Space) => ({
-        marginLeft: value,
-        marginRight: value
+        paddingLeft: value,
+        paddingRight: value
       }),
       py: (value: Space) => ({
-        marginTop: value,
-        marginBottom: value
+        paddingTop: value,
+        paddingBottom: value
       })
     }
   })

@@ -1,4 +1,5 @@
 import { css } from '~/styles'
+import themes from '~/styles/themes'
 
 const prism = css({
   // Base
@@ -37,46 +38,48 @@ const prism = css({
     },
     theme: {
       gruvbox: {
-        // Default to Gruvbox Dark
-        color: '#ebdbb2',
-        background: '#1d2021',
+        [`.${themes.dark} &`]: {
+          // Default to Gruvbox Dark
+          color: '#ebdbb2',
+          background: '#1d2021',
 
-        // Selection
-        '::selection, & ::selection, ::-moz-selection, & ::-moz-selection': {
-          color: '#fbf1c7',
-          background: '#7c6f64'
-        },
+          // Selection
+          '::selection, & ::selection, ::-moz-selection, & ::-moz-selection': {
+            color: '#fbf1c7',
+            background: '#7c6f64'
+          },
 
-        // Tokens
-        '.token.comment, .token.prolog, .token.cdata': { color: '#a89984' },
-        '.token.delimiter, .token.boolean, .token.keyword, .token.selector, .token.important, .token.atrule':
-          {
+          // Tokens
+          '.token.comment, .token.prolog, .token.cdata': { color: '#a89984' },
+          '.token.delimiter, .token.boolean, .token.keyword, .token.selector, .token.important, .token.atrule':
+            {
+              color: '#fb4934'
+            },
+          '.token.operator, .token.punctuation, .token.attr-name': {
+            color: '#a89984'
+          },
+          '.token.tag, .token.tag .punctuation, .token.doctype, .token.builtin':
+            {
+              color: '#fabd2f'
+            },
+          '.token.entity, .token.number, .token.symbol': { color: '#d3869b' },
+          '.token.property, .token.constant, .token.variable': {
             color: '#fb4934'
           },
-        '.token.operator, .token.punctuation, .token.attr-name': {
-          color: '#a89984'
+          '.token.string, .token.char': { color: '#b8bb26' },
+          '.token.attr-value, .token.attr-value .punctuation': {
+            color: '#a89984'
+          },
+          '.token.url': { color: '#b8bb26', textDecoration: 'underline' },
+          '.token.function': { color: '#fabd2f' },
+          '.token.regex': { background: '#b8bb26' },
+          '.token.bold': { fontWeight: 'bold' },
+          '.token.italic': { fontStyle: 'italic' },
+          '.token.inserted': { background: '#a89984' },
+          '.token.deleted': { background: '#fb4934' }
         },
-        '.token.tag, .token.tag .punctuation, .token.doctype, .token.builtin': {
-          color: '#fabd2f'
-        },
-        '.token.entity, .token.number, .token.symbol': { color: '#d3869b' },
-        '.token.property, .token.constant, .token.variable': {
-          color: '#fb4934'
-        },
-        '.token.string, .token.char': { color: '#b8bb26' },
-        '.token.attr-value, .token.attr-value .punctuation': {
-          color: '#a89984'
-        },
-        '.token.url': { color: '#b8bb26', textDecoration: 'underline' },
-        '.token.function': { color: '#fabd2f' },
-        '.token.regex': { background: '#b8bb26' },
-        '.token.bold': { fontWeight: 'bold' },
-        '.token.italic': { fontStyle: 'italic' },
-        '.token.inserted': { background: '#a89984' },
-        '.token.deleted': { background: '#fb4934' },
-
         // Gruvox Light
-        '@media (prefers-color-scheme: light)': {
+        [`.${themes.light} &`]: {
           color: '#3c3836',
           xBackground: '$brand',
           xBackgroundOpacity: 0.1,

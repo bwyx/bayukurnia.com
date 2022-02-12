@@ -48,7 +48,7 @@ const styles = {
     css: {
       mt: '$2',
       xColorOpacity: 0.5,
-      xColor: '$fg',
+      xColor: '$fg1',
       maxWidth: '35ch'
     }
   }),
@@ -80,7 +80,7 @@ const styles = {
       '@initial': 'sm',
       '@md': 'base'
     },
-    css: { xColor: '$fg' }
+    css: { xColor: '$fg1' }
   }),
   publishedDate: text({
     leading: 'none',
@@ -90,7 +90,7 @@ const styles = {
       '@md': 'sm'
     },
     css: {
-      xColor: '$fg',
+      xColor: '$fg1',
       xColorOpacity: 0.5,
       marginTop: '0.5rem',
       gridArea: 'date'
