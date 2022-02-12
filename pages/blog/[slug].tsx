@@ -1,5 +1,7 @@
+import { useMDXComponent } from 'next-contentlayer/hooks'
+
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { SEO, Article } from '~/components'
+import { SEO, Article, MDXComponents } from '~/components'
 import { Hero } from '~/components/blog'
 import container from '~/styles/container.style'
 
@@ -11,16 +13,15 @@ import type { GetStaticProps } from 'next'
 import type { PostWithCoverAndBody } from '~/types/blog.type'
 
 const BlogItem = ({ body, ...post }: PostWithCoverAndBody) => {
+  const MDXContent = useMDXComponent(body.code)
+
   return (
     <>
       <SEO title={post.title} />
       <Hero {...post} />
       <div className={container({ size: 'small' })}>
         <Article>
-          <div
-            className="cl-post-body"
-            dangerouslySetInnerHTML={{ __html: body.html }}
-          />
+          <MDXContent components={MDXComponents} />
         </Article>
       </div>
     </>
