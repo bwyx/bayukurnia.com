@@ -9,7 +9,7 @@ import { pick } from 'contentlayer/client'
 import { allBlogs } from 'contentlayer/generated'
 
 import type { GetStaticProps } from 'next'
-import { PostProperties } from '~/types/blog.type'
+import type { PostProperties } from '~/types/blog.type'
 
 interface PageProps {
   posts: PostProperties[]
@@ -17,9 +17,9 @@ interface PageProps {
 
 export const getStaticProps: GetStaticProps<PageProps> = () => {
   const posts = allBlogs
-    .sort((a, b) => {
-      return compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
-    })
+    .sort((a, b) =>
+      compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
+    )
     .map((p) => pick(p, ['title', 'summary', 'publishedAt', 'path', 'slug']))
 
   return { props: { posts } }
