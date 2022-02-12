@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { Text } from '~/components/blocks'
+import { format, parseISO } from 'date-fns'
 
 import { css } from '~/styles'
 
-import type { PostProperties } from '~/types'
+import type { PostProperties } from '~/types/blog.type'
 
 const styles = {
   outer: css({
@@ -14,7 +14,7 @@ const styles = {
       mt: 0
     }
   })(),
-  postTitle: css({
+  title: css({
     xColor: '$fg1',
     fontSize: '$2xl',
     fontWeight: '$bold',
@@ -25,24 +25,34 @@ const styles = {
       fontSize: '$3xl'
     }
   })(),
-  postDescription: css({
+  summary: css({
     xColor: '$fg3'
+  })(),
+  publishedAt: css({
+    xColor: '$fg3',
+    fontSize: '$sm',
+    fontWeight: '$medium'
   })()
 }
 
-const PostCard = (props: PostProperties) => {
+const PostCard = ({
+  title,
+  summary,
+  publishedAt,
+  path,
+  slug
+}: PostProperties) => {
   return (
     <article className={styles.outer}>
-      <Link href={`/blog/${props.slug}`}>
-        <a className={styles.postTitle}>
-          <h2>{props.title}</h2>
+      <time className={styles.publishedAt} dateTime={publishedAt}>
+        {format(parseISO(publishedAt), 'LLLL d, yyyy')}
+      </time>
+      <Link href={`/${path}/${slug}`}>
+        <a>
+          <h2 className={styles.title}>{title}</h2>
         </a>
       </Link>
-      {props.richDescription.length ? (
-        <p className={styles.postDescription}>
-          <Text>{props.richDescription}</Text>
-        </p>
-      ) : null}
+      <p className={styles.summary}>{summary}</p>
     </article>
   )
 }

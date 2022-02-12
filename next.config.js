@@ -1,7 +1,8 @@
-/** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: true,
-  images: {
-    domains: ['res.cloudinary.com'],
-  }
-}
+const { withContentlayer } = require('next-contentlayer')
+
+/**
+ * @type {import('next').NextConfig}
+ */
+module.exports = withContentlayer()({
+  reactStrictMode: true
+})

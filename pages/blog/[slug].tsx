@@ -1,52 +1,67 @@
+import Link from 'next/link'
+
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { SEO, Hero, Article } from '~/components'
-import { Content } from '~/components/blocks'
+import { SEO, Article } from '~/components'
+import { Hero } from '~/components/blog'
 
 import container from '~/styles/container.style'
 
-import { getAllPosts, getPostBySlug, getBlocksByPostId } from '~/lib/notion'
+import { pick } from 'contentlayer/client'
+import { allBlogs, Blog } from 'contentlayer/generated'
 
 import type { GetStaticProps } from 'next'
-import type { PostPropertiesWithBlocks } from '~/types'
+import type { PostWithCoverAndBody } from '~/types/blog.type'
+import { generateCoverPlaceholder } from '~/lib/plaiceholder'
 
-const Post = ({ blocks, ...post }: PostPropertiesWithBlocks) => {
+const Post = ({ body, ...post }: PostWithCoverAndBody) => {
   return (
     <>
       <SEO title={post.title} />
       <Hero {...post} />
       <div className={container({ size: 'small' })}>
         <Article>
-          {Array.isArray(blocks) && blocks.length
-            ? blocks.map((block) => <Content key={block.id} block={block} />)
-            : null}
+          <div
+            className="cl-post-body"
+            dangerouslySetInnerHTML={{ __html: body.html }}
+          />
         </Article>
       </div>
     </>
   )
 }
+
 Post.layout = attachMainLayout
 
-export const getStaticProps: GetStaticProps<PostPropertiesWithBlocks> = async (
-  req: any
-) => {
-  // Retrieve the post from the slug
-  const { rawId, ...post } = await getPostBySlug(req.params.slug)
-  const blocks = await getBlocksByPostId(rawId)
-
+export const getStaticPaths = () => {
   return {
-    props: { ...post, blocks },
-    revalidate: process.env.ENV === 'local' ? 1 : 300
+    paths: allBlogs.map((p) => ({ params: { slug: p.slug } })),
+    fallback: false
   }
 }
 
-export const getStaticPaths = async () => {
-  const posts = await getAllPosts()
+export const getStaticProps: GetStaticProps<PostWithCoverAndBody> = async ({
+  params
+}) => {
+  const blog = allBlogs.find((post) => post.slug === params?.slug)!
 
-  const slugs = posts.results.map((post: any) => post.properties['Slug'].url)
+  const cover = await generateCoverPlaceholder(
+    `/static/images/${blog.path}/${blog.slug}/${blog.cover}`
+  )
+
+  const postProperties: (keyof Blog)[] = [
+    'title',
+    'summary',
+    'publishedAt',
+    'path',
+    'slug',
+    'body'
+  ]
 
   return {
-    paths: slugs.map((s: string) => '/blog/' + s),
-    fallback: true
+    props: {
+      ...pick(blog, postProperties),
+      cover
+    }
   }
 }
 
