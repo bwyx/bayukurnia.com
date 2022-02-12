@@ -1,42 +1,40 @@
+import { compareDesc } from 'date-fns'
+
 import { attachMainLayout } from '~/layouts/Main.layout'
 import { PostCard } from '~/components/blog'
 
 import container from '~/styles/container.style'
 
-import { getAllPosts } from '~/lib/notion'
-import { getPostData } from '~/lib/post'
+import { pick } from 'contentlayer/client'
+import { allBlogs } from 'contentlayer/generated'
 
 import type { GetStaticProps } from 'next'
-import type { PostProperties } from '~/types'
-import type { PostResult } from '~/types/notion.type'
+import { PostProperties } from '~/types/blog.type'
 
 interface PageProps {
   posts: PostProperties[]
 }
 
+export const getStaticProps: GetStaticProps<PageProps> = () => {
+  const posts = allBlogs
+    .sort((a, b) => {
+      return compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
+    })
+    .map((p) => pick(p, ['title', 'summary', 'publishedAt', 'path', 'slug']))
+
+  return { props: { posts } }
+}
+
 const BlogIndex = ({ posts }: PageProps) => {
   return (
     <div className={container({ size: 'small' })}>
-      {posts.map((props) => (
-        <PostCard key={props.id} {...props} />
+      {posts.map((post, i) => (
+        <PostCard key={i} {...post} />
       ))}
     </div>
   )
 }
 
 BlogIndex.layout = attachMainLayout
-
-export const getStaticProps: GetStaticProps<PageProps> = async () => {
-  const { results } = await getAllPosts()
-
-  const posts = await Promise.all(
-    results.map((post) => getPostData(post as PostResult))
-  )
-
-  return {
-    props: { posts },
-    revalidate: process.env.ENV === 'local' ? 1 : 300
-  }
-}
 
 export default BlogIndex
