@@ -14,8 +14,6 @@ import type { PostWithCoverAndBody } from '~/types/blog.type'
 import { generateCoverPlaceholder } from '~/lib/plaiceholder'
 
 const Post = ({ body, ...post }: PostWithCoverAndBody) => {
-
-const BlogIndex = ({ post }: PageProps) => {
   return (
     <>
       <SEO title={post.title} />
@@ -24,7 +22,7 @@ const BlogIndex = ({ post }: PageProps) => {
         <Article>
           <div
             className="cl-post-body"
-            dangerouslySetInnerHTML={{ __html: post.body.html }}
+            dangerouslySetInnerHTML={{ __html: body.html }}
           />
         </Article>
       </div>
