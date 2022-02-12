@@ -1,8 +1,10 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import rehypePrism from 'rehype-prism-plus'
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
-  filePathPattern: `blog/*.md`,
+  contentType: 'mdx',
+  filePathPattern: `blog/*.mdx`,
   fields: {
     title: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
@@ -16,12 +18,15 @@ export const Blog = defineDocumentType(() => ({
     },
     slug: {
       type: 'string',
-      resolve: (doc) => doc._raw.sourceFileName.replace(/\.md$/, '')
+      resolve: (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, '')
     }
   }
 }))
 
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog]
+  documentTypes: [Blog],
+  mdx: {
+    rehypePlugins: [rehypePrism]
+  }
 })
