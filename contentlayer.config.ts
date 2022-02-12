@@ -1,4 +1,5 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import rehypePrism from 'rehype-prism-plus'
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
@@ -24,5 +25,8 @@ export const Blog = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog]
+  documentTypes: [Blog],
+  mdx: {
+    rehypePlugins: [rehypePrism]
+  }
 })
