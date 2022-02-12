@@ -10,6 +10,10 @@ export const Blog = defineDocumentType(() => ({
     cover: { type: 'string', required: true }
   },
   computedFields: {
+    path: {
+      type: 'string',
+      resolve: (doc) => doc._raw.sourceFileDir
+    },
     slug: {
       type: 'string',
       resolve: (doc) => doc._raw.sourceFileName.replace(/\.md$/, '')

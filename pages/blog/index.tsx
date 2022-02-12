@@ -5,19 +5,23 @@ import { PostCard } from '~/components/blog'
 
 import container from '~/styles/container.style'
 
+import { pick } from 'contentlayer/client'
 import { allBlogs } from 'contentlayer/generated'
 
 import type { GetStaticProps } from 'next'
-import { Blog } from 'contentlayer/generated'
+import { PostProperties } from '~/types/blog.type'
 
 interface PageProps {
-  posts: Blog[]
+  posts: PostProperties[]
 }
 
 export const getStaticProps: GetStaticProps<PageProps> = () => {
-  const posts = allBlogs.sort((a, b) => {
-    return compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
-  })
+  const posts = allBlogs
+    .sort((a, b) => {
+      return compareDesc(new Date(a.publishedAt), new Date(b.publishedAt))
+    })
+    .map((p) => pick(p, ['title', 'summary', 'publishedAt', 'path', 'slug']))
+
   return { props: { posts } }
 }
 

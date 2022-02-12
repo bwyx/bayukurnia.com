@@ -5,9 +5,9 @@ import SquareGlass from '~/components/vectors/SquareGlass'
 
 import styles from '~/styles/components/Hero.style'
 
-import type { Blog } from 'contentlayer/generated'
+import type { PostWithCover } from '~/types/blog.type'
 
-const Hero = ({ title, summary, slug, publishedAt, cover, _raw }: Blog) => {
+const Hero = ({ title, summary, publishedAt, cover }: PostWithCover) => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -36,11 +36,10 @@ const Hero = ({ title, summary, slug, publishedAt, cover, _raw }: Blog) => {
           {cover ? (
             <div className={styles.imgOuter}>
               <BlurImage
-                src={`/static/images/${_raw.sourceFileDir}/${slug}/${cover}`}
+                {...cover}
                 className={styles.img}
                 blurClassName={styles.imgBlur}
                 alt={`${title} Cover Image`}
-                placeholder="empty"
                 layout="fill"
                 sizes="50vw"
                 priority={true}

@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { compareDesc, format, parseISO } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 import { css } from '~/styles'
 
-import type { Blog } from 'contentlayer/generated'
+import type { PostProperties } from '~/types/blog.type'
 
 const styles = {
   outer: css({
@@ -35,15 +35,21 @@ const styles = {
   })()
 }
 
-const PostCard = ({ title, summary, publishedAt, slug, _raw }: Blog) => {
+const PostCard = ({
+  title,
+  summary,
+  publishedAt,
+  path,
+  slug
+}: PostProperties) => {
   return (
     <article className={styles.outer}>
       <time className={styles.publishedAt} dateTime={publishedAt}>
         {format(parseISO(publishedAt), 'LLLL d, yyyy')}
       </time>
-      <Link href={`/${_raw.sourceFileDir}/${slug}`}>
-        <a className={styles.title}>
-          <h2>{title}</h2>
+      <Link href={`/${path}/${slug}`}>
+        <a>
+          <h2 className={styles.title}>{title}</h2>
         </a>
       </Link>
       <p className={styles.summary}>{summary}</p>
