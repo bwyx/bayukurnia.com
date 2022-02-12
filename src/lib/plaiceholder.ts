@@ -1,9 +1,9 @@
 import { getPlaiceholder } from 'plaiceholder'
 
-import type { Cover } from '~/types/blog.type'
+import type { BlurCover } from '~/types/blog.type'
 
-export const generateCoverPlaceholder = async (url: string) => {
+export const withBlurPlaceholder = async (url: string) => {
   const { base64, img } = await getPlaiceholder(url)
 
-  return <Cover>{ blurDataURL: base64, ...img }
+  return <BlurCover>{ blurDataURL: base64, ...img }
 }
