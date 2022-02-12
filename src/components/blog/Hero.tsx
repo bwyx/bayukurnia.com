@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { format, parseISO } from 'date-fns'
 import { BlurImage } from '~/components'
 import SquareGlass from '~/components/vectors/SquareGlass'
@@ -8,6 +7,16 @@ import styles from '~/styles/components/Hero.style'
 import type { PostWithCover } from '~/types/blog.type'
 
 const Hero = ({ title, summary, publishedAt, cover }: PostWithCover) => {
+  const avatar = {
+    blurDataURL:
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAP0lEQVQImQE0AMv/AAUEDwEACSsrM7W1xACSk6L/+/neyshtbnwASUpW9uXmrpuYFxgfAEE/QjAqMQEAByMjKRJ7Evg6EQWIAAAAAElFTkSuQmCC',
+    src: '/images/bayukurnia.png',
+    type: 'png',
+    alt: "Bayu Kurnia's Avatar",
+    width: 48,
+    height: 48
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -17,12 +26,7 @@ const Hero = ({ title, summary, publishedAt, cover }: PostWithCover) => {
         </div>
         <div className={styles.postAuthor}>
           <div className={styles.authorPicture}>
-            <Image
-              src="/bayukurnia.png"
-              alt="Bayu Kurnia's Avatar"
-              width={48}
-              height={48}
-            />
+            <BlurImage {...avatar} />
           </div>
           <div className={styles.authorDetails}>
             <strong className={styles.authorName}>Bayu Kurnia</strong>

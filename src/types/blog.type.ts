@@ -3,7 +3,7 @@ import type { IGetImageReturn } from 'plaiceholder/dist/get-image'
 
 type ImgReturn = Pick<IGetImageReturn, 'img'>
 
-export type Cover = {
+export type BlurCover = {
   [key in keyof ImgReturn['img']]: ImgReturn['img'][key]
 } & {
   blurDataURL: string
@@ -17,7 +17,7 @@ export type PostProperties = Pick<
 export type PostWithBody = PostProperties & Pick<Blog, 'body'>
 
 export type PostWithCover = PostProperties & {
-  cover: Cover
+  cover: BlurCover
 }
 
 export type PostWithCoverAndBody = PostWithCover & Pick<Blog, 'body'>
