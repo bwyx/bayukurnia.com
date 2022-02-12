@@ -5,7 +5,7 @@ import container from '~/styles/container.style'
 
 import { pick } from 'contentlayer/client'
 import { allBlogs } from 'contentlayer/generated'
-import { generateCoverPlaceholder } from '~/lib/plaiceholder'
+import { withBlurPlaceholder } from '~/lib/plaiceholder'
 
 import type { GetStaticProps } from 'next'
 import type { PostWithCoverAndBody } from '~/types/blog.type'
@@ -39,15 +39,14 @@ export const getStaticPaths = () => {
 export const getStaticProps: GetStaticProps<PostWithCoverAndBody> = async ({
   params
 }) => {
-  const blog = allBlogs.find((post) => post.slug === params?.slug)!
+  const post = allBlogs.find((p) => p.slug === params?.slug)!
+  const { path, slug, cover: image } = post
 
-  const cover = await generateCoverPlaceholder(
-    `/static/images/${blog.path}/${blog.slug}/${blog.cover}`
-  )
+  const cover = await withBlurPlaceholder(`/images/${path}/${slug}/${image}`)
 
   return {
     props: {
-      ...pick(blog, [
+      ...pick(post, [
         'title',
         'summary',
         'publishedAt',
