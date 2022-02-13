@@ -20,7 +20,7 @@ const styles = {
     x: 'center',
     dir: 'col',
     css: {
-      p: '$4',
+      padding: '$4',
       margin: '$8 auto',
       borderRadius: '$3xl',
       gap: '$6',
@@ -78,7 +78,7 @@ const styles = {
     }
   }),
   credit: css({
-    p: '$4',
+    padding: '$4',
     fontSize: '0.8rem',
     xColor: '$fg3'
   })()
