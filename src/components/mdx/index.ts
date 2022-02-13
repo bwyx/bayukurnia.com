@@ -1,9 +1,7 @@
 import Pre from './Pre'
-import Code from './Code'
 
 const MDXComponents = {
-  pre: Pre,
-  code: Code
+  pre: Pre
 }
 
 export default MDXComponents
