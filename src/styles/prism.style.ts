@@ -2,17 +2,8 @@ import { css } from '~/styles'
 import themes from '~/styles/themes'
 
 const prism = css({
-  // Base
-  padding: '1rem 6vw',
-  overflow: 'auto',
-  margin: '.5em -6vw',
-  borderRadius: 0,
-  '@sm': {
-    margin: '.5em 0',
-    padding: '1rem',
-    borderRadius: '0.3em'
-  },
-
+  overflowX: 'auto',
+  lineHeight: 1,
   code: {
     background: 'none',
     fontFamily: '$mono',
@@ -32,10 +23,6 @@ const prism = css({
   },
 
   variants: {
-    size: {
-      small: { fontSize: '$sm' },
-      base: { fontSize: '$base' }
-    },
     theme: {
       gruvbox: {
         [`.${themes.dark} &`]: {
@@ -82,7 +69,7 @@ const prism = css({
         [`.${themes.light} &`]: {
           color: '#3c3836',
           xBackground: '$brand',
-          xBackgroundOpacity: 0.1,
+          xBackgroundOpacity: 0.05,
 
           // Selection
           '::selection, & ::selection, ::-moz-selection, & ::-moz-selection': {

@@ -321,17 +321,15 @@ const prose = css({
         'h3 code': {
           fontSize: em(16, 18)
         },
-        // pre: {
-        //   fontSize: em(12, 14),
-        //   lineHeight: round(20 / 12),
-        //   mt: em(20, 12),
-        //   mb: em(20, 12),
-        //   borderRadius: rem(4),
-        //   pt: em(8, 12),
-        //   pr: em(12, 12),
-        //   pb: em(8, 12),
-        //   pl: em(12, 12)
-        // },
+        pre: {
+          mt: em(20, 12),
+          mb: em(20, 12),
+          borderRadius: rem(4),
+          pt: em(8, 12),
+          pr: em(12, 12),
+          pb: em(8, 12),
+          pl: em(12, 12)
+        },
         ol: {
           mt: em(16, 14),
           mb: em(16, 14),
@@ -487,17 +485,15 @@ const prose = css({
         'h3 code': {
           fontSize: em(18, 20)
         },
-        // pre: {
-        //   fontSize: em(14, 16),
-        //   lineHeight: round(24 / 14),
-        //   mt: em(24, 14),
-        //   mb: em(24, 14),
-        //   borderRadius: rem(6),
-        //   pt: em(12, 14),
-        //   pr: em(16, 14),
-        //   pb: em(12, 14),
-        //   pl: em(16, 14)
-        // },
+        pre: {
+          mt: em(24, 14),
+          mb: em(24, 14),
+          borderRadius: rem(6),
+          pt: em(12, 14),
+          pr: em(16, 14),
+          pb: em(12, 14),
+          pl: em(16, 14)
+        },
         ol: {
           mt: em(20, 16),
           mb: em(20, 16),
@@ -653,17 +649,15 @@ const prose = css({
         'h3 code': {
           fontSize: em(21, 24)
         },
-        // pre: {
-        //   fontSize: em(16, 18),
-        //   lineHeight: round(28 / 16),
-        //   mt: em(32, 16),
-        //   mb: em(32, 16),
-        //   borderRadius: rem(6),
-        //   pt: em(16, 16),
-        //   pr: em(24, 16),
-        //   pb: em(16, 16),
-        //   pl: em(24, 16)
-        // },
+        pre: {
+          mt: em(32, 16),
+          mb: em(32, 16),
+          borderRadius: rem(6),
+          pt: em(16, 16),
+          pr: em(24, 16),
+          pb: em(16, 16),
+          pl: em(24, 16)
+        },
         ol: {
           mt: em(24, 18),
           mb: em(24, 18),
@@ -819,17 +813,15 @@ const prose = css({
         'h3 code': {
           fontSize: em(27, 30)
         },
-        // pre: {
-        //   fontSize: em(18, 20),
-        //   lineHeight: round(32 / 18),
-        //   mt: em(36, 18),
-        //   mb: em(36, 18),
-        //   borderRadius: rem(8),
-        //   pt: em(20, 18),
-        //   pr: em(24, 18),
-        //   pb: em(20, 18),
-        //   pl: em(24, 18)
-        // },
+        pre: {
+          mt: em(36, 18),
+          mb: em(36, 18),
+          borderRadius: rem(8),
+          pt: em(20, 18),
+          pr: em(24, 18),
+          pb: em(20, 18),
+          pl: em(24, 18)
+        },
         ol: {
           mt: em(24, 20),
           mb: em(24, 20),
@@ -985,17 +977,15 @@ const prose = css({
         'h3 code': {
           fontSize: em(32, 36)
         },
-        // pre: {
-        //   fontSize: em(20, 24),
-        //   lineHeight: round(36 / 20),
-        //   mt: em(40, 20),
-        //   mb: em(40, 20),
-        //   borderRadius: rem(8),
-        //   pt: em(24, 20),
-        //   pr: em(32, 20),
-        //   pb: em(24, 20),
-        //   pl: em(32, 20)
-        // },
+        pre: {
+          mt: em(40, 20),
+          mb: em(40, 20),
+          borderRadius: rem(8),
+          pt: em(24, 20),
+          pr: em(32, 20),
+          pb: em(24, 20),
+          pl: em(32, 20)
+        },
         ol: {
           mt: em(32, 24),
           mb: em(32, 24),
