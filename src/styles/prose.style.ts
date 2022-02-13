@@ -1,6 +1,7 @@
 import { css, RGBColor } from '~/styles'
 import themes from '~/styles/themes'
 
+// modified from `@tailwindcss/typography`
 const round = (num: number) =>
   num
     .toFixed(7)
@@ -52,12 +53,15 @@ const vars = {
   }
 }
 
-const baseStyles = {
+const prose = css({
+  ...vars,
   color: '$$prose-body',
   maxWidth: '65ch',
   '[class~="lead"]': {
     color: '$$prose-lead'
   },
+
+  // Texts
   a: {
     color: '$$prose-links',
     textDecoration: 'underline',
@@ -67,6 +71,8 @@ const baseStyles = {
     color: '$$prose-bold',
     fontWeight: '600'
   },
+
+  // Lists
   ol: {
     listStyleType: 'decimal'
   },
@@ -107,6 +113,8 @@ const baseStyles = {
   'ul > li::marker': {
     color: '$$prose-bullets'
   },
+
+  // Miscs
   hr: {
     borderColor: '$$prose-hr',
     borderTopWidth: 1
@@ -125,6 +133,8 @@ const baseStyles = {
   'blockquote p:last-of-type::after': {
     content: 'close-quote'
   },
+
+  // Headings
   h1: {
     color: '$$prose-headings',
     fontWeight: '800'
@@ -195,12 +205,14 @@ const baseStyles = {
   // 'pre code::after': {
   //   content: 'none'
   // },
+
+  // Table
   table: {
     width: '100%',
     tableLayout: 'auto',
     textAlign: 'left',
-    marginTop: em(32, 16),
-    marginBottom: em(32, 16)
+    mt: em(32, 16),
+    mb: em(32, 16)
   },
   thead: {
     borderBottomWidth: '1px',
@@ -221,17 +233,13 @@ const baseStyles = {
   'tbody td': {
     verticalAlign: 'baseline'
   },
+
   '> :first-child': {
-    marginTop: '0'
+    mt: '0'
   },
   '> :last-child': {
-    marginBottom: '0'
-  }
-}
-
-const prose = css({
-  ...vars,
-  ...baseStyles,
+    mb: '0'
+  },
   '&:before': {
     padding: '2rem 0',
     margin: '0 auto',
@@ -247,63 +255,63 @@ const prose = css({
         fontSize: rem(14),
         lineHeight: round(24 / 14),
         '& p': {
-          marginTop: em(16, 14),
-          marginBottom: em(16, 14)
+          mt: em(16, 14),
+          mb: em(16, 14)
         },
         '[class~="lead"]': {
           fontSize: em(18, 14),
           lineHeight: round(28 / 18),
-          marginTop: em(16, 18),
-          marginBottom: em(16, 18)
+          mt: em(16, 18),
+          mb: em(16, 18)
         },
         blockquote: {
-          marginTop: em(24, 18),
-          marginBottom: em(24, 18),
-          paddingLeft: em(20, 18)
+          mt: em(24, 18),
+          mb: em(24, 18),
+          pl: em(20, 18)
         },
         h1: {
           fontSize: em(30, 14),
-          marginTop: '0',
-          marginBottom: em(24, 30),
+          mt: '0',
+          mb: em(24, 30),
           lineHeight: round(36 / 30)
         },
         h2: {
           fontSize: em(20, 14),
-          marginTop: em(32, 20),
-          marginBottom: em(16, 20),
+          mt: em(32, 20),
+          mb: em(16, 20),
           lineHeight: round(28 / 20)
         },
         h3: {
           fontSize: em(18, 14),
-          marginTop: em(28, 18),
-          marginBottom: em(8, 18),
+          mt: em(28, 18),
+          mb: em(8, 18),
           lineHeight: round(28 / 18)
         },
         h4: {
-          marginTop: em(20, 14),
-          marginBottom: em(8, 14),
+          mt: em(20, 14),
+          mb: em(8, 14),
           lineHeight: round(20 / 14)
         },
         img: {
-          marginTop: em(24, 14),
-          marginBottom: em(24, 14)
+          mt: em(24, 14),
+          mb: em(24, 14)
         },
         video: {
-          marginTop: em(24, 14),
-          marginBottom: em(24, 14)
+          mt: em(24, 14),
+          mb: em(24, 14)
         },
         figure: {
-          marginTop: em(24, 14),
-          marginBottom: em(24, 14)
+          mt: em(24, 14),
+          mb: em(24, 14)
         },
         'figure > *': {
-          marginTop: '0',
-          marginBottom: '0'
+          mt: '0',
+          mb: '0'
         },
         figcaption: {
           fontSize: em(12, 14),
           lineHeight: round(16 / 12),
-          marginTop: em(8, 12)
+          mt: em(8, 12)
         },
         // code: {
         //   fontSize: em(12, 14)
@@ -317,159 +325,159 @@ const prose = css({
         // pre: {
         //   fontSize: em(12, 14),
         //   lineHeight: round(20 / 12),
-        //   marginTop: em(20, 12),
-        //   marginBottom: em(20, 12),
+        //   mt: em(20, 12),
+        //   mb: em(20, 12),
         //   borderRadius: rem(4),
-        //   paddingTop: em(8, 12),
-        //   paddingRight: em(12, 12),
-        //   paddingBottom: em(8, 12),
-        //   paddingLeft: em(12, 12)
+        //   pt: em(8, 12),
+        //   pr: em(12, 12),
+        //   pb: em(8, 12),
+        //   pl: em(12, 12)
         // },
         ol: {
-          marginTop: em(16, 14),
-          marginBottom: em(16, 14),
-          paddingLeft: em(22, 14)
+          mt: em(16, 14),
+          mb: em(16, 14),
+          pl: em(22, 14)
         },
         ul: {
-          marginTop: em(16, 14),
-          marginBottom: em(16, 14),
-          paddingLeft: em(22, 14)
+          mt: em(16, 14),
+          mb: em(16, 14),
+          pl: em(22, 14)
         },
         li: {
-          marginTop: em(4, 14),
-          marginBottom: em(4, 14)
+          mt: em(4, 14),
+          mb: em(4, 14)
         },
         'ol > li': {
-          paddingLeft: em(6, 14)
+          pl: em(6, 14)
         },
         'ul > li': {
-          paddingLeft: em(6, 14)
+          pl: em(6, 14)
         },
         '> ul > li p': {
-          marginTop: em(8, 14),
-          marginBottom: em(8, 14)
+          mt: em(8, 14),
+          mb: em(8, 14)
         },
         '> ul > li > *:first-child': {
-          marginTop: em(16, 14)
+          mt: em(16, 14)
         },
         '> ul > li > *:last-child': {
-          marginBottom: em(16, 14)
+          mb: em(16, 14)
         },
         '> ol > li > *:first-child': {
-          marginTop: em(16, 14)
+          mt: em(16, 14)
         },
         '> ol > li > *:last-child': {
-          marginBottom: em(16, 14)
+          mb: em(16, 14)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          marginTop: em(8, 14),
-          marginBottom: em(8, 14)
+          mt: em(8, 14),
+          mb: em(8, 14)
         },
         hr: {
-          marginTop: em(40, 14),
-          marginBottom: em(40, 14)
+          mt: em(40, 14),
+          mb: em(40, 14)
         },
         'hr + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h2 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h3 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h4 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         table: {
           fontSize: em(12, 14),
           lineHeight: round(18 / 12)
         },
         'thead th': {
-          paddingRight: em(12, 12),
-          paddingBottom: em(8, 12),
-          paddingLeft: em(12, 12)
+          pr: em(12, 12),
+          pb: em(8, 12),
+          pl: em(12, 12)
         },
         'thead th:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'thead th:last-child': {
-          paddingRight: '0'
+          pr: '0'
         },
         'tbody td': {
-          paddingTop: em(8, 12),
-          paddingRight: em(12, 12),
-          paddingBottom: em(8, 12),
-          paddingLeft: em(12, 12)
+          pt: em(8, 12),
+          pr: em(12, 12),
+          pb: em(8, 12),
+          pl: em(12, 12)
         },
         'tbody td:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'tbody td:last-child': {
-          paddingRight: '0'
+          pr: '0'
         }
       },
       base: {
         fontSize: rem(16),
         lineHeight: round(28 / 16),
         '& p': {
-          marginTop: em(20, 16),
-          marginBottom: em(20, 16)
+          mt: em(20, 16),
+          mb: em(20, 16)
         },
         '[class~="lead"]': {
           fontSize: em(20, 16),
           lineHeight: round(32 / 20),
-          marginTop: em(24, 20),
-          marginBottom: em(24, 20)
+          mt: em(24, 20),
+          mb: em(24, 20)
         },
         blockquote: {
-          marginTop: em(32, 20),
-          marginBottom: em(32, 20),
-          paddingLeft: em(20, 20)
+          mt: em(32, 20),
+          mb: em(32, 20),
+          pl: em(20, 20)
         },
         h1: {
           fontSize: em(36, 16),
-          marginTop: '0',
-          marginBottom: em(32, 36),
+          mt: '0',
+          mb: em(32, 36),
           lineHeight: round(40 / 36)
         },
         h2: {
           fontSize: em(24, 16),
-          marginTop: em(48, 24),
-          marginBottom: em(24, 24),
+          mt: em(48, 24),
+          mb: em(24, 24),
           lineHeight: round(32 / 24)
         },
         h3: {
           fontSize: em(20, 16),
-          marginTop: em(32, 20),
-          marginBottom: em(12, 20),
+          mt: em(32, 20),
+          mb: em(12, 20),
           lineHeight: round(32 / 20)
         },
         h4: {
-          marginTop: em(24, 16),
-          marginBottom: em(8, 16),
+          mt: em(24, 16),
+          mb: em(8, 16),
           lineHeight: round(24 / 16)
         },
         img: {
-          marginTop: em(32, 16),
-          marginBottom: em(32, 16)
+          mt: em(32, 16),
+          mb: em(32, 16)
         },
         video: {
-          marginTop: em(32, 16),
-          marginBottom: em(32, 16)
+          mt: em(32, 16),
+          mb: em(32, 16)
         },
         figure: {
-          marginTop: em(32, 16),
-          marginBottom: em(32, 16)
+          mt: em(32, 16),
+          mb: em(32, 16)
         },
         'figure > *': {
-          marginTop: '0',
-          marginBottom: '0'
+          mt: '0',
+          mb: '0'
         },
         figcaption: {
           fontSize: em(14, 16),
           lineHeight: round(20 / 14),
-          marginTop: em(12, 14)
+          mt: em(12, 14)
         },
         // code: {
         //   fontSize: em(14, 16)
@@ -483,159 +491,159 @@ const prose = css({
         // pre: {
         //   fontSize: em(14, 16),
         //   lineHeight: round(24 / 14),
-        //   marginTop: em(24, 14),
-        //   marginBottom: em(24, 14),
+        //   mt: em(24, 14),
+        //   mb: em(24, 14),
         //   borderRadius: rem(6),
-        //   paddingTop: em(12, 14),
-        //   paddingRight: em(16, 14),
-        //   paddingBottom: em(12, 14),
-        //   paddingLeft: em(16, 14)
+        //   pt: em(12, 14),
+        //   pr: em(16, 14),
+        //   pb: em(12, 14),
+        //   pl: em(16, 14)
         // },
         ol: {
-          marginTop: em(20, 16),
-          marginBottom: em(20, 16),
-          paddingLeft: em(26, 16)
+          mt: em(20, 16),
+          mb: em(20, 16),
+          pl: em(26, 16)
         },
         ul: {
-          marginTop: em(20, 16),
-          marginBottom: em(20, 16),
-          paddingLeft: em(26, 16)
+          mt: em(20, 16),
+          mb: em(20, 16),
+          pl: em(26, 16)
         },
         li: {
-          marginTop: em(8, 16),
-          marginBottom: em(8, 16)
+          mt: em(8, 16),
+          mb: em(8, 16)
         },
         'ol > li': {
-          paddingLeft: em(6, 16)
+          pl: em(6, 16)
         },
         'ul > li': {
-          paddingLeft: em(6, 16)
+          pl: em(6, 16)
         },
         '> ul > li p': {
-          marginTop: em(12, 16),
-          marginBottom: em(12, 16)
+          mt: em(12, 16),
+          mb: em(12, 16)
         },
         '> ul > li > *:first-child': {
-          marginTop: em(20, 16)
+          mt: em(20, 16)
         },
         '> ul > li > *:last-child': {
-          marginBottom: em(20, 16)
+          mb: em(20, 16)
         },
         '> ol > li > *:first-child': {
-          marginTop: em(20, 16)
+          mt: em(20, 16)
         },
         '> ol > li > *:last-child': {
-          marginBottom: em(20, 16)
+          mb: em(20, 16)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          marginTop: em(12, 16),
-          marginBottom: em(12, 16)
+          mt: em(12, 16),
+          mb: em(12, 16)
         },
         hr: {
-          marginTop: em(48, 16),
-          marginBottom: em(48, 16)
+          mt: em(48, 16),
+          mb: em(48, 16)
         },
         'hr + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h2 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h3 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h4 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         table: {
           fontSize: em(14, 16),
           lineHeight: round(24 / 14)
         },
         'thead th': {
-          paddingRight: em(8, 14),
-          paddingBottom: em(8, 14),
-          paddingLeft: em(8, 14)
+          pr: em(8, 14),
+          pb: em(8, 14),
+          pl: em(8, 14)
         },
         'thead th:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'thead th:last-child': {
-          paddingRight: '0'
+          pr: '0'
         },
         'tbody td': {
-          paddingTop: em(8, 14),
-          paddingRight: em(8, 14),
-          paddingBottom: em(8, 14),
-          paddingLeft: em(8, 14)
+          pt: em(8, 14),
+          pr: em(8, 14),
+          pb: em(8, 14),
+          pl: em(8, 14)
         },
         'tbody td:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'tbody td:last-child': {
-          paddingRight: '0'
+          pr: '0'
         }
       },
       lg: {
         fontSize: rem(18),
         lineHeight: round(32 / 18),
         '& p': {
-          marginTop: em(24, 18),
-          marginBottom: em(24, 18)
+          mt: em(24, 18),
+          mb: em(24, 18)
         },
         '[class~="lead"]': {
           fontSize: em(22, 18),
           lineHeight: round(32 / 22),
-          marginTop: em(24, 22),
-          marginBottom: em(24, 22)
+          mt: em(24, 22),
+          mb: em(24, 22)
         },
         blockquote: {
-          marginTop: em(40, 24),
-          marginBottom: em(40, 24),
-          paddingLeft: em(24, 24)
+          mt: em(40, 24),
+          mb: em(40, 24),
+          pl: em(24, 24)
         },
         h1: {
           fontSize: em(48, 18),
-          marginTop: '0',
-          marginBottom: em(40, 48),
+          mt: '0',
+          mb: em(40, 48),
           lineHeight: round(48 / 48)
         },
         h2: {
           fontSize: em(30, 18),
-          marginTop: em(56, 30),
-          marginBottom: em(32, 30),
+          mt: em(56, 30),
+          mb: em(32, 30),
           lineHeight: round(40 / 30)
         },
         h3: {
           fontSize: em(24, 18),
-          marginTop: em(40, 24),
-          marginBottom: em(16, 24),
+          mt: em(40, 24),
+          mb: em(16, 24),
           lineHeight: round(36 / 24)
         },
         h4: {
-          marginTop: em(32, 18),
-          marginBottom: em(8, 18),
+          mt: em(32, 18),
+          mb: em(8, 18),
           lineHeight: round(28 / 18)
         },
         img: {
-          marginTop: em(32, 18),
-          marginBottom: em(32, 18)
+          mt: em(32, 18),
+          mb: em(32, 18)
         },
         video: {
-          marginTop: em(32, 18),
-          marginBottom: em(32, 18)
+          mt: em(32, 18),
+          mb: em(32, 18)
         },
         figure: {
-          marginTop: em(32, 18),
-          marginBottom: em(32, 18)
+          mt: em(32, 18),
+          mb: em(32, 18)
         },
         'figure > *': {
-          marginTop: '0',
-          marginBottom: '0'
+          mt: '0',
+          mb: '0'
         },
         figcaption: {
           fontSize: em(16, 18),
           lineHeight: round(24 / 16),
-          marginTop: em(16, 16)
+          mt: em(16, 16)
         },
         // code: {
         //   fontSize: em(16, 18)
@@ -649,159 +657,159 @@ const prose = css({
         // pre: {
         //   fontSize: em(16, 18),
         //   lineHeight: round(28 / 16),
-        //   marginTop: em(32, 16),
-        //   marginBottom: em(32, 16),
+        //   mt: em(32, 16),
+        //   mb: em(32, 16),
         //   borderRadius: rem(6),
-        //   paddingTop: em(16, 16),
-        //   paddingRight: em(24, 16),
-        //   paddingBottom: em(16, 16),
-        //   paddingLeft: em(24, 16)
+        //   pt: em(16, 16),
+        //   pr: em(24, 16),
+        //   pb: em(16, 16),
+        //   pl: em(24, 16)
         // },
         ol: {
-          marginTop: em(24, 18),
-          marginBottom: em(24, 18),
-          paddingLeft: em(28, 18)
+          mt: em(24, 18),
+          mb: em(24, 18),
+          pl: em(28, 18)
         },
         ul: {
-          marginTop: em(24, 18),
-          marginBottom: em(24, 18),
-          paddingLeft: em(28, 18)
+          mt: em(24, 18),
+          mb: em(24, 18),
+          pl: em(28, 18)
         },
         li: {
-          marginTop: em(12, 18),
-          marginBottom: em(12, 18)
+          mt: em(12, 18),
+          mb: em(12, 18)
         },
         'ol > li': {
-          paddingLeft: em(8, 18)
+          pl: em(8, 18)
         },
         'ul > li': {
-          paddingLeft: em(8, 18)
+          pl: em(8, 18)
         },
         '> ul > li p': {
-          marginTop: em(16, 18),
-          marginBottom: em(16, 18)
+          mt: em(16, 18),
+          mb: em(16, 18)
         },
         '> ul > li > *:first-child': {
-          marginTop: em(24, 18)
+          mt: em(24, 18)
         },
         '> ul > li > *:last-child': {
-          marginBottom: em(24, 18)
+          mb: em(24, 18)
         },
         '> ol > li > *:first-child': {
-          marginTop: em(24, 18)
+          mt: em(24, 18)
         },
         '> ol > li > *:last-child': {
-          marginBottom: em(24, 18)
+          mb: em(24, 18)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          marginTop: em(16, 18),
-          marginBottom: em(16, 18)
+          mt: em(16, 18),
+          mb: em(16, 18)
         },
         hr: {
-          marginTop: em(56, 18),
-          marginBottom: em(56, 18)
+          mt: em(56, 18),
+          mb: em(56, 18)
         },
         'hr + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h2 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h3 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h4 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         table: {
           fontSize: em(16, 18),
           lineHeight: round(24 / 16)
         },
         'thead th': {
-          paddingRight: em(12, 16),
-          paddingBottom: em(12, 16),
-          paddingLeft: em(12, 16)
+          pr: em(12, 16),
+          pb: em(12, 16),
+          pl: em(12, 16)
         },
         'thead th:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'thead th:last-child': {
-          paddingRight: '0'
+          pr: '0'
         },
         'tbody td': {
-          paddingTop: em(12, 16),
-          paddingRight: em(12, 16),
-          paddingBottom: em(12, 16),
-          paddingLeft: em(12, 16)
+          pt: em(12, 16),
+          pr: em(12, 16),
+          pb: em(12, 16),
+          pl: em(12, 16)
         },
         'tbody td:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'tbody td:last-child': {
-          paddingRight: '0'
+          pr: '0'
         }
       },
       xl: {
         fontSize: rem(20),
         lineHeight: round(36 / 20),
         '& p': {
-          marginTop: em(24, 20),
-          marginBottom: em(24, 20)
+          mt: em(24, 20),
+          mb: em(24, 20)
         },
         '[class~="lead"]': {
           fontSize: em(24, 20),
           lineHeight: round(36 / 24),
-          marginTop: em(24, 24),
-          marginBottom: em(24, 24)
+          mt: em(24, 24),
+          mb: em(24, 24)
         },
         blockquote: {
-          marginTop: em(48, 30),
-          marginBottom: em(48, 30),
-          paddingLeft: em(32, 30)
+          mt: em(48, 30),
+          mb: em(48, 30),
+          pl: em(32, 30)
         },
         h1: {
           fontSize: em(56, 20),
-          marginTop: '0',
-          marginBottom: em(48, 56),
+          mt: '0',
+          mb: em(48, 56),
           lineHeight: round(56 / 56)
         },
         h2: {
           fontSize: em(36, 20),
-          marginTop: em(56, 36),
-          marginBottom: em(32, 36),
+          mt: em(56, 36),
+          mb: em(32, 36),
           lineHeight: round(40 / 36)
         },
         h3: {
           fontSize: em(30, 20),
-          marginTop: em(48, 30),
-          marginBottom: em(20, 30),
+          mt: em(48, 30),
+          mb: em(20, 30),
           lineHeight: round(40 / 30)
         },
         h4: {
-          marginTop: em(36, 20),
-          marginBottom: em(12, 20),
+          mt: em(36, 20),
+          mb: em(12, 20),
           lineHeight: round(32 / 20)
         },
         img: {
-          marginTop: em(40, 20),
-          marginBottom: em(40, 20)
+          mt: em(40, 20),
+          mb: em(40, 20)
         },
         video: {
-          marginTop: em(40, 20),
-          marginBottom: em(40, 20)
+          mt: em(40, 20),
+          mb: em(40, 20)
         },
         figure: {
-          marginTop: em(40, 20),
-          marginBottom: em(40, 20)
+          mt: em(40, 20),
+          mb: em(40, 20)
         },
         'figure > *': {
-          marginTop: '0',
-          marginBottom: '0'
+          mt: '0',
+          mb: '0'
         },
         figcaption: {
           fontSize: em(18, 20),
           lineHeight: round(28 / 18),
-          marginTop: em(18, 18)
+          mt: em(18, 18)
         },
         // code: {
         //   fontSize: em(18, 20)
@@ -815,159 +823,159 @@ const prose = css({
         // pre: {
         //   fontSize: em(18, 20),
         //   lineHeight: round(32 / 18),
-        //   marginTop: em(36, 18),
-        //   marginBottom: em(36, 18),
+        //   mt: em(36, 18),
+        //   mb: em(36, 18),
         //   borderRadius: rem(8),
-        //   paddingTop: em(20, 18),
-        //   paddingRight: em(24, 18),
-        //   paddingBottom: em(20, 18),
-        //   paddingLeft: em(24, 18)
+        //   pt: em(20, 18),
+        //   pr: em(24, 18),
+        //   pb: em(20, 18),
+        //   pl: em(24, 18)
         // },
         ol: {
-          marginTop: em(24, 20),
-          marginBottom: em(24, 20),
-          paddingLeft: em(32, 20)
+          mt: em(24, 20),
+          mb: em(24, 20),
+          pl: em(32, 20)
         },
         ul: {
-          marginTop: em(24, 20),
-          marginBottom: em(24, 20),
-          paddingLeft: em(32, 20)
+          mt: em(24, 20),
+          mb: em(24, 20),
+          pl: em(32, 20)
         },
         li: {
-          marginTop: em(12, 20),
-          marginBottom: em(12, 20)
+          mt: em(12, 20),
+          mb: em(12, 20)
         },
         'ol > li': {
-          paddingLeft: em(8, 20)
+          pl: em(8, 20)
         },
         'ul > li': {
-          paddingLeft: em(8, 20)
+          pl: em(8, 20)
         },
         '> ul > li p': {
-          marginTop: em(16, 20),
-          marginBottom: em(16, 20)
+          mt: em(16, 20),
+          mb: em(16, 20)
         },
         '> ul > li > *:first-child': {
-          marginTop: em(24, 20)
+          mt: em(24, 20)
         },
         '> ul > li > *:last-child': {
-          marginBottom: em(24, 20)
+          mb: em(24, 20)
         },
         '> ol > li > *:first-child': {
-          marginTop: em(24, 20)
+          mt: em(24, 20)
         },
         '> ol > li > *:last-child': {
-          marginBottom: em(24, 20)
+          mb: em(24, 20)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          marginTop: em(16, 20),
-          marginBottom: em(16, 20)
+          mt: em(16, 20),
+          mb: em(16, 20)
         },
         hr: {
-          marginTop: em(56, 20),
-          marginBottom: em(56, 20)
+          mt: em(56, 20),
+          mb: em(56, 20)
         },
         'hr + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h2 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h3 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h4 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         table: {
           fontSize: em(18, 20),
           lineHeight: round(28 / 18)
         },
         'thead th': {
-          paddingRight: em(12, 18),
-          paddingBottom: em(16, 18),
-          paddingLeft: em(12, 18)
+          pr: em(12, 18),
+          pb: em(16, 18),
+          pl: em(12, 18)
         },
         'thead th:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'thead th:last-child': {
-          paddingRight: '0'
+          pr: '0'
         },
         'tbody td': {
-          paddingTop: em(16, 18),
-          paddingRight: em(12, 18),
-          paddingBottom: em(16, 18),
-          paddingLeft: em(12, 18)
+          pt: em(16, 18),
+          pr: em(12, 18),
+          pb: em(16, 18),
+          pl: em(12, 18)
         },
         'tbody td:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'tbody td:last-child': {
-          paddingRight: '0'
+          pr: '0'
         }
       },
       '2xl': {
         fontSize: rem(24),
         lineHeight: round(40 / 24),
         '& p': {
-          marginTop: em(32, 24),
-          marginBottom: em(32, 24)
+          mt: em(32, 24),
+          mb: em(32, 24)
         },
         '[class~="lead"]': {
           fontSize: em(30, 24),
           lineHeight: round(44 / 30),
-          marginTop: em(32, 30),
-          marginBottom: em(32, 30)
+          mt: em(32, 30),
+          mb: em(32, 30)
         },
         blockquote: {
-          marginTop: em(64, 36),
-          marginBottom: em(64, 36),
-          paddingLeft: em(40, 36)
+          mt: em(64, 36),
+          mb: em(64, 36),
+          pl: em(40, 36)
         },
         h1: {
           fontSize: em(64, 24),
-          marginTop: '0',
-          marginBottom: em(56, 64),
+          mt: '0',
+          mb: em(56, 64),
           lineHeight: round(64 / 64)
         },
         h2: {
           fontSize: em(48, 24),
-          marginTop: em(72, 48),
-          marginBottom: em(40, 48),
+          mt: em(72, 48),
+          mb: em(40, 48),
           lineHeight: round(52 / 48)
         },
         h3: {
           fontSize: em(36, 24),
-          marginTop: em(56, 36),
-          marginBottom: em(24, 36),
+          mt: em(56, 36),
+          mb: em(24, 36),
           lineHeight: round(44 / 36)
         },
         h4: {
-          marginTop: em(40, 24),
-          marginBottom: em(16, 24),
+          mt: em(40, 24),
+          mb: em(16, 24),
           lineHeight: round(36 / 24)
         },
         img: {
-          marginTop: em(48, 24),
-          marginBottom: em(48, 24)
+          mt: em(48, 24),
+          mb: em(48, 24)
         },
         video: {
-          marginTop: em(48, 24),
-          marginBottom: em(48, 24)
+          mt: em(48, 24),
+          mb: em(48, 24)
         },
         figure: {
-          marginTop: em(48, 24),
-          marginBottom: em(48, 24)
+          mt: em(48, 24),
+          mb: em(48, 24)
         },
         'figure > *': {
-          marginTop: '0',
-          marginBottom: '0'
+          mt: '0',
+          mb: '0'
         },
         figcaption: {
           fontSize: em(20, 24),
           lineHeight: round(32 / 20),
-          marginTop: em(20, 20)
+          mt: em(20, 20)
         },
         // code: {
         //   fontSize: em(20, 24)
@@ -981,96 +989,96 @@ const prose = css({
         // pre: {
         //   fontSize: em(20, 24),
         //   lineHeight: round(36 / 20),
-        //   marginTop: em(40, 20),
-        //   marginBottom: em(40, 20),
+        //   mt: em(40, 20),
+        //   mb: em(40, 20),
         //   borderRadius: rem(8),
-        //   paddingTop: em(24, 20),
-        //   paddingRight: em(32, 20),
-        //   paddingBottom: em(24, 20),
-        //   paddingLeft: em(32, 20)
+        //   pt: em(24, 20),
+        //   pr: em(32, 20),
+        //   pb: em(24, 20),
+        //   pl: em(32, 20)
         // },
         ol: {
-          marginTop: em(32, 24),
-          marginBottom: em(32, 24),
-          paddingLeft: em(38, 24)
+          mt: em(32, 24),
+          mb: em(32, 24),
+          pl: em(38, 24)
         },
         ul: {
-          marginTop: em(32, 24),
-          marginBottom: em(32, 24),
-          paddingLeft: em(38, 24)
+          mt: em(32, 24),
+          mb: em(32, 24),
+          pl: em(38, 24)
         },
         li: {
-          marginTop: em(12, 24),
-          marginBottom: em(12, 24)
+          mt: em(12, 24),
+          mb: em(12, 24)
         },
         'ol > li': {
-          paddingLeft: em(10, 24)
+          pl: em(10, 24)
         },
         'ul > li': {
-          paddingLeft: em(10, 24)
+          pl: em(10, 24)
         },
         '> ul > li p': {
-          marginTop: em(20, 24),
-          marginBottom: em(20, 24)
+          mt: em(20, 24),
+          mb: em(20, 24)
         },
         '> ul > li > *:first-child': {
-          marginTop: em(32, 24)
+          mt: em(32, 24)
         },
         '> ul > li > *:last-child': {
-          marginBottom: em(32, 24)
+          mb: em(32, 24)
         },
         '> ol > li > *:first-child': {
-          marginTop: em(32, 24)
+          mt: em(32, 24)
         },
         '> ol > li > *:last-child': {
-          marginBottom: em(32, 24)
+          mb: em(32, 24)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          marginTop: em(16, 24),
-          marginBottom: em(16, 24)
+          mt: em(16, 24),
+          mb: em(16, 24)
         },
         hr: {
-          marginTop: em(72, 24),
-          marginBottom: em(72, 24)
+          mt: em(72, 24),
+          mb: em(72, 24)
         },
         'hr + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h2 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h3 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         'h4 + *': {
-          marginTop: '0'
+          mt: '0'
         },
         table: {
           fontSize: em(20, 24),
           lineHeight: round(28 / 20)
         },
         'thead th': {
-          paddingRight: em(12, 20),
-          paddingBottom: em(16, 20),
-          paddingLeft: em(12, 20)
+          pr: em(12, 20),
+          pb: em(16, 20),
+          pl: em(12, 20)
         },
         'thead th:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'thead th:last-child': {
-          paddingRight: '0'
+          pr: '0'
         },
         'tbody td': {
-          paddingTop: em(16, 20),
-          paddingRight: em(12, 20),
-          paddingBottom: em(16, 20),
-          paddingLeft: em(12, 20)
+          pt: em(16, 20),
+          pr: em(12, 20),
+          pb: em(16, 20),
+          pl: em(12, 20)
         },
         'tbody td:first-child': {
-          paddingLeft: '0'
+          pl: '0'
         },
         'tbody td:last-child': {
-          paddingRight: '0'
+          pr: '0'
         }
       }
     }
