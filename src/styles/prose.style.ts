@@ -254,18 +254,15 @@ const prose = css({
         fontSize: rem(14),
         lineHeight: round(24 / 14),
         '& p': {
-          mt: em(16, 14),
-          mb: em(16, 14)
+          my: em(16, 14)
         },
         '[class~="lead"]': {
           fontSize: em(18, 14),
           lineHeight: round(28 / 18),
-          mt: em(16, 18),
-          mb: em(16, 18)
+          my: em(16, 18)
         },
         blockquote: {
-          mt: em(24, 18),
-          mb: em(24, 18),
+          my: em(24, 18),
           pl: em(20, 18)
         },
         h1: {
@@ -292,20 +289,16 @@ const prose = css({
           lineHeight: round(20 / 14)
         },
         img: {
-          mt: em(24, 14),
-          mb: em(24, 14)
+          my: em(24, 14)
         },
         video: {
-          mt: em(24, 14),
-          mb: em(24, 14)
+          my: em(24, 14)
         },
         figure: {
-          mt: em(24, 14),
-          mb: em(24, 14)
+          my: em(24, 14)
         },
         'figure > *': {
-          mt: '0',
-          mb: '0'
+          my: '0'
         },
         figcaption: {
           fontSize: em(12, 14),
@@ -322,27 +315,21 @@ const prose = css({
           fontSize: em(16, 18)
         },
         pre: {
-          mt: em(20, 12),
-          mb: em(20, 12),
+          my: em(20, 12),
           borderRadius: rem(4),
-          pt: em(8, 12),
-          pr: em(12, 12),
-          pb: em(8, 12),
-          pl: em(12, 12)
+          px: em(12, 12),
+          py: em(8, 12)
         },
         ol: {
-          mt: em(16, 14),
-          mb: em(16, 14),
+          my: em(16, 14),
           pl: em(22, 14)
         },
         ul: {
-          mt: em(16, 14),
-          mb: em(16, 14),
+          my: em(16, 14),
           pl: em(22, 14)
         },
         li: {
-          mt: em(4, 14),
-          mb: em(4, 14)
+          my: em(4, 14)
         },
         'ol > li': {
           pl: em(6, 14)
@@ -351,8 +338,7 @@ const prose = css({
           pl: em(6, 14)
         },
         '> ul > li p': {
-          mt: em(8, 14),
-          mb: em(8, 14)
+          my: em(8, 14)
         },
         '> ul > li > *:first-child': {
           mt: em(16, 14)
@@ -367,12 +353,10 @@ const prose = css({
           mb: em(16, 14)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          mt: em(8, 14),
-          mb: em(8, 14)
+          my: em(8, 14)
         },
         hr: {
-          mt: em(40, 14),
-          mb: em(40, 14)
+          my: em(40, 14)
         },
         'hr + *': {
           mt: '0'
@@ -391,9 +375,8 @@ const prose = css({
           lineHeight: round(18 / 12)
         },
         'thead th': {
-          pr: em(12, 12),
-          pb: em(8, 12),
-          pl: em(12, 12)
+          px: em(12, 12),
+          pb: em(8, 12)
         },
         'thead th:first-child': {
           pl: '0'
@@ -402,10 +385,8 @@ const prose = css({
           pr: '0'
         },
         'tbody td': {
-          pt: em(8, 12),
-          pr: em(12, 12),
-          pb: em(8, 12),
-          pl: em(12, 12)
+          px: em(12, 12),
+          py: em(8, 12)
         },
         'tbody td:first-child': {
           pl: '0'
@@ -424,12 +405,10 @@ const prose = css({
         '[class~="lead"]': {
           fontSize: em(20, 16),
           lineHeight: round(32 / 20),
-          mt: em(24, 20),
-          mb: em(24, 20)
+          my: em(24, 20)
         },
         blockquote: {
-          mt: em(32, 20),
-          mb: em(32, 20),
+          my: em(32, 20),
           pl: em(20, 20)
         },
         h1: {
@@ -456,20 +435,16 @@ const prose = css({
           lineHeight: round(24 / 16)
         },
         img: {
-          mt: em(32, 16),
-          mb: em(32, 16)
+          my: em(32, 16)
         },
         video: {
-          mt: em(32, 16),
-          mb: em(32, 16)
+          my: em(32, 16)
         },
         figure: {
-          mt: em(32, 16),
-          mb: em(32, 16)
+          my: em(32, 16)
         },
         'figure > *': {
-          mt: '0',
-          mb: '0'
+          my: '0'
         },
         figcaption: {
           fontSize: em(14, 16),
@@ -486,27 +461,21 @@ const prose = css({
           fontSize: em(18, 20)
         },
         pre: {
-          mt: em(24, 14),
-          mb: em(24, 14),
+          my: em(24, 14),
           borderRadius: rem(6),
-          pt: em(12, 14),
-          pr: em(16, 14),
-          pb: em(12, 14),
-          pl: em(16, 14)
+          px: em(16, 14),
+          py: em(12, 14)
         },
         ol: {
-          mt: em(20, 16),
-          mb: em(20, 16),
+          my: em(20, 16),
           pl: em(26, 16)
         },
         ul: {
-          mt: em(20, 16),
-          mb: em(20, 16),
+          my: em(20, 16),
           pl: em(26, 16)
         },
         li: {
-          mt: em(8, 16),
-          mb: em(8, 16)
+          my: em(8, 16)
         },
         'ol > li': {
           pl: em(6, 16)
@@ -515,8 +484,7 @@ const prose = css({
           pl: em(6, 16)
         },
         '> ul > li p': {
-          mt: em(12, 16),
-          mb: em(12, 16)
+          my: em(12, 16)
         },
         '> ul > li > *:first-child': {
           mt: em(20, 16)
@@ -531,12 +499,10 @@ const prose = css({
           mb: em(20, 16)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          mt: em(12, 16),
-          mb: em(12, 16)
+          my: em(12, 16)
         },
         hr: {
-          mt: em(48, 16),
-          mb: em(48, 16)
+          my: em(48, 16)
         },
         'hr + *': {
           mt: '0'
@@ -555,9 +521,8 @@ const prose = css({
           lineHeight: round(24 / 14)
         },
         'thead th': {
-          pr: em(8, 14),
-          pb: em(8, 14),
-          pl: em(8, 14)
+          px: em(8, 14),
+          pb: em(8, 14)
         },
         'thead th:first-child': {
           pl: '0'
@@ -566,10 +531,8 @@ const prose = css({
           pr: '0'
         },
         'tbody td': {
-          pt: em(8, 14),
-          pr: em(8, 14),
-          pb: em(8, 14),
-          pl: em(8, 14)
+          px: em(8, 14),
+          py: em(8, 14)
         },
         'tbody td:first-child': {
           pl: '0'
@@ -582,18 +545,15 @@ const prose = css({
         fontSize: rem(18),
         lineHeight: round(32 / 18),
         '& p': {
-          mt: em(24, 18),
-          mb: em(24, 18)
+          my: em(24, 18)
         },
         '[class~="lead"]': {
           fontSize: em(22, 18),
           lineHeight: round(32 / 22),
-          mt: em(24, 22),
-          mb: em(24, 22)
+          my: em(24, 22)
         },
         blockquote: {
-          mt: em(40, 24),
-          mb: em(40, 24),
+          my: em(40, 24),
           pl: em(24, 24)
         },
         h1: {
@@ -620,20 +580,16 @@ const prose = css({
           lineHeight: round(28 / 18)
         },
         img: {
-          mt: em(32, 18),
-          mb: em(32, 18)
+          my: em(32, 18)
         },
         video: {
-          mt: em(32, 18),
-          mb: em(32, 18)
+          my: em(32, 18)
         },
         figure: {
-          mt: em(32, 18),
-          mb: em(32, 18)
+          my: em(32, 18)
         },
         'figure > *': {
-          mt: '0',
-          mb: '0'
+          my: '0'
         },
         figcaption: {
           fontSize: em(16, 18),
@@ -650,27 +606,21 @@ const prose = css({
           fontSize: em(21, 24)
         },
         pre: {
-          mt: em(32, 16),
-          mb: em(32, 16),
+          my: em(32, 16),
           borderRadius: rem(6),
-          pt: em(16, 16),
-          pr: em(24, 16),
-          pb: em(16, 16),
-          pl: em(24, 16)
+          px: em(24, 16),
+          py: em(16, 16)
         },
         ol: {
-          mt: em(24, 18),
-          mb: em(24, 18),
+          my: em(24, 18),
           pl: em(28, 18)
         },
         ul: {
-          mt: em(24, 18),
-          mb: em(24, 18),
+          my: em(24, 18),
           pl: em(28, 18)
         },
         li: {
-          mt: em(12, 18),
-          mb: em(12, 18)
+          my: em(12, 18)
         },
         'ol > li': {
           pl: em(8, 18)
@@ -679,8 +629,7 @@ const prose = css({
           pl: em(8, 18)
         },
         '> ul > li p': {
-          mt: em(16, 18),
-          mb: em(16, 18)
+          my: em(16, 18)
         },
         '> ul > li > *:first-child': {
           mt: em(24, 18)
@@ -695,12 +644,10 @@ const prose = css({
           mb: em(24, 18)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          mt: em(16, 18),
-          mb: em(16, 18)
+          my: em(16, 18)
         },
         hr: {
-          mt: em(56, 18),
-          mb: em(56, 18)
+          my: em(56, 18)
         },
         'hr + *': {
           mt: '0'
@@ -719,9 +666,8 @@ const prose = css({
           lineHeight: round(24 / 16)
         },
         'thead th': {
-          pr: em(12, 16),
-          pb: em(12, 16),
-          pl: em(12, 16)
+          px: em(12, 16),
+          pb: em(12, 16)
         },
         'thead th:first-child': {
           pl: '0'
@@ -730,10 +676,8 @@ const prose = css({
           pr: '0'
         },
         'tbody td': {
-          pt: em(12, 16),
-          pr: em(12, 16),
-          pb: em(12, 16),
-          pl: em(12, 16)
+          px: em(12, 16),
+          py: em(12, 16)
         },
         'tbody td:first-child': {
           pl: '0'
@@ -746,18 +690,15 @@ const prose = css({
         fontSize: rem(20),
         lineHeight: round(36 / 20),
         '& p': {
-          mt: em(24, 20),
-          mb: em(24, 20)
+          my: em(24, 20)
         },
         '[class~="lead"]': {
           fontSize: em(24, 20),
           lineHeight: round(36 / 24),
-          mt: em(24, 24),
-          mb: em(24, 24)
+          my: em(24, 24)
         },
         blockquote: {
-          mt: em(48, 30),
-          mb: em(48, 30),
+          my: em(48, 30),
           pl: em(32, 30)
         },
         h1: {
@@ -784,20 +725,16 @@ const prose = css({
           lineHeight: round(32 / 20)
         },
         img: {
-          mt: em(40, 20),
-          mb: em(40, 20)
+          my: em(40, 20)
         },
         video: {
-          mt: em(40, 20),
-          mb: em(40, 20)
+          my: em(40, 20)
         },
         figure: {
-          mt: em(40, 20),
-          mb: em(40, 20)
+          my: em(40, 20)
         },
         'figure > *': {
-          mt: '0',
-          mb: '0'
+          my: '0'
         },
         figcaption: {
           fontSize: em(18, 20),
@@ -814,27 +751,21 @@ const prose = css({
           fontSize: em(27, 30)
         },
         pre: {
-          mt: em(36, 18),
-          mb: em(36, 18),
+          my: em(36, 18),
           borderRadius: rem(8),
-          pt: em(20, 18),
-          pr: em(24, 18),
-          pb: em(20, 18),
-          pl: em(24, 18)
+          px: em(24, 18),
+          py: em(20, 18)
         },
         ol: {
-          mt: em(24, 20),
-          mb: em(24, 20),
+          my: em(24, 20),
           pl: em(32, 20)
         },
         ul: {
-          mt: em(24, 20),
-          mb: em(24, 20),
+          my: em(24, 20),
           pl: em(32, 20)
         },
         li: {
-          mt: em(12, 20),
-          mb: em(12, 20)
+          my: em(12, 20)
         },
         'ol > li': {
           pl: em(8, 20)
@@ -843,8 +774,7 @@ const prose = css({
           pl: em(8, 20)
         },
         '> ul > li p': {
-          mt: em(16, 20),
-          mb: em(16, 20)
+          my: em(16, 20)
         },
         '> ul > li > *:first-child': {
           mt: em(24, 20)
@@ -859,12 +789,10 @@ const prose = css({
           mb: em(24, 20)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          mt: em(16, 20),
-          mb: em(16, 20)
+          my: em(16, 20)
         },
         hr: {
-          mt: em(56, 20),
-          mb: em(56, 20)
+          my: em(56, 20)
         },
         'hr + *': {
           mt: '0'
@@ -883,9 +811,8 @@ const prose = css({
           lineHeight: round(28 / 18)
         },
         'thead th': {
-          pr: em(12, 18),
-          pb: em(16, 18),
-          pl: em(12, 18)
+          px: em(12, 18),
+          pb: em(16, 18)
         },
         'thead th:first-child': {
           pl: '0'
@@ -894,10 +821,8 @@ const prose = css({
           pr: '0'
         },
         'tbody td': {
-          pt: em(16, 18),
-          pr: em(12, 18),
-          pb: em(16, 18),
-          pl: em(12, 18)
+          px: em(12, 18),
+          py: em(16, 18)
         },
         'tbody td:first-child': {
           pl: '0'
@@ -910,18 +835,15 @@ const prose = css({
         fontSize: rem(24),
         lineHeight: round(40 / 24),
         '& p': {
-          mt: em(32, 24),
-          mb: em(32, 24)
+          my: em(32, 24)
         },
         '[class~="lead"]': {
           fontSize: em(30, 24),
           lineHeight: round(44 / 30),
-          mt: em(32, 30),
-          mb: em(32, 30)
+          my: em(32, 30)
         },
         blockquote: {
-          mt: em(64, 36),
-          mb: em(64, 36),
+          my: em(64, 36),
           pl: em(40, 36)
         },
         h1: {
@@ -948,20 +870,16 @@ const prose = css({
           lineHeight: round(36 / 24)
         },
         img: {
-          mt: em(48, 24),
-          mb: em(48, 24)
+          my: em(48, 24)
         },
         video: {
-          mt: em(48, 24),
-          mb: em(48, 24)
+          my: em(48, 24)
         },
         figure: {
-          mt: em(48, 24),
-          mb: em(48, 24)
+          my: em(48, 24)
         },
         'figure > *': {
-          mt: '0',
-          mb: '0'
+          my: '0'
         },
         figcaption: {
           fontSize: em(20, 24),
@@ -978,27 +896,21 @@ const prose = css({
           fontSize: em(32, 36)
         },
         pre: {
-          mt: em(40, 20),
-          mb: em(40, 20),
+          my: em(40, 20),
           borderRadius: rem(8),
-          pt: em(24, 20),
-          pr: em(32, 20),
-          pb: em(24, 20),
-          pl: em(32, 20)
+          px: em(32, 20),
+          py: em(24, 20)
         },
         ol: {
-          mt: em(32, 24),
-          mb: em(32, 24),
+          my: em(32, 24),
           pl: em(38, 24)
         },
         ul: {
-          mt: em(32, 24),
-          mb: em(32, 24),
+          my: em(32, 24),
           pl: em(38, 24)
         },
         li: {
-          mt: em(12, 24),
-          mb: em(12, 24)
+          my: em(12, 24)
         },
         'ol > li': {
           pl: em(10, 24)
@@ -1007,8 +919,7 @@ const prose = css({
           pl: em(10, 24)
         },
         '> ul > li p': {
-          mt: em(20, 24),
-          mb: em(20, 24)
+          my: em(20, 24)
         },
         '> ul > li > *:first-child': {
           mt: em(32, 24)
@@ -1023,12 +934,10 @@ const prose = css({
           mb: em(32, 24)
         },
         'ul ul, ul ol, ol ul, ol ol': {
-          mt: em(16, 24),
-          mb: em(16, 24)
+          my: em(16, 24)
         },
         hr: {
-          mt: em(72, 24),
-          mb: em(72, 24)
+          my: em(72, 24)
         },
         'hr + *': {
           mt: '0'
@@ -1047,9 +956,8 @@ const prose = css({
           lineHeight: round(28 / 20)
         },
         'thead th': {
-          pr: em(12, 20),
-          pb: em(16, 20),
-          pl: em(12, 20)
+          px: em(12, 20),
+          pb: em(16, 20)
         },
         'thead th:first-child': {
           pl: '0'
@@ -1058,10 +966,8 @@ const prose = css({
           pr: '0'
         },
         'tbody td': {
-          pt: em(16, 20),
-          pr: em(12, 20),
-          pb: em(16, 20),
-          pl: em(12, 20)
+          px: em(12, 20),
+          py: em(16, 20)
         },
         'tbody td:first-child': {
           pl: '0'
