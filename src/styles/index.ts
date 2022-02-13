@@ -159,10 +159,6 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
       }),
 
       // Abbreviated margin properties
-      m: (value: Space) => ({
-        margin: value
-      }),
-
       mt: (value: Space) => ({
         marginTop: value
       }),
@@ -186,10 +182,6 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
       }),
 
       // Abbreviated padding properties
-      p: (value: Space) => ({
-        padding: value
-      }),
-
       pt: (value: Space) => ({
         paddingTop: value
       }),

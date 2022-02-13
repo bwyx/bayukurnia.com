@@ -253,7 +253,7 @@ const prose = css({
       sm: {
         fontSize: rem(14),
         lineHeight: round(24 / 14),
-        '& p': {
+        p: {
           my: em(16, 14)
         },
         '[class~="lead"]': {
@@ -398,7 +398,7 @@ const prose = css({
       base: {
         fontSize: rem(16),
         lineHeight: round(28 / 16),
-        '& p': {
+        p: {
           mt: em(20, 16),
           mb: em(20, 16)
         },
@@ -544,7 +544,7 @@ const prose = css({
       lg: {
         fontSize: rem(18),
         lineHeight: round(32 / 18),
-        '& p': {
+        p: {
           my: em(24, 18)
         },
         '[class~="lead"]': {
@@ -689,7 +689,7 @@ const prose = css({
       xl: {
         fontSize: rem(20),
         lineHeight: round(36 / 20),
-        '& p': {
+        p: {
           my: em(24, 20)
         },
         '[class~="lead"]': {
@@ -834,7 +834,7 @@ const prose = css({
       '2xl': {
         fontSize: rem(24),
         lineHeight: round(40 / 24),
-        '& p': {
+        p: {
           my: em(32, 24)
         },
         '[class~="lead"]': {
