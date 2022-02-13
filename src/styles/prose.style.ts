@@ -168,20 +168,19 @@ const prose = css({
   figcaption: {
     color: '$$prose-captions'
   },
+  ':not(pre) > code': {
+    xColor: '$brand',
+    xBackground: '$brand',
+    xBackgroundOpacity: 0.1,
+    fontFamily: '$mono',
+    letterSpacing: '$tight',
+    padding: '0.3em 0.35em',
+    borderRadius: '0.3em'
+  },
+  'a code': {
+    color: '$$prose-links'
+  },
   // already styled by prism
-  // code: {
-  //   color: '$$prose-code',
-  //   fontWeight: '600'
-  // },
-  // 'code::before': {
-  //   content: '"`"'
-  // },
-  // 'code::after': {
-  //   content: '"`"'
-  // },
-  // 'a code': {
-  //   color: '$$prose-links'
-  // },
   // pre: {
   //   color: '$$prose-pre-code',
   //   backgroundColor: '$$prose-pre-bg',
@@ -313,15 +312,15 @@ const prose = css({
           lineHeight: round(16 / 12),
           mt: em(8, 12)
         },
-        // code: {
-        //   fontSize: em(12, 14)
-        // },
-        // 'h2 code': {
-        //   fontSize: em(18, 20)
-        // },
-        // 'h3 code': {
-        //   fontSize: em(16, 18)
-        // },
+        code: {
+          fontSize: em(12, 14)
+        },
+        'h2 code': {
+          fontSize: em(18, 20)
+        },
+        'h3 code': {
+          fontSize: em(16, 18)
+        },
         // pre: {
         //   fontSize: em(12, 14),
         //   lineHeight: round(20 / 12),
@@ -479,15 +478,15 @@ const prose = css({
           lineHeight: round(20 / 14),
           mt: em(12, 14)
         },
-        // code: {
-        //   fontSize: em(14, 16)
-        // },
-        // 'h2 code': {
-        //   fontSize: em(21, 24)
-        // },
-        // 'h3 code': {
-        //   fontSize: em(18, 20)
-        // },
+        code: {
+          fontSize: em(13.6, 16)
+        },
+        'h2 code': {
+          fontSize: em(21, 24)
+        },
+        'h3 code': {
+          fontSize: em(18, 20)
+        },
         // pre: {
         //   fontSize: em(14, 16),
         //   lineHeight: round(24 / 14),
@@ -645,15 +644,15 @@ const prose = css({
           lineHeight: round(24 / 16),
           mt: em(16, 16)
         },
-        // code: {
-        //   fontSize: em(16, 18)
-        // },
-        // 'h2 code': {
-        //   fontSize: em(26, 30)
-        // },
-        // 'h3 code': {
-        //   fontSize: em(21, 24)
-        // },
+        code: {
+          fontSize: em(15, 18)
+        },
+        'h2 code': {
+          fontSize: em(26, 30)
+        },
+        'h3 code': {
+          fontSize: em(21, 24)
+        },
         // pre: {
         //   fontSize: em(16, 18),
         //   lineHeight: round(28 / 16),
@@ -811,15 +810,15 @@ const prose = css({
           lineHeight: round(28 / 18),
           mt: em(18, 18)
         },
-        // code: {
-        //   fontSize: em(18, 20)
-        // },
-        // 'h2 code': {
-        //   fontSize: em(31, 36)
-        // },
-        // 'h3 code': {
-        //   fontSize: em(27, 30)
-        // },
+        code: {
+          fontSize: em(16.4, 20)
+        },
+        'h2 code': {
+          fontSize: em(31, 36)
+        },
+        'h3 code': {
+          fontSize: em(27, 30)
+        },
         // pre: {
         //   fontSize: em(18, 20),
         //   lineHeight: round(32 / 18),
@@ -977,15 +976,15 @@ const prose = css({
           lineHeight: round(32 / 20),
           mt: em(20, 20)
         },
-        // code: {
-        //   fontSize: em(20, 24)
-        // },
-        // 'h2 code': {
-        //   fontSize: em(42, 48)
-        // },
-        // 'h3 code': {
-        //   fontSize: em(32, 36)
-        // },
+        code: {
+          fontSize: em(20, 24)
+        },
+        'h2 code': {
+          fontSize: em(42, 48)
+        },
+        'h3 code': {
+          fontSize: em(32, 36)
+        },
         // pre: {
         //   fontSize: em(20, 24),
         //   lineHeight: round(36 / 20),
