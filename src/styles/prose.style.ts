@@ -57,6 +57,7 @@ const prose = css({
   ...vars,
   color: '$$prose-body',
   maxWidth: '65ch',
+  margin: '0 auto',
   '[class~="lead"]': {
     color: '$$prose-lead'
   },
@@ -244,6 +245,8 @@ const prose = css({
     margin: '0 auto',
     textAlign: 'center',
     content: '• • •',
+    xColor: '$fg3',
+    xColorOpacity: 0.5,
     fontSize: '$sm',
     display: 'block',
     '@sm': { padding: '3rem 0' }

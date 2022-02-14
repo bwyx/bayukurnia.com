@@ -73,18 +73,19 @@ const styles = {
     marginRight: '1rem',
     display: 'inherit',
     overflow: 'hidden',
-    '@md': { width: 48, height: 48 }
+    '@lg': { width: 48, height: 48 }
   })(),
   authorName: text({
     weight: 'medium',
     leading: 'none',
     size: {
       '@initial': 'sm',
-      '@md': 'base'
+      '@lg': 'base'
     }
   }),
   socials: stack({
     css: {
+      ml: '-$1',
       mb: '-$2',
       a: {
         display: 'inline-block',
@@ -99,6 +100,9 @@ const styles = {
       svg: {
         width: 16,
         height: 16
+      },
+      '@lg': {
+        mt: '$1'
       }
     }
   }),
@@ -107,7 +111,7 @@ const styles = {
     weight: 'medium',
     size: {
       '@initial': 'xs',
-      '@md': 'sm'
+      '@lg': 'sm'
     },
     css: {
       xColor: '$fg1',
@@ -119,9 +123,11 @@ const styles = {
     gridArea: 'cover',
     position: 'relative',
     pointerEvents: 'none',
-    margin: '$8 auto 0',
+    margin: '$10 auto 0',
     width: 280,
     height: 280,
+    maxWidth: '88vw',
+    maxHeight: '88vw',
     zIndex: 1,
     '@sm': {
       mt: '$0',
@@ -132,8 +138,8 @@ const styles = {
     '@md': {
       width: 340,
       height: 340,
-      maxWidth: '38vw',
-      maxHeight: '38vw',
+      maxWidth: '40vw',
+      maxHeight: '40vw',
       margin: 0
     },
     '@lg': {
