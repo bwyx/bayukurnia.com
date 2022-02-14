@@ -8,7 +8,7 @@ const Article = (props: React.PropsWithChildren<Props>) => {
       className={prose({
         size: {
           '@initial': 'base',
-          '@md': 'lg'
+          '@lg': 'lg'
         }
       })}
     >

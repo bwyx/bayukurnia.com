@@ -7,11 +7,12 @@ const styles = {
     y: 'center',
     density: 'spaceBetween',
     css: {
+      mt: '$4',
       xBackground: '$bg',
       position: 'sticky',
       top: 0,
       zIndex: 50,
-      height: 60,
+      height: 50,
       width: '100%',
       display: 'flex',
       alignItems: 'center',
@@ -23,7 +24,7 @@ const styles = {
         xBackgroundOpacity: 0.6,
         backdropFilter: 'saturate(180%) blur(1rem)'
       },
-      '@md': { height: 80 }
+      '@lg': { height: 60 }
     }
   }),
   container: `${container({ size: 'large' })} ${stack({
@@ -35,9 +36,9 @@ const styles = {
     display: 'inherit',
     '& svg': {
       width: 'auto',
-      height: 40,
-      '@md': {
-        height: 45
+      height: 35,
+      '@lg': {
+        height: 40
       }
     },
     '&:hover': { xColor: '$accent' }
