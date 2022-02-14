@@ -1,5 +1,7 @@
 import { createTheme } from '~/styles'
 
+export type ThemeName = keyof typeof themes
+
 export const lightTheme = {
   rgb: {
     brand: '121 116 14', // #79740e
@@ -49,8 +51,11 @@ export const darkTheme = {
 }
 
 const themes = {
-  light: createTheme('light', lightTheme),
-  dark: createTheme('dark', darkTheme)
+  light: createTheme(lightTheme),
+  dark: createTheme(darkTheme)
 }
+
+export const availableTheme = <ThemeName[]>Object.keys(themes)
+export const allThemeClass = Object.values(themes).map((t) => t.className)
 
 export default themes
