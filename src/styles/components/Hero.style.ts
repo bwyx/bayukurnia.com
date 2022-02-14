@@ -2,6 +2,7 @@ import { css } from '~/styles'
 import container from '~/styles/container.style'
 import text from '~/styles/text.style'
 import stack from '~/styles/stack.style'
+import themes from '~/styles/themes'
 
 const styles = {
   header: css({
@@ -18,7 +19,7 @@ const styles = {
         gridTemplateRows: 'auto 1fr auto',
         gridTemplateColumns: '1fr',
         gridTemplateAreas: `
-    "... cover"
+    "date cover"
     "details cover"
     "author cover"
     `
@@ -27,7 +28,10 @@ const styles = {
   }),
   postDetails: css({
     gridArea: 'details',
-    mr: '$4'
+    my: '$6',
+    '@sm': {
+      mr: '$4'
+    }
   })(),
   postTitle: text({
     size: {
@@ -56,9 +60,7 @@ const styles = {
     dir: 'row',
     y: 'center',
     css: {
-      gridArea: 'author',
-      my: '$8',
-      '@sm': { my: '$0' }
+      gridArea: 'author'
     }
   }),
   authorDetails: stack({ dir: 'col' }),
@@ -79,8 +81,26 @@ const styles = {
     size: {
       '@initial': 'sm',
       '@md': 'base'
-    },
-    css: { xColor: '$fg1' }
+    }
+  }),
+  socials: stack({
+    css: {
+      mb: '-$2',
+      a: {
+        display: 'inline-block',
+        padding: '$1',
+        xColor: '$fg3',
+        '&.twitter:hover': { color: 'rgb(29, 155, 240)' },
+        '&.github:hover': {
+          [`.${themes.dark} &`]: { color: 'rgb(255, 255, 255)' },
+          [`.${themes.light} &`]: { color: 'rgb(0, 0, 0)' }
+        }
+      },
+      svg: {
+        width: 16,
+        height: 16
+      }
+    }
   }),
   publishedDate: text({
     leading: 'none',
@@ -92,7 +112,6 @@ const styles = {
     css: {
       xColor: '$fg1',
       xColorOpacity: 0.5,
-      marginTop: '0.5rem',
       gridArea: 'date'
     }
   }),
@@ -100,16 +119,19 @@ const styles = {
     gridArea: 'cover',
     position: 'relative',
     pointerEvents: 'none',
-    margin: '0 auto',
+    margin: '$8 auto 0',
     width: 280,
     height: 280,
     zIndex: 1,
     '@sm': {
-      marginRight: '-$20',
-      width: 340,
-      height: 340
+      mt: '$0',
+      mr: '-$20',
+      width: 300,
+      height: 300
     },
     '@md': {
+      width: 340,
+      height: 340,
       maxWidth: '38vw',
       maxHeight: '38vw',
       margin: 0
