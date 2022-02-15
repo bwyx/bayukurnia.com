@@ -5,15 +5,31 @@ publishedAt: 2022-01-09
 cover: hello-esp8266.png
 ---
 
-Sebelum membuat sesuatu yang rumit, mari kita lakukan _hello world_ terlebih dahulu. Kita akan lakukan hello world pada 3 hal yaitu Serial, Web Server dan MQTT.
+> Hal besar berawal dari sebuah hello world
+
+Tiada hari tanpa _hello world_. Saya akan mencoba untuk menjalankan _hello world_ pada beberapa protocol yang akan sering digunakan dalam pengembangan IoT.
+
+- Serial
+- Web Server (_HTTP_, _SSE_, _WebSocket_)
+- MQTT
 
 ## Serial
 
-Pada serial kita langsung bisa menggunakan fn `println()` pada Object `Serial`
+Serial akan paling sering digunakan, karena ini seperti halnya `console` di Javascript yang sangat berguna untuk tahap development dan debugging.
+
+Bedanya di Serial tidak ada fitur seperti `console.time()` , `console.table()` atau hal _fancy_ javascript lainnya karena di Serial hanya bisa output plain text aja.
+
+Untuk menggukanannya bisa langsung dengan menggunakan `Serial.print()` atau `Serial.println()` untuk ouput dengan akhiran `/n` (_line break_). Hal yang perlu diperhatikan adalah bahwa Serial butuh `Serial.begin()` pada block setup dengan parameter `baudrate` berupa angka (samakan dengan settingan IDE).
+
+<Callout type="info">
+  Sebagai catatan, pada board berbasis ESP8266 gunakan `74880` pada `baudrate`.
+  Hal ini karena ESP8266 menggunakan _bautrate_ tersebut untuk menampilkan
+  _debug info_ saat startup. Jika tidak maka IDE akan mengeluarkan _gibberish
+  text_. [selengkapnya](http://cholla.mmto.org/esp8266/weird_baud/)
+</Callout>
 
 ```c
 void setup(){
-  // Samakan pada settingan IDE
   Serial.begin(74880);
 
   Serial.println("Hello World!");
