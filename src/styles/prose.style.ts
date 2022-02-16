@@ -318,10 +318,7 @@ const prose = css({
           fontSize: em(16, 18)
         },
         pre: {
-          my: em(20, 12),
-          borderRadius: rem(4),
-          px: em(12, 12),
-          py: em(8, 12)
+          my: em(20, 12)
         },
         ol: {
           my: em(16, 14),
@@ -464,10 +461,7 @@ const prose = css({
           fontSize: em(18, 20)
         },
         pre: {
-          my: em(24, 14),
-          borderRadius: rem(6),
-          px: em(16, 14),
-          py: em(12, 14)
+          my: em(24, 14)
         },
         ol: {
           my: em(20, 16),
@@ -609,10 +603,7 @@ const prose = css({
           fontSize: em(21, 24)
         },
         pre: {
-          my: em(32, 16),
-          borderRadius: rem(6),
-          px: em(24, 16),
-          py: em(16, 16)
+          my: em(32, 16)
         },
         ol: {
           my: em(24, 18),
@@ -754,10 +745,7 @@ const prose = css({
           fontSize: em(27, 30)
         },
         pre: {
-          my: em(36, 18),
-          borderRadius: rem(8),
-          px: em(24, 18),
-          py: em(20, 18)
+          my: em(36, 18)
         },
         ol: {
           my: em(24, 20),
@@ -899,10 +887,7 @@ const prose = css({
           fontSize: em(32, 36)
         },
         pre: {
-          my: em(40, 20),
-          borderRadius: rem(8),
-          px: em(32, 20),
-          py: em(24, 20)
+          my: em(40, 20)
         },
         ol: {
           my: em(32, 24),
