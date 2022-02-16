@@ -2,10 +2,26 @@ import { useState } from 'react'
 import config from '~/config'
 import { availableTheme, ThemeName } from '~/styles/themes'
 
+const setLocalStorage = (key: string, value: string) => {
+  if (typeof window !== 'undefined') {
+    window.localStorage.setItem(key, value)
+  }
+}
+
+const getLocalStorage = <T extends string | null>(key: string) => {
+  if (typeof window !== 'undefined') {
+    return <T>window.localStorage.getItem(key)
+  }
+
+  return null
+}
+
 const getSavedTheme = (): ThemeName | null => {
   try {
-    const savedTheme = window.localStorage.getItem('theme') as ThemeName | null
-    return savedTheme && availableTheme.includes(savedTheme) ? savedTheme : null
+    const savedTheme = getLocalStorage<ThemeName>('theme')
+    const isValid = savedTheme && availableTheme.includes(savedTheme)
+
+    return isValid ? savedTheme : null
   } catch (e) {
     // When Chrome in incognito, localStorage cannot be accessed
     console.warn(e)
@@ -15,7 +31,7 @@ const getSavedTheme = (): ThemeName | null => {
 
 const saveTheme = (theme: ThemeName) => {
   try {
-    window.localStorage.setItem('theme', theme)
+    setLocalStorage('theme', theme)
   } catch (e) {
     console.log(e)
   }
