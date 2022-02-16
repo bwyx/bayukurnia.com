@@ -4,7 +4,11 @@ import themes from '~/styles/themes'
 const prism = css({
   overflowX: 'auto',
   lineHeight: 1,
+  borderRadius: '$lg',
   code: {
+    display: 'block',
+    width: 'fit-content',
+    minWidth: '100%',
     background: 'none',
     fontFamily: '$mono',
     direction: 'ltr',
@@ -19,8 +23,35 @@ const prism = css({
     WebkitHyphens: 'none',
     MozHyphens: 'none',
     msHyphens: 'none',
-    hyphens: 'none'
+    hyphens: 'none',
+    py: '$4'
   },
+
+  // Code Highlight Styles
+  // Fallback variables
+  '$$prism-line-inserted': 'rgba(16, 185, 129, 0.2)',
+  '$$prism-line-deleted': 'rgba(239, 68, 68, 0.2)',
+
+  '$$prism-prefix-inserted': 'rgba(16, 185, 129, 1)',
+  '$$prism-prefix-deleted': 'rgba(239, 68, 68, 1)',
+  '$$prism-line-highlight': 'rgb($rgb$accent / 0.075)',
+
+  '$$prism-line-number': '#888',
+
+  '.code-line': { display: 'block', pl: '$4', pr: '$6' },
+  '.code-line.inserted': { backgroundColor: '$$prism-line-inserted' },
+  '.code-line.deleted': { backgroundColor: '$$prism-line-deleted' },
+  '.highlight-line': { backgroundColor: '$$prism-line-highlight' },
+  '.line-number::before': {
+    pr: '$4',
+    color: '$$prism-line-number',
+    display: 'inline-block',
+    textAlign: 'right',
+    content: 'attr(line)'
+  },
+  '.token.prefix': { padding: '0 0.5em' },
+  '.token.prefix.inserted': { color: '$$prism-prefix-inserted' },
+  '.token.prefix.deleted': { color: '$$prism-prefix-deleted' },
 
   variants: {
     theme: {
@@ -31,6 +62,14 @@ const prism = css({
 
           '$$prism-fg-selection': '#fbf1c7',
           '$$prism-bg-selection': '#7c6f64',
+
+          '$$prism-line-inserted': 'rgba(184, 187, 38, 0.2)',
+          '$$prism-line-deleted': 'rgba(251, 73, 52, 0.2)',
+
+          '$$prism-prefix-inserted': 'rgba(184, 187, 38, 1)',
+          '$$prism-prefix-deleted': 'rgba(251, 73, 52, 1)',
+
+          '$$prism-line-number': 'rgba(168, 153, 132, 0.3)',
 
           $$syntax1: '#a89984',
           $$syntax2: '#fb4934',
@@ -45,6 +84,14 @@ const prism = css({
 
           '$$prism-fg-selection': '#282828',
           '$$prism-bg-selection': '#a89984',
+
+          '$$prism-line-inserted': 'rgba(121, 116, 3, 0.2)',
+          '$$prism-line-deleted': 'rgba(157, 0, 6, 0.2)',
+
+          '$$prism-prefix-inserted': 'rgba(121, 116, 3, 1)',
+          '$$prism-prefix-deleted': 'rgba(157, 0, 6, 1)',
+
+          '$$prism-line-number': 'rgba(124, 111, 100, 0.3)',
 
           $$syntax1: '#7c6f64',
           $$syntax2: '#9d0006',
@@ -92,9 +139,9 @@ const prism = css({
         '.token.function': { color: '$$syntax3' },
         '.token.regex': { background: '$$syntax5' },
         '.token.bold': { fontWeight: 'bold' },
-        '.token.italic': { fontStyle: 'italic' },
-        '.token.inserted': { background: '$$syntax1' },
-        '.token.deleted': { background: '$$syntax2' }
+        '.token.italic': { fontStyle: 'italic' }
+        // '.token.inserted': { background: '$$syntax1' },
+        // '.token.deleted': { background: '$$syntax2' }
       }
     }
   }
