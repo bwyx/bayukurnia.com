@@ -5,13 +5,17 @@ publishedAt: 2022-01-09
 cover: hello-esp8266.png
 ---
 
-> Hal besar berawal dari sebuah hello world
+> Hal besar selalu berawal dari sebuah hello world
 
-Tiada hari tanpa _hello world_. Saya akan mencoba untuk menjalankan _hello world_ pada beberapa protocol yang akan sering digunakan dalam pengembangan IoT.
+Saya akan mencoba untuk menjalankan _hello world_ pada beberapa protokol yang akan sering digunakan dalam pengembangan IoT dengan board ESP8266.
 
 - Serial
 - Web Server (_HTTP_, _SSE_, _WebSocket_)
 - MQTT
+
+<span style={{ fontSize: '0.75em' }}>
+  _NB: Saya menggunakan [PlatformIO](https://platformio.org/) di VS Code._
+</span>
 
 ## Serial
 
@@ -19,16 +23,12 @@ Serial akan paling sering digunakan, karena ini seperti halnya `console` di Java
 
 Bedanya di Serial tidak ada fitur seperti `console.time()` , `console.table()` atau hal _fancy_ javascript lainnya karena di Serial hanya bisa output plain text aja.
 
-Untuk menggukanannya bisa langsung dengan menggunakan `Serial.print()` atau `Serial.println()` untuk ouput dengan akhiran `/n` (_line break_). Hal yang perlu diperhatikan adalah bahwa Serial butuh `Serial.begin()` pada block setup dengan parameter `baudrate` berupa angka (samakan dengan settingan IDE).
+Untuk menggukanannya bisa langsung dengan menggunakan:
 
-<Callout type="info">
-  Sebagai catatan, pada board berbasis ESP8266 gunakan `74880` pada `baudrate`.
-  Hal ini karena ESP8266 menggunakan _bautrate_ tersebut untuk menampilkan
-  _debug info_ saat startup. Jika tidak maka IDE akan mengeluarkan _gibberish
-  text_. [selengkapnya](http://cholla.mmto.org/esp8266/weird_baud/)
-</Callout>
+- `Serial.print()` atau
+- `Serial.println()` untuk ouput dengan _line break_
 
-```c
+```ino
 void setup(){
   Serial.begin(74880);
 
@@ -42,6 +42,54 @@ void main(){
 }
 ```
 
+Hal yang perlu diperhatikan adalah bahwa Serial butuh `Serial.begin()` pada block setup dengan parameter `baudrate` berupa angka (samakan dengan settingan IDE).
+
+<Callout type="info">
+  Sebagai catatan, pada board berbasis ESP8266 gunakan `74880` pada `baudrate`.
+  Hal ini karena ESP8266 menggunakan _baut rate_ tersebut untuk menampilkan
+  _debug info_ saat startup. Jika tidak maka IDE akan mengeluarkan karakter
+  non-utf-8 atau disebut _gibberish text_.
+  [selengkapnya](http://cholla.mmto.org/esp8266/weird_baud/)
+</Callout>
+
 ## Web Server
 
-Kita akan menggunakan [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)
+Saya menggunakan [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer) karena library ini menerapkan konsep _asynchronous_, jadi tidak membebani main loop dan juga karena sudah support _SSE_ dan _WebSocket_.
+
+#### Install Library
+
+```diff
+// platformio.ini
+
+[env:development]
+platform = espressif8266
+board = nodemcuv2
+framework = arduino
++lib_deps = ottowinter/ESPAsyncWebServer-esphome@^2.1.0
+```
+
+```ino {1-3,14-18} showLineNumbers
+#include <ESPAsyncWebServer.h>
+
+AsyncWebServer server(80);
+
+void setup() {
+    Serial.begin(74880);
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+        Serial.printf("WiFi Failed!\n");
+        return;
+    }
+
+    server.on("/hello", HTTP_GET, [](AsyncWebServerRequest *request) {
+        request->send(200, "text/plain", "Hello World!");
+    });
+
+    server.begin();
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+}
+```
