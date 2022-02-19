@@ -34,14 +34,12 @@ const prism = css({
 
   '$$prism-prefix-inserted': 'rgba(16, 185, 129, 1)',
   '$$prism-prefix-deleted': 'rgba(239, 68, 68, 1)',
-  '$$prism-line-highlight': 'rgb($rgb$accent / 0.075)',
 
   '$$prism-line-number': '#888',
 
   '.code-line': { display: 'block', pl: '$4', pr: '$6' },
   '.code-line.inserted': { backgroundColor: '$$prism-line-inserted' },
   '.code-line.deleted': { backgroundColor: '$$prism-line-deleted' },
-  '.highlight-line': { backgroundColor: '$$prism-line-highlight' },
   '.line-number::before': {
     pr: '$4',
     color: '$$prism-line-number',
@@ -58,6 +56,7 @@ const prism = css({
       gruvbox: {
         [`.${themes.dark} &`]: {
           '$$prism-fg': '#ebdbb2',
+          '$$prism-fg-dimm': 'rgba(235, 219, 178, 0.5)',
           '$$prism-bg': '#1d2021',
 
           '$$prism-fg-selection': '#fbf1c7',
@@ -80,6 +79,7 @@ const prism = css({
 
         [`.${themes.light} &`]: {
           '$$prism-fg': '#3c3836',
+          '$$prism-fg-dimm': 'rgba(60, 56, 54, 0.5)',
           '$$prism-bg': 'rgb($rgb$brand / 0.05)',
 
           '$$prism-fg-selection': '#282828',
@@ -100,7 +100,7 @@ const prism = css({
           $$syntax5: '#797403'
         },
 
-        color: '$$prism-fg',
+        color: '$$prism-fg-dimm',
         background: '$$prism-bg',
 
         // Selection; note: don't combine -moz prefix, it'll break the on non-Firefox browsers
@@ -115,31 +115,36 @@ const prism = css({
             background: '$$prism-bg-selection'
           },
 
-        // Tokens
-        '.token.comment, .token.prolog, .token.cdata': { color: '$$syntax1' },
-        '.token.delimiter, .token.boolean, .token.keyword, .token.selector, .token.important, .token.atrule':
-          {
+        '.highlight-line': {
+          color: '$$prism-fg',
+
+          // Tokens
+          '.token.comment, .token.prolog, .token.cdata': { color: '$$syntax1' },
+          '.token.delimiter, .token.boolean, .token.keyword, .token.selector, .token.important, .token.atrule':
+            {
+              color: '$$syntax2'
+            },
+          '.token.operator, .token.punctuation, .token.attr-name': {
+            color: '$$syntax1'
+          },
+          '.token.tag, .token.tag .punctuation, .token.doctype, .token.builtin':
+            {
+              color: '$$syntax3'
+            },
+          '.token.entity, .token.number, .token.symbol': { color: '$$syntax4' },
+          '.token.property, .token.constant, .token.variable': {
             color: '$$syntax2'
           },
-        '.token.operator, .token.punctuation, .token.attr-name': {
-          color: '$$syntax1'
-        },
-        '.token.tag, .token.tag .punctuation, .token.doctype, .token.builtin': {
-          color: '$$syntax3'
-        },
-        '.token.entity, .token.number, .token.symbol': { color: '$$syntax4' },
-        '.token.property, .token.constant, .token.variable': {
-          color: '$$syntax2'
-        },
-        '.token.string, .token.char': { color: '$$syntax5' },
-        '.token.attr-value, .token.attr-value .punctuation': {
-          color: '$$syntax1'
-        },
-        '.token.url': { color: '$$syntax5', textDecoration: 'underline' },
-        '.token.function': { color: '$$syntax3' },
-        '.token.regex': { background: '$$syntax5' },
-        '.token.bold': { fontWeight: 'bold' },
-        '.token.italic': { fontStyle: 'italic' }
+          '.token.string, .token.char': { color: '$$syntax5' },
+          '.token.attr-value, .token.attr-value .punctuation': {
+            color: '$$syntax1'
+          },
+          '.token.url': { color: '$$syntax5', textDecoration: 'underline' },
+          '.token.function': { color: '$$syntax3' },
+          '.token.regex': { background: '$$syntax5' },
+          '.token.bold': { fontWeight: 'bold' },
+          '.token.italic': { fontStyle: 'italic' }
+        }
         // '.token.inserted': { background: '$$syntax1' },
         // '.token.deleted': { background: '$$syntax2' }
       }
