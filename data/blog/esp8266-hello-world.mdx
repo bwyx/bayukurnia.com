@@ -13,9 +13,9 @@ Saya akan mencoba untuk menjalankan _hello world_ pada beberapa protokol yang ak
 - Web Server (_HTTP_, _SSE_, _WebSocket_)
 - MQTT
 
-<span style={{ fontSize: '0.75em' }}>
-  _NB: Saya menggunakan [PlatformIO](https://platformio.org/) di VS Code._
-</span>
+<Text as="p" size={{ '@initial': 'xs', '@sm': 'sm' }} css={{ opacity: 0.5 }}>
+  <em>*Saya menggunakan [PlatformIO](https://platformio.org/) di VS Code.</em>
+</Text>
 
 ## Serial
 
@@ -28,7 +28,7 @@ Untuk menggukanannya bisa langsung dengan menggunakan:
 - `Serial.print()` atau
 - `Serial.println()` untuk ouput dengan _line break_
 
-```ino
+```ino {1-11}
 void setup(){
   Serial.begin(74880);
 
@@ -58,7 +58,7 @@ Saya menggunakan [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebSer
 
 #### Install Library
 
-```diff
+```diff {7}
 // platformio.ini
 
 [env:development]
@@ -68,13 +68,15 @@ framework = arduino
 +lib_deps = ottowinter/ESPAsyncWebServer-esphome@^2.1.0
 ```
 
-```ino {1-3,14-18} showLineNumbers
+```ino {1-3,14-20} showLineNumbers
 #include <ESPAsyncWebServer.h>
 
 AsyncWebServer server(80);
 
 void setup() {
     Serial.begin(74880);
+
+    // Connect ke WiFi
     WiFi.mode(WIFI_STA);
     WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
     if (WiFi.waitForConnectResult() != WL_CONNECTED) {
@@ -90,6 +92,6 @@ void setup() {
 }
 
 void loop() {
-    // put your main code here, to run repeatedly:
+    // server tidak berjalan pada main loop
 }
 ```
