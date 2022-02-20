@@ -14,10 +14,7 @@ export default class Document extends NextDocument {
             type="font/woff2"
             crossOrigin="true"
           />
-          <style
-            id="stitches"
-            dangerouslySetInnerHTML={{ __html: getCssText() }}
-          />
+          <style dangerouslySetInnerHTML={{ __html: getCssText() }} />
         </Head>
         <body>
           <Main />
