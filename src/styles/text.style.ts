@@ -49,6 +49,13 @@ const text = css({
       wide: { letterSpacing: '$wide' },
       wider: { letterSpacing: '$wider' },
       widest: { letterSpacing: '$widest' }
+    },
+    ellipsis: {
+      true: {
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap'
+      }
     }
   }
 })
