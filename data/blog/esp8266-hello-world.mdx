@@ -7,26 +7,41 @@ cover: hello-esp8266.png
 
 > Hal besar selalu berawal dari sebuah hello world
 
-Saya akan mencoba untuk menjalankan _hello world_ pada beberapa protokol yang akan sering digunakan dalam pengembangan IoT dengan board ESP8266.
+Bayangkan jika tidak pernah terjadi _hello world_; tidak ada bigbang, tidak ada ikan yang melompat ke darat, tidak ada dinosaurus yang punah, tidak ada monyet yang berjalan tegap, tidak ada peradaban, tidak ada tulisan yang tidak ada kaitannya dengan judul ini. _Maaf cuman ngetest GitHub Copilot, kan enak ngeblog cuma pencet tab ehehe.._
+
+Oke,..
+
+Saya akan mencoba untuk menjalankan _hello world_ pada beberapa protokol yang <s>sering digunakan dalam pengembangan IoT</s> saya tahu dengan board ESP8266.
 
 - Serial
 - Web Server (_HTTP_, _SSE_, _WebSocket_)
 - MQTT
 
-<Text as="p" size={{ '@initial': 'xs', '@sm': 'sm' }} css={{ opacity: 0.5 }}>
-  <em>*Saya menggunakan [PlatformIO](https://platformio.org/) di VS Code.</em>
-</Text>
+<Text
+  as="p"
+  size={{ '@initial': 'xs', '@sm': 'sm' }}
+  css={{ opacity: 0.5 }}
+  children={
+    <em>
+      *Saya menggunakan <a href="https://platformio.org">PlatformIO</a> di VS
+      Code dan framework Arduino
+    </em>
+  }
+/>
 
 ## Serial
 
-Serial akan paling sering digunakan, karena ini seperti halnya `console` di Javascript yang sangat berguna untuk tahap development dan debugging.
+Serial akan paling sering digunakan, karena ini seperti halnya `console` di JavaScript yang sangat berguna untuk tahap development dan debugging, dan juga untuk upload firmware/data ke MCU.
 
-Bedanya di Serial tidak ada fitur seperti `console.time()` , `console.table()` atau hal _fancy_ javascript lainnya karena di Serial hanya bisa output plain text aja.
+Bedanya di Serial tidak ada fitur seperti `console.time()`, `console.table()` atau hal _fancy_ JavaScript lainnya karena di Serial hanya bisa output plain text aja.
 
-Untuk menggukanannya bisa langsung dengan menggunakan:
+Ada beberapa board yang tidak support Serial dikarenakan beberapa faktor, misal ESP-01 yang tidak ada interface USB; untuk menggunakan Serial pada board tersebut harus menggunakan modul adapter _UART_ [seperti ini](https://www.tokopedia.com/cncstorejogja/cnc-ftdi-ft232rl-ft232-usb-to-ttl-serial-converter-adapter-module). Kapan-kapan saya akan tulis hal tersebut.
 
-- `Serial.print()` atau
-- `Serial.println()` untuk ouput dengan _line break_
+Untuk menggukanannya bisa langsung dengan fn berikut pada object `Serial`:
+
+- `print()` atau
+- `println()` untuk ouput dengan _line break_
+- `printf()` untuk output dengan [specifier format](http://www.cplusplus.com/reference/cstdio/printf/)
 
 ```ino {1-11}
 void setup(){
@@ -36,19 +51,17 @@ void setup(){
 }
 
 void main(){
-  // print Hello World pada main loop setiap 100ms
-  Serial.println("Hello World!");
-  delay(100)
+  Serial.printf("Seconds since boot: %lu", millis() / 1000);
+  delay(1000)
 }
 ```
 
-Hal yang perlu diperhatikan adalah bahwa Serial butuh `Serial.begin()` pada block setup dengan parameter `baudrate` berupa angka (samakan dengan settingan IDE).
+Hal yang perlu diperhatikan adalah bahwa Serial butuh `Serial.begin()` pada block setup dengan parameter `baudrate` berupa angka yang harus disamakan dengan settingan IDE, Jika mismatch maka IDE akan mengeluarkan karakter _non-utf-8_ atau disebut _gibberish text_.
 
 <Callout type="info">
   Sebagai catatan, pada board berbasis ESP8266 gunakan `74880` pada `baudrate`.
   Hal ini karena ESP8266 menggunakan _baut rate_ tersebut untuk menampilkan
-  _debug info_ saat startup. Jika tidak maka IDE akan mengeluarkan karakter
-  non-utf-8 atau disebut _gibberish text_.
+  _debug info_ saat startup.
   [selengkapnya](http://cholla.mmto.org/esp8266/weird_baud/)
 </Callout>
 
@@ -56,7 +69,9 @@ Hal yang perlu diperhatikan adalah bahwa Serial butuh `Serial.begin()` pada bloc
 
 Saya menggunakan [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer) karena library ini menerapkan konsep _asynchronous_, jadi tidak membebani main loop dan juga karena sudah support _SSE_ dan _WebSocket_.
 
-#### Install Library
+Disini saya hanya fokus pada Web Server, untuk hal lain seperti WiFi akan saya tulis di lain waktu.
+
+### Install Library
 
 ```diff {7}
 // platformio.ini
@@ -68,8 +83,30 @@ framework = arduino
 +lib_deps = ottowinter/ESPAsyncWebServer-esphome@^2.1.0
 ```
 
-```ino {1-3,16-20} showLineNumbers
+<Text
+  as="p"
+  size={{ '@initial': 'xs', '@sm': 'sm' }}
+  css={{ opacity: 0.5 }}
+  children={
+    <em>
+      *<strong>ESPAsyncWebServer-esphome</strong> merupakan mirror fork dari
+      repo asli, hanya saja package tersebut lebih update di PlatformIO.
+    </em>
+  }
+/>
+
+### Usage
+
+Pastikan ESP dapat connect ke jaringan WiFi dan mendapatkan IP address. Oiya, contoh lengkap sudah ada pada halaman repository [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer).
+
+#### Basic HTTP Web Server
+
+Web Server ini akan menjadi dasar untuk SSE dan WebSocket.
+
+```ino {1,5,18-22} showLineNumbers
 #include <ESPAsyncWebServer.h>
+
+#include "config.h"
 
 AsyncWebServer server(80);
 
@@ -95,3 +132,239 @@ void loop() {
     // server tidak berjalan pada main loop
 }
 ```
+
+Akan saya sedikit jelaskan kode di atas,..
+
+Pertama include library-nya, lalu buat instance `AsyncWebServer` baru dengan parameter `port` yang akan digunakan, disini saya buat bernama `server` menggunakan port default HTTP: `80`.
+
+Lalu pada block `setup()`, register handler untuk:
+
+- URL `/hello`
+- method `HTTP_GET`
+
+dengan response:
+
+- mimetype `text/plain`
+- content `Hello World!`
+
+Terakhir kita jalankan server dengan invoke `server.begin()`.
+
+Karena library ini full _asynchronous_, maka tidak perlu menggunakan `loop()` untuk menjalankan server. Semua event berjalan berdasarkan callback yang sudah disediakan oleh library.
+
+Setelah upload program tersebut, coba buka browser dan akses URL `http://<ip_esp>/hello` maka akan muncul response text: **Hello World!**
+
+##### **Static File Serving**
+
+Jika ingin menjalankan server dengan file statis, seperti HTML, CSS, JavaScript, atau image bisa menggunakan `AsyncWebServer::serveStatic()`.
+
+buat file `index.html`:
+
+```html {3-11}
+// {projectRoot}/data/www/index.html
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ESP8266</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+  </body>
+</html>
+```
+
+Ada 2 pilihan filesystem yang bisa digunakan; SPIFFS dan LittleFS. Gunakan LittleFS karena SPIFFS sudah tidak didukung lagi, hanya tinggal menunggu waktu.
+
+```diff {8}
+// platformio.ini
+
+[env:development]
+platform = espressif8266
+board = nodemcuv2
+framework = arduino
+lib_deps = ottowinter/ESPAsyncWebServer-esphome@^2.1.0
++board_build.filesystem = littlefs
+```
+
+upload file yang ada di folder data ke MCU:
+
+```shell-session {1}
+$ pio run -t uploadfs
+```
+
+Ada sedikit tambahan untuk menjalankan server dengan file statis.
+
+```ino {1,4,6}
+#include <LittleFS.h>
+...
+setup() {
+  LittleFS.begin();
+  ...
+  server.serveStatic("/", LittleFS, "/www/").setDefaultFile("index.html");
+  ...
+  server.begin()
+}
+```
+
+#### SSE (Server Sent Events)
+
+SSE adalah protokol satu arah dimana server dapat mengirimkan data dalam sebuah event ke client kapanpun server mau, tanpa harus menunggu client mengirimkan request. SSE cocok untuk mengirimkan data secara realtime, seperti data dari sensor.
+
+Untuk SSE hanya perlu attach instance `AsyncEventSource` ke `AsyncWebServer` sebagai handler.
+
+```ino {3,7}
+...
+AsyncWebServer server(80);
+AsyncEventSource events("/events");
+
+setup() {
+  ...
+  server.addHandler(&events);
+  ...
+  server.begin()
+}
+```
+
+Untuk mengirim pesan, `AsyncEventSource` memiliki method `send()` yang membutuhkan 3 parameter:
+
+- `message` : const char \*
+- `event` : const char \*
+- `id`: uint32_t
+
+Misal kita ingin mengirimkan event `"hello"` dengan pesan `"Hello World!"` dan id generated dari `millis()`:
+
+```ino {1}
+events.send("Hello World!", "hello", millis());
+```
+
+Pada sisi client kita harus buat instance `EventSource` dengan endpoint yang sama dengan `AsyncEventSource` tadi. Contoh minimal JavaScript di sisi client:
+
+```js {2,22-28}
+if (!!window.EventSource) {
+  const source = new EventSource('/events')
+
+  source.addEventListener(
+    'open',
+    function (e) {
+      console.log('Events Connected')
+    },
+    false
+  )
+
+  source.addEventListener(
+    'error',
+    function (e) {
+      if (e.target.readyState != EventSource.OPEN) {
+        console.log('Events Disconnected')
+      }
+    },
+    false
+  )
+
+  source.addEventListener(
+    'hello',
+    function (e) {
+      console.log('message:', e.data)
+    },
+    false
+  )
+}
+```
+
+contoh lengkap SSE dengan event waktu booting ESP:
+
+<Tab initialTab={1}>
+  <Tab.Item title="src/main.cpp">
+
+```ino {1-39} showLineNumbers
+#include <ESPAsyncWebServer.h>
+#include <LittleFS.h>
+
+#include "config.h"
+
+AsyncWebServer server(80);
+AsyncEventSource events("/events");
+
+void setup() {
+    Serial.begin(74880);
+    // start file system
+    LittleFS.begin();
+
+    // connect to WiFi
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    if (WiFi.waitForConnectResult() != WL_CONNECTED) {
+        Serial.printf("WiFi Failed!\n");
+        return;
+    }
+
+    // attach SSE handler
+    server.addHandler(&events);
+
+    // serve static files
+    server.serveStatic("/", LittleFS, "/www/").setDefaultFile("index.html");
+
+    // start the server
+    server.begin();
+}
+
+void loop() {
+    // send SSE event every second
+    static char temp[128];
+    sprintf(temp, "Seconds since boot: %lu", millis() / 1000);
+
+    events.send(temp, "time", millis() / 1000);
+    delay(1000);
+}
+```
+
+</Tab.Item>
+
+<Tab.Item title="data/www/index.html">
+```html {1-42} showLineNumbers
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>SSE Test ESP8266</title>
+  </head>
+  <body>
+    <p>press F12 to open devtool.</p>
+    <script>
+      if (!!window.EventSource) {
+        const source = new EventSource('/events')
+
+        source.addEventListener(
+          'open',
+          function (e) {
+            console.log('Events Connected')
+          },
+          false
+        )
+
+        source.addEventListener(
+          'error',
+          function (e) {
+            if (e.target.readyState != EventSource.OPEN) {
+              console.log('Events Disconnected')
+            }
+          },
+          false
+        )
+
+        source.addEventListener(
+          'time',
+          function (e) {
+            console.log({ timeMessage: e.data })
+          },
+          false
+        )
+      }
+    </script>
+
+  </body>
+</html>
+```
+
+</Tab.Item>
+</Tab>
