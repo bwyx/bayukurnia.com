@@ -1,5 +1,6 @@
 import React from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
+import { ScrollArea } from '~/components'
 
 import { css } from '~/styles'
 import stack from '~/styles/stack.style'
@@ -36,8 +37,6 @@ const styles = {
     }
   }),
   tabContent: css({
-    maxHeight: '$xl',
-    overflowY: 'auto',
     borderRadius: '$lg',
     'pre:first-child': {
       borderRadius: 0,
@@ -76,7 +75,7 @@ const Tab = ({ children, defaultTab = 0 }: TabProps) => {
               key={i}
               className={styles.tabContent}
             >
-              {child.props.children}
+              <ScrollArea height="50vh">{child.props.children}</ScrollArea>
             </Tabs.Content>
           )
         }
