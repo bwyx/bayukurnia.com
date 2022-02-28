@@ -179,7 +179,7 @@ const NowPlaying = () => {
             <Image
               unoptimized
               src={music.cover}
-              alt=""
+              alt={`[${music.title}] Cover Album`}
               width={42}
               height={42}
             />
@@ -219,7 +219,9 @@ const NowPlaying = () => {
               <span className={`${artists} play`}>Play on Spotify</span>
             </>
           ) : (
-            <span className={artists}>Not Playing</span>
+            <span className={artists}>
+              {!music ? 'Loading...' : 'Not Playing'}
+            </span>
           )}
         </div>
       </div>
