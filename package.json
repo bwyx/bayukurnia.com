@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-tabs": "^0.1.5",
     "@stitches/core": "^1.2.6",
     "contentlayer": "^0.1.0",
     "date-fns": "^2.28.0",
