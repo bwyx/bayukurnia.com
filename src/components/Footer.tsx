@@ -1,3 +1,5 @@
+import { NowPlaying } from '~/components'
+
 import { css } from '~/styles'
 import stack from '~/styles/stack.style'
 
@@ -9,6 +11,7 @@ const styles = {
       overflow: 'hidden'
     }
   }),
+  nowPlaying: css({ pt: '$32', pb: '$6' })(),
   credit: css({
     padding: '$4',
     fontSize: '0.8rem',
@@ -19,6 +22,9 @@ const styles = {
 const Footer = () => {
   return (
     <footer className={styles.footer}>
+      <section className={styles.nowPlaying}>
+        <NowPlaying />
+      </section>
       <p className={styles.credit}>© Bayu Kurnia 2021</p>
     </footer>
   )
