@@ -8,7 +8,7 @@ const handler = async (
   res: NextApiResponse<NowPlayingResponse>
 ) => {
   const music = await getCurrentlyPlaying()
-  if (!music || !music.is_playing) {
+  if (!music || !music.item || !music.is_playing) {
     return res.status(200).json({ isPlaying: false })
   }
 
