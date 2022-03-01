@@ -35,5 +35,6 @@ export const getCurrentlyPlaying = async () => {
 
   const response = await fetch(url, { headers })
 
-  return response.json()
+  if (response.status === 200) return <Record<string, any>>response.json()
+  return null
 }
