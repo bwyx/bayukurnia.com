@@ -1,0 +1,236 @@
+---
+title: 'Integrasi Spotify API di Next.js'
+summary: Menampilkan status spotify di aplikasi Next.js dengan Spotify Web API
+publishedAt: 2022-03-01
+cover: spotify-now-playing.png
+---
+
+> Roti dan selai, bunga dan kumbang, romeo dan juliet, beberapa hal dalam hidup memang ditakdirkan selalu bersama.
+>
+> <cite>~ Dapatkan Premium, Spotify</cite>
+
+Hhhmmm... Spotify.. saya paling suka **Discover Weekly**-nya, karena rekomendasinya berdasarkan musik yang sering kita mainkan jadi banyak musik yang cocok di telinga.
+
+Di Spotify juga ada fitur **Friend activity**, kita bisa lihat musik apa yang sedang didengarkan teman kita. Karena saya <s>ngga punya teman</s> suka berbagi maka saya buat widget status playback Spotify di Next.js, siapa tau pengunjung website ini punya selera musik seperti saya,.. weirdo.
+
+<Text
+  as="p"
+  size={{ '@initial': 'xs', '@sm': 'sm' }}
+  css={{ opacity: 0.5 }}
+  children={
+    <em>
+      NB: Widgetnya sudah terpasang di footer website ini, scroll kebawah poll.
+    </em>
+  }
+/>
+
+Tulisan kali ini hanya meliputi integrasi Spotify API saja, untuk React component akan saya tulis di lain kesempatan.
+
+## Authorization
+
+Ada beberapa flow yang bisa kita pakai, karena kita akan memakai API **tidak** dari client namun dari sisi server Next.js maka kita pakai flow [Authorization Code Flow](https://developer.spotify.com/documentation/general/guides/authorization/code-flow/).
+
+Alasannya karena kita dapat menyimpan `refresh_token` dengan aman tanpa ter-ekspose ke client. Kita akan hit endpoint dari serverlessnya Vercel.
+
+Sebelum melakukan flow tersebut kita diharuskan memiliki sebuah [Spotify App](https://developer.spotify.com/documentation/general/guides/authorization/app-settings/)
+
+### Buat Spotify App
+
+- Kunjungi [Dashboard Developer Spotify](https://developer.spotify.com/dashboard/applications)
+- Buat App baru, klik "Create An App"
+- Di halaman App yang baru saja dibuat klik "Edit Settings"
+- Isi "Redirect URIs" dengan alamat development local, misal `http://localhost:3000/callback`
+- Simpan _Client ID_ dan _Client Secret_ ke Env Next.js
+
+### Mendapatkan `code` Authorization
+
+Silahkan buka URI berikut di browser:
+
+```uri {1}
+https://accounts.spotify.com/authorize?response_type=code&client_id=CLIENT_ID&scope=user-read-currently-playing&redirect_uri=REDIRECT_URI
+```
+
+<Text
+  as="p"
+  size={{ '@initial': 'xs', '@sm': 'sm' }}
+  css={{ opacity: 0.5 }}
+  children={
+    <em>
+      *Sesuaikan CLIENT_ID dan REDIRECT_URI dengan milik kalian, untuk scope
+      selengkapnya dapat dilihat{' '}
+      <a
+        href="https://developer.spotify.com/documentation/general/guides/authorization/scopes/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        disini
+      </a>
+    </em>
+  }
+/>
+
+Setelah terauthentikasi browser akan redirect dengan query `code`:
+
+```uri {1}
+REDIRECT_URI?code=AQC5peqvEd-xxx
+```
+
+`code` authorization tersebut akan kita gunakan untuk mendapatkan `refresh_token`.
+
+### Mendapatkan `refresh_token`
+
+Kita akan membutuhkan `basic_token` berupa base64 dengan format _CLIENT_ID_:_CLIENT_SECRET_.
+
+#### Basic Token
+
+Bisa menggunakan tools seperti [base64encode.org](https://www.base64encode.org/), atau bisa menggunakan script dibawah:
+
+<Tab>
+  <Tab.Item title="shell">
+
+```bash {1}
+BASIC_TOKEN=$(echo "$CLIENT_ID:$CLIENT_SECRET" | base64)
+```
+
+  </Tab.Item>
+  <Tab.Item title="javascript">
+
+```js {1}
+const basicToken = Buffer.from(`${clientId}:${clientSecret}`).toString('base64')
+```
+
+  </Tab.Item>
+</Tab>
+
+#### Refresh Token
+
+Lakukan POST Request ke URI `https://accounts.spotify.com/api/token`:
+
+<Tab initialTab={1}>
+  <Tab.Item title="curl">
+
+```bash {1-4}
+curl -X POST "https://accounts.spotify.com/api/token" \
+     -H "Content-Type" "application/x-www-form-urlencoded"
+     -H "Authorization" "Basic $BASIC_TOKEN"
+     -d "grant_type=authorization_code&code=$CODE&redirect_uri=$REDIRECT_URI"
+```
+
+  </Tab.Item>
+  <Tab.Item title="javascript">
+
+```js {1-20}
+const response = await fetch('https://accounts.spotify.com/api/token', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    Authorization: 'Basic ' + basicToken
+  },
+  body: new URLSearchParams({
+    grant_type: 'authorization_code',
+    code: code,
+    redirect_uri: redirectUri
+  }).toString()
+})
+
+console.log(response.json())
+```
+
+  </Tab.Item>
+</Tab>
+<Text
+  as="p"
+  size={{ '@initial': 'xs', '@sm': 'sm' }}
+  css={{ opacity: 0.5 }}
+  children={<em>*Sesuaikan variable dengan milik kalian</em>}
+/>
+
+Kita akan mendapatkan response berisi `access_token` dan `refresh_token`, silahkan simpan hanya `refresh_token` ke Env aplikasi Next.js
+
+## Membuat API di Next.js
+
+Karena API kita akan berjalan pada platform serverless, maka kita tidak bisa menyimpan `access_token` yang telah kita dapatkan pada request sebelumnya, jadi setiap ada request ke API Next.js kita harus mendapatkan `access_token` baru untuk kemudian melakukan request data ke API Spotify
+
+#### Mendapatkan `access_token`
+
+```js {1-26}
+const clientId = process.env.SPOTIFY_CLIENT_ID
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
+const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN || ''
+
+const basicToken = Buffer.from(`${clientId}:${clientSecret}`).toString('base64')
+
+const getAccessToken = async () => {
+  const url = 'https://accounts.spotify.com/api/token'
+  const headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    Authorization: 'Basic ' + basicToken
+  }
+
+  const formData = new URLSearchParams({
+    grant_type: 'refresh_token',
+    refresh_token: refreshToken
+  })
+
+  const response = await fetch(url, {
+    method: 'POST',
+    body: formData.toString(),
+    headers
+  })
+
+  return response.json()
+}
+```
+
+#### Mendapatkan Status Playback Spotify
+
+```js {1-12}
+const getCurrentlyPlaying = async () => {
+  const { access_token } = await getAccessToken()
+  const url = 'https://api.spotify.com/v1/me/player/currently-playing'
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer ' + access_token
+  }
+
+  const response = await fetch(url, { headers })
+
+  return response.status === 200 ? response.json() : null
+}
+```
+
+### Endpoint Next.js
+
+Silahkan sesuaikan dengan kebutuhan frontend kalian
+
+```js {3-21}
+// pages/api/now-playing.js
+
+import { getCurrentlyPlaying } from '~/lib/spotify'
+
+export default async (req, res) => {
+  const music = await getCurrentlyPlaying()
+
+  // Jika tidak ada musik yang sedang dimainkan
+  if (!music || !music.item || !music.is_playing) {
+    return res.status(200).json({ isPlaying: false })
+  }
+
+  // silahkan sesuaikan kebutuhan frontend kalian
+  res.status(200).json({
+    isPlaying: true,
+    title: music.item.name,
+    artists: music.item.artists.map(({ name }: any) => name).join(', '),
+    spotifyUrl: music.item.external_urls.spotify,
+    cover: music.item.album.images.find(({ height }: any) => height === 64)?.url
+  })
+}
+```
+
+## Kesimpulan
+
+Dengan Next.js kita dapat mudah integrasi ke platform apapun karena platform serverless dan fitur API pages-nya.
+
+Sepertinya goal tulisan ini sudah tercapai, untuk React component akan saya tulis di lain waktu. Jika ada yang penasaran source website ini saya open di [repository github saya](https://github.com/bwyx/bayukurnia.com).
+
+Terimakasih.
