@@ -9,6 +9,7 @@ import text from '~/styles/text.style'
 interface TabProps {
   children: React.ReactNode
   defaultTab?: number
+  height?: string
 }
 
 interface TabItemProps {
@@ -46,7 +47,11 @@ const styles = {
   })()
 }
 
-const Tab = ({ children, defaultTab = 0 }: TabProps) => {
+const Tab = ({
+  children,
+  defaultTab = 0,
+  height = 'fit-content'
+}: TabProps) => {
   if (!Array.isArray(children)) {
     return <div className="Tabs">{children}</div>
   }
@@ -75,7 +80,7 @@ const Tab = ({ children, defaultTab = 0 }: TabProps) => {
               key={i}
               className={styles.tabContent}
             >
-              <ScrollArea height="50vh">{child.props.children}</ScrollArea>
+              <ScrollArea height={height}>{child.props.children}</ScrollArea>
             </Tabs.Content>
           )
         }
