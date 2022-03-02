@@ -143,7 +143,17 @@ const prism = css({
           '.token.function': { color: '$$syntax3' },
           '.token.regex': { background: '$$syntax5' },
           '.token.bold': { fontWeight: 'bold' },
-          '.token.italic': { fontStyle: 'italic' }
+          '.token.italic': { fontStyle: 'italic' },
+
+          // lang-uri START
+          '.token.scheme, .token.authority-delimiter, .token.query-delimiter, .token.pair-delimiter':
+            {
+              color: '$$syntax1'
+            },
+          '.token.path': { color: '$$syntax3' },
+          '.token.pair': { color: '$$syntax4' },
+          '.token.value': { color: '$$syntax5' }
+          // lang-uri END
         }
         // '.token.inserted': { background: '$$syntax1' },
         // '.token.deleted': { background: '$$syntax2' }
