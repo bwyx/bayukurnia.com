@@ -28,8 +28,11 @@ const styles = {
         }
       },
       a: {
+        px: '$4',
+        py: '$5',
+        mx: '-$4',
         xColor: '$fg3',
-        xColorOpacity: 0.6,
+        xColorOpacity: 0.7,
         '&:hover': {
           xColorOpacity: 0.4
         }
