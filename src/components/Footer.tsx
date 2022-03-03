@@ -48,8 +48,11 @@ const styles = {
       '@sm': {
         mt: '$8'
       },
-      'a:hover': {
-        xColor: '$brand'
+      a: {
+        py: '$5',
+        '&:hover': {
+          xColor: '$brand'
+        }
       }
     }
   })
