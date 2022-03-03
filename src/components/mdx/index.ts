@@ -1,4 +1,5 @@
 import Pre from './Pre'
+import Blockquote from './Blockquote'
 import Callout from './Callout'
 import Text from './Text'
 import Tab from './Tab'
@@ -11,6 +12,7 @@ const customComponents = {
 
 const MDXComponents = {
   pre: Pre,
+  blockquote: Blockquote,
   ...customComponents
 }
 
