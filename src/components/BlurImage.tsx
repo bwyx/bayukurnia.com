@@ -1,7 +1,20 @@
-import Image, { ImageProps } from 'next/image'
+import Image from 'next/image'
 import { useState } from 'react'
 
-import styles from '~/styles/components/BlurImage.style'
+import { css } from '~/styles'
+
+import type { ImageProps } from 'next/image'
+
+const styles = {
+  img: css({
+    transitionDuration: '0.5s',
+    transitionTimingFunction: 'ease-in-out'
+  })(),
+  imgBlur: css({
+    willChange: 'transform',
+    transform: 'scale(1.05)'
+  })()
+}
 
 interface Props {
   blurClassName?: string
