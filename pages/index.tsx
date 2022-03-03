@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo'
 import { compareDesc } from 'date-fns'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
@@ -33,6 +34,7 @@ const BlogIndex = ({ posts }: PageProps) => {
         css: { my: '$4' }
       })}
     >
+      <NextSeo title="Home" />
       {posts.map((post, i) => (
         <PostCard key={i} {...post} />
       ))}
