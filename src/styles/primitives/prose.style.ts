@@ -120,20 +120,6 @@ const prose = css({
     borderColor: '$$prose-hr',
     borderTopWidth: 1
   },
-  blockquote: {
-    fontWeight: '500',
-    fontStyle: 'italic',
-    color: '$$prose-quotes',
-    borderLeftWidth: '0.25rem',
-    borderLeftColor: '$$prose-quote-borders',
-    quotes: '"\\201C""\\201D""\\2018""\\2019"'
-  },
-  'blockquote p:first-of-type::before': {
-    content: 'open-quote'
-  },
-  'blockquote p:last-of-type::after': {
-    content: 'close-quote'
-  },
 
   // Headings
   h1: {
@@ -265,8 +251,7 @@ const prose = css({
           my: em(16, 18)
         },
         blockquote: {
-          my: em(24, 18),
-          pl: em(20, 18)
+          my: em(24, 18)
         },
         h1: {
           fontSize: em(30, 14),
@@ -408,8 +393,7 @@ const prose = css({
           my: em(24, 20)
         },
         blockquote: {
-          my: em(32, 20),
-          pl: em(20, 20)
+          my: em(32, 20)
         },
         h1: {
           fontSize: em(36, 16),
@@ -550,8 +534,7 @@ const prose = css({
           my: em(24, 22)
         },
         blockquote: {
-          my: em(40, 24),
-          pl: em(24, 24)
+          my: em(40, 24)
         },
         h1: {
           fontSize: em(48, 18),
@@ -692,8 +675,7 @@ const prose = css({
           my: em(24, 24)
         },
         blockquote: {
-          my: em(48, 30),
-          pl: em(32, 30)
+          my: em(48, 30)
         },
         h1: {
           fontSize: em(56, 20),
@@ -834,8 +816,7 @@ const prose = css({
           my: em(32, 30)
         },
         blockquote: {
-          my: em(64, 36),
-          pl: em(40, 36)
+          my: em(64, 36)
         },
         h1: {
           fontSize: em(64, 24),
