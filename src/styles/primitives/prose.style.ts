@@ -14,7 +14,7 @@ const color = (color: RGBColor) => `rgb($rgb$${color})`
 
 const vars = {
   [`.${themes.dark} &`]: {
-    '$$prose-body': color('text-300'),
+    '$$prose-body': color('text-400'),
     '$$prose-headings': '#fff',
     '$$prose-lead': color('text-400'),
     '$$prose-links': '#fff',
@@ -34,7 +34,7 @@ const vars = {
 
   // Light
   [`.${themes.light} &`]: {
-    '$$prose-body': color('text-700'),
+    '$$prose-body': color('text-600'),
     '$$prose-headings': color('text-900'),
     '$$prose-lead': color('text-600'),
     '$$prose-links': color('text-900'),
