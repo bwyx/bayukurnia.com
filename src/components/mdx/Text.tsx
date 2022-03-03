@@ -1,5 +1,9 @@
 import React from 'react'
-import text, { TextProps } from '~/styles/text.style'
+import { text } from '~/styles/primitives'
+
+import type { VariantProps } from '@stitches/core'
+
+type TextProps = VariantProps<typeof text>
 
 interface Props extends TextProps {
   children: React.ReactNode

@@ -1,5 +1,5 @@
 import React from 'react'
-import prism from '~/styles/prism.style'
+import { prism } from '~/styles/primitives'
 
 const styles = prism({ theme: 'gruvbox' })
 

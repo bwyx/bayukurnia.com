@@ -1,6 +1,6 @@
 import { attachMainLayout } from '~/layouts/Main.layout'
 
-import container from '~/styles/container.style'
+import { container } from '~/styles/primitives'
 
 import { Page } from '~/types/page.type'
 

@@ -1,4 +1,4 @@
-import prose from '~/styles/prose.style'
+import { prose } from '~/styles/primitives'
 
 interface Props {}
 

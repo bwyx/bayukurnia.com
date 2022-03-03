@@ -3,7 +3,7 @@ import { compareDesc } from 'date-fns'
 import { attachMainLayout } from '~/layouts/Main.layout'
 import { PostCard } from '~/components/blog'
 
-import container from '~/styles/container.style'
+import { container } from '~/styles/primitives'
 
 import { pick } from 'contentlayer/client'
 import { allBlogs } from 'contentlayer/generated'

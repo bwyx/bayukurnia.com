@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import { format, parseISO } from 'date-fns'
 
-import stack from '~/styles/stack.style'
-import text from '~/styles/text.style'
+import { stack, text } from '~/styles/primitives'
 
 import type { PostProperties } from '~/types/blog.type'
 

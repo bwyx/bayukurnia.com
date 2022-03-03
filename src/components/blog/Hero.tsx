@@ -5,9 +5,7 @@ import GitHubLogo from '~/components/vectors/GitHubLogo'
 import TwitterLogo from '~/components/vectors/TwitterLogo'
 
 import { css } from '~/styles'
-import container from '~/styles/container.style'
-import text from '~/styles/text.style'
-import stack from '~/styles/stack.style'
+import { container, stack, text } from '~/styles/primitives'
 import themes from '~/styles/themes'
 
 import config from '~/config'

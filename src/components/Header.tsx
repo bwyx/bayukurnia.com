@@ -5,8 +5,7 @@ import { VisuallyHidden, ThemeToggle } from '~/components'
 import Logo from '~/components/vectors/Logo'
 
 import { css } from '~/styles'
-import container from '~/styles/container.style'
-import stack from '~/styles/stack.style'
+import { container, stack } from '~/styles/primitives'
 
 const styles = {
   header: stack({

@@ -1,9 +1,5 @@
 import { css } from '~/styles'
 
-import type { VariantProps } from '@stitches/core'
-
-export type TextProps = VariantProps<typeof text>
-
 const text = css({
   variants: {
     size: {
