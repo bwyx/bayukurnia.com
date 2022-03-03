@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bayukurnia.com
+
+# Sitemaps
+Sitemap: https://bayukurnia.com/sitemap.xml
