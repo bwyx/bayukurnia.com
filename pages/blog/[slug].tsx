@@ -23,7 +23,15 @@ const BlogItem = ({ body, ...post }: PostWithCoverAndBody) => {
         title={post.title}
         description={post.summary}
         canonical={`https://bayukurnia.com/blog/${post.slug}`}
-        openGraph={{ url: `https://bayukurnia.com/blog/${post.slug}` }}
+        openGraph={{
+          url: `https://bayukurnia.com/blog/${post.slug}`,
+          images: [
+            {
+              ...post.cover,
+              url: `https://bayukurnia.com${post.cover.src}`
+            }
+          ]
+        }}
       />
       <Hero {...post} />
       <div className={container({ size: 'small' })}>
