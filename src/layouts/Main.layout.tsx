@@ -1,7 +1,7 @@
 import React from 'react'
 import { Header, Footer } from '~/components'
 
-import stack from '~/styles/stack.style'
+import { stack } from '~/styles/primitives'
 
 const main = stack({
   dir: 'col',

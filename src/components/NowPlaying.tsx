@@ -4,8 +4,7 @@ import useSWR from 'swr'
 import SpotifyLogo from '~/components/vectors/SpotifyLogo'
 
 import { css, keyframes } from '~/styles'
-import stack from '~/styles/stack.style'
-import text from '~/styles/text.style'
+import { stack, text } from '~/styles/primitives'
 
 import type { NowPlayingResponse } from '~/types/spotify.type'
 

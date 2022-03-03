@@ -3,9 +3,7 @@ import Link from 'next/link'
 import { NowPlaying } from '~/components'
 
 import { css } from '~/styles'
-import container from '~/styles/container.style'
-import stack from '~/styles/stack.style'
-import text from '~/styles/text.style'
+import { container, stack, text } from '~/styles/primitives'
 
 const styles = {
   footer: css({

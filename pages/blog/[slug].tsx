@@ -3,7 +3,8 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 import { attachMainLayout } from '~/layouts/Main.layout'
 import { SEO, Article, MDXComponents } from '~/components'
 import { Hero } from '~/components/blog'
-import container from '~/styles/container.style'
+
+import { container } from '~/styles/primitives'
 
 import { pick } from 'contentlayer/client'
 import { allBlogs } from 'contentlayer/generated'

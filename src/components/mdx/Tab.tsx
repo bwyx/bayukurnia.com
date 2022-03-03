@@ -3,8 +3,7 @@ import * as Tabs from '@radix-ui/react-tabs'
 import { ScrollArea } from '~/components'
 
 import { css } from '~/styles'
-import stack from '~/styles/stack.style'
-import text from '~/styles/text.style'
+import { stack, text } from '~/styles/primitives'
 
 interface TabProps {
   children: React.ReactNode
