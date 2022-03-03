@@ -8,29 +8,43 @@ import { container, stack, text } from '~/styles/primitives'
 const styles = {
   footer: css({
     pt: '$32',
-    pb: '$12',
+    pb: '$8',
     overflow: 'hidden'
   })(),
-  links: css({
-    li: {
-      mt: '$6',
-      xColor: '$fg3',
-      xColorOpacity: 0.6,
-      lineHeight: '$none',
-      '&:hover': {
-        xColorOpacity: 0.4
+  links: stack({
+    y: 'top',
+    dir: 'row',
+    grow: true,
+    css: {
+      mt: '$16',
+      '@sm': { mt: '$0' },
+      ul: {
+        flexBasis: '50%'
       },
-      '&:first-child': {
-        mt: '$0'
+      li: {
+        mt: '$6',
+        '&:first-child': {
+          mt: '$0'
+        }
+      },
+      a: {
+        xColor: '$fg3',
+        xColorOpacity: 0.6,
+        '&:hover': {
+          xColorOpacity: 0.4
+        }
       }
     }
-  })(),
+  }),
   credit: text({
     size: 'xs',
     css: {
-      mt: '$8',
+      mt: '$4',
       xColor: '$fg3',
-      xColorOpacity: '0.4'
+      xColorOpacity: '0.4',
+      '@sm': {
+        mt: '$8'
+      }
     }
   })
 }
@@ -39,36 +53,46 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={container({ size: 'small' })}>
-        <section className={stack({ y: 'top', density: 'spaceBetween' })}>
-          <ul className={styles.links}>
-            <li>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-            </li>
-          </ul>
-          <ul className={styles.links}>
-            <li>
-              <a
-                className="github"
-                href="https://github.com/bwyx"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                className="twitter"
-                href="https://twitter.com/0x4b70"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Twitter
-              </a>
-            </li>
-          </ul>
+        <section
+          className={stack({
+            y: 'top',
+            dir: {
+              '@initial': 'col-reverse',
+              '@sm': 'row'
+            }
+          })}
+        >
+          <div className={styles.links}>
+            <ul>
+              <li>
+                <Link href="/">
+                  <a>Home</a>
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <a
+                  className="github"
+                  href="https://github.com/bwyx"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  className="twitter"
+                  href="https://twitter.com/0x4b70"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Twitter
+                </a>
+              </li>
+            </ul>
+          </div>
           <NowPlaying />
         </section>
         <p className={styles.credit}>👻 © Bayu Kurnia</p>
