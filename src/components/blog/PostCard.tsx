@@ -1,38 +1,57 @@
 import Link from 'next/link'
 import { format, parseISO } from 'date-fns'
 
-import { css } from '~/styles'
+import stack from '~/styles/stack.style'
+import text from '~/styles/text.style'
 
 import type { PostProperties } from '~/types/blog.type'
 
 const styles = {
-  outer: css({
-    display: 'flex',
-    flexDirection: 'column',
-    mt: '$4',
-    '&:first-child': {
-      mt: 0
+  outer: stack({
+    dir: 'col',
+    css: {
+      mt: '$2',
+      padding: '$4',
+      borderRadius: '$xl',
+      border: '1px solid transparent',
+      '&:first-child': {
+        mt: 0
+      },
+      '&:hover': {
+        xBackground: '$brand',
+        xBackgroundOpacity: 0.05,
+        borderColor: 'rgb($rgb$brand / 0.1)',
+        h2: {
+          xColor: '$brand'
+        }
+      },
+      '@sm': {
+        padding: '$6'
+      }
     }
-  })(),
-  title: css({
-    xColor: '$fg1',
-    fontSize: '$2xl',
-    fontWeight: '$bold',
-    '&:hover': {
-      xColor: '$brand'
+  }),
+  title: text({
+    weight: 'bold',
+    leading: 'snug',
+    size: {
+      '@initial': 'xl',
+      '@sm': '2xl'
     },
-    '@sm': {
-      fontSize: '$3xl'
-    }
-  })(),
-  summary: css({
-    xColor: '$fg3'
-  })(),
-  publishedAt: css({
-    xColor: '$fg3',
-    fontSize: '$sm',
-    fontWeight: '$medium'
-  })()
+    css: { xColor: '$fg1' }
+  }),
+  summary: text({
+    size: 'base',
+    leading: 'relaxed',
+    css: { xColor: '$fg2' }
+  }),
+  publishedAt: text({
+    weight: 'medium',
+    size: {
+      '@initial': 'xs',
+      '@sm': 'sm'
+    },
+    css: { mb: '$2', xColor: '$fg3' }
+  })
 }
 
 const PostCard = ({
@@ -43,17 +62,15 @@ const PostCard = ({
   slug
 }: PostProperties) => {
   return (
-    <article className={styles.outer}>
-      <time className={styles.publishedAt} dateTime={publishedAt}>
-        {format(parseISO(publishedAt), 'LLLL d, yyyy')}
-      </time>
-      <Link href={`/${path}/${slug}`}>
-        <a>
-          <h2 className={styles.title}>{title}</h2>
-        </a>
-      </Link>
-      <p className={styles.summary}>{summary}</p>
-    </article>
+    <Link href={`/${path}/${slug}`}>
+      <a className={styles.outer}>
+        <time className={styles.publishedAt} dateTime={publishedAt}>
+          {format(parseISO(publishedAt), 'LLLL d, yyyy')}
+        </time>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.summary}>{summary}</p>
+      </a>
+    </Link>
   )
 }
 

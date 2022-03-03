@@ -27,7 +27,12 @@ export const getStaticProps: GetStaticProps<PageProps> = () => {
 
 const BlogIndex = ({ posts }: PageProps) => {
   return (
-    <div className={container({ size: 'small' })}>
+    <div
+      className={container({
+        size: 'small',
+        css: { my: '$4' }
+      })}
+    >
       {posts.map((post, i) => (
         <PostCard key={i} {...post} />
       ))}
