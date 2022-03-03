@@ -28,6 +28,7 @@ const styles = {
   outer: css({
     position: 'relative',
     display: 'block',
+    width: 'fit-content',
     '.play': { display: 'none', xColor: '$accent' },
     '&:hover': {
       '.artists': { display: 'none' },
