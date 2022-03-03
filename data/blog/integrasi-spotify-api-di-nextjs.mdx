@@ -83,7 +83,7 @@ Kita akan membutuhkan `basic_token` berupa base64 dengan format _CLIENT_ID_:_CLI
 
 #### Basic Token
 
-Bisa menggunakan tools seperti [base64encode.org](https://www.base64encode.org/), atau bisa menggunakan script dibawah:
+Bisa menggunakan tools seperti [base64encode.org](https://www.base64encode.org/), atau bisa menggunakan command dibawah:
 
 <Tab>
   <Tab.Item title="shell">
@@ -111,8 +111,8 @@ Lakukan POST Request ke URI `https://accounts.spotify.com/api/token`:
 
 ```bash {1-4}
 curl -X POST "https://accounts.spotify.com/api/token" \
-     -H "Content-Type" "application/x-www-form-urlencoded"
-     -H "Authorization" "Basic $BASIC_TOKEN"
+     -H "Content-Type" "application/x-www-form-urlencoded" \
+     -H "Authorization" "Basic $BASIC_TOKEN" \
      -d "grant_type=authorization_code&code=$CODE&redirect_uri=$REDIRECT_URI"
 ```
 
