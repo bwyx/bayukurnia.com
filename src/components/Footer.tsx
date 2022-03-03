@@ -47,6 +47,9 @@ const styles = {
       xColorOpacity: '0.4',
       '@sm': {
         mt: '$8'
+      },
+      'a:hover': {
+        xColor: '$brand'
       }
     }
   })
@@ -98,7 +101,16 @@ const Footer = () => {
           </div>
           <NowPlaying />
         </section>
-        <p className={styles.credit}>👻 © Bayu Kurnia</p>
+        <p className={styles.credit}>
+          <span>👻 © Bayu Kurnia • </span>
+          <a
+            href="https://github.com/bwyx/bayukurnia.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View source code
+          </a>
+        </p>
       </div>
     </footer>
   )
