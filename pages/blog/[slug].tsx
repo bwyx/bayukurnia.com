@@ -1,7 +1,8 @@
+import { NextSeo } from 'next-seo'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { SEO, Article, MDXComponents } from '~/components'
+import { Article, MDXComponents } from '~/components'
 import { Hero } from '~/components/blog'
 
 import { container } from '~/styles/primitives'
@@ -18,7 +19,20 @@ const BlogItem = ({ body, ...post }: PostWithCoverAndBody) => {
 
   return (
     <>
-      <SEO title={post.title} />
+      <NextSeo
+        title={post.title}
+        description={post.summary}
+        canonical={`https://bayukurnia.com/blog/${post.slug}`}
+        openGraph={{
+          url: `https://bayukurnia.com/blog/${post.slug}`,
+          images: [
+            {
+              ...post.cover,
+              url: `https://bayukurnia.com${post.cover.src}`
+            }
+          ]
+        }}
+      />
       <Hero {...post} />
       <div className={container({ size: 'small' })}>
         <Article>

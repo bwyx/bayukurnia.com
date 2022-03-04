@@ -1,4 +1,6 @@
-import SEO from '~/components/SEO'
+import { DefaultSeo } from 'next-seo'
+import SEO from '../next-seo.config'
+
 import { globalStyles } from '~/styles/global.style'
 
 import type { AppProps } from 'next/app'
@@ -14,7 +16,7 @@ function MyApp({ Component, pageProps }: AppLayout) {
 
   return attachLayout(
     <>
-      <SEO />
+      <DefaultSeo {...SEO} />
       <Component {...pageProps} />
     </>
   )
