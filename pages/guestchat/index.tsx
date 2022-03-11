@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
 import { NextSeo } from 'next-seo'
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { TextBubble } from '~/components'
+import { ChatBubble } from '~/components/chat'
 
 import { container, stack } from '~/styles/primitives'
 
@@ -68,7 +67,7 @@ const About: Page = () => {
       <NextSeo title="Guestchat" />
       <div className={stack({ dir: 'col', y: 'bottom', grow: true })}>
         {messages.map((message, i) => (
-          <TextBubble key={i} {...message} />
+          <ChatBubble key={i} {...message} />
         ))}
       </div>
     </div>

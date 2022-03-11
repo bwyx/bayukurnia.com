@@ -32,15 +32,15 @@ const styles = css({
   }
 })
 
-export interface TextBubbleProps {
+export interface ChatBubbleProps {
   text: string
   color: VariantProps<typeof styles>['color']
   time: number
   host?: boolean
 }
 
-const TextBubble = ({ text, time, ...msg }: TextBubbleProps) => {
+const ChatBubble = ({ text, time, ...msg }: ChatBubbleProps) => {
   return <span className={styles({ ...msg })}>{text}</span>
 }
 
-export default TextBubble
+export default ChatBubble
