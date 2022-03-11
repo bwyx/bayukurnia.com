@@ -1,3 +1,3 @@
-import { TextBubbleProps } from '~/components/TextBubble'
+import type { ChatBubbleProps } from '~/components/chat/ChatBubble'
 
-export type Message = TextBubbleProps
+export type Message = ChatBubbleProps
