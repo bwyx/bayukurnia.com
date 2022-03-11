@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 import { compareDesc } from 'date-fns'
 
-import { attachMainLayout } from '~/layouts/Main.layout'
+import { attachMainLayout, MainWrapper } from '~/layouts/Main.layout'
 import { PostCard } from '~/components/blog'
 
 import { container } from '~/styles/primitives'
@@ -28,17 +28,19 @@ export const getStaticProps: GetStaticProps<PageProps> = () => {
 
 const BlogIndex = ({ posts }: PageProps) => {
   return (
-    <div
-      className={container({
-        size: 'small',
-        css: { my: '$4' }
-      })}
-    >
-      <NextSeo title="Home" />
-      {posts.map((post, i) => (
-        <PostCard key={i} {...post} />
-      ))}
-    </div>
+    <MainWrapper>
+      <div
+        className={container({
+          size: 'small',
+          css: { my: '$4' }
+        })}
+      >
+        <NextSeo title="Home" />
+        {posts.map((post, i) => (
+          <PostCard key={i} {...post} />
+        ))}
+      </div>
+    </MainWrapper>
   )
 }
 
