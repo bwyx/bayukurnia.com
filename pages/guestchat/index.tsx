@@ -1,5 +1,5 @@
 import { NextSeo } from 'next-seo'
-import { attachMainLayout } from '~/layouts/Main.layout'
+import { attachMainLayout, MainWrapper } from '~/layouts/Main.layout'
 import { ChatBubble } from '~/components/chat'
 
 import { container, stack } from '~/styles/primitives'
@@ -63,14 +63,16 @@ const messages: Message[] = [
 
 const About: Page = () => {
   return (
-    <div className={`${container({ size: 'small' })} ${stack({ grow: true })}`}>
-      <NextSeo title="Guestchat" />
-      <div className={stack({ dir: 'col', y: 'bottom', grow: true })}>
-        {messages.map((message, i) => (
-          <ChatBubble key={i} {...message} />
-        ))}
+    <MainWrapper>
+      <div className={container({ size: 'small' })} style={{ flexGrow: 1 }}>
+        <NextSeo title="Guestchat" />
+        <div className={stack({ dir: 'col', y: 'bottom', grow: true })}>
+          {messages.map((message, i) => (
+            <ChatBubble key={i} {...message} />
+          ))}
+        </div>
       </div>
-    </div>
+    </MainWrapper>
   )
 }
 

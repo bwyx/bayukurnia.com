@@ -15,10 +15,14 @@ const MainLayout: React.FC = ({ children }) => {
   return (
     <>
       <Header />
-      <main className={main}>{children}</main>
+      {children}
       <Footer />
     </>
   )
+}
+
+export const MainWrapper: React.FC = ({ children }) => {
+  return <main className={main}>{children}</main>
 }
 
 export const attachMainLayout = (page: React.ReactNode) => {
