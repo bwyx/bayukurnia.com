@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { NextSeo } from 'next-seo'
 import useMqtt from '~/hooks/useMqtt'
 
-import { attachMainLayout, MainWrapper } from '~/layouts/Main.layout'
+import { attachMainLayout } from '~/layouts/Main.layout'
 import { ChatBubble, ChatInputForm } from '~/components/chat'
 
 import { container, stack, text } from '~/styles/primitives'
@@ -12,17 +12,54 @@ import config from '~/config'
 import { Page } from '~/types/page.type'
 import { Message, NewMessage } from '~/types/chat.type'
 
-const GuestChat: Page = () => {
-  const anchor = useRef<HTMLDivElement>(null)
-  const { host, username, password } = config.chat
-  const { client, status } = useMqtt('wss://' + host, {
-    username,
-    password
+const styles = {
+  main: stack({ dir: 'col', density: 'spaceBetween', grow: true }),
+  heading: container({
+    size: 'small',
+    css: {
+      pointerEvents: 'none',
+      position: 'sticky',
+      zIndex: 9999,
+      top: 0
+    }
+  }),
+  headingInner: stack({
+    y: 'center',
+    x: 'center',
+    css: {
+      height: 50,
+      '@sm': { height: 60 }
+    }
+  }),
+  title: text({
+    weight: 'bold',
+    css: { mr: '$3' }
+  }),
+  messagesContainer: container({ size: 'small' }),
+  messages: stack({
+    dir: 'col',
+    y: 'bottom',
+    grow: true,
+    css: { minHeight: 'calc(100vh - 250px)' }
+  }),
+  chatInputContainer: container({
+    size: 'small',
+    css: {
+      py: '$4',
+      position: 'sticky',
+      bottom: 0
+    }
   })
+}
+
+const GuestChat: Page = () => {
+  const main = useRef<HTMLDivElement>(null)
+  const { host, username, password } = config.chat
+  const { client, status } = useMqtt('wss://' + host, { username, password })
   const [messages, setMessages] = useState<Message[]>([])
 
   const focusToLastMessage = () => {
-    anchor.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    main.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
   }
 
   const handleOutgoingMessage = (newMessage: NewMessage) => {
@@ -62,48 +99,22 @@ const GuestChat: Page = () => {
       const response = await fetch(`https://${config.chat.host}/history`)
       const messages = await response.json()
       setMessages(messages)
-      focusToLastMessage()
+      setTimeout(() => focusToLastMessage(), 100)
     }
     fetchOldMessages()
   }, [])
 
   return (
-    <>
+    <main ref={main} className={styles.main}>
       <NextSeo
         title="Guestchat"
         additionalLinkTags={[
           { rel: 'preconnect', href: 'https://' + config.chat.host }
         ]}
       />
-      <div
-        className={container({
-          size: 'small',
-          css: {
-            pointerEvents: 'none',
-            position: 'sticky',
-            zIndex: 9999,
-            top: 0
-          }
-        })}
-      >
-        <div
-          className={stack({
-            y: 'center',
-            x: 'center',
-            css: {
-              height: 50,
-              '@sm': { height: 60 }
-            }
-          })}
-        >
-          <h1
-            className={text({
-              weight: 'bold',
-              css: { mr: '$3' }
-            })}
-          >
-            Guestchat
-          </h1>
+      <section className={styles.heading}>
+        <div className={styles.headingInner}>
+          <h1 className={styles.title}>Guestchat</h1>
           <svg
             width="20"
             height="20"
@@ -124,38 +135,18 @@ const GuestChat: Page = () => {
             />
           </svg>
         </div>
-      </div>
-      <MainWrapper>
-        <div
-          className={`${container({ size: 'small' })} ${stack({
-            y: 'bottom',
-            grow: true
-          })}`}
-          style={{
-            minHeight: 'calc(100vh - 250px)'
-          }}
-        >
-          <div className={stack({ dir: 'col', y: 'bottom', grow: true })}>
-            {messages.map((message, i) => (
-              <ChatBubble key={i} {...message} />
-            ))}
-          </div>
+      </section>
+      <section className={styles.messagesContainer}>
+        <div className={styles.messages}>
+          {messages.map((message, i) => (
+            <ChatBubble key={i} {...message} />
+          ))}
         </div>
-      </MainWrapper>
-      <div
-        className={container({
-          size: 'small',
-          css: {
-            py: '$4',
-            position: 'sticky',
-            bottom: 0
-          }
-        })}
-      >
+      </section>
+      <section className={styles.chatInputContainer}>
         <ChatInputForm onSendMessage={handleOutgoingMessage} />
-      </div>
-      <div ref={anchor}></div>
-    </>
+      </section>
+    </main>
   )
 }
 
