@@ -7,4 +7,5 @@ export type NewMessage = Omit<ChatBubbleProps, 'time' | 'host'>
 export type DatedMessages = {
   date: number
   messages: Message[]
+  recentlyMessages?: Message[]
 }[]
