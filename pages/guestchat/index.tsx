@@ -69,7 +69,12 @@ const GuestChat: Page = () => {
 
   return (
     <>
-      <NextSeo title="Guestchat" />
+      <NextSeo
+        title="Guestchat"
+        additionalLinkTags={[
+          { rel: 'preconnect', href: 'https://' + config.chat.host }
+        ]}
+      />
       <div
         className={container({
           size: 'small',
