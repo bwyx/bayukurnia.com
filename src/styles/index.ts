@@ -3,7 +3,7 @@ import { darkTheme, lightTheme } from './themes'
 import type * as Stitches from '@stitches/core'
 
 export type CSS = Stitches.CSS<typeof config>
-type Space = Stitches.ScaleValue<'space'> | `-$${keyof typeof space}`
+type Space = Stitches.ScaleValue<'space'> | `-$${keyof typeof space}` | 'auto'
 type RGBS = keyof typeof darkTheme.rgb & keyof typeof lightTheme.rgb
 type RGB = `$${RGBS}` | Stitches.ScaleValue<'rgb'>
 type Opacity = Stitches.PropertyValue<'opacity'>
