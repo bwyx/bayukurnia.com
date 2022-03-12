@@ -6,20 +6,35 @@ import { stack } from '~/styles/primitives'
 import type { NewMessage } from '~/types/chat.type'
 
 const styles = {
-  form: stack({
-    dir: 'row',
-    y: 'top',
-    css: {
-      margin: '0 auto',
-      maxWidth: '$lg',
-      py: '$4',
-      px: '$4',
-      xBackground: '$bg',
-      border: '1px solid rgb($rgb$bg / 25%)',
-      borderRadius: '$2xl',
-      '@supports (backdrop-filter: saturate(180%) blur(1rem))': {
-        xBackgroundOpacity: 0.6,
-        backdropFilter: 'saturate(180%) blur(1rem)'
+  form: css(stack, {
+    margin: '0 auto',
+    maxWidth: '$lg',
+    py: '$4',
+    px: '$4',
+    xBackground: '$bg',
+    border: '1px solid rgb($rgb$bg / 25%)',
+    borderRadius: '$2xl',
+    '@supports (backdrop-filter: saturate(180%) blur(1rem))': {
+      xBackgroundOpacity: 0.6,
+      backdropFilter: 'saturate(180%) blur(1rem)'
+    },
+
+    $$brown: '#a35e37',
+    $$red: '#c14a4a',
+    $$green: '#6c782e',
+    $$yellow: '#b47109',
+    $$blue: '#45707a',
+    $$magenta: '#945e80',
+    $$cyan: '#4c7a5d',
+    variants: {
+      color: {
+        brown: { $$messageColor: '$$brown' },
+        red: { $$messageColor: '$$red' },
+        green: { $$messageColor: '$$green' },
+        yellow: { $$messageColor: '$$yellow' },
+        blue: { $$messageColor: '$$blue' },
+        magenta: { $$messageColor: '$$magenta' },
+        cyan: { $$messageColor: '$$cyan' }
       }
     }
   }),
@@ -30,26 +45,16 @@ const styles = {
     fontSize: '$sm',
     lineHeight: '$snug',
     width: '100%',
+    background: '$$messageColor',
     borderRadius: '$2xl',
     '&::placeholder': { color: 'rgb(255 255 255 / 0.25)' },
-    '@lg': { fontSize: '$base' },
-    variants: {
-      color: {
-        brown: { background: '#654735' },
-        red: { background: '#c14a4a' },
-        green: { background: '#6c782e' },
-        yellow: { background: '#b47109' },
-        blue: { background: '#45707a' },
-        magenta: { background: '#945e80' },
-        cyan: { background: '#4c7a5d' }
-      }
-    }
-  }),
+    '@lg': { fontSize: '$base' }
+  })(),
   button: css({
     height: 38,
-    color: '#c14a4a',
     px: '$3',
     mr: '-$3',
+    color: '$$messageColor',
     '&:hover': {
       opacity: 0.8
     }
@@ -61,13 +66,13 @@ const styles = {
     borderRadius: '$full',
     variants: {
       color: {
-        brown: { background: '#654735' },
-        red: { background: '#c14a4a' },
-        green: { background: '#6c782e' },
-        yellow: { background: '#b47109' },
-        blue: { background: '#45707a' },
-        magenta: { background: '#945e80' },
-        cyan: { background: '#4c7a5d' }
+        brown: { background: '$$brown' },
+        red: { background: '$$red' },
+        green: { background: '$$green' },
+        yellow: { background: '$$yellow' },
+        blue: { background: '$$blue' },
+        magenta: { background: '$$magenta' },
+        cyan: { background: '$$cyan' }
       }
     }
   })
@@ -79,8 +84,8 @@ const colors: NewMessage['color'][] = [
   'cyan',
   'green',
   'yellow',
-  'red',
-  'brown'
+  'brown',
+  'red'
 ]
 
 interface Props {
@@ -99,10 +104,13 @@ const ChatInputForm = ({ onSendMessage }: Props) => {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={styles.form({ color: messageColor })}
+      onSubmit={handleSubmit}
+    >
       <div className={stack({ dir: 'col', grow: true })}>
         <input
-          className={styles.input({ color: messageColor })}
+          className={styles.input}
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}

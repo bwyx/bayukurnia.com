@@ -21,7 +21,7 @@ const styles = css({
       }
     },
     color: {
-      brown: { background: '#654735' },
+      brown: { background: '#a35e37' },
       red: { background: '#c14a4a' },
       green: { background: '#6c782e' },
       yellow: { background: '#b47109' },
