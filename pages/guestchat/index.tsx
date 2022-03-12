@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { NextSeo } from 'next-seo'
-import { formatDistanceToNowStrict, isSameDay } from 'date-fns'
+import { formatDistanceToNowStrict, isSameDay, isThisHour } from 'date-fns'
 import useMqtt from '~/hooks/useMqtt'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
@@ -68,11 +68,25 @@ const GuestChat: Page = () => {
   const { client, status } = useMqtt('wss://' + host, { username, password })
   const [messages, setMessages] = useState<Message[]>([])
   const datedMessages = messages.reduce((acc: DatedMessages, message) => {
+    const date = new Date(message.time).setHours(0, 0, 0, 0)
+    const isRecently = isThisHour(message.time)
     const existingDate = acc.find((acc) => isSameDay(acc.date, message.time))
+
+    if (isRecently) {
+      if (existingDate) {
+        existingDate.recentlyMessages
+          ? existingDate.recentlyMessages.push(message)
+          : (existingDate.recentlyMessages = [message])
+      } else {
+        acc.push({ date, messages: [], recentlyMessages: [message] })
+      }
+
+      return acc
+    }
+
     if (existingDate) {
       existingDate.messages.push(message)
     } else {
-      const date = new Date(message.time).setHours(0, 0, 0, 0)
       acc.push({ date, messages: [message] })
     }
 
@@ -159,21 +173,35 @@ const GuestChat: Page = () => {
       </section>
       <section className={styles.messagesContainer}>
         <div className={styles.messages}>
-          {datedMessages.map(({ date, messages }, dateIndex) => {
-            const today = new Date()
-            return (
-              <React.Fragment key={dateIndex}>
-                <span className={styles.messageTime}>
-                  {isSameDay(date, today)
-                    ? 'Today'
-                    : formatDistanceToNowStrict(date, { addSuffix: true })}
-                </span>
-                {messages.map((message, i) => (
-                  <ChatBubble key={`d${dateIndex}-${i}`} {...message} />
-                ))}
-              </React.Fragment>
-            )
-          })}
+          {datedMessages.map(
+            ({ date, messages, recentlyMessages }, dateIndex) => {
+              const today = new Date()
+              return (
+                <React.Fragment key={dateIndex}>
+                  <span className={styles.messageTime}>
+                    {isSameDay(date, today)
+                      ? 'Today'
+                      : formatDistanceToNowStrict(date, { addSuffix: true })}
+                  </span>
+                  {messages.map((message, i) => (
+                    <ChatBubble key={`d${dateIndex}-${i}`} {...message} />
+                  ))}
+                  {recentlyMessages ? (
+                    <>
+                      <span className={styles.messageTime}>
+                        {formatDistanceToNowStrict(recentlyMessages[0].time, {
+                          addSuffix: true
+                        })}
+                      </span>
+                      {recentlyMessages.map((message, i) => (
+                        <ChatBubble key={`d${dateIndex}-r${i}`} {...message} />
+                      ))}
+                    </>
+                  ) : null}
+                </React.Fragment>
+              )
+            }
+          )}
         </div>
       </section>
       <section className={styles.chatInputContainer}>
