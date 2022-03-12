@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { css } from '~/styles'
 
 import type { VariantProps } from '@stitches/core'
@@ -43,4 +45,4 @@ const ChatBubble = ({ text, time, ...msg }: ChatBubbleProps) => {
   return <span className={styles({ ...msg })}>{text}</span>
 }
 
-export default ChatBubble
+export default memo(ChatBubble)

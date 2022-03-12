@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -80,4 +81,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)
