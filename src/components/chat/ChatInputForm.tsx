@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLocalStorage } from '~/hooks'
 
 import { SendIcon } from '~/components/icons'
 
@@ -98,8 +99,10 @@ interface Props {
 
 const ChatInputForm = ({ connected, onSendMessage }: Props) => {
   const [message, setMessage] = useState('')
-  const [messageColor, setMessageColor] =
-    useState<NewMessage['color']>(defaultColor)
+  const [messageColor, setMessageColor] = useLocalStorage<NewMessage['color']>(
+    'message-color',
+    defaultColor
+  )
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
