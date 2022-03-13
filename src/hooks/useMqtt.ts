@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
-import mqtt, { MqttClient } from 'mqtt'
+
+import type { MqttClient } from 'mqtt'
 
 const useMqtt = (host: string, mqttOption: MqttClient['options']) => {
   const [client, setClient] = useState<MqttClient>()
@@ -12,8 +13,12 @@ const useMqtt = (host: string, mqttOption: MqttClient['options']) => {
   >('Connecting')
 
   const connect = useCallback(() => {
-    setStatus('Connecting')
-    setClient(mqtt.connect(host, mqttOption))
+    ;(async () => {
+      const mqtt = (await import('mqtt')).default
+
+      setStatus('Connecting')
+      setClient(mqtt.connect(host, mqttOption))
+    })()
   }, [host, mqttOption])
 
   const disconnect = useCallback(() => {
