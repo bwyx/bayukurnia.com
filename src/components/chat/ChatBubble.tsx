@@ -14,7 +14,7 @@ const styles = css({
   lineHeight: '$snug',
   borderRadius: '$2xl $2xl 0 $2xl',
   color: 'white',
-  '@lg': { fontSize: '$base' },
+  '@sm': { fontSize: '$base' },
   variants: {
     host: {
       true: {
