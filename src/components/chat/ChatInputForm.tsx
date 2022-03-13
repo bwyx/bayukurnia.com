@@ -89,16 +89,17 @@ const colors: NewMessage['color'][] = [
 ]
 
 interface Props {
+  connected: boolean
   onSendMessage: (message: NewMessage) => void
 }
 
-const ChatInputForm = ({ onSendMessage }: Props) => {
+const ChatInputForm = ({ connected, onSendMessage }: Props) => {
   const [message, setMessage] = useState('')
   const [messageColor, setMessageColor] = useState<NewMessage['color']>('red')
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!message) return
+    if (!message || !connected) return
     onSendMessage({ text: message, color: messageColor })
     setMessage('')
   }
@@ -107,6 +108,7 @@ const ChatInputForm = ({ onSendMessage }: Props) => {
     <form
       className={styles.form({ color: messageColor })}
       onSubmit={handleSubmit}
+      style={{ pointerEvents: connected ? 'auto' : 'none' }}
     >
       <div className={stack({ dir: 'col', grow: true })}>
         <input
@@ -114,7 +116,7 @@ const ChatInputForm = ({ onSendMessage }: Props) => {
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type a message..."
+          placeholder={connected ? 'Type a message...' : 'Connecting...'}
         />
         <div className={stack({ x: 'right', css: { mt: '$2' } })}>
           {colors.map((color, i) => (

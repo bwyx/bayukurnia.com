@@ -35,9 +35,9 @@ const styles = {
     grow: true,
     css: { mb: '-$12' }
   }),
-  container: container({
+  container: `${container({
     size: 'small'
-  }),
+  })} ${stack({ dir: 'col', grow: true })}`,
   stickyHeader: stack({
     y: 'center',
     x: 'center',
@@ -106,6 +106,12 @@ const styles = {
       bottom: 0,
       zIndex: 1
     }
+  }),
+  loading: stack({
+    y: 'center',
+    x: 'center',
+    grow: true,
+    css: { my: '$24' }
   })
 }
 
@@ -114,6 +120,8 @@ const GuestChat: Page = () => {
   const { host, username, password } = config.chat
   const { client, status } = useMqtt('wss://' + host, { username, password })
   const [messages, setMessages] = useState<Message[]>([])
+  const [messagesLoaded, setMessagesLoaded] = useState<boolean>(false)
+
   const datedMessages = messages.reduce((acc: DatedMessages, message) => {
     const date = new Date(message.time).setHours(0, 0, 0, 0)
     const isRecently = isThisHour(message.time)
@@ -166,7 +174,7 @@ const GuestChat: Page = () => {
     []
   )
 
-  useEffect(() => focusToLastMessage(), [messages])
+  useEffect(() => focusToLastMessage(), [messages, messagesLoaded])
 
   useEffect(() => {
     if (client) {
@@ -181,6 +189,7 @@ const GuestChat: Page = () => {
       const response = await fetch(`https://${config.chat.host}/history`)
       const messages = await response.json()
       setMessages(messages)
+      setMessagesLoaded(true)
     }
     fetchOldMessages()
   }, [])
@@ -217,45 +226,57 @@ const GuestChat: Page = () => {
       </header>
       <section className={styles.container}>
         <p className={styles.description}>
-          Leave a message or chat in real-time with random visitors.
+          Chat in real-time with random visitors, or just leave a message for me
+          ^_^
         </p>
         <p className={styles.info}>
-          IP addresses are collected during messaging to prevent malicious
-          messages.
+          IP addresses are collected to prevent malicious messages.
         </p>
-        <div className={styles.messages}>
-          {datedMessages.map(
-            ({ date, messages, recentlyMessages }, dateIndex) => {
-              const today = new Date()
-              return (
-                <React.Fragment key={dateIndex}>
-                  <span className={styles.messageTime}>
-                    {isSameDay(date, today)
-                      ? 'Today'
-                      : formatDistanceToNowStrict(date, { addSuffix: true })}
-                  </span>
-                  {messages.map((message, i) => (
-                    <ChatBubble key={`d${dateIndex}-${i}`} {...message} />
-                  ))}
-                  {recentlyMessages ? (
-                    <>
-                      <RecentlyMessageCounter
-                        className={styles.messageTime}
-                        time={recentlyMessages[0].time}
-                      />
-                      {recentlyMessages.map((message, i) => (
-                        <ChatBubble key={`d${dateIndex}-r${i}`} {...message} />
-                      ))}
-                    </>
-                  ) : null}
-                </React.Fragment>
-              )
-            }
-          )}
-        </div>
+        {messagesLoaded ? (
+          <div className={styles.messages}>
+            {datedMessages.map(
+              ({ date, messages, recentlyMessages }, dateIndex) => {
+                const today = new Date()
+                return (
+                  <React.Fragment key={dateIndex}>
+                    <span className={styles.messageTime}>
+                      {isSameDay(date, today)
+                        ? 'Today'
+                        : formatDistanceToNowStrict(date, { addSuffix: true })}
+                    </span>
+                    {messages.map((message, i) => (
+                      <ChatBubble key={`d${dateIndex}-${i}`} {...message} />
+                    ))}
+                    {recentlyMessages ? (
+                      <>
+                        <RecentlyMessageCounter
+                          className={styles.messageTime}
+                          time={recentlyMessages[0].time}
+                        />
+                        {recentlyMessages.map((message, i) => (
+                          <ChatBubble
+                            key={`d${dateIndex}-r${i}`}
+                            {...message}
+                          />
+                        ))}
+                      </>
+                    ) : null}
+                  </React.Fragment>
+                )
+              }
+            )}
+          </div>
+        ) : (
+          <div className={styles.loading}>
+            <span className={styles.messageTime}>Loading chat...</span>
+          </div>
+        )}
       </section>
       <section className={styles.chatInputContainer}>
-        <ChatInputForm onSendMessage={handleOutgoingMessage} />
+        <ChatInputForm
+          onSendMessage={handleOutgoingMessage}
+          connected={status === 'Connected'}
+        />
       </section>
     </main>
   )
