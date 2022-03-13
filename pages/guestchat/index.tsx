@@ -4,7 +4,11 @@ import { formatDistanceToNowStrict, isSameDay, isThisHour } from 'date-fns'
 import useMqtt from '~/hooks/useMqtt'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
-import { ChatBubble, ChatInputForm } from '~/components/chat'
+import {
+  ChatBubble,
+  ChatInputForm,
+  RecentlyMessageCounter
+} from '~/components/chat'
 
 import { container, stack, text } from '~/styles/primitives'
 
@@ -188,11 +192,10 @@ const GuestChat: Page = () => {
                   ))}
                   {recentlyMessages ? (
                     <>
-                      <span className={styles.messageTime}>
-                        {formatDistanceToNowStrict(recentlyMessages[0].time, {
-                          addSuffix: true
-                        })}
-                      </span>
+                      <RecentlyMessageCounter
+                        className={styles.messageTime}
+                        time={recentlyMessages[0].time}
+                      />
                       {recentlyMessages.map((message, i) => (
                         <ChatBubble key={`d${dateIndex}-r${i}`} {...message} />
                       ))}
