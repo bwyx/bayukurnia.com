@@ -189,6 +189,8 @@ const GuestChat: Page = () => {
     <main ref={main} className={styles.main}>
       <NextSeo
         title="Guestchat"
+        description="Chat in real-time with random visitors, or just leave a message for me ^_^"
+        canonical="https://bayukurnia.com/guestchat"
         additionalLinkTags={[
           { rel: 'preconnect', href: 'https://' + config.chat.host }
         ]}
