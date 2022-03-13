@@ -17,6 +17,17 @@ import config from '~/config'
 import { Page } from '~/types/page.type'
 import { Message, NewMessage, DatedMessages } from '~/types/chat.type'
 
+const defaultColor = 'green'
+const availableColors = [
+  'brown',
+  'red',
+  'green',
+  'yellow',
+  'blue',
+  'magenta',
+  'cyan'
+]
+
 const styles = {
   main: stack({
     dir: 'col',
@@ -148,6 +159,7 @@ const GuestChat: Page = () => {
       let { color, text, time = Date.now() } = JSON.parse(message)
 
       if (topic === 'chat/host') host = true
+      if (!availableColors.includes(color)) color = defaultColor
 
       setMessages((messages) => [...messages, { text, color, time, host }])
     },
