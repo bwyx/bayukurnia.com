@@ -48,7 +48,7 @@ const styles = {
     background: '$$messageColor',
     borderRadius: '$2xl',
     '&::placeholder': { color: 'rgb(255 255 255 / 0.25)' },
-    '@lg': { fontSize: '$base' }
+    '@sm': { fontSize: '$base' }
   })(),
   button: css({
     height: 38,

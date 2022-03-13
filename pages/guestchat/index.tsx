@@ -36,11 +36,14 @@ const styles = {
       zIndex: 9999,
       top: 0,
       height: 50,
-      '@sm': { height: 60 }
+      '@lg': { height: 60 }
     }
   }),
   description: text({
-    size: 'sm',
+    size: {
+      '@initial': 'sm',
+      '@sm': 'base'
+    },
     leading: 'snug',
     css: {
       mx: '$4',
@@ -49,7 +52,10 @@ const styles = {
     }
   }),
   info: text({
-    size: 'xs',
+    size: {
+      '@initial': 'xs',
+      '@sm': 'sm'
+    },
     leading: 'snug',
     css: {
       mt: '$4',
@@ -61,7 +67,7 @@ const styles = {
   title: text({
     size: {
       '@initial': 'sm',
-      '@lg': 'base'
+      '@sm': 'base'
     },
     weight: 'bold',
     css: { mr: '$3' }
@@ -176,7 +182,7 @@ const GuestChat: Page = () => {
         ]}
       />
       <header className={styles.stickyHeader}>
-        <h1 className={styles.title}>Guestchat</h1>
+        <h1 className={styles.title}>Guest Chat</h1>
         <svg
           width="20"
           height="20"
