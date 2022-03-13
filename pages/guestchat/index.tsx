@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { NextSeo } from 'next-seo'
 import { formatDistanceToNowStrict, isSameDay, isThisHour } from 'date-fns'
-import useMqtt from '~/hooks/useMqtt'
+import { useMqtt } from '~/hooks'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
 import {
