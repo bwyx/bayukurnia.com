@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 
-import { attachMainLayout } from '~/layouts/Main.layout'
+import { attachMainLayout, MainWrapper } from '~/layouts/Main.layout'
 import { Article, MDXComponents } from '~/components'
 import { Hero } from '~/components/blog'
 
@@ -18,7 +18,7 @@ const BlogItem = ({ body, ...post }: PostWithCoverAndBody) => {
   const MDXContent = useMDXComponent(body.code)
 
   return (
-    <>
+    <MainWrapper>
       <NextSeo
         title={post.title}
         description={post.summary}
@@ -39,7 +39,7 @@ const BlogItem = ({ body, ...post }: PostWithCoverAndBody) => {
           <MDXContent components={MDXComponents} />
         </Article>
       </div>
-    </>
+    </MainWrapper>
   )
 }
 

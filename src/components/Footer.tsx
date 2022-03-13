@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import Link from 'next/link'
 
 import { NowPlaying } from '~/components'
@@ -22,10 +24,9 @@ const styles = {
         flexBasis: '50%'
       },
       li: {
-        mt: '$6',
-        '&:first-child': {
-          mt: '$0'
-        }
+        mt: '$4',
+        '@sm': { mt: '$6' },
+        '&:first-child': { mt: '$0' }
       },
       a: {
         px: '$4',
@@ -33,6 +34,8 @@ const styles = {
         mx: '-$4',
         xColor: '$fg3',
         xColorOpacity: 0.7,
+        fontSize: '$sm',
+        '@sm': { fontSize: '$base' },
         '&:hover': {
           xColorOpacity: 0.4
         }
@@ -78,11 +81,15 @@ const Footer = () => {
                   <a>Home</a>
                 </Link>
               </li>
+              <li>
+                <Link href="/guestchat">
+                  <a>Guest Chat</a>
+                </Link>
+              </li>
             </ul>
             <ul>
               <li>
                 <a
-                  className="github"
                   href="https://github.com/bwyx"
                   target="_blank"
                   rel="noreferrer"
@@ -92,12 +99,20 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  className="twitter"
                   href="https://twitter.com/0x4b70"
                   target="_blank"
                   rel="noreferrer"
                 >
                   Twitter
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/baayukurnia/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Instagram
                 </a>
               </li>
             </ul>
@@ -119,4 +134,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default memo(Footer)

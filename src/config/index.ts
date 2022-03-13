@@ -10,6 +10,12 @@ const avatar = {
 
 const defaultTheme: ThemeName = 'dark'
 
-const config = { avatar, defaultTheme }
+const chat = {
+  host: process.env.NEXT_PUBLIC_CHAT_HOST as string,
+  username: process.env.NEXT_PUBLIC_CHAT_USERNAME as string,
+  password: process.env.NEXT_PUBLIC_CHAT_PASSWORD as string
+}
+
+const config = { chat, avatar, defaultTheme }
 
 export default config

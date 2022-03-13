@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import useTheme from '~/hooks/useTheme'
+import { useTheme } from '~/hooks'
 import SunMoon from '~/components/vectors/SunMoon'
 
 import themes, { allThemeClass, ThemeName } from '~/styles/themes'
