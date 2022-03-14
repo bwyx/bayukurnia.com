@@ -43,7 +43,7 @@ const BlogItem = ({ body, ...post }: PostWithCoverAndBody) => {
   )
 }
 
-BlogItem.layout = attachMainLayout
+BlogItem.layout = attachMainLayout()
 
 export const getStaticPaths = () => {
   return {

@@ -14,6 +14,6 @@ const About: Page = () => {
   )
 }
 
-About.layout = attachMainLayout
+About.layout = attachMainLayout()
 
 export default About
