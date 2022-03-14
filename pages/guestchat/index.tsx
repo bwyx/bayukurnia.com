@@ -24,8 +24,7 @@ const styles = {
   main: stack({
     dir: 'col',
     density: 'spaceBetween',
-    grow: true,
-    css: { mb: '-$12' }
+    grow: true
   }),
   container: `${container({
     size: 'small'
@@ -315,6 +314,6 @@ const GuestChat: Page = () => {
   )
 }
 
-GuestChat.layout = attachMainLayout
+GuestChat.layout = attachMainLayout({ footer: false })
 
 export default GuestChat

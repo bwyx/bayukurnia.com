@@ -44,6 +44,6 @@ const BlogIndex = ({ posts }: PageProps) => {
   )
 }
 
-BlogIndex.layout = attachMainLayout
+BlogIndex.layout = attachMainLayout()
 
 export default BlogIndex

@@ -11,12 +11,19 @@ const main = stack({
   }
 })
 
-const MainLayout: React.FC = ({ children }) => {
+interface MainLayoutOptions {
+  footer?: boolean
+}
+
+const MainLayout = ({
+  children,
+  footer = true
+}: React.PropsWithChildren<MainLayoutOptions>) => {
   return (
     <>
       <Header />
       {children}
-      <Footer />
+      {footer ? <Footer /> : null}
     </>
   )
 }
@@ -25,8 +32,11 @@ export const MainWrapper: React.FC = ({ children }) => {
   return <main className={main}>{children}</main>
 }
 
-export const attachMainLayout = (page: React.ReactNode) => {
-  return <MainLayout>{page}</MainLayout>
-}
+export const attachMainLayout =
+  ({ footer }: MainLayoutOptions = {}) =>
+  // eslint-disable-next-line react/display-name
+  (page: React.ReactNode) => {
+    return <MainLayout footer={footer}>{page}</MainLayout>
+  }
 
 export default MainLayout
