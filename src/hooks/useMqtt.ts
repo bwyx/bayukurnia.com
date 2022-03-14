@@ -10,7 +10,7 @@ const useMqtt = (host: string, mqttOption: MqttClient['options']) => {
     | 'Connected'
     | 'Disconnecting'
     | 'Disconnected'
-  >('Connecting')
+  >('Disconnected')
 
   const connect = useCallback(() => {
     ;(async () => {
@@ -46,14 +46,7 @@ const useMqtt = (host: string, mqttOption: MqttClient['options']) => {
     })
   }, [client, host])
 
-  useEffect(() => {
-    if (!client) return connect()
-
-    return () => disconnect()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [client])
-
-  return { client, status }
+  return { client, status, connect, disconnect }
 }
 
 export default useMqtt

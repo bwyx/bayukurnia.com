@@ -94,10 +94,17 @@ export const availableColors: NewMessage['color'][] = [
 
 interface Props {
   connected: boolean
+  placeholder: string
   onSendMessage: (message: NewMessage) => void
+  onInputFocus: () => void
 }
 
-const ChatInputForm = ({ connected, onSendMessage }: Props) => {
+const ChatInputForm = ({
+  connected,
+  placeholder = 'Type a message...',
+  onSendMessage,
+  onInputFocus
+}: Props) => {
   const [message, setMessage] = useState('')
   const [messageColor, setMessageColor] = useLocalStorage<NewMessage['color']>(
     'message-color',
@@ -115,15 +122,15 @@ const ChatInputForm = ({ connected, onSendMessage }: Props) => {
     <form
       className={styles.form({ color: messageColor })}
       onSubmit={handleSubmit}
-      style={{ pointerEvents: connected ? 'auto' : 'none' }}
     >
       <div className={stack({ dir: 'col', grow: true })}>
         <input
+          onFocus={onInputFocus}
           className={styles.input}
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder={connected ? 'Type a message...' : 'Connecting...'}
+          placeholder={placeholder}
         />
         <div className={stack({ x: 'right', css: { mt: '$2' } })}>
           {availableColors.map((color, i) => (
