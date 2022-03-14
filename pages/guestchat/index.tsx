@@ -139,10 +139,6 @@ const GuestChat: Page = () => {
     return acc
   }, [])
 
-  const focusToLastMessage = () => {
-    main.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
-  }
-
   const handleOutgoingMessage = (newMessage: NewMessage) => {
     client?.publish('chat/guest', JSON.stringify(newMessage))
     fetch(`https://${config.chat.host}/history`, {
@@ -160,12 +156,10 @@ const GuestChat: Page = () => {
       if (topic === 'chat/host') host = true
       if (!availableColors.includes(color)) color = defaultColor
 
-      setMessages((messages) => [...messages, { text, color, time, host }])
+      setMessages((messages) => [{ text, color, time, host }, ...messages])
     },
     []
   )
-
-  useEffect(() => focusToLastMessage(), [messages, messagesLoaded])
 
   useEffect(() => {
     if (client) {
@@ -214,14 +208,6 @@ const GuestChat: Page = () => {
                 const today = new Date()
                 return (
                   <React.Fragment key={dateIndex}>
-                    <span className={styles.messageTime}>
-                      {isSameDay(date, today)
-                        ? 'Today'
-                        : formatDistanceToNowStrict(date, { addSuffix: true })}
-                    </span>
-                    {messages.map((message, i) => (
-                      <ChatBubble key={`d${dateIndex}-${i}`} {...message} />
-                    ))}
                     {recentlyMessages ? (
                       <>
                         <RecentlyMessageCounter
@@ -236,6 +222,18 @@ const GuestChat: Page = () => {
                         ))}
                       </>
                     ) : null}
+                    {messages.length ? (
+                      <span className={styles.messageTime}>
+                        {isSameDay(date, today)
+                          ? 'Today'
+                          : formatDistanceToNowStrict(date, {
+                              addSuffix: true
+                            })}
+                      </span>
+                    ) : null}
+                    {messages.map((message, i) => (
+                      <ChatBubble key={`d${dateIndex}-${i}`} {...message} />
+                    ))}
                   </React.Fragment>
                 )
               }
