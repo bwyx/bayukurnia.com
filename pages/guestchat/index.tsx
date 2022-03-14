@@ -152,7 +152,7 @@ const styles = {
 const GuestChat: Page = () => {
   const main = useRef<HTMLDivElement>(null)
   const { host, username, password } = config.chat
-  const { client, status, connect, disconnect } = useMqtt('wss://' + host, {
+  const { client, status, connect } = useMqtt('wss://' + host, {
     username,
     password
   })
@@ -223,9 +223,7 @@ const GuestChat: Page = () => {
       setMessagesLoaded(true)
     }
     fetchOldMessages()
-
-    return () => disconnect()
-  }, [disconnect])
+  }, [])
 
   return (
     <main ref={main} className={styles.main}>

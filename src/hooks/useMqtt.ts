@@ -13,13 +13,14 @@ const useMqtt = (host: string, mqttOption: MqttClient['options']) => {
   >('Disconnected')
 
   const connect = useCallback(() => {
+    if (client) return
     ;(async () => {
       const mqtt = (await import('mqtt')).default
 
       setStatus('Connecting')
       setClient(mqtt.connect(host, mqttOption))
     })()
-  }, [host, mqttOption])
+  }, [client, host, mqttOption])
 
   const disconnect = useCallback(() => {
     if (client) {
@@ -44,7 +45,9 @@ const useMqtt = (host: string, mqttOption: MqttClient['options']) => {
     client.on('reconnect', () => {
       setStatus('Reconnecting')
     })
-  }, [client, host])
+
+    return () => disconnect()
+  }, [client, host, disconnect])
 
   return { client, status, connect, disconnect }
 }
