@@ -6,6 +6,7 @@ import { useMqtt } from '~/hooks'
 import { attachMainLayout } from '~/layouts/Main.layout'
 import {
   ChatBubble,
+  ChatBubblePlaceholder,
   ChatInputForm,
   RecentlyMessageCounter
 } from '~/components/chat'
@@ -141,10 +142,11 @@ const styles = {
     }
   }),
   loading: stack({
-    y: 'center',
-    x: 'center',
+    dir: 'col',
     grow: true,
-    css: { my: '$24' }
+    css: {
+      mt: '$12'
+    }
   })
 }
 
@@ -230,14 +232,6 @@ const GuestChat: Page = () => {
         title="Guestchat"
         description="Chat in real-time with random visitors, or just leave a message for me ^_^"
         canonical="https://bayukurnia.com/guestchat"
-        additionalLinkTags={[
-          {
-            rel: 'preload',
-            href: `https://${config.chat.host}/history`,
-            as: 'fetch',
-            crossOrigin: 'true'
-          }
-        ]}
       />
       <header className={styles.stickyHeader}>
         <h1 className={styles.title}>Guest Chat</h1>
@@ -292,7 +286,12 @@ const GuestChat: Page = () => {
           </div>
         ) : (
           <div className={styles.loading}>
-            <span className={styles.messageTime}>Loading chat...</span>
+            {[...Array(10)].map((_, i) => (
+              <ChatBubblePlaceholder
+                key={i}
+                host={Math.floor(Math.random() * i) % 3 !== 0}
+              />
+            ))}
           </div>
         )}
       </section>
