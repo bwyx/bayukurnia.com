@@ -12,6 +12,7 @@ import {
 import { defaultColor, availableColors } from '~/components/chat/ChatInputForm'
 import { MessageIcon } from '~/components/icons'
 
+import { css } from '~/styles'
 import { container, stack, text } from '~/styles/primitives'
 
 import config from '~/config'
@@ -66,6 +67,49 @@ const styles = {
       textAlign: 'center'
     }
   }),
+  connectStatus: css({
+    py: '$1',
+    px: '$4',
+    mt: '$4',
+    mx: 'auto',
+    color: '$$color',
+    fontSize: '$xs',
+    borderRadius: '$2xl',
+    xBackgroundOpacity: 0.2,
+    '&:before': {
+      content: '',
+      display: 'inline-block',
+      width: 8,
+      height: 8,
+      marginRight: 5,
+      background: '$$color',
+      borderRadius: '$full'
+    },
+    variants: {
+      status: {
+        Connecting: {
+          $$color: 'rgb($rgb$yellow)',
+          xBackground: '$yellow'
+        },
+        Reconnecting: {
+          $$color: 'rgb($rgb$yellow)',
+          xBackground: '$yellow'
+        },
+        Connected: {
+          $$color: 'rgb($rgb$green)',
+          xBackground: '$green'
+        },
+        Disconnecting: {
+          $$color: 'rgb($rgb$yellow)',
+          xBackground: '$yellow'
+        },
+        Disconnected: {
+          $$color: 'rgb($rgb$red)',
+          xBackground: '$red'
+        }
+      }
+    }
+  }),
   title: text({
     size: {
       '@initial': 'sm',
@@ -77,8 +121,7 @@ const styles = {
   messages: stack({
     dir: 'col',
     y: 'bottom',
-    grow: true,
-    css: { minHeight: '100vh' }
+    grow: true
   }),
   messageTime: text({
     size: 'xs',
@@ -109,7 +152,10 @@ const styles = {
 const GuestChat: Page = () => {
   const main = useRef<HTMLDivElement>(null)
   const { host, username, password } = config.chat
-  const { client, status } = useMqtt('wss://' + host, { username, password })
+  const { client, status, connect, disconnect } = useMqtt('wss://' + host, {
+    username,
+    password
+  })
   const [messages, setMessages] = useState<Message[]>([])
   const [messagesLoaded, setMessagesLoaded] = useState<boolean>(false)
 
@@ -177,7 +223,9 @@ const GuestChat: Page = () => {
       setMessagesLoaded(true)
     }
     fetchOldMessages()
-  }, [])
+
+    return () => disconnect()
+  }, [disconnect])
 
   return (
     <main ref={main} className={styles.main}>
@@ -186,7 +234,12 @@ const GuestChat: Page = () => {
         description="Chat in real-time with random visitors, or just leave a message for me ^_^"
         canonical="https://bayukurnia.com/guestchat"
         additionalLinkTags={[
-          { rel: 'preconnect', href: 'https://' + config.chat.host }
+          {
+            rel: 'preload',
+            href: `https://${config.chat.host}/history`,
+            as: 'fetch',
+            crossOrigin: 'true'
+          }
         ]}
       />
       <header className={styles.stickyHeader}>
@@ -201,6 +254,7 @@ const GuestChat: Page = () => {
         <p className={styles.info}>
           IP addresses are collected to prevent malicious messages.
         </p>
+        <span className={styles.connectStatus({ status })}>{status}</span>
         {messagesLoaded ? (
           <div className={styles.messages}>
             {datedMessages.map(
@@ -247,8 +301,16 @@ const GuestChat: Page = () => {
       </section>
       <section className={styles.chatInputContainer}>
         <ChatInputForm
-          onSendMessage={handleOutgoingMessage}
           connected={status === 'Connected'}
+          onInputFocus={connect}
+          onSendMessage={handleOutgoingMessage}
+          placeholder={
+            status === 'Connected'
+              ? 'Type a message...'
+              : status === 'Connecting'
+              ? 'Connecting...'
+              : 'Start typing to connect...'
+          }
         />
       </section>
     </main>
