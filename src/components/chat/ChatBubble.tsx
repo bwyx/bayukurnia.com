@@ -12,14 +12,15 @@ const styles = css({
   fontSize: '$sm',
   fontWeight: '$light',
   lineHeight: '$snug',
-  borderRadius: '$2xl $2xl 0 $2xl',
+  borderRadius: '$2xl 0 $2xl $2xl',
+  overflowWrap: 'break-word',
   color: 'white',
   '@sm': { fontSize: '$base' },
   variants: {
     host: {
       true: {
         margin: '$2 auto 0 0',
-        borderRadius: '$2xl $2xl $2xl 0'
+        borderRadius: '0 $2xl $2xl $2xl'
       }
     },
     color: {
