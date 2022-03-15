@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { NextSeo } from 'next-seo'
-import { formatDistanceToNowStrict, isSameDay, isThisHour } from 'date-fns'
+import { formatDistanceToNowStrict, isSameDay } from 'date-fns'
 import { useMqtt } from '~/hooks'
 
 import { attachMainLayout } from '~/layouts/Main.layout'
@@ -150,6 +150,13 @@ const styles = {
   })
 }
 
+const lessThanOneHourAgo = (date: number) => {
+  const HOUR = 1000 * 60 * 60
+  const anHourAgo = Date.now() - HOUR
+
+  return date > anHourAgo
+}
+
 const GuestChat: Page = () => {
   const main = useRef<HTMLDivElement>(null)
   const { host, username, password } = config.chat
@@ -163,7 +170,7 @@ const GuestChat: Page = () => {
 
   const datedMessages = messages.reduce((acc: DatedMessages, message) => {
     const date = new Date(message.time).setHours(0, 0, 0, 0)
-    const isRecently = isThisHour(message.time)
+    const isRecently = lessThanOneHourAgo(message.time)
     const existingDate = acc.find((acc) => isSameDay(acc.date, message.time))
 
     if (isRecently) {
