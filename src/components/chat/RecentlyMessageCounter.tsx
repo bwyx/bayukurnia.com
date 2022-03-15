@@ -18,6 +18,8 @@ const RecentlyMessageCounter = ({ time, ...props }: Props) => {
     [time]
   )
 
+  useEffect(() => updateTime(), [time, updateTime])
+
   useEffect(() => {
     const interval = setInterval(() => updateTime(), 10000)
 
