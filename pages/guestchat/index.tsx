@@ -233,7 +233,7 @@ const GuestChat: Page = () => {
             greet(
               'Want me to work on a project? 💻 \n email me at hi@bayukurnia.com'
             )
-          }, 2500)
+          }, 1500)
           setShouldGreet(false)
         }
       })
