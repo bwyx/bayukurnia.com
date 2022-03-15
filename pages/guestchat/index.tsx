@@ -159,6 +159,7 @@ const GuestChat: Page = () => {
   })
   const [messages, setMessages] = useState<Message[]>([])
   const [messagesLoaded, setMessagesLoaded] = useState<boolean>(false)
+  const [shouldGreet, setShouldGreet] = useState<boolean>(true)
 
   const datedMessages = messages.reduce((acc: DatedMessages, message) => {
     const date = new Date(message.time).setHours(0, 0, 0, 0)
@@ -225,16 +226,19 @@ const GuestChat: Page = () => {
       client.subscribe('chat/host')
       client.subscribe('chat/guest')
       client.on('connect', () => {
-        setTimeout(() => greet('Hi! 👋 feel free to ask me anything.'), 500)
-        setTimeout(() => {
-          greet(
-            'Want me to work on a project? 💻 \n email me at hi@bayukurnia.com'
-          )
-        }, 2500)
+        if (shouldGreet) {
+          setTimeout(() => greet('Hi! 👋 feel free to ask me anything.'), 500)
+          setTimeout(() => {
+            greet(
+              'Want me to work on a project? 💻 \n email me at hi@bayukurnia.com'
+            )
+          }, 2500)
+          setShouldGreet(false)
+        }
       })
       client.on('message', handleIncomingMessage)
     }
-  }, [client, handleIncomingMessage, greet])
+  }, [client, handleIncomingMessage, greet, shouldGreet])
 
   useEffect(() => {
     const fetchOldMessages = async () => {
