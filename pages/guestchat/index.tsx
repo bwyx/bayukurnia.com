@@ -208,13 +208,33 @@ const GuestChat: Page = () => {
     []
   )
 
+  const greet = useCallback((text) => {
+    setMessages((messages) => [
+      {
+        color: 'green',
+        text,
+        time: Date.now(),
+        host: true
+      },
+      ...messages
+    ])
+  }, [])
+
   useEffect(() => {
     if (client) {
       client.subscribe('chat/host')
       client.subscribe('chat/guest')
+      client.on('connect', () => {
+        setTimeout(() => greet('Hi! 👋 feel free to ask me anything.'), 500)
+        setTimeout(() => {
+          greet(
+            'Want me to work on a project? 💻 \n email me at hi@bayukurnia.com'
+          )
+        }, 2500)
+      })
       client.on('message', handleIncomingMessage)
     }
-  }, [client, handleIncomingMessage])
+  }, [client, handleIncomingMessage, greet])
 
   useEffect(() => {
     const fetchOldMessages = async () => {
