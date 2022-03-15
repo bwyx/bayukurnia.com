@@ -4,10 +4,25 @@ import { useLocalStorage } from '~/hooks'
 import { VisuallyHidden } from '~/components'
 import { SendIcon } from '~/components/icons'
 
-import { css } from '~/styles'
+import { css, keyframes } from '~/styles'
 import { stack } from '~/styles/primitives'
 
 import type { NewMessage } from '~/types/chat.type'
+
+const ellipsis1 = keyframes({
+  '0%': { transform: 'scale(0)' },
+  '100%': { transform: 'scale(1)' }
+})
+
+const ellipsis2 = keyframes({
+  '0%': { transform: 'translate(0, 0)' },
+  '100%': { transform: 'translate(10px, 0)' }
+})
+
+const ellipsis3 = keyframes({
+  '0%': { transform: 'scale(1)' },
+  '100%': { transform: 'scale(0)' }
+})
 
 const styles = {
   form: css(stack, {
@@ -55,13 +70,19 @@ const styles = {
     '@sm': { fontSize: '$base' }
   })(),
   button: css({
-    height: 38,
+    display: 'flex',
+    alignItems: 'center',
+    height: 36,
     px: '$3',
     mr: '-$3',
     color: '$$messageColor',
     '&:hover': {
       opacity: 0.8
-    }
+    },
+    '&:disabled': {
+      pointerEvents: 'none'
+    },
+    '@sm': { height: 38 }
   })(),
   colorButton: css({
     ml: '$2',
@@ -79,7 +100,37 @@ const styles = {
         cyan: { background: '$$cyan' }
       }
     }
-  })
+  }),
+  loading: css({
+    width: 24,
+    height: 4,
+    display: 'inline-block',
+    position: 'relative',
+    '& span': {
+      position: 'absolute',
+      width: '4px',
+      height: '4px',
+      borderRadius: '50%',
+      background: '$$messageColor',
+      animationTimingFunction: 'cubic-bezier(0, 1, 1, 0)'
+    },
+    '& span:nth-child(1)': {
+      left: '0px',
+      animation: `${ellipsis1} 0.6s infinite`
+    },
+    '& span:nth-child(2)': {
+      left: '0px',
+      animation: `${ellipsis2} 0.6s infinite`
+    },
+    '& span:nth-child(3)': {
+      left: '10px',
+      animation: `${ellipsis2} 0.6s infinite`
+    },
+    '& span:nth-child(4)': {
+      left: '20px',
+      animation: `${ellipsis3} 0.6s infinite`
+    }
+  })()
 }
 
 export const defaultColor: NewMessage['color'] = 'red'
@@ -107,16 +158,21 @@ const ChatInputForm = ({
   onInputFocus
 }: Props) => {
   const [message, setMessage] = useState('')
+  const [canSubmit, setCanSubmit] = useState(true)
   const [messageColor, setMessageColor] = useLocalStorage<NewMessage['color']>(
     'message-color',
     defaultColor
   )
 
+  const preventSubmit = !message || !connected || !canSubmit
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!message || !connected) return
+    if (preventSubmit) return
     onSendMessage({ text: message, color: messageColor })
     setMessage('')
+    setCanSubmit(false)
+    setTimeout(() => setCanSubmit(true), 2000)
   }
 
   return (
@@ -146,8 +202,17 @@ const ChatInputForm = ({
           ))}
         </div>
       </div>
-      <button className={styles.button} type="submit">
-        <SendIcon />
+      <button className={styles.button} type="submit" disabled={preventSubmit}>
+        {canSubmit ? (
+          <SendIcon />
+        ) : (
+          <div className={styles.loading}>
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+        )}
         <VisuallyHidden>Submit Message</VisuallyHidden>
       </button>
     </form>
