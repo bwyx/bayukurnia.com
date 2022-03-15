@@ -19,6 +19,7 @@ const styles = css({
   lineHeight: '$snug',
   borderRadius: '$2xl 0 $2xl $2xl',
   overflowWrap: 'break-word',
+  whiteSpace: 'pre-line',
   color: 'white',
   '@sm': { fontSize: '$base' },
   variants: {
