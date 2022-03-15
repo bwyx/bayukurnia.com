@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useLocalStorage } from '~/hooks'
 
+import { VisuallyHidden } from '~/components'
 import { SendIcon } from '~/components/icons'
 
 import { css } from '~/styles'
@@ -139,12 +140,15 @@ const ChatInputForm = ({
               className={styles.colorButton({ color })}
               key={i}
               onClick={() => setMessageColor(color)}
-            ></button>
+            >
+              <VisuallyHidden>Change message color to {color}</VisuallyHidden>
+            </button>
           ))}
         </div>
       </div>
       <button className={styles.button} type="submit">
         <SendIcon />
+        <VisuallyHidden>Submit Message</VisuallyHidden>
       </button>
     </form>
   )
