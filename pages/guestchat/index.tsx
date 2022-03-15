@@ -211,20 +211,14 @@ const GuestChat: Page = () => {
 
   const greet = useCallback((text) => {
     setMessages((messages) => [
-      {
-        color: 'green',
-        text,
-        time: Date.now(),
-        host: true
-      },
+      { color: 'green', text, time: Date.now(), host: true },
       ...messages
     ])
   }, [])
 
+  // Greet the user when they connect
   useEffect(() => {
-    if (client) {
-      client.subscribe('chat/host')
-      client.subscribe('chat/guest')
+    if (client && shouldGreet) {
       client.on('connect', () => {
         if (shouldGreet) {
           setTimeout(() => greet('Hi! 👋 feel free to ask me anything.'), 500)
@@ -236,10 +230,19 @@ const GuestChat: Page = () => {
           setShouldGreet(false)
         }
       })
+    }
+  }, [client, greet, shouldGreet])
+
+  // Subscribe to chat messages
+  useEffect(() => {
+    if (client) {
+      client.subscribe('chat/host')
+      client.subscribe('chat/guest')
       client.on('message', handleIncomingMessage)
     }
-  }, [client, handleIncomingMessage, greet, shouldGreet])
+  }, [client, handleIncomingMessage])
 
+  // Fetch previous messages
   useEffect(() => {
     const fetchOldMessages = async () => {
       const response = await fetch(`https://${config.chat.host}/history`)
