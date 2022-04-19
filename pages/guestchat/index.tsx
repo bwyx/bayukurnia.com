@@ -159,8 +159,10 @@ const lessThanOneHourAgo = (date: number) => {
 
 const GuestChat: Page = () => {
   const main = useRef<HTMLDivElement>(null)
-  const { host, username, password } = config.chat
+  const { host, port, path, username, password } = config.chat
   const { client, status, connect } = useMqtt('wss://' + host, {
+    port,
+    path,
     username,
     password
   })
@@ -196,7 +198,7 @@ const GuestChat: Page = () => {
 
   const handleOutgoingMessage = (newMessage: NewMessage) => {
     client?.publish('chat/guest', JSON.stringify(newMessage))
-    fetch(`https://${config.chat.host}/history`, {
+    fetch('https://chat.bayukurnia.com/history', {
       mode: 'no-cors',
       method: 'POST',
       body: JSON.stringify(newMessage)
@@ -252,7 +254,7 @@ const GuestChat: Page = () => {
   // Fetch previous messages
   useEffect(() => {
     const fetchOldMessages = async () => {
-      const response = await fetch(`https://${config.chat.host}/history`)
+      const response = await fetch('https://chat.bayukurnia.com/history')
       const messages = await response.json()
       setMessages(messages)
       setMessagesLoaded(true)
