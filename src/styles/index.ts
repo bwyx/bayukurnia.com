@@ -36,16 +36,16 @@ export const { css, keyframes, getCssText, globalCss, createTheme, config } =
   createStitches({
     theme: {
       rgb: {
-        'text-50': '255 255 255',
-        'text-100': '242 243 242',
-        'text-200': '217 218 216',
-        'text-300': '191 193 189',
-        'text-400': '166 168 163',
-        'text-500': '140 144 137',
-        'text-600': '112 116 109',
-        'text-700': '84 87 82',
-        'text-800': '56 58 54',
-        'text-900': '28 29 27'
+        'text-50': '255 255 255', // #ffffff
+        'text-100': '242 243 242', // #f2f3f2
+        'text-200': '217 218 216', // #d9dad8
+        'text-300': '191 193 189', // #bfc1bd
+        'text-400': '166 168 163', // #a6a8a3
+        'text-500': '140 144 137', // #8c9089
+        'text-600': '112 116 109', // #70746d
+        'text-700': '84 87 82', // #545752
+        'text-800': '56 58 54', // #383a36
+        'text-900': '28 29 27' // #1c1d02
       },
       fonts: {
         sans: "Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol'",
