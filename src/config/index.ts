@@ -12,6 +12,8 @@ const defaultTheme: ThemeName = 'dark'
 
 const chat = {
   host: process.env.NEXT_PUBLIC_CHAT_HOST as string,
+  port: Number(process.env.NEXT_PUBLIC_CHAT_PORT),
+  path: process.env.NEXT_PUBLIC_CHAT_PATH as string,
   username: process.env.NEXT_PUBLIC_CHAT_USERNAME as string,
   password: process.env.NEXT_PUBLIC_CHAT_PASSWORD as string
 }
