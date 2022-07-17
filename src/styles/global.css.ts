@@ -13,8 +13,7 @@ globalStyle('body', {
 globalStyle('#__next', {
   display: 'flex',
   flexDirection: 'column',
-  minHeight: '100vh',
-  overflow: 'hidden'
+  minHeight: '100vh'
 })
 
 globalFontFace('Inter var', {
