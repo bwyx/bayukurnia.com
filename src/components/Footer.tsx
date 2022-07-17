@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { NowPlaying } from '~/components'
 
 import { css } from '~/styles'
-import { container, stack, text } from '~/styles/primitives'
+import { container, stack } from '~/styles/primitives'
+import text from '~/styles/sprinkles/text.css'
 
 const styles = {
   footer: css({
@@ -42,23 +43,22 @@ const styles = {
       }
     }
   }),
-  credit: text({
-    size: 'xs',
-    css: {
-      mt: '$4',
-      xColor: '$fg3',
-      xColorOpacity: '0.4',
-      '@sm': {
-        mt: '$8'
-      },
-      a: {
-        py: '$5',
-        '&:hover': {
-          xColor: '$brand'
-        }
+  credit: `${text({
+    fontSize: 'xs'
+  })} ${css({
+    mt: '$4',
+    xColor: '$fg3',
+    xColorOpacity: '0.4',
+    '@sm': {
+      mt: '$8'
+    },
+    a: {
+      py: '$5',
+      '&:hover': {
+        xColor: '$brand'
       }
     }
-  })
+  })()}`
 }
 
 const Footer = () => {

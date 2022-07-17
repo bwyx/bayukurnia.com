@@ -4,8 +4,9 @@ import useSWR from 'swr'
 import SpotifyLogo from '~/components/vectors/SpotifyLogo'
 
 import { css, keyframes } from '~/styles'
-import { stack, text } from '~/styles/primitives'
+import { stack } from '~/styles/primitives'
 import { rgb } from '~/styles/variables.css'
+import text from '~/styles/sprinkles/text.css'
 
 import type { NowPlayingResponse } from '~/types/spotify.type'
 
@@ -67,19 +68,26 @@ const styles = {
     }
   }),
   details: stack({ dir: 'col' }),
-  title: text({
-    size: 'sm',
-    weight: 'medium',
-    leading: 'snug',
-    ellipsis: true,
-    css: { maxWidth: '15ch' }
-  }),
-  artists: text({
-    size: 'xs',
-    leading: 'snug',
-    ellipsis: true,
-    css: { maxWidth: '18ch', xColor: '$fg3' }
-  }),
+  title: `${text({
+    fontSize: 'sm',
+    fontWeight: 'medium',
+    lineHeight: 'snug'
+  })} ${css({
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    maxWidth: '15ch'
+  })()}`,
+  artists: `${text({
+    fontSize: 'xs',
+    lineHeight: 'snug'
+  })} ${css({
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    maxWidth: '18ch',
+    xColor: '$fg3'
+  })()}`,
   bars: stack({
     dir: 'row',
     y: 'center',

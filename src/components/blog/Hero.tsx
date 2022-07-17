@@ -5,8 +5,9 @@ import GitHubLogo from '~/components/vectors/GitHubLogo'
 import TwitterLogo from '~/components/vectors/TwitterLogo'
 
 import { css } from '~/styles'
-import { container, stack, text } from '~/styles/primitives'
+import { container, stack } from '~/styles/primitives'
 import themes from '~/styles/themes'
+import text from '~/styles/sprinkles/text.css'
 
 import config from '~/config'
 
@@ -38,29 +39,27 @@ const styles = {
       mr: '$4'
     }
   })(),
-  postTitle: text({
-    size: {
-      '@initial': '3xl',
-      '@md': '4xl',
-      '@lg': '5xl'
+  postTitle: `${text({
+    fontSize: {
+      initial: '3xl',
+      md: '4xl',
+      lg: '5xl'
     },
-    leading: 'tight',
-    weight: 'extrabold',
-    css: { maxWidth: '15ch' }
-  }),
-  postSnippet: text({
-    size: {
-      '@initial': 'base',
-      '@md': 'lg',
-      '@lg': 'xl'
-    },
-    css: {
-      mt: '$2',
-      xColorOpacity: 0.5,
-      xColor: '$fg1',
-      maxWidth: '35ch'
+    lineHeight: 'tight',
+    fontWeight: 'extrabold'
+  })} ${css({ maxWidth: '15ch' })}`,
+  postSnippet: `${text({
+    fontSize: {
+      initial: 'base',
+      md: 'lg',
+      lg: 'xl'
     }
-  }),
+  })} ${css({
+    mt: '$2',
+    xColorOpacity: 0.5,
+    xColor: '$fg1',
+    maxWidth: '35ch'
+  })()}`,
   postAuthor: stack({
     dir: 'row',
     y: 'center',
@@ -81,11 +80,11 @@ const styles = {
     '@lg': { width: 48, height: 48 }
   })(),
   authorName: text({
-    weight: 'medium',
-    leading: 'none',
-    size: {
-      '@initial': 'sm',
-      '@lg': 'base'
+    fontWeight: 'medium',
+    lineHeight: 'none',
+    fontSize: {
+      initial: 'sm',
+      lg: 'base'
     }
   }),
   socials: stack({
@@ -111,19 +110,18 @@ const styles = {
       }
     }
   }),
-  publishedDate: text({
-    leading: 'none',
-    weight: 'medium',
-    size: {
-      '@initial': 'xs',
-      '@lg': 'sm'
-    },
-    css: {
-      xColor: '$fg1',
-      xColorOpacity: 0.5,
-      gridArea: 'date'
+  publishedDate: `${text({
+    lineHeight: 'none',
+    fontWeight: 'medium',
+    fontSize: {
+      initial: 'xs',
+      lg: 'sm'
     }
-  }),
+  })} ${css({
+    xColor: '$fg1',
+    xColorOpacity: 0.5,
+    gridArea: 'date'
+  })()}`,
   cover: css({
     gridArea: 'cover',
     position: 'relative',

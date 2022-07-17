@@ -1,18 +1,21 @@
 import React from 'react'
-import { text } from '~/styles/primitives'
+import text from '~/styles/sprinkles/text.css'
 
-import type { VariantProps } from '@stitches/core'
-
-type TextProps = VariantProps<typeof text>
+type TextProps = Parameters<typeof text>[0]
 
 interface Props extends TextProps {
   children: React.ReactNode
   as: React.ElementType
+  style: React.CSSProperties
 }
 
-const Text = ({ children, as, ...styles }: Props) => {
+const Text = ({ children, as, style, ...textStyles }: Props) => {
   const Component = as || 'span'
-  return <Component className={text({ ...styles })}>{children}</Component>
+  return (
+    <Component className={text({ ...textStyles })} style={style}>
+      {children}
+    </Component>
+  )
 }
 
 export default Text
