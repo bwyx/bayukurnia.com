@@ -3,7 +3,8 @@ import * as Tabs from '@radix-ui/react-tabs'
 import { ScrollArea } from '~/components'
 
 import { css } from '~/styles'
-import { stack, text } from '~/styles/primitives'
+import { stack } from '~/styles/primitives'
+import text from '~/styles/sprinkles/text.css'
 
 interface TabProps {
   children: React.ReactNode
@@ -23,19 +24,18 @@ const styles = {
       ml: '$4'
     }
   }),
-  tabTrigger: text({
-    size: 'xs',
-    tracking: 'wide',
-    css: {
-      padding: '$1 $2',
-      borderBottom: '1px solid transparent',
-      xColor: '$fg3',
-      '&[data-state="active"]': {
-        xColor: '$brand',
-        borderColor: 'rgb($rgb$brand)'
-      }
+  tabTrigger: `${text({
+    fontSize: 'xs',
+    letterSpacing: 'wide'
+  })} ${css({
+    padding: '$1 $2',
+    borderBottom: '1px solid transparent',
+    xColor: '$fg3',
+    '&[data-state="active"]': {
+      xColor: '$brand',
+      borderColor: 'rgb($rgb$brand)'
     }
-  }),
+  })()}`,
   tabContent: css({
     borderRadius: '$lg',
     'pre:first-child': {

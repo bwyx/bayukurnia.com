@@ -14,7 +14,8 @@ import { defaultColor, availableColors } from '~/components/chat/ChatInputForm'
 import { MessageIcon } from '~/components/icons'
 
 import { css } from '~/styles'
-import { container, stack, text } from '~/styles/primitives'
+import { container, stack } from '~/styles/primitives'
+import text from '~/styles/sprinkles/text.css'
 
 import config from '~/config'
 
@@ -42,31 +43,29 @@ const styles = {
       '@lg': { height: 60 }
     }
   }),
-  description: text({
-    size: {
-      '@initial': 'sm',
-      '@sm': 'base'
-    },
-    leading: 'snug',
-    css: {
-      mx: '$4',
-      xColor: '$fg3',
-      textAlign: 'center'
+  description: `${text({
+    lineHeight: 'snug',
+    fontSize: {
+      initial: 'sm',
+      sm: 'base'
     }
-  }),
-  info: text({
-    size: {
-      '@initial': 'xs',
-      '@sm': 'sm'
-    },
-    leading: 'snug',
-    css: {
-      mt: '$4',
-      mx: '$4',
-      xColor: '$fg1',
-      textAlign: 'center'
+  })} ${css({
+    mx: '$4',
+    xColor: '$fg3',
+    textAlign: 'center'
+  })()}`,
+  info: `${text({
+    lineHeight: 'snug',
+    fontSize: {
+      initial: 'xs',
+      sm: 'sm'
     }
-  }),
+  })} ${css({
+    mt: '$4',
+    mx: '$4',
+    xColor: '$fg1',
+    textAlign: 'center'
+  })()}`,
   connectStatus: css({
     py: '$1',
     px: '$4',
@@ -110,28 +109,24 @@ const styles = {
       }
     }
   }),
-  title: text({
-    size: {
-      '@initial': 'sm',
-      '@sm': 'base'
-    },
-    weight: 'bold',
-    css: { mr: '$3' }
-  }),
+  title: `${css({ mr: '$3' })()} ${text({
+    fontWeight: 'bold',
+    fontSize: {
+      initial: 'sm',
+      sm: 'base'
+    }
+  })}`,
   messages: stack({
     dir: 'col',
     y: 'bottom',
     grow: true
   }),
-  messageTime: text({
-    size: 'xs',
-    css: {
-      mt: '$12',
-      mx: 'auto',
-      xColor: '$fg3',
-      xColorOpacity: 0.5
-    }
-  }),
+  messageTime: `${text({ fontSize: 'xs' })} ${css({
+    mt: '$12',
+    mx: 'auto',
+    xColor: '$fg3',
+    xColorOpacity: 0.5
+  })()}`,
   chatInputContainer: `${container({ size: 'small' })} ${css({
     py: '$4',
     position: 'sticky',

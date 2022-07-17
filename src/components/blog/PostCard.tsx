@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { format, parseISO } from 'date-fns'
 
-import { stack, text } from '~/styles/primitives'
+import { css } from '~/styles'
+import { stack } from '~/styles/primitives'
+import text from '~/styles/sprinkles/text.css'
 
 import type { PostProperties } from '~/types/blog.type'
 
@@ -29,28 +31,25 @@ const styles = {
       }
     }
   }),
-  title: text({
-    weight: 'bold',
-    leading: 'snug',
-    size: {
-      '@initial': 'xl',
-      '@sm': '2xl'
-    },
-    css: { xColor: '$fg1' }
-  }),
-  summary: text({
-    size: 'base',
-    leading: 'relaxed',
-    css: { xColor: '$fg2' }
-  }),
-  publishedAt: text({
-    weight: 'medium',
-    size: {
-      '@initial': 'xs',
-      '@sm': 'sm'
-    },
-    css: { mb: '$2', xColor: '$fg3' }
-  })
+  title: `${text({
+    fontWeight: 'bold',
+    lineHeight: 'snug',
+    fontSize: {
+      initial: 'xl',
+      sm: '2xl'
+    }
+  })} ${css({ xColor: '$fg1' })()}`,
+  summary: `${text({
+    fontSize: 'base',
+    lineHeight: 'relaxed'
+  })} ${css({ xColor: '$fg2' })()}`,
+  publishedAt: `${text({
+    fontWeight: 'medium',
+    fontSize: {
+      initial: 'xs',
+      sm: 'sm'
+    }
+  })} ${css({ mb: '$2', xColor: '$fg3' })()}`
 }
 
 const PostCard = ({
