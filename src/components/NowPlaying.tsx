@@ -5,6 +5,7 @@ import SpotifyLogo from '~/components/vectors/SpotifyLogo'
 
 import { css, keyframes } from '~/styles'
 import { stack, text } from '~/styles/primitives'
+import { rgb } from '~/styles/variables.css'
 
 import type { NowPlayingResponse } from '~/types/spotify.type'
 
@@ -173,7 +174,7 @@ const Glass = () => (
           y2="356.261"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="rgb(var(--rgb-brand))" />
+          <stop stopColor={`rgb(${rgb.glass})`} />
           <stop offset="1" stopColor="#26BBBB" />
         </linearGradient>
       </defs>
@@ -212,12 +213,8 @@ const Glass = () => (
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(99 7.5) rotate(22.2368) scale(141.371 111.267)"
         >
-          <stop stopColor="rgb(var(--rgb-glass))" stopOpacity="0.65" />
-          <stop
-            offset="1"
-            stopColor="rgb(var(--rgb-glass))"
-            stopOpacity="0.17"
-          />
+          <stop stopColor={`rgb(${rgb.glass})`} stopOpacity="0.65" />
+          <stop offset="1" stopColor={`rgb(${rgb.glass})`} stopOpacity="0.17" />
         </radialGradient>
         <linearGradient
           id="paint1_linear_201_12"
@@ -227,8 +224,8 @@ const Glass = () => (
           y2="122.438"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="rgb(var(--rgb-glass))" stopOpacity="0.4" />
-          <stop offset="1" stopColor="rgb(var(--rgb-glass))" stopOpacity="0" />
+          <stop stopColor={`rgb(${rgb.glass})`} stopOpacity="0.4" />
+          <stop offset="1" stopColor={`rgb(${rgb.glass})`} stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>

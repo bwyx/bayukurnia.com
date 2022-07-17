@@ -1,3 +1,5 @@
+import { rgb } from '~/styles/variables.css'
+
 interface Props {
   width?: number
   height?: number
@@ -70,7 +72,7 @@ const Glass = ({
             y2="538.5"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="rgb(var(--rgb-brand))" />
+            <stop stopColor={`rgb(${rgb.glass})`} />
             <stop offset="1" stopColor="#26BBBB" />
           </linearGradient>
         </defs>
@@ -114,12 +116,8 @@ const Glass = ({
             gradientUnits="userSpaceOnUse"
             gradientTransform={`translate(172.5 46.5) rotate(58.555) scale(${gradientScale})`}
           >
-            <stop stopColor="rgb(var(--rgb-glass))" stopOpacity="0.7" />
-            <stop
-              offset="1"
-              stopColor="rgb(var(--rgb-glass))"
-              stopOpacity="0"
-            />
+            <stop stopColor={`rgb(${rgb.glass})`} stopOpacity="0.7" />
+            <stop offset="1" stopColor={`rgb(${rgb.glass})`} stopOpacity="0" />
           </radialGradient>
           <linearGradient
             id="paint1_linear_21_350"
@@ -129,12 +127,8 @@ const Glass = ({
             y2="115%"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="rgb(var(--rgb-glass))" stopOpacity="0.65" />
-            <stop
-              offset="1"
-              stopColor="rgb(var(--rgb-glass))"
-              stopOpacity="0"
-            />
+            <stop stopColor={`rgb(${rgb.glass})`} stopOpacity="0.65" />
+            <stop offset="1" stopColor={`rgb(${rgb.glass})`} stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>
