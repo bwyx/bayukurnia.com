@@ -60,13 +60,12 @@ const styles = {
     xColor: '$fg1',
     maxWidth: '35ch'
   })()}`,
-  postAuthor: stack({
+  postAuthor: `${stack({
     dir: 'row',
-    y: 'center',
-    css: {
-      gridArea: 'author'
-    }
-  }),
+    y: 'center'
+  })} ${css({
+    gridArea: 'author'
+  })}`,
   authorDetails: stack({ dir: 'col' }),
   authorPicture: css({
     position: 'relative',
@@ -87,29 +86,27 @@ const styles = {
       lg: 'base'
     }
   }),
-  socials: stack({
-    css: {
-      ml: '-$1',
-      mb: '-$2',
-      a: {
-        display: 'inline-block',
-        padding: '$1',
-        xColor: '$fg3',
-        '&.twitter:hover': { color: 'rgb(29, 155, 240)' },
-        '&.github:hover': {
-          [`.${themes.dark} &`]: { color: 'rgb(255, 255, 255)' },
-          [`.${themes.light} &`]: { color: 'rgb(0, 0, 0)' }
-        }
-      },
-      svg: {
-        width: 16,
-        height: 16
-      },
-      '@lg': {
-        mt: '$1'
+  socials: `${stack()} ${css({
+    ml: '-$1',
+    mb: '-$2',
+    a: {
+      display: 'inline-block',
+      padding: '$1',
+      xColor: '$fg3',
+      '&.twitter:hover': { color: 'rgb(29, 155, 240)' },
+      '&.github:hover': {
+        [`.${themes.dark} &`]: { color: 'rgb(255, 255, 255)' },
+        [`.${themes.light} &`]: { color: 'rgb(0, 0, 0)' }
       }
+    },
+    svg: {
+      width: 16,
+      height: 16
+    },
+    '@lg': {
+      mt: '$1'
     }
-  }),
+  })}`,
   publishedDate: `${text({
     lineHeight: 'none',
     fontWeight: 'medium',

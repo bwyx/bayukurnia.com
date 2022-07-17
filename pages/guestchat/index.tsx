@@ -15,7 +15,7 @@ import { MessageIcon } from '~/components/icons'
 
 import { css } from '~/styles'
 import { container, stack } from '~/styles/primitives'
-import text from '~/styles/sprinkles/text.css'
+import { text, box } from '~/styles/sprinkles'
 
 import config from '~/config'
 
@@ -31,18 +31,17 @@ const styles = {
   container: `${container({
     size: 'small'
   })} ${stack({ dir: 'col', grow: true })}`,
-  stickyHeader: stack({
+  stickyHeader: `${stack({
     y: 'center',
-    x: 'center',
-    css: {
-      pointerEvents: 'none',
-      position: 'sticky',
-      zIndex: 9999,
-      top: 0,
-      height: 50,
-      '@lg': { height: 60 }
-    }
-  }),
+    x: 'center'
+  })} ${css({
+    pointerEvents: 'none',
+    position: 'sticky',
+    zIndex: 9999,
+    top: 0,
+    height: 50,
+    '@lg': { height: 60 }
+  })}`,
   description: `${text({
     lineHeight: 'snug',
     fontSize: {
@@ -133,13 +132,12 @@ const styles = {
     bottom: 0,
     zIndex: 1
   })()}`,
-  loading: stack({
+  loading: `${stack({
     dir: 'col',
-    grow: true,
-    css: {
-      mt: '$12'
-    }
-  })
+    grow: true
+  })} ${css({
+    mt: '$12'
+  })}`
 }
 
 const lessThanOneHourAgo = (date: number) => {

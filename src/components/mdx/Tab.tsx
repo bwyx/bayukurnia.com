@@ -18,12 +18,11 @@ interface TabItemProps {
 }
 
 const styles = {
-  tabList: stack({
-    dir: 'row',
-    css: {
-      ml: '$4'
-    }
-  }),
+  tabList: `${stack({
+    dir: 'row'
+  })} ${css({
+    ml: '$4'
+  })}`,
   tabTrigger: `${text({
     fontSize: 'xs',
     letterSpacing: 'wide'
