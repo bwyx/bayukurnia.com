@@ -1,15 +1,13 @@
 import React from 'react'
 import { Header, Footer } from '~/components'
+import { css } from '~/styles'
 
 import { stack } from '~/styles/primitives'
 
-const main = stack({
+const main = `${stack({
   dir: 'col',
-  grow: true,
-  css: {
-    overflow: 'hidden'
-  }
-})
+  grow: true
+})} ${css({ overflow: 'hidden' })()}`
 
 interface MainLayoutOptions {
   footer?: boolean

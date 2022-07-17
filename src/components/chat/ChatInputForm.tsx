@@ -189,7 +189,7 @@ const ChatInputForm = ({
           onChange={(e) => setMessage(e.target.value)}
           placeholder={placeholder}
         />
-        <div className={stack({ x: 'right', css: { mt: '$2' } })}>
+        <div className={`${stack({ x: 'right' })} ${css({ mt: '$2' })}`}>
           {availableColors.map((color, i) => (
             <button
               type="button"

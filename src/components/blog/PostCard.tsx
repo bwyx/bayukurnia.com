@@ -8,29 +8,26 @@ import text from '~/styles/sprinkles/text.css'
 import type { PostProperties } from '~/types/blog.type'
 
 const styles = {
-  outer: stack({
-    dir: 'col',
-    css: {
-      mt: '$2',
-      padding: '$4',
-      borderRadius: '$xl',
-      border: '1px solid transparent',
-      '&:first-child': {
-        mt: 0
-      },
-      '&:hover': {
-        xBackground: '$brand',
-        xBackgroundOpacity: 0.05,
-        borderColor: 'rgb($rgb$brand / 0.1)',
-        h2: {
-          xColor: '$brand'
-        }
-      },
-      '@sm': {
-        padding: '$6'
+  outer: `${stack({ dir: 'col' })} ${css({
+    mt: '$2',
+    padding: '$4',
+    borderRadius: '$xl',
+    border: '1px solid transparent',
+    '&:first-child': {
+      mt: 0
+    },
+    '&:hover': {
+      xBackground: '$brand',
+      xBackgroundOpacity: 0.05,
+      borderColor: 'rgb($rgb$brand / 0.1)',
+      h2: {
+        xColor: '$brand'
       }
+    },
+    '@sm': {
+      padding: '$6'
     }
-  }),
+  })}`,
   title: `${text({
     fontWeight: 'bold',
     lineHeight: 'snug',

@@ -14,35 +14,34 @@ const styles = {
     pb: '$8',
     overflow: 'hidden'
   })(),
-  links: stack({
+  links: `${stack({
     y: 'top',
     dir: 'row',
-    grow: true,
-    css: {
-      mt: '$16',
-      '@sm': { mt: '$0' },
-      ul: {
-        flexBasis: '50%'
-      },
-      li: {
-        mt: '$4',
-        '@sm': { mt: '$6' },
-        '&:first-child': { mt: '$0' }
-      },
-      a: {
-        px: '$4',
-        py: '$5',
-        mx: '-$4',
-        xColor: '$fg3',
-        xColorOpacity: 0.7,
-        fontSize: '$sm',
-        '@sm': { fontSize: '$base' },
-        '&:hover': {
-          xColorOpacity: 0.4
-        }
+    grow: true
+  })} ${css({
+    mt: '$16',
+    '@sm': { mt: '$0' },
+    ul: {
+      flexBasis: '50%'
+    },
+    li: {
+      mt: '$4',
+      '@sm': { mt: '$6' },
+      '&:first-child': { mt: '$0' }
+    },
+    a: {
+      px: '$4',
+      py: '$5',
+      mx: '-$4',
+      xColor: '$fg3',
+      xColorOpacity: 0.7,
+      fontSize: '$sm',
+      '@sm': { fontSize: '$base' },
+      '&:hover': {
+        xColorOpacity: 0.4
       }
     }
-  }),
+  })()}`,
   credit: `${text({
     fontSize: 'xs'
   })} ${css({
@@ -67,11 +66,11 @@ const Footer = () => {
       <div className={container({ size: 'small' })}>
         <section
           className={stack({
-            y: 'top',
-            dir: {
-              '@initial': 'col-reverse',
-              '@sm': 'row'
-            }
+            y: 'top'
+            // dir: {
+            //   '@initial': 'col-reverse',
+            //   '@sm': 'row'
+            // }
           })}
         >
           <div className={styles.links}>
