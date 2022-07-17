@@ -132,15 +132,12 @@ const styles = {
       xColorOpacity: 0.5
     }
   }),
-  chatInputContainer: container({
-    size: 'small',
-    css: {
-      py: '$4',
-      position: 'sticky',
-      bottom: 0,
-      zIndex: 1
-    }
-  }),
+  chatInputContainer: `${container({ size: 'small' })} ${css({
+    py: '$4',
+    position: 'sticky',
+    bottom: 0,
+    zIndex: 1
+  })()}`,
   loading: stack({
     dir: 'col',
     grow: true,

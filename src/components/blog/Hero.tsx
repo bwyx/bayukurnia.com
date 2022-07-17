@@ -18,22 +18,19 @@ const styles = {
     '@md': { pb: '$6' },
     '@lg': { pt: '$12', pb: '$8' }
   })(),
-  container: container({
-    size: 'large',
-    css: {
-      '@sm': {
-        display: 'grid',
-        alignItems: 'center',
-        gridTemplateRows: 'auto 1fr auto',
-        gridTemplateColumns: '1fr',
-        gridTemplateAreas: `
+  container: `${container({ size: 'large' })} ${css({
+    '@sm': {
+      display: 'grid',
+      alignItems: 'center',
+      gridTemplateRows: 'auto 1fr auto',
+      gridTemplateColumns: '1fr',
+      gridTemplateAreas: `
     "date cover"
     "details cover"
     "author cover"
     `
-      }
     }
-  }),
+  })()}`,
   postDetails: css({
     gridArea: 'details',
     my: '$6',
