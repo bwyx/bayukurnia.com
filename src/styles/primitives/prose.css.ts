@@ -1,25 +1,90 @@
 // styles from `@tailwindcss/typography`
-import { globalStyle } from '@vanilla-extract/css'
+import { createVar, globalStyle } from '@vanilla-extract/css'
 
 import { em } from '~/styles/utils.css'
+import { light, dark } from '~/styles/themes.css'
+import { rgb } from '~/styles/variables.css'
+
+const prose = {
+  body: createVar('proseBody'),
+  headings: createVar('proseHeadings'),
+  lead: createVar('proseLead'),
+  links: createVar('proseLinks'),
+  bold: createVar('proseBold'),
+  counters: createVar('proseCounters'),
+  bullets: createVar('proseBullets'),
+  hr: createVar('proseHr'),
+  quotes: createVar('proseQuotes'),
+  quoteBorders: createVar('proseQuoteBorders'),
+  captions: createVar('proseCaptions'),
+  code: createVar('proseCode'),
+  preCode: createVar('prosePreCode'),
+  preBg: createVar('prosePreBg'),
+  thBorders: createVar('proseThBorders'),
+  tdBorders: createVar('proseTdBorders')
+}
+
+const color = (key: keyof typeof rgb) => `rgb(${rgb[key]})`
+
+globalStyle(`${light} .prose`, {
+  vars: {
+    [prose.body]: color('text-600'),
+    [prose.headings]: color('text-900'),
+    [prose.lead]: color('text-600'),
+    [prose.links]: color('text-900'),
+    [prose.bold]: color('text-900'),
+    [prose.counters]: color('text-500'),
+    [prose.bullets]: color('text-300'),
+    [prose.hr]: color('text-200'),
+    [prose.quotes]: color('text-900'),
+    [prose.quoteBorders]: color('text-200'),
+    [prose.captions]: color('text-500'),
+    [prose.code]: color('text-900'),
+    [prose.preCode]: color('text-200'),
+    [prose.preBg]: color('text-800'),
+    [prose.thBorders]: color('text-300'),
+    [prose.tdBorders]: color('text-200')
+  }
+})
+
+globalStyle(`${dark} .prose`, {
+  vars: {
+    [prose.body]: color('text-400'),
+    [prose.headings]: '#fff',
+    [prose.lead]: color('text-400'),
+    [prose.links]: '#fff',
+    [prose.bold]: '#fff',
+    [prose.counters]: color('text-400'),
+    [prose.bullets]: color('text-600'),
+    [prose.hr]: color('text-700'),
+    [prose.quotes]: color('text-100'),
+    [prose.quoteBorders]: color('text-700'),
+    [prose.captions]: color('text-400'),
+    [prose.code]: '#fff',
+    [prose.preCode]: color('text-300'),
+    [prose.preBg]: 'rgb(0 0 0 / 50%)',
+    [prose.thBorders]: color('text-600'),
+    [prose.tdBorders]: color('text-700')
+  }
+})
 
 globalStyle('.prose', {
-  color: 'var(--tw-prose-body)',
+  color: prose.body,
   maxWidth: '65ch'
 })
 
 globalStyle('.prose [class~="lead"]', {
-  color: 'var(--tw-prose-lead)'
+  color: prose.lead
 })
 
 globalStyle('.prose a', {
-  color: 'var(--tw-prose-links)',
+  color: prose.links,
   textDecoration: 'underline',
   fontWeight: '500'
 })
 
 globalStyle('.prose strong', {
-  color: 'var(--tw-prose-bold)',
+  color: prose.bold,
   fontWeight: '600'
 })
 
@@ -81,24 +146,24 @@ globalStyle('.prose ul', {
 
 globalStyle('.prose ol > li::marker', {
   fontWeight: '400',
-  color: 'var(--tw-prose-counters)'
+  color: prose.counters
 })
 
 globalStyle('.prose ul > li::marker', {
-  color: 'var(--tw-prose-bullets)'
+  color: prose.bullets
 })
 
 globalStyle('.prose hr', {
-  borderColor: 'var(--tw-prose-hr)',
+  borderColor: prose.hr,
   borderTopWidth: 1
 })
 
 globalStyle('.prose blockquote', {
   fontWeight: '500',
   fontStyle: 'italic',
-  color: 'var(--tw-prose-quotes)',
+  color: prose.quotes,
   borderLeftWidth: '0.25rem',
-  borderLeftColor: 'var(--tw-prose-quote-borders)',
+  borderLeftColor: prose.quoteBorders,
   quotes: '"\\201C""\\201D""\\2018""\\2019"'
 })
 
@@ -111,7 +176,7 @@ globalStyle('.prose blockquote p:last-of-type::after', {
 })
 
 globalStyle('.prose h1', {
-  color: 'var(--tw-prose-headings)',
+  color: prose.headings,
   fontWeight: '800'
 })
 
@@ -121,7 +186,7 @@ globalStyle('.prose h1 strong', {
 })
 
 globalStyle('.prose h2', {
-  color: 'var(--tw-prose-headings)',
+  color: prose.headings,
   fontWeight: '700'
 })
 
@@ -131,7 +196,7 @@ globalStyle('.prose h2 strong', {
 })
 
 globalStyle('.prose h3', {
-  color: 'var(--tw-prose-headings)',
+  color: prose.headings,
   fontWeight: '600'
 })
 
@@ -141,7 +206,7 @@ globalStyle('.prose h3 strong', {
 })
 
 globalStyle('.prose h4', {
-  color: 'var(--tw-prose-headings)',
+  color: prose.headings,
   fontWeight: '600'
 })
 
@@ -156,11 +221,11 @@ globalStyle('.prose img', {})
 globalStyle('.prose figure > *', {})
 
 globalStyle('.prose figcaption', {
-  color: 'var(--tw-prose-captions)'
+  color: prose.captions
 })
 
 globalStyle('.prose code', {
-  color: 'var(--tw-prose-code)',
+  color: prose.code,
   fontWeight: '600'
 })
 
@@ -201,8 +266,8 @@ globalStyle('.prose thead th code', {
 })
 
 globalStyle('.prose pre', {
-  color: 'var(--tw-prose-pre-code)',
-  backgroundColor: 'var(--tw-prose-pre-bg)',
+  color: prose.preCode,
+  backgroundColor: prose.preBg,
   overflowX: 'auto',
   fontWeight: '400'
 })
@@ -237,18 +302,18 @@ globalStyle('.prose table', {
 
 globalStyle('.prose thead', {
   borderBottomWidth: '1px',
-  borderBottomColor: 'var(--tw-prose-th-borders)'
+  borderBottomColor: prose.thBorders
 })
 
 globalStyle('.prose thead th', {
-  color: 'var(--tw-prose-headings)',
+  color: prose.headings,
   fontWeight: '600',
   verticalAlign: 'bottom'
 })
 
 globalStyle('.prose tbody tr', {
   borderBottomWidth: '1px',
-  borderBottomColor: 'var(--tw-prose-td-borders)'
+  borderBottomColor: prose.tdBorders
 })
 
 globalStyle('.prose tbody tr:last-child', {
@@ -261,7 +326,7 @@ globalStyle('.prose tbody td', {
 
 globalStyle('.prose tfoot', {
   borderTopWidth: '1px',
-  borderTopColor: 'var(--tw-prose-th-borders)'
+  borderTopColor: prose.thBorders
 })
 
 globalStyle('.prose tfoot td', {
