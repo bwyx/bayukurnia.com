@@ -1,11 +1,14 @@
 // styles from `@tailwindcss/typography`
-import { createVar, globalStyle } from '@vanilla-extract/css'
+import { createVar, globalStyle, style } from '@vanilla-extract/css'
 
 import { em } from '~/styles/utils.css'
 import { light, dark } from '~/styles/themes.css'
 import { rgb } from '~/styles/variables.css'
 
-const prose = {
+const prose = style({})
+export default prose
+
+const $ = {
   body: createVar('proseBody'),
   headings: createVar('proseHeadings'),
   lead: createVar('proseLead'),
@@ -26,257 +29,257 @@ const prose = {
 
 const color = (key: keyof typeof rgb) => `rgb(${rgb[key]})`
 
-globalStyle(`${light} .prose`, {
+globalStyle(`${light} ${prose}`, {
   vars: {
-    [prose.body]: color('text-600'),
-    [prose.headings]: color('text-900'),
-    [prose.lead]: color('text-600'),
-    [prose.links]: color('text-900'),
-    [prose.bold]: color('text-900'),
-    [prose.counters]: color('text-500'),
-    [prose.bullets]: color('text-300'),
-    [prose.hr]: color('text-200'),
-    [prose.quotes]: color('text-900'),
-    [prose.quoteBorders]: color('text-200'),
-    [prose.captions]: color('text-500'),
-    [prose.code]: color('text-900'),
-    [prose.preCode]: color('text-200'),
-    [prose.preBg]: color('text-800'),
-    [prose.thBorders]: color('text-300'),
-    [prose.tdBorders]: color('text-200')
+    [$.body]: color('text-600'),
+    [$.headings]: color('text-900'),
+    [$.lead]: color('text-600'),
+    [$.links]: color('text-900'),
+    [$.bold]: color('text-900'),
+    [$.counters]: color('text-500'),
+    [$.bullets]: color('text-300'),
+    [$.hr]: color('text-200'),
+    [$.quotes]: color('text-900'),
+    [$.quoteBorders]: color('text-200'),
+    [$.captions]: color('text-500'),
+    [$.code]: color('text-900'),
+    [$.preCode]: color('text-200'),
+    [$.preBg]: color('text-800'),
+    [$.thBorders]: color('text-300'),
+    [$.tdBorders]: color('text-200')
   }
 })
 
-globalStyle(`${dark} .prose`, {
+globalStyle(`${dark} ${prose}`, {
   vars: {
-    [prose.body]: color('text-400'),
-    [prose.headings]: '#fff',
-    [prose.lead]: color('text-400'),
-    [prose.links]: '#fff',
-    [prose.bold]: '#fff',
-    [prose.counters]: color('text-400'),
-    [prose.bullets]: color('text-600'),
-    [prose.hr]: color('text-700'),
-    [prose.quotes]: color('text-100'),
-    [prose.quoteBorders]: color('text-700'),
-    [prose.captions]: color('text-400'),
-    [prose.code]: '#fff',
-    [prose.preCode]: color('text-300'),
-    [prose.preBg]: 'rgb(0 0 0 / 50%)',
-    [prose.thBorders]: color('text-600'),
-    [prose.tdBorders]: color('text-700')
+    [$.body]: color('text-400'),
+    [$.headings]: '#fff',
+    [$.lead]: color('text-400'),
+    [$.links]: '#fff',
+    [$.bold]: '#fff',
+    [$.counters]: color('text-400'),
+    [$.bullets]: color('text-600'),
+    [$.hr]: color('text-700'),
+    [$.quotes]: color('text-100'),
+    [$.quoteBorders]: color('text-700'),
+    [$.captions]: color('text-400'),
+    [$.code]: '#fff',
+    [$.preCode]: color('text-300'),
+    [$.preBg]: 'rgb(0 0 0 / 50%)',
+    [$.thBorders]: color('text-600'),
+    [$.tdBorders]: color('text-700')
   }
 })
 
-globalStyle('.prose', {
-  color: prose.body,
+globalStyle(prose, {
+  color: $.body,
   maxWidth: '65ch'
 })
 
-globalStyle('.prose [class~="lead"]', {
-  color: prose.lead
+globalStyle(`${prose} [class~="lead"]`, {
+  color: $.lead
 })
 
-globalStyle('.prose a', {
-  color: prose.links,
+globalStyle(`${prose} a`, {
+  color: $.links,
   textDecoration: 'underline',
   fontWeight: '500'
 })
 
-globalStyle('.prose strong', {
-  color: prose.bold,
+globalStyle(`${prose} strong`, {
+  color: $.bold,
   fontWeight: '600'
 })
 
-globalStyle('.prose a strong', {
+globalStyle(`${prose} a strong`, {
   color: 'inherit'
 })
 
-globalStyle('.prose blockquote strong', {
+globalStyle(`${prose} blockquote strong`, {
   color: 'inherit'
 })
 
-globalStyle('.prose thead th strong', {
+globalStyle(`${prose} thead th strong`, {
   color: 'inherit'
 })
 
-globalStyle('.prose ol', {
+globalStyle(`${prose} ol`, {
   listStyleType: 'decimal'
 })
 
-globalStyle('.prose ol[type="A"]', {
+globalStyle(`${prose} ol[type="A"]`, {
   listStyleType: 'upper-alpha'
 })
 
-globalStyle('.prose ol[type="a"]', {
+globalStyle(`${prose} ol[type="a"]`, {
   listStyleType: 'lower-alpha'
 })
 
-globalStyle('.prose ol[type="A" s]', {
+globalStyle(`${prose} ol[type="A" s]`, {
   listStyleType: 'upper-alpha'
 })
 
-globalStyle('.prose ol[type="a" s]', {
+globalStyle(`${prose} ol[type="a" s]`, {
   listStyleType: 'lower-alpha'
 })
 
-globalStyle('.prose ol[type="I"]', {
+globalStyle(`${prose} ol[type="I"]`, {
   listStyleType: 'upper-roman'
 })
 
-globalStyle('.prose ol[type="i"]', {
+globalStyle(`${prose} ol[type="i"]`, {
   listStyleType: 'lower-roman'
 })
 
-globalStyle('.prose ol[type="I" s]', {
+globalStyle(`${prose} ol[type="I" s]`, {
   listStyleType: 'upper-roman'
 })
 
-globalStyle('.prose ol[type="i" s]', {
+globalStyle(`${prose} ol[type="i" s]`, {
   listStyleType: 'lower-roman'
 })
 
-globalStyle('.prose ol[type="1"]', {
+globalStyle(`${prose} ol[type="1"]`, {
   listStyleType: 'decimal'
 })
 
-globalStyle('.prose ul', {
+globalStyle(`${prose} ul`, {
   listStyleType: 'disc'
 })
 
-globalStyle('.prose ol > li::marker', {
+globalStyle(`${prose} ol > li::marker`, {
   fontWeight: '400',
-  color: prose.counters
+  color: $.counters
 })
 
-globalStyle('.prose ul > li::marker', {
-  color: prose.bullets
+globalStyle(`${prose} ul > li::marker`, {
+  color: $.bullets
 })
 
-globalStyle('.prose hr', {
-  borderColor: prose.hr,
+globalStyle(`${prose} hr`, {
+  borderColor: $.hr,
   borderTopWidth: 1
 })
 
-globalStyle('.prose blockquote', {
+globalStyle(`${prose} blockquote`, {
   fontWeight: '500',
   fontStyle: 'italic',
-  color: prose.quotes,
+  color: $.quotes,
   borderLeftWidth: '0.25rem',
-  borderLeftColor: prose.quoteBorders,
+  borderLeftColor: $.quoteBorders,
   quotes: '"\\201C""\\201D""\\2018""\\2019"'
 })
 
-globalStyle('.prose blockquote p:first-of-type::before', {
+globalStyle(`${prose} blockquote p:first-of-type::before`, {
   content: 'open-quote'
 })
 
-globalStyle('.prose blockquote p:last-of-type::after', {
+globalStyle(`${prose} blockquote p:last-of-type::after`, {
   content: 'close-quote'
 })
 
-globalStyle('.prose h1', {
-  color: prose.headings,
+globalStyle(`${prose} h1`, {
+  color: $.headings,
   fontWeight: '800'
 })
 
-globalStyle('.prose h1 strong', {
+globalStyle(`${prose} h1 strong`, {
   fontWeight: '900',
   color: 'inherit'
 })
 
-globalStyle('.prose h2', {
-  color: prose.headings,
+globalStyle(`${prose} h2`, {
+  color: $.headings,
   fontWeight: '700'
 })
 
-globalStyle('.prose h2 strong', {
+globalStyle(`${prose} h2 strong`, {
   fontWeight: '800',
   color: 'inherit'
 })
 
-globalStyle('.prose h3', {
-  color: prose.headings,
+globalStyle(`${prose} h3`, {
+  color: $.headings,
   fontWeight: '600'
 })
 
-globalStyle('.prose h3 strong', {
+globalStyle(`${prose} h3 strong`, {
   fontWeight: '700',
   color: 'inherit'
 })
 
-globalStyle('.prose h4', {
-  color: prose.headings,
+globalStyle(`${prose} h4`, {
+  color: $.headings,
   fontWeight: '600'
 })
 
-globalStyle('.prose h4 strong', {
+globalStyle(`${prose} h4 strong`, {
   fontWeight: '700',
   color: 'inherit'
 })
 
 // TODO: Figure out how to not need these, it's a merging issue
-globalStyle('.prose img', {})
+globalStyle(`${prose} img`, {})
 
-globalStyle('.prose figure > *', {})
+globalStyle(`${prose} figure > *`, {})
 
-globalStyle('.prose figcaption', {
-  color: prose.captions
+globalStyle(`${prose} figcaption`, {
+  color: $.captions
 })
 
-globalStyle('.prose code', {
-  color: prose.code,
+globalStyle(`${prose} code`, {
+  color: $.code,
   fontWeight: '600'
 })
 
-globalStyle('.prose code::before', {
+globalStyle(`${prose} code::before`, {
   content: '"`"'
 })
 
-globalStyle('.prose code::after', {
+globalStyle(`${prose} code::after`, {
   content: '"`"'
 })
 
-globalStyle('.prose a code', {
+globalStyle(`${prose} a code`, {
   color: 'inherit'
 })
 
-globalStyle('.prose h1 code', {
+globalStyle(`${prose} h1 code`, {
   color: 'inherit'
 })
 
-globalStyle('.prose h2 code', {
+globalStyle(`${prose} h2 code`, {
   color: 'inherit'
 })
 
-globalStyle('.prose h3 code', {
+globalStyle(`${prose} h3 code`, {
   color: 'inherit'
 })
 
-globalStyle('.prose h4 code', {
+globalStyle(`${prose} h4 code`, {
   color: 'inherit'
 })
 
-globalStyle('.prose blockquote code', {
+globalStyle(`${prose} blockquote code`, {
   color: 'inherit'
 })
 
-globalStyle('.prose thead th code', {
+globalStyle(`${prose} thead th code`, {
   color: 'inherit'
 })
 
-globalStyle('.prose pre', {
-  color: prose.preCode,
-  backgroundColor: prose.preBg,
+globalStyle(`${prose} pre`, {
+  color: $.preCode,
+  backgroundColor: $.preBg,
   overflowX: 'auto',
   fontWeight: '400'
 })
 
-globalStyle('.prose pre code', {
+globalStyle(`${prose} pre code`, {
   backgroundColor: 'transparent',
-  borderWidth: '0',
-  borderRadius: '0',
-  padding: '0',
+  borderWidth: 0,
+  borderRadius: 0,
+  padding: 0,
   fontWeight: 'inherit',
   color: 'inherit',
   fontSize: 'inherit',
@@ -284,15 +287,15 @@ globalStyle('.prose pre code', {
   lineHeight: 'inherit'
 })
 
-globalStyle('.prose pre code::before', {
+globalStyle(`${prose} pre code::before`, {
   content: 'none'
 })
 
-globalStyle('.prose pre code::after', {
+globalStyle(`${prose} pre code::after`, {
   content: 'none'
 })
 
-globalStyle('.prose table', {
+globalStyle(`${prose} table`, {
   width: '100%',
   tableLayout: 'auto',
   textAlign: 'left',
@@ -300,35 +303,35 @@ globalStyle('.prose table', {
   marginBottom: em(32, 16)
 })
 
-globalStyle('.prose thead', {
+globalStyle(`${prose} thead`, {
   borderBottomWidth: '1px',
-  borderBottomColor: prose.thBorders
+  borderBottomColor: $.thBorders
 })
 
-globalStyle('.prose thead th', {
-  color: prose.headings,
+globalStyle(`${prose} thead th`, {
+  color: $.headings,
   fontWeight: '600',
   verticalAlign: 'bottom'
 })
 
-globalStyle('.prose tbody tr', {
+globalStyle(`${prose} tbody tr`, {
   borderBottomWidth: '1px',
-  borderBottomColor: prose.tdBorders
+  borderBottomColor: $.tdBorders
 })
 
-globalStyle('.prose tbody tr:last-child', {
-  borderBottomWidth: '0'
+globalStyle(`${prose} tbody tr:last-child`, {
+  borderBottomWidth: 0
 })
 
-globalStyle('.prose tbody td', {
+globalStyle(`${prose} tbody td`, {
   verticalAlign: 'baseline'
 })
 
-globalStyle('.prose tfoot', {
+globalStyle(`${prose} tfoot`, {
   borderTopWidth: '1px',
-  borderTopColor: prose.thBorders
+  borderTopColor: $.thBorders
 })
 
-globalStyle('.prose tfoot td', {
+globalStyle(`${prose} tfoot td`, {
   verticalAlign: 'top'
 })
