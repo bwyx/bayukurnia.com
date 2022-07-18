@@ -178,7 +178,7 @@ const Glass = () => (
           y2="356.261"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor={`rgb(${rgb.glass})`} />
+          <stop stopColor={`rgb(${rgb.brand})`} />
           <stop offset="1" stopColor="#26BBBB" />
         </linearGradient>
       </defs>
