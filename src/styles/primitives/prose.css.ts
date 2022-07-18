@@ -3,7 +3,7 @@ import { createVar, globalStyle, style } from '@vanilla-extract/css'
 
 import { round, rem, em } from '~/styles/utils.css'
 import { light, dark } from '~/styles/themes.css'
-import { media, rgb } from '~/styles/variables.css'
+import { fonts, media, rgb } from '~/styles/variables.css'
 
 const prose = style({})
 export default prose
@@ -242,73 +242,73 @@ globalStyle(`${prose} figcaption`, {
   color: $.captions
 })
 
-globalStyle(`${prose} code`, {
-  color: $.code,
-  fontWeight: '600'
-})
+// globalStyle(`${prose} code`, {
+//   color: $.code,
+//   fontWeight: '600'
+// })
 
-globalStyle(`${prose} code::before`, {
-  content: '"`"'
-})
+// globalStyle(`${prose} code::before`, {
+//   content: '"`"'
+// })
 
-globalStyle(`${prose} code::after`, {
-  content: '"`"'
-})
+// globalStyle(`${prose} code::after`, {
+//   content: '"`"'
+// })
 
-globalStyle(`${prose} a code`, {
-  color: 'inherit'
-})
+// globalStyle(`${prose} a code`, {
+//   color: 'inherit'
+// })
 
-globalStyle(`${prose} h1 code`, {
-  color: 'inherit'
-})
+// globalStyle(`${prose} h1 code`, {
+//   color: 'inherit'
+// })
 
-globalStyle(`${prose} h2 code`, {
-  color: 'inherit'
-})
+// globalStyle(`${prose} h2 code`, {
+//   color: 'inherit'
+// })
 
-globalStyle(`${prose} h3 code`, {
-  color: 'inherit'
-})
+// globalStyle(`${prose} h3 code`, {
+//   color: 'inherit'
+// })
 
-globalStyle(`${prose} h4 code`, {
-  color: 'inherit'
-})
+// globalStyle(`${prose} h4 code`, {
+//   color: 'inherit'
+// })
 
-globalStyle(`${prose} blockquote code`, {
-  color: 'inherit'
-})
+// globalStyle(`${prose} blockquote code`, {
+//   color: 'inherit'
+// })
 
-globalStyle(`${prose} thead th code`, {
-  color: 'inherit'
-})
+// globalStyle(`${prose} thead th code`, {
+//   color: 'inherit'
+// })
 
-globalStyle(`${prose} pre`, {
-  color: $.preCode,
-  backgroundColor: $.preBg,
-  overflowX: 'auto',
-  fontWeight: '400'
-})
+// globalStyle(`${prose} pre`, {
+//   color: $.preCode,
+//   backgroundColor: $.preBg,
+//   overflowX: 'auto',
+//   fontWeight: '400'
+// })
 
-globalStyle(`${prose} pre code`, {
-  backgroundColor: 'transparent',
-  borderWidth: 0,
-  borderRadius: 0,
-  padding: 0,
-  fontWeight: 'inherit',
-  color: 'inherit',
-  fontSize: 'inherit',
-  fontFamily: 'inherit',
-  lineHeight: 'inherit'
-})
+// globalStyle(`${prose} pre code`, {
+//   backgroundColor: 'transparent',
+//   borderWidth: 0,
+//   borderRadius: 0,
+//   padding: 0,
+//   fontWeight: 'inherit',
+//   color: 'inherit',
+//   fontSize: 'inherit',
+//   fontFamily: 'inherit',
+//   lineHeight: 'inherit'
+// })
 
-globalStyle(`${prose} pre code::before`, {
-  content: 'none'
-})
+// globalStyle(`${prose} pre code::before`, {
+//   content: 'none'
+// })
 
-globalStyle(`${prose} pre code::after`, {
-  content: 'none'
-})
+// globalStyle(`${prose} pre code::after`, {
+//   content: 'none'
+// })
 
 globalStyle(`${prose} table`, {
   width: '100%',
@@ -540,30 +540,30 @@ globalStyle(`${prose} h3 code`, {
   }
 })
 
-globalStyle(`${prose} pre`, {
-  fontSize: em(14, 16),
-  lineHeight: round(24 / 14),
-  marginTop: em(24, 14),
-  marginBottom: em(24, 14),
-  borderRadius: rem(6),
-  paddingTop: em(12, 14),
-  paddingRight: em(16, 14),
-  paddingBottom: em(12, 14),
-  paddingLeft: em(16, 14),
-  '@media': {
-    [media.lg]: {
-      fontSize: em(16, 18),
-      lineHeight: round(28 / 16),
-      marginTop: em(32, 16),
-      marginBottom: em(32, 16),
-      borderRadius: rem(6),
-      paddingTop: em(16, 16),
-      paddingRight: em(24, 16),
-      paddingBottom: em(16, 16),
-      paddingLeft: em(24, 16)
-    }
-  }
-})
+// globalStyle(`${prose} pre`, {
+//   fontSize: em(14, 16),
+//   lineHeight: round(24 / 14),
+//   marginTop: em(24, 14),
+//   marginBottom: em(24, 14),
+//   borderRadius: rem(6),
+//   paddingTop: em(12, 14),
+//   paddingRight: em(16, 14),
+//   paddingBottom: em(12, 14),
+//   paddingLeft: em(16, 14),
+//   '@media': {
+//     [media.lg]: {
+//       fontSize: em(16, 18),
+//       lineHeight: round(28 / 16),
+//       marginTop: em(32, 16),
+//       marginBottom: em(32, 16),
+//       borderRadius: rem(6),
+//       paddingTop: em(16, 16),
+//       paddingRight: em(24, 16),
+//       paddingBottom: em(16, 16),
+//       paddingLeft: em(24, 16)
+//     }
+//   }
+// })
 
 globalStyle(`${prose} ol`, {
   marginTop: em(20, 16),
@@ -766,4 +766,23 @@ globalStyle(`${prose} > :first-child`, {
 
 globalStyle(`${prose} > :last-child`, {
   marginBottom: 0
+})
+
+// Custom
+globalStyle(`${prose} :not(pre) > code`, {
+  color: `rgb(${rgb.brand})`,
+  background: `rgb(${rgb.brand}/0.1)`,
+  fontFamily: fonts.mono,
+  letterSpacing: '-0.025em',
+  padding: '0.3em 0.35em',
+  borderRadius: '0.3em'
+})
+
+globalStyle(`${prose} code`, {
+  fontSize: em(13.6, 16),
+  '@media': {
+    [media.lg]: {
+      fontSize: em(15, 18)
+    }
+  }
 })
