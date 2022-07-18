@@ -76,6 +76,21 @@ globalStyle(prose, {
   maxWidth: '65ch'
 })
 
+globalStyle(`${prose}:before`, {
+  padding: '2rem 0',
+  margin: '0 auto',
+  textAlign: 'center',
+  content: '• • •',
+  color: `rgb(${rgb.fg3}/0.5)`,
+  fontSize: '0.875rem',
+  display: 'block',
+  '@media': {
+    [media.sm]: {
+      padding: '3rem 0'
+    }
+  }
+})
+
 globalStyle(`${prose} [class~="lead"]`, {
   color: $.lead
 })
