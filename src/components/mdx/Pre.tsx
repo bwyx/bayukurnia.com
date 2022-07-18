@@ -1,10 +1,8 @@
 import React from 'react'
-import { prism } from '~/styles/primitives'
-
-const styles = prism({ theme: 'gruvbox' })
+import prism from '~/styles/primitives/prism.css'
 
 const Pre = ({ children }: { children: React.ReactNode }) => {
-  return <pre className={styles}>{children}</pre>
+  return <pre className={prism}>{children}</pre>
 }
 
 export default Pre
