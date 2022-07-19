@@ -1,4 +1,4 @@
-export { default as Header } from './Header'
+export { default as Header } from './Header/Header'
 export { default as Footer } from './Footer'
 export { default as Article } from './Article'
 export { default as BlurImage } from './BlurImage'
