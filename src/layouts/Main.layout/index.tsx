@@ -1,13 +1,7 @@
 import React from 'react'
 import { Header, Footer } from '~/components'
-import { css } from '~/styles'
 
-import { stack } from '~/styles/primitives'
-
-const main = `${stack({
-  dir: 'col',
-  grow: true
-})} ${css({ overflow: 'hidden' })()}`
+import styles from './styles.css'
 
 interface MainLayoutOptions {
   footer?: boolean
@@ -27,7 +21,7 @@ const MainLayout = ({
 }
 
 export const MainWrapper: React.FC = ({ children }) => {
-  return <main className={main}>{children}</main>
+  return <main className={styles.main}>{children}</main>
 }
 
 export const attachMainLayout =

@@ -16,6 +16,7 @@ const box = defineProperties({
       'flex-end',
       'space-between'
     ],
+    overflow: ['hidden'],
     visibility: ['visible', 'hidden'],
     borderRadius: radii,
     borderWidth: borderWidths
