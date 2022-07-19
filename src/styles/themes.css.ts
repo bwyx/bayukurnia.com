@@ -1,7 +1,7 @@
-import { createTheme } from '@vanilla-extract/css'
+import { createGlobalTheme } from '@vanilla-extract/css'
 import { themeVars, rgb } from '~/styles/variables.css'
 
-export const light = createTheme(themeVars, {
+createGlobalTheme('.light', themeVars, {
   rgb: {
     brand: '121 116 14', // #79740e
     accent: '181 118 20', // #b57614
@@ -25,7 +25,7 @@ export const light = createTheme(themeVars, {
   }
 })
 
-export const dark = createTheme(themeVars, {
+createGlobalTheme('.dark', themeVars, {
   rgb: {
     brand: '184 187 38', // #b8bb26
     accent: '250 189 47', // #fabd2f

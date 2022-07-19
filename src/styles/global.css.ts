@@ -1,6 +1,9 @@
 import { globalStyle, globalFontFace } from '@vanilla-extract/css'
 import { rgb } from '~/styles/variables.css'
 
+import '~/styles/preflight.css'
+import '~/styles/themes.css'
+
 globalStyle('html', {
   fontFeatureSettings: "'cv02','cv03','cv04','cv11'"
 })

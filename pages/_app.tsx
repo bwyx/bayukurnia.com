@@ -1,7 +1,6 @@
 import { DefaultSeo } from 'next-seo'
 import SEO from '../next-seo.config'
 
-import '~/styles/preflight.css'
 import '~/styles/global.css'
 
 import type { AppProps } from 'next/app'
