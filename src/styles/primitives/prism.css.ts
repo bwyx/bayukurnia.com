@@ -1,6 +1,5 @@
 import { createVar, globalStyle, style } from '@vanilla-extract/css'
 import { fonts, radii, rgb, space } from '~/styles/variables.css'
-import { dark, light } from '../themes.css'
 
 const prism = style({})
 export default prism
@@ -98,7 +97,7 @@ globalStyle(`${prism} .prefix.deleted`, {
 })
 
 // Gruvbox
-globalStyle(`${light} ${prism}`, {
+globalStyle(`.light ${prism}`, {
   vars: {
     [$.foreground]: '#3c3836',
     [$.foregroundDimmed]: 'rgba(60, 56, 54, 0.5)',
@@ -123,7 +122,7 @@ globalStyle(`${light} ${prism}`, {
   }
 })
 
-globalStyle(`${dark} ${prism}`, {
+globalStyle(`.dark ${prism}`, {
   vars: {
     [$.foreground]: '#ebdbb2',
     [$.foregroundDimmed]: 'rgba(235, 219, 178, 0.5)',

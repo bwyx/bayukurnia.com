@@ -1,9 +1,8 @@
 // styles from `@tailwindcss/typography`
 import { createVar, globalStyle, style } from '@vanilla-extract/css'
 
-import { round, rem, em } from '~/styles/utils.css'
-import { light, dark } from '~/styles/themes.css'
 import { fonts, media, rgb } from '~/styles/variables.css'
+import { round, rem, em } from '~/styles/utils.css'
 
 const prose = style({})
 export default prose
@@ -29,7 +28,7 @@ const $ = {
 
 const color = (key: keyof typeof rgb) => `rgb(${rgb[key]})`
 
-globalStyle(`${light} ${prose}`, {
+globalStyle(`.light ${prose}`, {
   vars: {
     [$.body]: color('text-600'),
     [$.headings]: color('text-900'),
@@ -50,7 +49,7 @@ globalStyle(`${light} ${prose}`, {
   }
 })
 
-globalStyle(`${dark} ${prose}`, {
+globalStyle(`.dark  ${prose}`, {
   vars: {
     [$.body]: color('text-400'),
     [$.headings]: '#fff',
