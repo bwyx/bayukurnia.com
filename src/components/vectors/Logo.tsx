@@ -2,6 +2,7 @@ import { css, keyframes } from '~/styles'
 
 type Props = {
   animated?: boolean
+  className?: string
 } & (
   | {
       height: number
@@ -60,11 +61,11 @@ const animatedClass = css({
   }
 })()
 
-const Logo = ({ animated, ...props }: Props) => {
+const Logo = ({ animated, className, ...props }: Props) => {
   return (
     <svg
       {...props}
-      className={animated ? animatedClass : ''}
+      className={animated ? `${animatedClass} ${className}` : className}
       viewBox="0 0 147 115"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
