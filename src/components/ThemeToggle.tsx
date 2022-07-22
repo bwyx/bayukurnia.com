@@ -1,5 +1,5 @@
 import { useTheme } from '~/hooks'
-import SunMoon from '~/components/vectors/SunMoon'
+import SunMoon from '~/components/vectors/SunMoon/SunMoon'
 
 const ThemeToggle = () => {
   const { toggleTheme } = useTheme()
