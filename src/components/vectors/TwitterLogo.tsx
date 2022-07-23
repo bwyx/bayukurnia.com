@@ -1,12 +1,14 @@
 interface Props {
   width?: number
   height?: number
+  className?: string
 }
 
-const GitHubLogo = ({ width = 24, height = 24 }: Props) => (
+const GitHubLogo = ({ width = 24, height = 24, className = '' }: Props) => (
   <svg
     width={width}
     height={height}
+    className={className}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
