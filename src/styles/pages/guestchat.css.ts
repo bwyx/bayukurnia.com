@@ -166,7 +166,7 @@ const styles = {
   }),
   messageTime: style([
     {
-      margin: `${space[12]} auto`,
+      margin: `${space[12]} auto 0`,
       color: `rgb(${rgb.fg3} / 0.5)`
     },
     text({ fontSize: 'xs' })
