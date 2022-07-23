@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { useRouter } from 'next/router'
 
 import { VisuallyHidden, ThemeToggle } from '~/components'
-import Logo from '~/components/vectors/Logo'
+import Logo from '~/components/vectors/Logo/Logo'
 
 import styles from './Header.css'
 
