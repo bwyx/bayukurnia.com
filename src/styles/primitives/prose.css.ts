@@ -109,9 +109,9 @@ globalStyle(`${prose} a strong`, {
   color: 'inherit'
 })
 
-globalStyle(`${prose} blockquote strong`, {
-  color: 'inherit'
-})
+// globalStyle(`${prose} blockquote strong`, {
+//   color: 'inherit'
+// })
 
 globalStyle(`${prose} thead th strong`, {
   color: 'inherit'
@@ -175,22 +175,22 @@ globalStyle(`${prose} hr`, {
   borderTopWidth: 1
 })
 
-globalStyle(`${prose} blockquote`, {
-  fontWeight: '500',
-  fontStyle: 'italic',
-  color: $.quotes,
-  borderLeftWidth: '0.25rem',
-  borderLeftColor: $.quoteBorders,
-  quotes: '"\\201C""\\201D""\\2018""\\2019"'
-})
+// globalStyle(`${prose} blockquote`, {
+//   fontWeight: '500',
+//   fontStyle: 'italic',
+//   color: $.quotes,
+//   borderLeftWidth: '0.25rem',
+//   borderLeftColor: $.quoteBorders,
+//   quotes: '"\\201C""\\201D""\\2018""\\2019"'
+// })
 
-globalStyle(`${prose} blockquote p:first-of-type::before`, {
-  content: 'open-quote'
-})
+// globalStyle(`${prose} blockquote p:first-of-type::before`, {
+//   content: 'open-quote'
+// })
 
-globalStyle(`${prose} blockquote p:last-of-type::after`, {
-  content: 'close-quote'
-})
+// globalStyle(`${prose} blockquote p:last-of-type::after`, {
+//   content: 'close-quote'
+// })
 
 globalStyle(`${prose} h1`, {
   color: $.headings,
@@ -393,12 +393,12 @@ globalStyle(`${prose} [class~="lead"]`, {
 globalStyle(`${prose} blockquote`, {
   marginTop: em(32, 20),
   marginBottom: em(32, 20),
-  paddingLeft: em(20, 20),
+  // paddingLeft: em(20, 20),
   '@media': {
     [media.lg]: {
       marginTop: em(40, 24),
-      marginBottom: em(40, 24),
-      paddingLeft: em(24, 24)
+      marginBottom: em(40, 24)
+      // paddingLeft: em(24, 24)
     }
   }
 })
