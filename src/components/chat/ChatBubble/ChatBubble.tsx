@@ -1,73 +1,16 @@
 import { memo } from 'react'
 
-import { css, keyframes } from '~/styles'
-
-import type { VariantProps } from '@stitches/core'
-
-const shimmer = keyframes({
-  from: { transform: 'translateX(-100%)' },
-  to: { transform: 'translateX(100%)' }
-})
-
-const styles = css({
-  margin: '$2 0 0 auto',
-  py: '$2',
-  px: '$4',
-  maxWidth: '80%',
-  fontSize: '$sm',
-  fontWeight: '$light',
-  lineHeight: '$snug',
-  borderRadius: '$2xl 0 $2xl $2xl',
-  overflowWrap: 'break-word',
-  whiteSpace: 'pre-line',
-  color: 'white',
-  '@sm': { fontSize: '$base' },
-  variants: {
-    placeholder: {
-      true: {
-        xColor: '$fg3',
-        xColorOpacity: 0.25,
-        xBackground: '$fg3',
-        xBackgroundOpacity: 0.1,
-        position: 'relative',
-        overflow: 'hidden',
-        '&:before': {
-          content: '',
-          position: 'absolute',
-          inset: 0,
-          background:
-            'linear-gradient(90deg, transparent 0%, rgb($rgb$bg / 0.35) 35%, rgb($rgb$bg / 0.35) 65%, transparent 100%)',
-          animation: `${shimmer} 1s infinite`
-        }
-      }
-    },
-    host: {
-      true: {
-        margin: '$2 auto 0 0',
-        borderRadius: '0 $2xl $2xl $2xl'
-      }
-    },
-    color: {
-      brown: { background: '#a35e37' },
-      red: { background: '#c14a4a' },
-      green: { background: '#6c782e' },
-      yellow: { background: '#b47109' },
-      blue: { background: '#45707a' },
-      magenta: { background: '#945e80' },
-      cyan: { background: '#4c7a5d' }
-    }
-  }
-})
+import styles from './ChatBubble.css'
 
 export interface ChatBubbleProps {
   text: string
-  color: VariantProps<typeof styles>['color']
+  color: 'brown' | 'red' | 'green' | 'yellow' | 'blue' | 'magenta' | 'cyan'
   time: number
   host?: boolean
 }
 
 const ChatBubble = ({ text, time, ...msg }: ChatBubbleProps) => {
-  return <span className={styles({ ...msg })}>{text}</span>
+  return <span className={styles.bubble({ ...msg })}>{text}</span>
 }
 
 const quotes = [
@@ -116,7 +59,7 @@ export const ChatBubblePlaceholder = ({
   host?: boolean
 }) => {
   return (
-    <span className={styles({ host, placeholder: true })}>
+    <span className={styles.bubble({ host, placeholder: true })}>
       {text ?? shuffle(quotes)}
     </span>
   )
