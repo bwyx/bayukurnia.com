@@ -10,7 +10,10 @@ import {
   ChatInputForm,
   RecentlyMessageCounter
 } from '~/components/chat'
-import { defaultColor, availableColors } from '~/components/chat/ChatInputForm'
+import {
+  defaultColor,
+  availableColors
+} from '~/components/chat/ChatInputForm/ChatInputForm'
 import { MessageIcon } from '~/components/icons'
 
 import config from '~/config'
