@@ -3,6 +3,10 @@ import { createVar, globalStyle, style } from '@vanilla-extract/css'
 import type { CSSProperties } from '@vanilla-extract/css'
 import { media } from '~/styles/variables.css'
 
+import themeToggleStyles from '~/components/ThemeToggle/ThemeToggle.css'
+
+const themeToggleHovered = `${themeToggleStyles.button}:is(:hover, :focus-visible)`
+
 const $ = {
   fill: createVar('sunMoonFill'),
   fillHover: createVar('sunMoonFillHover')
@@ -29,9 +33,17 @@ globalStyle(`${sunMoon} > :is(${moon}, ${sun})`, {
   fill: $.fill
 })
 
+globalStyle(`${themeToggleHovered} > ${sunMoon} > :is(${moon}, ${sun})`, {
+  fill: $.fillHover
+})
+
 globalStyle(`${sunMoon} > ${sunBeams}`, {
   stroke: $.fill,
   strokeWidth: 2
+})
+
+globalStyle(`${themeToggleHovered} ${sunMoon} > ${sunBeams}`, {
+  stroke: $.fillHover
 })
 
 // Dark
