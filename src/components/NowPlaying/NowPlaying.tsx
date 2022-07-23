@@ -3,125 +3,10 @@ import useSWR from 'swr'
 
 import SpotifyLogo from '~/components/vectors/SpotifyLogo'
 
-import { css, keyframes } from '~/styles'
-import { stack } from '~/styles/primitives'
 import { rgb } from '~/styles/variables.css'
-import text from '~/styles/sprinkles/text.css'
+import styles from './NowPlaying.css'
 
 import type { NowPlayingResponse } from '~/types/spotify.type'
-
-const bounceBar = keyframes({
-  '0%': {
-    transform: 'scaleY(0.5)'
-  },
-  '50%': {
-    transform: 'scaleY(0.3)'
-  },
-  '80%': {
-    transform: 'scaleY(0.8)'
-  },
-  '100%': {
-    transform: 'scaleY(0.5)'
-  }
-})
-
-const styles = {
-  outer: css({
-    position: 'relative',
-    display: 'block',
-    width: 'fit-content',
-    '.play': { display: 'none', xColor: '$accent' },
-    '&:hover': {
-      '.artists': { display: 'none' },
-      '.play': { display: 'block' }
-    }
-  })(),
-  inner: `${stack({
-    y: 'center',
-    density: 'spaceBetween'
-  })} ${css({
-    inset: 0,
-    position: 'absolute',
-    pl: '$3',
-    pr: '$4'
-  })()}`,
-  player: `${stack({
-    y: 'center'
-  })} ${css({
-    gap: '$2'
-  })()}`,
-  cover: `${stack({
-    y: 'center',
-    x: 'center'
-  })} ${css({
-    xColor: '$fg1',
-    xColorOpacity: 0.25,
-    position: 'relative',
-    width: 42,
-    height: 42,
-    display: 'inherit',
-    borderRadius: 6,
-    overflow: 'hidden',
-    flexShrink: 0
-  })()}`,
-  details: stack({ dir: 'col' }),
-  title: `${text({
-    fontSize: 'sm',
-    fontWeight: 'medium',
-    lineHeight: 'snug'
-  })} ${css({
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    maxWidth: '15ch'
-  })()}`,
-  artists: `${text({
-    fontSize: 'xs',
-    lineHeight: 'snug'
-  })} ${css({
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    maxWidth: '18ch',
-    xColor: '$fg3'
-  })()}`,
-  bars: `${stack({
-    dir: 'row',
-    y: 'center'
-  })} ${css({
-    gap: 1,
-    span: {
-      animation: `${bounceBar}`,
-      animationIterationCount: 'infinite',
-      xBackground: '$brand',
-      width: 2,
-      '&:nth-child(1)': {
-        height: 10,
-        animationDelay: '.1s',
-        animationTimingFunction: 'cubic-bezier(.77,.7,.14,1)',
-        animationDuration: '.75s'
-      },
-      '&:nth-child(2)': {
-        height: 16,
-        animationDelay: '.15s',
-        animationTimingFunction: 'cubic-bezier(.97,.04,.4,.66)',
-        animationDuration: '.775s'
-      },
-      '&:nth-child(3)': {
-        height: 12,
-        animationDelay: '.05s',
-        animationTimingFunction: 'cubic-bezier(.65,.18,.14,1)',
-        animationDuration: '.7s'
-      },
-      '&:nth-child(4)': {
-        height: 14,
-        animationDelay: '.2s',
-        animationTimingFunction: 'cubic-bezier(.37,.38,.14,1)',
-        animationDuration: '.73s'
-      }
-    }
-  })}`
-}
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
@@ -238,10 +123,10 @@ const Glass = () => (
 
 const Bars = () => (
   <div className={styles.bars}>
-    <span />
-    <span />
-    <span />
-    <span />
+    <span className={styles.barItem} />
+    <span className={styles.barItem} />
+    <span className={styles.barItem} />
+    <span className={styles.barItem} />
   </div>
 )
 
