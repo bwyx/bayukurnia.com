@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Pre from './Pre'
-import Blockquote from './Blockquote'
-import Callout from './Callout'
+import Blockquote from './Blockquote/Blockquote'
+import Callout from './Callout/Callout'
 import Text from './Text'
-import Tab from './Tab'
+import Tab from './Tab/Tab'
 
 const customComponents = {
   Image,
