@@ -1,5 +1,3 @@
-import { ThemeName } from '~/styles/themes'
-
 const avatar = {
   blurDataURL:
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAP0lEQVQImQE0AMv/AAUEDwEACSsrM7W1xACSk6L/+/neyshtbnwASUpW9uXmrpuYFxgfAEE/QjAqMQEAByMjKRJ7Evg6EQWIAAAAAElFTkSuQmCC',
@@ -7,8 +5,6 @@ const avatar = {
   type: 'png',
   alt: "Bayu Kurnia's Avatar"
 }
-
-const defaultTheme: ThemeName = 'dark'
 
 const chat = {
   host: process.env.NEXT_PUBLIC_CHAT_HOST as string,
@@ -18,6 +14,5 @@ const chat = {
   password: process.env.NEXT_PUBLIC_CHAT_PASSWORD as string
 }
 
-const config = { chat, avatar, defaultTheme }
-
+const config = { chat, avatar }
 export default config
