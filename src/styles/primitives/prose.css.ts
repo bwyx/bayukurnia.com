@@ -72,7 +72,8 @@ globalStyle(`.dark  ${prose}`, {
 
 globalStyle(prose, {
   color: $.body,
-  maxWidth: '65ch'
+  maxWidth: '65ch',
+  margin: '0 auto'
 })
 
 globalStyle(`${prose}:before`, {
