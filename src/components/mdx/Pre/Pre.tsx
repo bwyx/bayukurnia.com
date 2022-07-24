@@ -1,8 +1,8 @@
 import React from 'react'
-import prism from '~/styles/primitives/prism.css'
+import styles from './Pre.css'
 
 const Pre = ({ children }: { children: React.ReactNode }) => {
-  return <pre className={prism}>{children}</pre>
+  return <pre className={styles.prism}>{children}</pre>
 }
 
 export default Pre
