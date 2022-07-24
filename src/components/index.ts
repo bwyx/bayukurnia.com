@@ -1,6 +1,6 @@
 export { default as Header } from './Header/Header'
 export { default as Footer } from './Footer/Footer'
-export { default as Article } from './Article'
+export { default as Article } from './Article/Article'
 export { default as BlurImage } from './BlurImage/BlurImage'
 export { default as VisuallyHidden } from './VisuallyHidden'
 export { default as ThemeToggle } from './ThemeToggle/ThemeToggle'

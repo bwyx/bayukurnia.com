@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Pre from './Pre'
+import Pre from './Pre/Pre'
 import Blockquote from './Blockquote/Blockquote'
 import Callout from './Callout/Callout'
 import Text from './Text'
