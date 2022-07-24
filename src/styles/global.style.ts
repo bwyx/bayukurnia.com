@@ -70,8 +70,7 @@ export const globalStyles = globalCss({
     xBackground: '$bg',
     margin: 0,
     fontFamily: '$sans',
-    fontSize: '$base',
-    lineHeight: 1.75
+    fontSize: '$base'
   },
   hr: { height: '0', color: 'inherit', borderTopWidth: '1px' },
   'abbr[title]': {
