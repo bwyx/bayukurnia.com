@@ -6,7 +6,6 @@ import { SendIcon } from '~/components/icons'
 
 import type { NewMessage } from '~/types/chat.type'
 
-import { stack } from '~/styles/primitives'
 import styles from './ChatInputForm.css'
 
 export const defaultColor: NewMessage['color'] = 'red'
@@ -56,7 +55,7 @@ const ChatInputForm = ({
       className={styles.form({ color: messageColor })}
       onSubmit={handleSubmit}
     >
-      <div className={stack({ dir: 'col', grow: true })}>
+      <div className={styles.inputWrapper}>
         <input
           onFocus={onInputFocus}
           className={styles.input}
