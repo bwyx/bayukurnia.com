@@ -10,145 +10,18 @@ import {
   ChatInputForm,
   RecentlyMessageCounter
 } from '~/components/chat'
-import { defaultColor, availableColors } from '~/components/chat/ChatInputForm'
+import {
+  defaultColor,
+  availableColors
+} from '~/components/chat/ChatInputForm/ChatInputForm'
 import { MessageIcon } from '~/components/icons'
-
-import { css } from '~/styles'
-import { container, stack, text } from '~/styles/primitives'
 
 import config from '~/config'
 
 import { Page } from '~/types/page.type'
 import { Message, NewMessage, DatedMessages } from '~/types/chat.type'
 
-const styles = {
-  main: stack({
-    dir: 'col',
-    density: 'spaceBetween',
-    grow: true
-  }),
-  container: `${container({
-    size: 'small'
-  })} ${stack({ dir: 'col', grow: true })}`,
-  stickyHeader: stack({
-    y: 'center',
-    x: 'center',
-    css: {
-      pointerEvents: 'none',
-      position: 'sticky',
-      zIndex: 9999,
-      top: 0,
-      height: 50,
-      '@lg': { height: 60 }
-    }
-  }),
-  description: text({
-    size: {
-      '@initial': 'sm',
-      '@sm': 'base'
-    },
-    leading: 'snug',
-    css: {
-      mx: '$4',
-      xColor: '$fg3',
-      textAlign: 'center'
-    }
-  }),
-  info: text({
-    size: {
-      '@initial': 'xs',
-      '@sm': 'sm'
-    },
-    leading: 'snug',
-    css: {
-      mt: '$4',
-      mx: '$4',
-      xColor: '$fg1',
-      textAlign: 'center'
-    }
-  }),
-  connectStatus: css({
-    py: '$1',
-    px: '$4',
-    mt: '$4',
-    mx: 'auto',
-    color: '$$color',
-    fontSize: '$xs',
-    borderRadius: '$2xl',
-    xBackgroundOpacity: 0.2,
-    '&:before': {
-      content: '',
-      display: 'inline-block',
-      width: 8,
-      height: 8,
-      marginRight: 5,
-      background: '$$color',
-      borderRadius: '$full'
-    },
-    variants: {
-      status: {
-        Connecting: {
-          $$color: 'rgb($rgb$yellow)',
-          xBackground: '$yellow'
-        },
-        Reconnecting: {
-          $$color: 'rgb($rgb$yellow)',
-          xBackground: '$yellow'
-        },
-        Connected: {
-          $$color: 'rgb($rgb$green)',
-          xBackground: '$green'
-        },
-        Disconnecting: {
-          $$color: 'rgb($rgb$yellow)',
-          xBackground: '$yellow'
-        },
-        Disconnected: {
-          $$color: 'rgb($rgb$red)',
-          xBackground: '$red'
-        }
-      }
-    }
-  }),
-  title: text({
-    size: {
-      '@initial': 'sm',
-      '@sm': 'base'
-    },
-    weight: 'bold',
-    css: { mr: '$3' }
-  }),
-  messages: stack({
-    dir: 'col',
-    y: 'bottom',
-    grow: true
-  }),
-  messageTime: text({
-    size: 'xs',
-    css: {
-      mt: '$12',
-      mx: 'auto',
-      xColor: '$fg3',
-      xColorOpacity: 0.5
-    }
-  }),
-  chatInputContainer: container({
-    size: 'small',
-    css: {
-      py: '$4',
-      position: 'sticky',
-      bottom: 0,
-      zIndex: 1
-    }
-  }),
-  loading: stack({
-    dir: 'col',
-    grow: true,
-    css: {
-      mt: '$12'
-    }
-  })
-}
+import styles from '~/styles/pages/guestchat.css'
 
 const lessThanOneHourAgo = (date: number) => {
   const HOUR = 1000 * 60 * 60

@@ -1,5 +1,1 @@
-export { default as container } from './container.style'
-export { default as prose } from './prose.style'
-export { default as prism } from './prism.style'
-export { default as stack } from './stack.style'
-export { default as text } from './text.style'
+export { default as container } from './container.css'

@@ -1,4 +1,4 @@
-import type { ChatBubbleProps } from '~/components/chat/ChatBubble'
+import type { ChatBubbleProps } from '~/components/chat/ChatBubble/ChatBubble'
 
 export type Message = ChatBubbleProps
 

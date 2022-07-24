@@ -4,7 +4,7 @@ import { compareDesc } from 'date-fns'
 import { attachMainLayout, MainWrapper } from '~/layouts/Main.layout'
 import { PostCard } from '~/components/blog'
 
-import { container } from '~/styles/primitives'
+import styles from '~/styles/pages/home.css'
 
 import { pick } from 'contentlayer/client'
 import { allBlogs } from 'contentlayer/generated'
@@ -29,12 +29,7 @@ export const getStaticProps: GetStaticProps<PageProps> = () => {
 const BlogIndex = ({ posts }: PageProps) => {
   return (
     <MainWrapper>
-      <div
-        className={container({
-          size: 'small',
-          css: { my: '$4' }
-        })}
-      >
+      <div className={styles.container}>
         <NextSeo title="Home" />
         {posts.map((post, i) => (
           <PostCard key={i} {...post} />

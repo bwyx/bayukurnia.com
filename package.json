@@ -11,7 +11,11 @@
   "dependencies": {
     "@radix-ui/react-scroll-area": "^0.1.4",
     "@radix-ui/react-tabs": "^0.1.5",
-    "@stitches/core": "^1.2.6",
+    "@vanilla-extract/css": "^1.7.2",
+    "@vanilla-extract/css-utils": "^0.1.2",
+    "@vanilla-extract/next-plugin": "^2.0.2",
+    "@vanilla-extract/recipes": "^0.2.5",
+    "@vanilla-extract/sprinkles": "^1.4.1",
     "contentlayer": "^0.1.0",
     "date-fns": "^2.28.0",
     "mqtt": "^4.3.6",
