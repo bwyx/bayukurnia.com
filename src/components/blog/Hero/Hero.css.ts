@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 import { calc } from '@vanilla-extract/css-utils'
 
-import { container, stack } from '~/styles/primitives'
+import { container } from '~/styles/primitives'
 import { box, text } from '~/styles/sprinkles'
 import { media, rgb, space } from '~/styles/variables.css'
 
@@ -67,9 +67,15 @@ const styles = {
   ]),
   postAuthor: style([
     { gridArea: 'author' },
-    stack({ dir: 'row', y: 'center' })
+    box({
+      display: 'flex',
+      alignItems: 'center'
+    })
   ]),
-  authorDetails: stack({ dir: 'col' }),
+  authorDetails: box({
+    display: 'flex',
+    flexDirection: 'column'
+  }),
   authorPicture: style([
     {
       display: 'inherit',

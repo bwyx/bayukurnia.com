@@ -86,6 +86,11 @@ const colorButton = recipe({
 const styles = {
   form,
   colorButton,
+  inputWrapper: box({
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1
+  }),
   input: style([
     {
       padding: `${space[2]} ${space[4]}`,
