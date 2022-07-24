@@ -5,7 +5,6 @@ import { fonts, media, rgb } from '~/styles/variables.css'
 import { round, rem, em } from '~/styles/utils.css'
 
 const prose = style({})
-export default prose
 
 const $ = {
   body: createVar('proseBody'),
@@ -786,3 +785,6 @@ globalStyle(`${prose} code`, {
     }
   }
 })
+
+const styles = { prose }
+export default styles

@@ -2,7 +2,6 @@ import { createVar, globalStyle, style } from '@vanilla-extract/css'
 import { fonts, radii, rgb, space } from '~/styles/variables.css'
 
 const prism = style({})
-export default prism
 
 const $ = {
   lineNumber: createVar('prismLineNumber'),
@@ -257,3 +256,6 @@ globalStyle(
 globalStyle(`${highlight} .token.path`, { color: $.syntax3 })
 globalStyle(`${highlight} .token.pair`, { color: $.syntax4 })
 globalStyle(`${highlight} .token.value`, { color: $.syntax5 })
+
+const styles = { prism }
+export default styles
