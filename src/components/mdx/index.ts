@@ -5,6 +5,8 @@ import Callout from './Callout/Callout'
 import Text from './Text'
 import Tab from './Tab/Tab'
 
+import blogComponents from '~/components/mdx/blog'
+
 const customComponents = {
   Image,
   Text,
@@ -15,7 +17,8 @@ const customComponents = {
 const MDXComponents = {
   pre: Pre,
   blockquote: Blockquote,
-  ...customComponents
+  ...customComponents,
+  ...blogComponents
 }
 
 export default MDXComponents
