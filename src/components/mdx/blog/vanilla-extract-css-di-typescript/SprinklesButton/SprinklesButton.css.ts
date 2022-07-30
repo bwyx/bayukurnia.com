@@ -6,7 +6,7 @@ const styles = {
     {
       padding: '0.5rem 1.5rem',
       fontWeight: '500',
-      borderRadius: '999px'
+      borderRadius: '9999px'
     },
     sprinkles({
       color: 'white',

@@ -65,14 +65,14 @@ Kode tersebut akan di proses oleh Vanilla Extract menjadi:
   <Tab.Item title="button.css">
 
 ```css {0-99}
-._1qaee7u0 {
+._1w6sasr0 {
   padding: 0.5rem 1.5rem;
   font-weight: 500;
   color: #fff;
   background-color: #639;
   border-radius: 9999px;
 }
-._1qaee7u0:hover {
+._1w6sasr0:hover {
   background-color: #8a2be2;
 }
 ```
@@ -81,7 +81,7 @@ Kode tersebut akan di proses oleh Vanilla Extract menjadi:
   <Tab.Item title="button.html">
 
 ```html {0-99}
-<button class="_1qaee7u0">Button</button>
+<button class="_1w6sasr0">Button</button>
 ```
 
   </Tab.Item>
@@ -92,6 +92,8 @@ Kode tersebut akan di proses oleh Vanilla Extract menjadi:
 <VanillaExtract.ZeroRuntimeButton />
 
 _<small>^coba inspect button ini di devtool ehehe</small>_
+
+Demo button diatas bener-bener di buat dengan Vanilla Extract ya, source asli bisa dilihat: [Button.css.ts](https://github.com/bwyx/bayukurnia.com/blob/main/src/components/mdx/blog/vanilla-extract-css-di-typescript/ZeroRuntimeButton/ZeroRuntimeButton.css.ts), [Button.tsx](https://github.com/bwyx/bayukurnia.com/blob/main/src/components/mdx/blog/vanilla-extract-css-di-typescript/ZeroRuntimeButton/index.tsx), dan compiled css [disini](/_next/static/css/b501daf6d1b9dbfb.css)
 
 Karena output dari Vanilla Extract berupa vanilla CSS, kita bisa proses lebih lanjut dengan PostCSS, misal untuk polyfill browser lama, pakai syntax experimental, atau sekadar autoprefix, dsb.
 
@@ -192,35 +194,35 @@ output:
 
 ```css {0-12,25-33} showLineNumbers
 /* sprinkles start */
-._7mhif20 {
+._10euf70 {
   color: #fff;
 }
-._7mhif21,
-._7mhif22:hover {
+._10euf71,
+._10euf72:hover {
   background-color: #639;
 }
-._7mhif23,
-._7mhif24:hover {
+._10euf73,
+._10euf74:hover {
   background-color: #8a2be2;
 }
-._7mhif25,
-._7mhif26:hover {
+._10euf75,
+._10euf76:hover {
   border-radius: 0.25rem;
 }
-._7mhif27,
-._7mhif28:hover {
+._10euf77,
+._10euf78:hover {
   border-radius: 0.375rem;
 }
-._7mhif2a:hover,
-._7mhif29 {
+._10euf7a:hover,
+._10euf79 {
   border-radius: 0.5rem;
 }
-._7mhif2b,
-._7mhif2c:hover {
+._10euf7b,
+._10euf7c:hover {
   border-radius: 9999px;
 }
 /* sprinkles end */
-.jwmujm1 {
+._1hx7eqw1 {
   padding: 0.5rem 1.5rem;
   font-weight: 500;
 }
@@ -230,7 +232,7 @@ output:
   <Tab.Item title="button.html">
 
 ```html {0-99}
-<button class="jwmujm1 _7mhif20 _7mhif2b _7mhif21 _7mhif24">
+<button class="_1hx7eqw1 _10euf70 _10euf7b _10euf71 _10euf74">
   Sprinkles Button
 </button>
 ```
@@ -318,22 +320,22 @@ Output setelahnya:
 
 ```css {0-99} showLineNumbers
 /* sprinkles start */
-._7mhif20 {
+._10euf70 {
   color: #fff;
 }
-._7mhif21,
-._7mhif22:hover {
+._10euf71,
+._10euf72:hover {
   background-color: #639;
 }
-._7mhif23,
-._7mhif24:hover {
+._10euf73,
+._10euf74:hover {
   background-color: #8a2be2;
 }
 /* sprinkles end */
-.jwmujm1 {
+._1hx7eqw1 {
   padding: 0.5rem 1.5rem;
   font-weight: 500;
-  border-radius: 9999px;
+  border-radius: 999px;
 }
 ```
 
@@ -341,7 +343,7 @@ Output setelahnya:
   <Tab.Item title="button.html">
 
 ```html {0-99}
-<button class="jwmujm1 _7mhif20 _7mhif21 _7mhif24">Sprinkles Button</button>
+<button class="_1hx7eqw1 _10euf70 _10euf71 _10euf74">Sprinkles Button</button>
 ```
 
   </Tab.Item>
