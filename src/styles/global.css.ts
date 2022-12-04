@@ -10,13 +10,15 @@ globalStyle('html', {
 
 globalStyle('body', {
   color: `rgb(${rgb.fg1})`,
-  background: `rgb(${rgb.bg})`
+  background: `rgb(${rgb.bg})`,
+  overflowX: 'hidden'
 })
 
 globalStyle('#__next', {
   display: 'flex',
   flexDirection: 'column',
-  minHeight: '100vh'
+  minHeight: '100vh',
+  overflowY: 'hidden'
 })
 
 globalFontFace('Inter var', {

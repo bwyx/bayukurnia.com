@@ -14,5 +14,9 @@ const chat = {
   password: process.env.NEXT_PUBLIC_CHAT_PASSWORD as string
 }
 
-const config = { chat, avatar }
+const realtime = {
+  url: process.env.NEXT_PUBLIC_REALTIME_URL as string
+}
+
+const config = { chat, avatar, realtime }
 export default config

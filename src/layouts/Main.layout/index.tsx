@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Footer } from '~/components'
+import { Header, Footer, RealtimeCursors } from '~/components'
 
 import styles from './styles.css'
 
@@ -16,6 +16,7 @@ const MainLayout = ({
       <Header />
       {children}
       {footer ? <Footer /> : null}
+      <RealtimeCursors />
     </>
   )
 }
