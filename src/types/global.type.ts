@@ -1,8 +1,10 @@
+export type Theme = 'dark' | 'light'
+
 declare global {
   interface Window {
-    __theme?: string
-    __onThemeChange?: (theme: string) => void
-    __setPreferredTheme: (theme: string) => void
+    __theme?: Theme
+    __onThemeChange?: (theme: Theme) => void
+    __setPreferredTheme: (theme: Theme) => void
   }
 }
 
