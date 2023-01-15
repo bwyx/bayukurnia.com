@@ -1,3 +1,4 @@
+import Giscus from '@giscus/react'
 import { NextSeo } from 'next-seo'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 
@@ -10,6 +11,8 @@ import { container } from '~/styles/primitives'
 import { pick } from 'contentlayer/client'
 import { allBlogs } from 'contentlayer/generated'
 import { withBlurPlaceholder } from '~/lib/plaiceholder'
+
+import config from '~/config'
 
 import type { GetStaticProps } from 'next'
 import type { PostWithCoverAndBody } from '~/types/blog.type'
@@ -38,6 +41,17 @@ const BlogItem = ({ body, ...post }: PostWithCoverAndBody) => {
         <Article>
           <MDXContent components={MDXComponents} />
         </Article>
+        <Giscus
+          id="comments"
+          {...config.giscus}
+          term="Welcome to @giscus/react component!"
+          reactionsEnabled="1"
+          emitMetadata="0"
+          inputPosition="top"
+          theme="dark"
+          lang="en"
+          loading="lazy"
+        />
       </div>
     </MainWrapper>
   )
