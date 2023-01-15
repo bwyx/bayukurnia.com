@@ -75,11 +75,7 @@ globalStyle(prose, {
   margin: '0 auto'
 })
 
-globalStyle(`${prose} #comments`, {
-  display: 'block'
-})
-
-globalStyle(`${prose}:before, ${prose} #comments:before`, {
+globalStyle(`${prose}:before, ${prose}:after`, {
   padding: '2rem 0',
   margin: '0 auto',
   textAlign: 'center',
