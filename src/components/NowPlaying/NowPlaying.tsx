@@ -136,8 +136,10 @@ const NowPlaying = () => {
     fetcher
   )
 
+  const Component = music?.isPlaying ? 'a' : 'div'
+
   return (
-    <a
+    <Component
       href={music?.isPlaying ? music.spotifyUrl : undefined}
       className={styles.outer}
       target="_blank"
@@ -180,7 +182,7 @@ const NowPlaying = () => {
         </div>
         {music?.isPlaying ? <Bars /> : null}
       </div>
-    </a>
+    </Component>
   )
 }
 
