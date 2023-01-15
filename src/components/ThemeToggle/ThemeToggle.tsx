@@ -1,10 +1,12 @@
-import { useTheme } from '~/hooks'
+import { useStore } from 'zustand'
+import themeStore from '~/stores/themeStore'
+
 import SunMoon from '~/components/vectors/SunMoon/SunMoon'
 
 import styles from './ThemeToggle.css'
 
 const ThemeToggle = () => {
-  const { toggleTheme } = useTheme()
+  const toggleTheme = useStore(themeStore, (s) => s.toggleTheme)
 
   return (
     <button
