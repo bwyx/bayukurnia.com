@@ -10,7 +10,10 @@ globalStyle('html', {
 
 globalStyle('body', {
   color: `rgb(${rgb.fg1})`,
-  background: `rgb(${rgb.bg})`
+  background: `rgb(${rgb.bg})`,
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: '100vh'
 })
 
 globalStyle('#__next', {
