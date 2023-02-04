@@ -1,0 +1,30 @@
+---
+import SunMoon from '~/components/vectors/SunMoon/SunMoon.astro'
+
+import styles from './ThemeToggle.css'
+---
+
+<button
+  is="theme-toggle"
+  class={styles.button}
+  title="Toggles light & dark"
+  aria-label="auto"
+  aria-live="polite"
+>
+  <SunMoon />
+</button>
+
+<script>
+  class ThemeToggle extends HTMLButtonElement {
+    constructor() {
+      super()
+
+      this.addEventListener('click', this.toggleTheme)
+    }
+
+    private toggleTheme = () =>
+      window.__setPreferredTheme(window.__theme === 'light' ? 'dark' : 'light')
+  }
+
+  customElements.define('theme-toggle', ThemeToggle, { extends: 'button' })
+</script>
