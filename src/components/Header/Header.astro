@@ -1,0 +1,15 @@
+---
+import ThemeToggle from '~/components/ThemeToggle/ThemeToggle.astro'
+import Logo from '~/components/vectors/Logo/Logo.astro'
+
+import styles from './Header.css'
+---
+
+<header class={styles.header}>
+  <div class={styles.container}>
+    <a href="/" class={styles.link}>
+      <Logo className={styles.logo} animated={true} />
+    </a>
+    <ThemeToggle />
+  </div>
+</header>
