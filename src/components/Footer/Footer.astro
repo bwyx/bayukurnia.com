@@ -1,4 +1,6 @@
 ---
+import NowPlaying from '~/components/NowPlaying/NowPlaying.tsx'
+
 import { container } from '~/styles/primitives'
 import styles from './Footer.css'
 ---
@@ -48,6 +50,7 @@ import styles from './Footer.css'
           </li>
         </ul>
       </div>
+      <NowPlaying client:visible />
     </section>
     <p class={styles.credit}>
       <span>👻 © Bayu Kurnia •</span>
