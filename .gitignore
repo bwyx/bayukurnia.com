@@ -37,5 +37,5 @@ yarn-error.log*
 *.tsbuildinfo
 
 
-# Contentlayer
-.contentlayer
+# Astro
+.astro
