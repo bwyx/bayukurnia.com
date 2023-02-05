@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import useSWR from 'swr'
 
 import SpotifyLogo from '~/components/vectors/SpotifyLogo'
@@ -148,11 +147,11 @@ const NowPlaying = () => {
         <div className={styles.player}>
           <div className={styles.cover}>
             {music?.isPlaying ? (
-              <Image
-                unoptimized
+              <img
                 src={music.cover}
                 alt={`[${music.title}] Cover Album`}
-                layout="fill"
+                height={42}
+                width={42}
               />
             ) : (
               <SpotifyLogo />
