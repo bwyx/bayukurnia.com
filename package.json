@@ -2,16 +2,11 @@
   "name": "blog",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "postbuild": "next-sitemap",
-    "start": "next start",
-    "lint": "next lint",
-    "a:dev": "astro dev",
-    "a:start": "astro dev",
-    "a:build": "astro build",
-    "a:preview": "astro preview",
-    "a:astro": "astro"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/react": "^2.0.2",
