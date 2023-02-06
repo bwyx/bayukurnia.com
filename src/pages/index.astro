@@ -1,23 +1,16 @@
 ---
-import MainLayout from '~/layouts/Main.layout.astro'
-import styles from '~/styles/pages/home.css'
-
 import { getCollection } from 'astro:content'
+
+import MainLayout from '~/layouts/Main.layout.astro'
+import PostCard from '~/components/blog/PostCard/PostCard.astro'
+
+import styles from '~/styles/pages/home.css'
 
 const posts = await getCollection('blog')
 ---
 
 <MainLayout title="Home">
-  <ul class={styles.container}>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`/${post.collection}/${post.slug}`}>{post.data.title}</a>
-          <time datetime={post.data.publishedAt.toISOString()}>
-            {post.data.publishedAt.toDateString()}
-          </time>
-        </li>
-      ))
-    }
-  </ul>
+  <div class={styles.container}>
+    {posts.map((post) => <PostCard {...post} />)}
+  </div>
 </MainLayout>
