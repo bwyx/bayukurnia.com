@@ -1,0 +1,19 @@
+---
+import { format } from 'date-fns'
+
+import styles from './PostCard.css'
+
+import type { CollectionEntry } from 'astro:content'
+
+export interface Props extends CollectionEntry<'blog'> {}
+
+const { slug, collection, data } = Astro.props
+---
+
+<a href={`${collection}/${slug}`} class={styles.outer}>
+  <time class={styles.publishedAt} date-time={data.publishedAt}>
+    {format(data.publishedAt, 'LLLL d, yyyy')}
+  </time>
+  <h2 class={styles.title}>{data.title}</h2>
+  <p class={styles.summary}>{data.summary}</p>
+</a>
