@@ -1,4 +1,4 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import Pre from './Pre/Pre'
 import Blockquote from './Blockquote/Blockquote'
 import Callout from './Callout/Callout'
@@ -8,7 +8,7 @@ import Tab from './Tab/Tab'
 import blogComponents from '~/components/mdx/blog'
 
 const customComponents = {
-  Image,
+  // Image,
   Text,
   Callout,
   Tab
