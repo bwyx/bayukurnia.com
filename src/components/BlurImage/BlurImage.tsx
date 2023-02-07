@@ -1,4 +1,4 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import { useState } from 'react'
 
 import type { ImageProps } from 'next/image'
@@ -17,7 +17,7 @@ const BlurImage = ({
   const [loading, setLoading] = useState(true)
 
   return (
-    <Image
+    <img
       {...imgProps}
       alt={imgProps.alt}
       className={`${className} ${loading ? blurClassName : null}`}
