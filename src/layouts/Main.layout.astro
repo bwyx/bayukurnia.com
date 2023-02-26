@@ -12,8 +12,13 @@ export interface Props {
 
 <Baselayout {...Astro.props}>
   <Header />
-  <main class={styles.main}>
+  <turbo-frame
+    data-turbo-action="advance"
+    role="main"
+    id="main-layout"
+    class={styles.main}
+  >
     <slot />
-  </main>
+  </turbo-frame>
   <Footer />
 </Baselayout>
