@@ -4,11 +4,14 @@ import cloudflare from '@astrojs/cloudflare'
 import react from '@astrojs/react'
 import mdx from '@astrojs/mdx'
 
+import sitemap from '@astrojs/sitemap'
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://bayukurnia.com',
   output: 'server',
   adapter: cloudflare({ mode: 'advanced' }),
-  integrations: [react(), mdx()],
+  integrations: [react(), mdx(), sitemap()],
   vite: {
     plugins: [vanillaExtractPlugin()],
     define: {
