@@ -22,6 +22,8 @@ export const getAccessToken = async () => {
     headers
   })
 
+  console.log({ clientId, clientSecret, refreshToken })
+
   return response.json()
 }
 
