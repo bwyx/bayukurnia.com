@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/mdx": "^0.16.0",
     "@astrojs/react": "^2.0.2",
+    "@hotwired/turbo": "^7.2.5",
     "@radix-ui/react-scroll-area": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.2",
     "@types/react-dom": "^18.0.10",
