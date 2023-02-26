@@ -16,10 +16,8 @@ globalStyle('body', {
   minHeight: '100vh'
 })
 
-globalStyle('#__next', {
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh'
+globalStyle('.turbo-progress-bar', {
+  background: `rgb(${rgb.brand})`
 })
 
 globalFontFace('Inter var', {
