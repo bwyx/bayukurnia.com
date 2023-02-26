@@ -1,18 +1,14 @@
-interface SpotifyAuth {
-  clientId: string
-  clientSecret: string
-  refreshToken: string
-}
+const clientId = import.meta.env.SPOTIFY_CLIENT_ID
+const clientSecret = import.meta.env.SPOTIFY_CLIENT_SECRET
+const refreshToken = import.meta.env.SPOTIFY_REFRESH_TOKEN
 
-export const getAccessToken = async ({
-  clientId,
-  clientSecret,
-  refreshToken
-}: SpotifyAuth) => {
+const basicToken = btoa(`${clientId}:${clientSecret}`)
+
+export const getAccessToken = async () => {
   const url = 'https://accounts.spotify.com/api/token'
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    Authorization: 'Basic ' + btoa(`${clientId}:${clientSecret}`)
+    Authorization: 'Basic ' + basicToken
   }
 
   const formData = new URLSearchParams({
@@ -29,8 +25,8 @@ export const getAccessToken = async ({
   return response.json()
 }
 
-export const getCurrentlyPlaying = async (auth: SpotifyAuth) => {
-  const { access_token } = await getAccessToken(auth)
+export const getCurrentlyPlaying = async () => {
+  const { access_token } = await getAccessToken()
   const url = 'https://api.spotify.com/v1/me/player/currently-playing'
   const headers = {
     'Content-Type': 'application/json',
