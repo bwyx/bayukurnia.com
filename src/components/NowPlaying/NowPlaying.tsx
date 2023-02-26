@@ -137,6 +137,8 @@ const NowPlaying = () => {
 
   return (
     <a
+      id="now-playing"
+      data-turbo-permanent
       href={music?.isPlaying ? music.spotifyUrl : undefined}
       className={styles.outer}
       target="_blank"
