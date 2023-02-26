@@ -4,17 +4,7 @@ import type { APIRoute } from 'astro'
 import type { NowPlayingResponse } from '~/types/spotify.type'
 
 export const get: APIRoute = async () => {
-  // cloudflare ENVs have to be inlined inside this get() function
-  // https://docs.astro.build/en/guides/integrations-guide/cloudflare/#environment-variables
-  const clientId = import.meta.env.SPOTIFY_CLIENT_ID
-  const clientSecret = import.meta.env.SPOTIFY_CLIENT_SECRET
-  const refreshToken = import.meta.env.SPOTIFY_REFRESH_TOKEN
-
-  const music = await getCurrentlyPlaying({
-    clientId,
-    clientSecret,
-    refreshToken
-  })
+  const music = await getCurrentlyPlaying()
 
   let data: NowPlayingResponse
 
