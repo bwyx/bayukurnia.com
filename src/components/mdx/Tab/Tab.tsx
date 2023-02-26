@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
-import { ScrollArea } from '~/components'
+import ScrollArea from '~/components/ScrollArea/ScrollArea'
 
 import styles from './Tab.css'
 
