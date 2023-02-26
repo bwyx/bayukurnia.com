@@ -23,6 +23,12 @@ export default defineConfig({
       ),
       'process.env.SPOTIFY_REFRESH_TOKEN': JSON.stringify(
         process.env.SPOTIFY_REFRESH_TOKEN
+      ),
+      'process.env.CLOUDINARY_CLOUD_NAME': JSON.stringify(
+        process.env.CLOUDINARY_CLOUD_NAME
+      ),
+      'process.env.CLOUDINARY_FOLDER': JSON.stringify(
+        process.env.CLOUDINARY_FOLDER
       )
     }
   }
