@@ -5,6 +5,15 @@ publishedAt: 2022-07-30
 cover: vanilla-extract.png
 ---
 
+import Callout from '~/components/mdx/Callout/Callout'
+import Tab from '~/components/mdx/Tab/Tab'
+import Text from '~/components/mdx/Text'
+
+import ZeroRuntimeButton from '~/components/mdx/blog/vanilla-extract-css-di-typescript/ZeroRuntimeButton'
+import SprinklesButton from '~/components/mdx/blog/vanilla-extract-css-di-typescript/SprinklesButton'
+import VariantsButton from '~/components/mdx/blog/vanilla-extract-css-di-typescript/VariantsButton/VariantsButton'
+import Buttons from '~/components/mdx/blog/vanilla-extract-css-di-typescript/VariantsButton'
+
 Vanilla Extract memiliki pondasi yang kuat sebagai solusi styling, tool ini memposisikan dirinya sebagai CSS preprocessor layaknya SASS; Hanya saja menggunakan JavaScript/Typescript sebagai "compiler"-nya.
 
 Dikutip dari website resminya:
@@ -89,7 +98,7 @@ Kode tersebut akan di proses oleh Vanilla Extract menjadi:
 
 ### Preview
 
-<VanillaExtract.ZeroRuntimeButton />
+<ZeroRuntimeButton />
 
 _<small>^coba inspect button ini di devtool ehehe</small>_
 
@@ -351,7 +360,7 @@ Output setelahnya:
 
 ### Preview
 
-<VanillaExtract.SprinklesButton />
+<SprinklesButton />
 
 Memang membandingkan tool ini dengan framework seperti Tailwind ngga _apple-to-apple_ karena tujuan mereka sudah berbeda, tapi bagaimanapun Vanilla Extract memiliki kelebihan:
 
@@ -402,10 +411,10 @@ export default { button }
 
 ### Button Variants
 
-<VanillaExtract.VariantsButton children="Button" color="pink" />
-<VanillaExtract.VariantsButton children="Button" color="pink" rounded />
-<VanillaExtract.VariantsButton children="Button" color="gray" />
-<VanillaExtract.VariantsButton children="Button" color="gray" rounded />
+<VariantsButton children="Button" color="pink" />
+<VariantsButton children="Button" color="pink" rounded />
+<VariantsButton children="Button" color="gray" />
+<VariantsButton children="Button" color="gray" rounded />
 
 <br />
 <br />
@@ -446,7 +455,7 @@ Berikut sebuah component Button dengan:
 - 2 boolean state: `loading`, `disabled`
 - 9 rounded variant: `false` - <small>default</small>, `true` - <small>full rounded</small>, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`
 
-<VanillaExtract.Buttons />
+<Buttons client:visible />
 
 ## Akhiran
 

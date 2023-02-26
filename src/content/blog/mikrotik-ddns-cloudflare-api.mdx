@@ -5,6 +5,10 @@ publishedAt: 2022-03-06
 cover: mikrotik-cloudflare-ddns.png
 ---
 
+import Callout from '~/components/mdx/Callout/Callout'
+import Tab from '~/components/mdx/Tab/Tab'
+import Text from '~/components/mdx/Text'
+
 I've been using [NowDNS](https://now-dns.com/) to provide name resolution to my home network for quite some time. On top of that, I use Cloudflare to manage DNS for this and several other domains. I took advantage of both by pointing out some DNS records that need dynamic IP to NowDNS's DDNS-domain from Cloudflare.
 
 After I browsed the Cloudflare APIs, I discovered that they provide an API to update the DNS. I could utilize that by using RouterOS scripting, I thought. Yup, there are many RouterOS Cloudflare DDNS scripts on the internet, but mostly use the old deprecated API, so I decided to make my own using the latest API(v4).
@@ -30,7 +34,7 @@ In addition, the MikroTik router must have a WAN interface that has a dynamic pu
 - Go to one of your domain dashboards on Cloudflare
 - You should find it on the sidebar, right side of the page
 
-<Image
+<img
   src="/images/blog/mikrotik-ddns-cloudflare-api/cloudflare-zone-identifier.png"
   height={514}
   width={369}
