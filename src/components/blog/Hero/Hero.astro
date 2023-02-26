@@ -2,6 +2,7 @@
 import { format } from 'date-fns'
 import type { CollectionEntry } from 'astro:content'
 
+import Image from '~/components/BlurImage/Image.astro'
 import VisuallyHidden from '~/components/VisuallyHidden/VisuallyHidden.astro'
 import TwitterIcon from '~/components/vectors/TwitterIcon.astro'
 import GitHubIcon from '~/components/vectors/GitHubIcon.astro'
@@ -26,7 +27,12 @@ const { publishedAt, summary, title, cover, slug } = Astro.props
     </div>
     <div class={styles.postAuthor}>
       <div class={styles.authorPicture}>
-        <img src="/images/bayukurnia.png" alt="Bayu Kurnia's Avatar" />
+        <Image
+          src="bayukurnia.png"
+          alt="Bayu Kurnia's Avatar"
+          width={48}
+          height={48}
+        />
       </div>
       <div class={styles.authorDetails}>
         <strong class={styles.authorName}>Bayu Kurnia</strong>
@@ -55,9 +61,13 @@ const { publishedAt, summary, title, cover, slug } = Astro.props
     <figure class={styles.cover}>
       <SquareGlass />
       <div class={styles.imgOuter}>
-        <img
-          src={`/images/blog/${slug}/${cover}`}
+        <Image
+          layout="fill"
+          src={`blog/${slug}/${cover}`}
           alt={`${title} cover image`}
+          width={420}
+          height={420}
+          sizes="50vw"
         />
       </div>
     </figure>

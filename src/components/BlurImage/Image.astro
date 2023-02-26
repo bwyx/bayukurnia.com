@@ -1,0 +1,63 @@
+---
+import { CloudinaryImage } from '@cloudinary/url-gen'
+import { fill } from '@cloudinary/url-gen/actions/resize'
+
+import type { HTMLAttributes } from 'astro/types'
+export interface Props extends HTMLAttributes<'img'> {
+  src: string
+  width: number
+  height: number
+  sizes?: string
+  layout?: 'fill'
+  quality?: number
+}
+
+const {
+  src,
+  width,
+  height,
+  layout,
+  quality = 75,
+  ...originalProps
+} = Astro.props
+const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME
+const name = `${import.meta.env.CLOUDINARY_FOLDER}/${src}`
+
+const source = new CloudinaryImage(name, { cloudName })
+  .format('auto')
+  .quality(quality)
+  .resize(fill().width(width).height(height))
+
+const devicePixelRatios = [1, 2]
+const imageSizes = [384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840]
+
+let srcset
+if (layout === 'fill') {
+  srcset = imageSizes.map((size) => {
+    const src = new CloudinaryImage(name, { cloudName })
+      .format('auto')
+      .quality(quality)
+      .resize(fill().width(size))
+      .toURL()
+
+    return `${src} ${size}w`
+  })
+} else {
+  srcset = devicePixelRatios.map((dpr) => {
+    const src = new CloudinaryImage(name, { cloudName })
+      .format('auto')
+      .quality(quality)
+      .resize(fill(width * dpr, height * dpr))
+      .toURL()
+
+    return `${src} ${dpr}x`
+  })
+}
+
+const props = {
+  src: source.toURL(),
+  srcset: srcset.join(', \n')
+}
+---
+
+<img width={width} height={height} {...originalProps} {...props} />
