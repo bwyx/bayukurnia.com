@@ -3,6 +3,10 @@ export const prerender = true
 import { getCollection } from 'astro:content'
 
 import MainLayout from '~/layouts/Main.layout.astro'
+import Hero from '~/components/blog/Hero/Hero.astro'
+
+import { container } from '~/styles/primitives'
+import styles from '~/components/Article/Article.css'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -17,5 +21,10 @@ const { Content } = await post.render()
 ---
 
 <MainLayout title={post.data.title}>
-  <Content />
+  <Hero slug={post.slug} {...post.data} />
+  <div class={container({ size: 'small' })}>
+    <article class={styles.prose}>
+      <Content />
+    </article>
+  </div>
 </MainLayout>

@@ -1,0 +1,65 @@
+---
+import { format } from 'date-fns'
+import type { CollectionEntry } from 'astro:content'
+
+import VisuallyHidden from '~/components/VisuallyHidden/VisuallyHidden.astro'
+import TwitterIcon from '~/components/vectors/TwitterIcon.astro'
+import GitHubIcon from '~/components/vectors/GitHubIcon.astro'
+import SquareGlass from '~/components/vectors/SquareGlass.astro'
+
+import styles from './Hero.css'
+
+export type Props = CollectionEntry<'blog'>['data'] &
+  Pick<CollectionEntry<'blog'>, 'slug'>
+
+const { publishedAt, summary, title, cover, slug } = Astro.props
+---
+
+<header class={styles.header}>
+  <div class={styles.container}>
+    <div class={styles.publishedDate}>
+      {format(publishedAt, 'LLLL d, yyyy')}
+    </div>
+    <div class={styles.postDetails}>
+      <h1 class={styles.postTitle}>{title}</h1>
+      <p class={styles.postSnippet}>{summary}</p>
+    </div>
+    <div class={styles.postAuthor}>
+      <div class={styles.authorPicture}>
+        <img src="/images/bayukurnia.png" alt="Bayu Kurnia's Avatar" />
+      </div>
+      <div class={styles.authorDetails}>
+        <strong class={styles.authorName}>Bayu Kurnia</strong>
+        <div class={styles.socials}>
+          <a
+            class={`${styles.socialsLink} twitter`}
+            href="https://twitter.com/0x4b70"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <VisuallyHidden>0x4b70&apos;s Twitter</VisuallyHidden>
+            <TwitterIcon className={styles.socialsIcon} />
+          </a>
+          <a
+            class={`${styles.socialsLink} github`}
+            href="https://github.com/bwyx"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <VisuallyHidden>bwyx&apos;s GitHub</VisuallyHidden>
+            <GitHubIcon className={styles.socialsIcon} />
+          </a>
+        </div>
+      </div>
+    </div>
+    <figure class={styles.cover}>
+      <SquareGlass />
+      <div class={styles.imgOuter}>
+        <img
+          src={`/images/blog/${slug}/${cover}`}
+          alt={`${title} cover image`}
+        />
+      </div>
+    </figure>
+  </div>
+</header>
