@@ -1,14 +1,18 @@
 ---
 import ThemeToggle from '~/components/ThemeToggle/ThemeToggle.astro'
+import VisuallyHidden from '~/components/VisuallyHidden/VisuallyHidden.astro'
 import Logo from '~/components/vectors/Logo/Logo.astro'
 
 import styles from './Header.css'
+
+const isHome = Astro.url.pathname === '/'
 ---
 
 <header class={styles.header}>
   <div class={styles.container}>
     <a href="/" class={styles.link}>
-      <Logo className={styles.logo} animated={true} />
+      <VisuallyHidden>Home</VisuallyHidden>
+      <Logo className={styles.logo} animated={isHome} />
     </a>
     <ThemeToggle />
   </div>
