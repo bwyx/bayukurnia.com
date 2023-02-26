@@ -13,6 +13,7 @@ const { title } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <link
       rel="preload"
       href="/fonts/Inter-roman-latin.var.woff2"
@@ -20,7 +21,7 @@ const { title } = Astro.props
       type="font/woff2"
       crossorigin="true"
     />
-    <meta name="generator" content={Astro.generator} />
+    <script src="~/lib/turbo.ts" defer></script>
     <title>{title}</title>
   </head>
   <body>
@@ -50,6 +51,5 @@ const { title } = Astro.props
       })()
     </script>
     <slot />
-    <script src="~/lib/turbo.ts"></script>
   </body>
 </html>
