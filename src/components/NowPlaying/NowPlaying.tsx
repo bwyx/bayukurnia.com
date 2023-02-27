@@ -135,8 +135,10 @@ const NowPlaying = () => {
     fetcher
   )
 
+  const Component = music?.isPlaying ? 'a' : 'div'
+
   return (
-    <a
+    <Component
       id="now-playing"
       data-turbo-permanent
       href={music?.isPlaying ? music.spotifyUrl : undefined}
@@ -181,7 +183,7 @@ const NowPlaying = () => {
         </div>
         {music?.isPlaying ? <Bars /> : null}
       </div>
-    </a>
+    </Component>
   )
 }
 
