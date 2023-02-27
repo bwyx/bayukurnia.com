@@ -3,6 +3,8 @@ import { rgb } from '~/styles/variables.css'
 
 import '~/styles/preflight.css'
 import '~/styles/themes.css'
+import '~/styles/fonts/plusJakartaSans.css'
+import '~/styles/fonts/erode.css'
 
 globalStyle('html', {
   fontFeatureSettings: "'cv02','cv03','cv04','cv11'"
@@ -10,10 +12,7 @@ globalStyle('html', {
 
 globalStyle('body', {
   color: `rgb(${rgb.fg1})`,
-  background: `rgb(${rgb.bg})`,
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh'
+  background: `rgb(${rgb.bg})`
 })
 
 globalStyle('.turbo-progress-bar', {

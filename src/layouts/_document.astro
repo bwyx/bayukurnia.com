@@ -1,11 +1,14 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
+
 import '~/styles/global.css'
 
 export interface Props {
   title: string
+  body?: HTMLAttributes<'body'>
 }
 
-const { title } = Astro.props
+const { title, body } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -17,7 +20,14 @@ const { title } = Astro.props
     <meta name="description" content="Hi there!" />
     <link
       rel="preload"
-      href="/fonts/Inter-roman-latin.var.woff2"
+      href="/fonts/plus-jakarta-sans-latin-variable-wghtOnly-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="true"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Erode-Variable.woff2"
       as="font"
       type="font/woff2"
       crossorigin="true"
@@ -25,7 +35,7 @@ const { title } = Astro.props
     <script src="~/lib/turbo.ts"></script>
     <title>{title}</title>
   </head>
-  <body>
+  <body {...body}>
     <script is:inline>
       ;(function () {
         function setTheme(newTheme) {

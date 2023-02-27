@@ -1,4 +1,6 @@
 import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css'
+import erode from '~/styles/fonts/erode.css'
+import plusJakartaSans from '~/styles/fonts/plusJakartaSans.css'
 
 export const media = {
   sm: '(min-width: 640px)',
@@ -61,8 +63,8 @@ export const globalVars = createGlobalTheme(':root', {
     96: '24rem'
   },
   fonts: {
-    sans: "Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol'",
-    serif: "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
+    sans: `${plusJakartaSans}, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol'`,
+    serif: `${erode}, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif`,
     mono: "Iosevka, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
   },
   radii: {
