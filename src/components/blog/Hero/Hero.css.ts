@@ -54,7 +54,7 @@ const styles = {
   postSnippet: style([
     {
       marginTop: space[2],
-      color: `rgb(${rgb.fg1} / 0.5)`,
+      color: `rgb(${rgb.fg3})`,
       maxWidth: '35ch'
     },
     text({
@@ -131,7 +131,7 @@ const styles = {
   socialsIcon: style({ width: 16, height: 16 }),
   publishedDate: style([
     {
-      color: `rgb(${rgb.fg1} / 0.5)`,
+      color: `rgb(${rgb.fg3})`,
       gridArea: 'date'
     },
     text({
