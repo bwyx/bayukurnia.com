@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { media, space } from '~/styles/variables.css'
+import { media, rgb, space } from '~/styles/variables.css'
 import { box, text } from '~/styles/sprinkles'
 import { calc } from '@vanilla-extract/css-utils'
 
@@ -25,11 +25,13 @@ const styles = {
   }),
   description: style([
     {
-      marginTop: space[2]
+      marginTop: space[2],
+      color: `rgb(${rgb.fg3})`
     },
+    box({ display: 'inline-block' }),
     text({
-      fontSize: 'lg',
-      fontFamily: 'serif'
+      fontWeight: 'medium',
+      fontSize: 'base'
     })
   ])
 }
