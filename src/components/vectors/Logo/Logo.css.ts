@@ -56,10 +56,5 @@ globalStyle(`${animatedLogo} [name=a]`, {
   animationDelay: '2.8s'
 })
 
-globalStyle(`${animatedLogo} [name=decor]`, {
-  animation: `${drawPath} 1s ease-in-out forwards`,
-  animationDelay: '3.5s'
-})
-
 const styles = { animatedLogo }
 export default styles

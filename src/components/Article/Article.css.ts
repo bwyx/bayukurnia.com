@@ -4,7 +4,7 @@ import { createVar, globalStyle, style } from '@vanilla-extract/css'
 import { fonts, media, rgb } from '~/styles/variables.css'
 import { round, rem, em } from '~/styles/utils.css'
 
-const prose = style({})
+export const prose = style({})
 
 const $ = {
   body: createVar('proseBody'),
@@ -71,23 +71,7 @@ globalStyle(`.dark  ${prose}`, {
 
 globalStyle(prose, {
   color: $.body,
-  maxWidth: '65ch',
-  margin: '0 auto'
-})
-
-globalStyle(`${prose}:before`, {
-  padding: '2rem 0',
-  margin: '0 auto',
-  textAlign: 'center',
-  content: '• • •',
-  color: `rgb(${rgb.fg3}/0.5)`,
-  fontSize: '0.875rem',
-  display: 'block',
-  '@media': {
-    [media.sm]: {
-      padding: '3rem 0'
-    }
-  }
+  maxWidth: '50ch'
 })
 
 globalStyle(`${prose} [class~="lead"]`, {
@@ -354,12 +338,12 @@ globalStyle(`${prose} tfoot td`, {
  * Sizes & Spacing
  */
 globalStyle(prose, {
-  fontSize: rem(16),
-  lineHeight: round(28 / 16),
+  fontSize: rem(18),
+  lineHeight: round(28 / 18),
   '@media': {
     [media.lg]: {
-      fontSize: rem(18),
-      lineHeight: round(32 / 18)
+      fontSize: rem(20),
+      lineHeight: round(32 / 20)
     }
   }
 })

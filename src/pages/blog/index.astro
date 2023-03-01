@@ -1,0 +1,22 @@
+---
+export const prerender = true
+
+import { getCollection } from 'astro:content'
+
+import MainLayout from '~/layouts/Main.layout.astro'
+import PostCard from '~/components/blog/PostCard/PostCard.astro'
+import Header from '~/components/blog/Header/Header.astro'
+
+import styles from '~/styles/pages/blog.css'
+
+const posts = await getCollection('blog')
+---
+
+<MainLayout title="Home">
+  <Header title="blog" description="yes. sometimes. random things" />
+  <section class={styles.content}>
+    <div class={styles.postWrapper}>
+      {posts.map((post) => <PostCard {...post} />)}
+    </div>
+  </section>
+</MainLayout>
