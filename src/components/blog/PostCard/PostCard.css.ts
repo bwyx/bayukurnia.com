@@ -4,7 +4,23 @@ import { media, rgb, space } from '~/styles/variables.css'
 
 export const postCard = style({
   paddingTop: space[2],
-  paddingBottom: space[2]
+  paddingBottom: space[2],
+  pointerEvents: 'auto'
+})
+
+export const coverHover = style({
+  top: -180,
+  left: 0,
+  opacity: 0,
+  pointerEvents: 'none',
+  transform: 'translate(var(--x), var(--y))',
+  transition: 'opacity .15s',
+  selectors: {
+    [`${postCard}:hover &`]: {
+      opacity: 1,
+      transition: 'opacity 0s'
+    }
+  }
 })
 
 const styles = {
@@ -41,7 +57,8 @@ const styles = {
         md: 'base'
       }
     })
-  ])
+  ]),
+  coverHover: style([coverHover, box({ position: 'absolute' })])
 }
 
 export default styles
