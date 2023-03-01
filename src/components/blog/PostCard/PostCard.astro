@@ -1,16 +1,26 @@
 ---
 import { format } from 'date-fns'
 
+import Image from '~/components/BlurImage/Image.astro'
+
 import styles from './PostCard.css'
 
 import type { CollectionEntry } from 'astro:content'
 
-export interface Props extends CollectionEntry<'blog'> {}
+export type Props = CollectionEntry<'blog'>
 
 const { slug, collection, data } = Astro.props
 ---
 
 <a href={`/${collection}/${slug}`} class={styles.outer}>
+  <div class={styles.coverHover}>
+    <Image
+      src={`blog/${slug}/${data.cover}`}
+      alt="Bayu Kurnia's Avatar"
+      width={180}
+      height={180}
+    />
+  </div>
   <div>
     <time class={styles.publishedAt} date-time={data.publishedAt}>
       {format(data.publishedAt, 'LLL dd, yyyy')}

@@ -16,9 +16,42 @@ const posts = await getCollection('blog')
 <MainLayout title="Home">
   <Header title="blog" description="yes. sometimes. random things" />
   <section class={styles.content}>
-    <div class={styles.postWrapper}>
+    <blog-post-wrapper class={styles.postWrapper}>
       {posts.map((post) => <PostCard {...post} />)}
-    </div>
+    </blog-post-wrapper>
   </section>
   <Footer />
 </MainLayout>
+
+<script>
+  import { gsap } from 'gsap'
+
+  class BlogPostWrapper extends HTMLElement {
+    constructor() {
+      super()
+    }
+
+    connectedCallback() {
+      this.addEventListener('mousemove', this.handleMouseMove)
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener('mousemove', this.handleMouseMove)
+    }
+
+    handleMouseMove = (e: MouseEvent) => {
+      const { left, top } = this.getBoundingClientRect()
+      const x = e.clientX - left
+      const y = e.clientY - top
+
+      gsap.to(this, {
+        '--x': `${x}px`,
+        '--y': `${y}px`,
+        duration: 1.5,
+        ease: 'expo.out'
+      })
+    }
+  }
+
+  customElements.define('blog-post-wrapper', BlogPostWrapper)
+</script>

@@ -4,7 +4,9 @@ import { postCard } from '~/components/blog/PostCard/PostCard.css'
 import { space } from '~/styles/variables.css'
 
 const postWrapper = style({
-  marginTop: space[5]
+  position: 'relative',
+  display: 'block',
+  marginTop: space[2]
 })
 
 globalStyle(`${postWrapper}:hover ${postCard}`, {
