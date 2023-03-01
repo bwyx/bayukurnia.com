@@ -10,7 +10,7 @@ export interface Props extends CollectionEntry<'blog'> {}
 const { slug, collection, data } = Astro.props
 ---
 
-<a href={`${collection}/${slug}`} class={styles.outer}>
+<a href={`/${collection}/${slug}`} class={styles.outer}>
   <div>
     <time class={styles.publishedAt} date-time={data.publishedAt}>
       {format(data.publishedAt, 'LLL dd, yyyy')}
