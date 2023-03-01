@@ -9,7 +9,7 @@ const bounceBar = keyframes({
   '100%': { transform: 'scaleY(0.5)' }
 })
 
-const outer = style({
+export const nowPlaying = style({
   position: 'relative',
   display: 'block',
   width: 'fit-content',
@@ -17,7 +17,7 @@ const outer = style({
 })
 
 const styles = {
-  outer,
+  nowPlaying,
   inner: style([
     {
       inset: 0,
@@ -62,7 +62,7 @@ const styles = {
     {
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
-      maxWidth: '15ch'
+      maxWidth: '14ch'
     },
     box({ overflow: 'hidden' }),
     text({
@@ -75,12 +75,13 @@ const styles = {
     {
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
-      maxWidth: '18ch',
+      maxWidth: '16ch',
       color: `rgb(${rgb.fg3})`,
+      marginTop: space[0.5],
       selectors: {
         [`&.play`]: { display: 'none', color: `rgb(${rgb.accent})` },
-        [`${outer}:hover &.play`]: { display: 'block' },
-        [`${outer}:hover &.artists`]: { display: 'none' }
+        [`${nowPlaying}:hover &.play`]: { display: 'block' },
+        [`${nowPlaying}:hover &.artists`]: { display: 'none' }
       }
     },
     box({ overflow: 'hidden' }),
@@ -90,7 +91,7 @@ const styles = {
     })
   ]),
   bars: style([
-    { gap: 1 },
+    { gap: 1, marginLeft: 5 },
     box({
       display: 'flex',
       alignItems: 'center'

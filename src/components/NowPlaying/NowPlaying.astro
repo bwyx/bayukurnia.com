@@ -1,0 +1,60 @@
+---
+import NowPlaying from './NowPlaying'
+
+import { rgb } from '~/styles/variables.css'
+
+import { nowPlaying } from './NowPlaying.css'
+---
+
+<div id="now-playing" data-turbo-permanent class={nowPlaying}>
+  <svg
+    width="242"
+    height="62"
+    viewBox="0 0 242 62"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="0.5"
+      y="0.5"
+      width="241"
+      height="61"
+      rx="8.5"
+      fill="url(#paint0_radial_201_12)"
+      fill-opacity="0.5"></rect>
+    <rect
+      x="0.5"
+      y="0.5"
+      width="241"
+      height="61"
+      rx="8.5"
+      stroke="url(#paint1_linear_201_12)"></rect>
+    <defs>
+      <radialGradient
+        id="paint0_radial_201_12"
+        cx="0"
+        cy="0"
+        r="1"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="translate(99 7.5) rotate(22.2368) scale(141.371 111.267)"
+      >
+        <stop stop-color={`rgb(${rgb.glass})`} stop-opacity="0.65"></stop>
+        <stop offset="1" stop-color={`rgb(${rgb.glass})`} stop-opacity="0.17"
+        ></stop>
+      </radialGradient>
+      <linearGradient
+        id="paint1_linear_201_12"
+        x1="-8.71429"
+        y1="-4"
+        x2="19.4747"
+        y2="122.438"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color={`rgb(${rgb.glass})`} stop-opacity="0.4"></stop>
+        <stop offset="1" stop-color={`rgb(${rgb.glass})`} stop-opacity="0"
+        ></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+  <NowPlaying client:visible />
+</div>

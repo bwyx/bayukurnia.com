@@ -1,67 +1,9 @@
 ---
-import NowPlaying from '~/components/NowPlaying/NowPlaying.tsx'
+import NowPlaying from '~/components/NowPlaying/NowPlaying.astro'
 
-import { container } from '~/styles/primitives'
 import styles from './Footer.css'
 ---
 
 <footer class={styles.footer}>
-  <div class={container({ size: 'small' })}>
-    <section class={styles.section}>
-      <div class={styles.links}>
-        <ul class={styles.linksList}>
-          <li class={styles.linksItem}>
-            <a href="/" class={styles.linksItemLink}>Home</a>
-          </li>
-          <li class={styles.linksItem}>
-            <a href="/guestchat" class={styles.linksItemLink}>Guest Chat</a>
-          </li>
-        </ul>
-        <ul class={styles.linksList}>
-          <li class={styles.linksItem}>
-            <a
-              class={styles.linksItemLink}
-              href="https://github.com/bwyx"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-          </li>
-          <li class={styles.linksItem}>
-            <a
-              class={styles.linksItemLink}
-              href="https://twitter.com/0x4b70"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Twitter
-            </a>
-          </li>
-          <li class={styles.linksItem}>
-            <a
-              class={styles.linksItemLink}
-              href="https://www.instagram.com/baayukurnia/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Instagram
-            </a>
-          </li>
-        </ul>
-      </div>
-      <NowPlaying client:visible />
-    </section>
-    <p class={styles.credit}>
-      <span>👻 © Bayu Kurnia •</span>
-      <a
-        class={styles.creditLink}
-        href="https://github.com/bwyx/bayukurnia.com"
-        target="_blank"
-        rel="noreferrer"
-      >
-        View source code
-      </a>
-    </p>
-  </div>
+  <NowPlaying />
 </footer>
