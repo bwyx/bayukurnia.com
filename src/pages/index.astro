@@ -3,8 +3,7 @@ export const prerender = true
 
 import MainLayout from '~/layouts/Main.layout.astro'
 import Image from '~/components/BlurImage/Image.astro'
-
-import NowPlaying from '~/components/NowPlaying/NowPlaying'
+import Footer from '~/components/Footer/Footer.astro'
 
 import styles from '~/styles/pages/home.css'
 ---
@@ -25,7 +24,5 @@ import styles from '~/styles/pages/home.css'
       hmm.. I need some cool introduction lines. any ideas? haha
     </p>
   </header>
-  <footer>
-    <!-- <NowPlaying client:visible /> -->
-  </footer>
+  <Footer />
 </MainLayout>
