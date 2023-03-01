@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { text } from '~/styles/sprinkles'
+import { box, text } from '~/styles/sprinkles'
 import { rgb, space } from '~/styles/variables.css'
 
 const styles = {
@@ -11,12 +11,11 @@ const styles = {
   }),
   description: style([
     {
+      marginTop: space[2],
       color: `rgb(${rgb.fg3})`
     },
-    text({
-      fontWeight: 'medium',
-      fontSize: 'base'
-    })
+    box({ display: 'inline-block' }),
+    text({ fontWeight: 'medium', fontSize: 'base' })
   ])
 }
 
