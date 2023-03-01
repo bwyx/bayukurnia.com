@@ -1,6 +1,6 @@
 import { style, keyframes } from '@vanilla-extract/css'
 import { box, text } from '~/styles/sprinkles'
-import { rgb, space } from '~/styles/variables.css'
+import { fonts, rgb, space } from '~/styles/variables.css'
 
 const bounceBar = keyframes({
   '0%': { transform: 'scaleY(0.5)' },
@@ -12,7 +12,8 @@ const bounceBar = keyframes({
 const outer = style({
   position: 'relative',
   display: 'block',
-  width: 'fit-content'
+  width: 'fit-content',
+  fontFamily: fonts.sans
 })
 
 const styles = {

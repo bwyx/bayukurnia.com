@@ -11,9 +11,10 @@ const { slug, collection, data } = Astro.props
 ---
 
 <a href={`${collection}/${slug}`} class={styles.outer}>
-  <time class={styles.publishedAt} date-time={data.publishedAt}>
-    {format(data.publishedAt, 'LLLL d, yyyy')}
-  </time>
+  <div>
+    <time class={styles.publishedAt} date-time={data.publishedAt}>
+      {format(data.publishedAt, 'LLL dd, yyyy')}
+    </time>
+  </div>
   <h2 class={styles.title}>{data.title}</h2>
-  <p class={styles.summary}>{data.summary}</p>
 </a>

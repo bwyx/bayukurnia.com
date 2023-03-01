@@ -1,0 +1,18 @@
+---
+import { format } from 'date-fns'
+import type { CollectionEntry } from 'astro:content'
+
+import styles from './SimpleHero.css'
+
+export type Props = CollectionEntry<'blog'>['data'] &
+  Pick<CollectionEntry<'blog'>, 'slug'>
+
+const { publishedAt, summary, title, cover, slug } = Astro.props
+---
+
+<header>
+  <h1 class={styles.postTitle}>{title}</h1>
+  <time class={styles.publishedDate} datetime={publishedAt.toISOString()}>
+    {format(publishedAt, 'LLLL d, yyyy')}
+  </time>
+</header>

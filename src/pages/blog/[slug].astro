@@ -1,12 +1,14 @@
 ---
 export const prerender = true
+
+import { format } from 'date-fns'
 import { getCollection } from 'astro:content'
 
 import MainLayout from '~/layouts/Main.layout.astro'
-import Hero from '~/components/blog/Hero/Hero.astro'
+import Header, { headerStyles } from '~/components/blog/Header/Header.astro'
 
-import { container } from '~/styles/primitives'
-import styles from '~/components/Article/Article.css'
+import { prose } from '~/components/Article/Article.css'
+import styles from '~/styles/pages/blogPost.css'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -18,13 +20,17 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props
 const { Content } = await post.render()
+
+const { title, publishedAt } = post.data
 ---
 
-<MainLayout title={post.data.title}>
-  <Hero slug={post.slug} {...post.data} />
-  <div class={container({ size: 'small' })}>
-    <article class={styles.prose}>
-      <Content />
-    </article>
-  </div>
+<MainLayout title={title}>
+  <Header title={title}>
+    <time class={headerStyles.description} datetime={publishedAt.toISOString()}>
+      {format(publishedAt, 'LLLL d, yyyy')}
+    </time>
+  </Header>
+  <article class:list={[prose, styles.article]}>
+    <Content />
+  </article>
 </MainLayout>

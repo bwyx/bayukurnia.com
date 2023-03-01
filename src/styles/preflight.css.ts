@@ -29,7 +29,7 @@ globalStyle('html', {
   WebkitTextSizeAdjust: '100%' /* 2 */,
   MozTabSize: 4 /* 3 */,
   tabSize: 4 /* 3 */,
-  fontFamily: fonts.sans /* 4 */
+  fontFamily: fonts.serif /* 4 */
 })
 
 /*
@@ -68,7 +68,8 @@ Remove the default font size and weight for headings.
 
 globalStyle('h1, h2, h3, h4, h5, h6', {
   fontSize: 'inherit',
-  fontWeight: 'inherit'
+  fontWeight: 'inherit',
+  fontFamily: fonts.sans
 })
 
 /*

@@ -1,0 +1,35 @@
+---
+import Logo from '~/components/vectors/Logo/Logo.astro'
+import ThemeToggle from '~/components/ThemeToggle/ThemeToggle.astro'
+
+import styles from './Navigation.css'
+
+const { pathname } = Astro.url
+
+const isHome = pathname === '/'
+const isPage = (pageName: string) => pathname.startsWith(`/${pageName}`)
+---
+
+<aside class={styles.aside}>
+  <div class={styles.logoAndThemeToggle}>
+    <a aria-label="Bayu Kurnia" href="/" class={styles.home}>
+      <Logo className={styles.logo} animated={isHome} />
+    </a>
+    <ThemeToggle />
+  </div>
+
+  <nav class={styles.nav}>
+    <a
+      class:list={[styles.navItem, { [styles.navItemActive]: isHome }]}
+      href="/"
+    >
+      home
+    </a>
+    <a
+      class:list={[styles.navItem, { [styles.navItemActive]: isPage('blog') }]}
+      href="/blog"
+    >
+      blog
+    </a>
+  </nav>
+</aside>

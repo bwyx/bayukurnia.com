@@ -1,7 +1,6 @@
 ---
 import Document from './_document.astro'
-import Header from '~/components/Header/Header.astro'
-import Footer from '~/components/Footer/Footer.astro'
+import Navigation from '~/components/Navigation/Navigation.astro'
 
 import styles from './Main.layout/styles.css'
 
@@ -10,10 +9,9 @@ export interface Props {
 }
 ---
 
-<Document {...Astro.props}>
-  <Header />
+<Document {...Astro.props} body={{ class: styles.body }}>
+  <Navigation />
   <main class={styles.main}>
     <slot />
   </main>
-  <Footer />
 </Document>
