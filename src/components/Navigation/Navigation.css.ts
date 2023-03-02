@@ -59,12 +59,12 @@ const styles = {
       paddingLeft: space[2],
       paddingTop: space[1],
       paddingBottom: space[1],
-      opacity: 0.5,
+      color: `rgb(${rgb.fg3})`,
       ':first-child': {
         marginLeft: calc.multiply(space[2], -1)
       },
       ':hover': {
-        opacity: 1
+        color: `rgb(${rgb.fg1})`
       },
       '@media': {
         [media.md]: {
@@ -81,7 +81,7 @@ const styles = {
     })
   ]),
   navItemActive: style({
-    opacity: 1
+    color: `rgb(${rgb.fg1})`
   })
 }
 
