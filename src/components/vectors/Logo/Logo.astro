@@ -2,7 +2,13 @@
 import styles from './Logo.css'
 ---
 
-<bayu-kurnia id="bayu-kurnia" data-turbo-permanent class={styles.bayuKurnia}>
+<a
+  is="bayu-kurnia"
+  id="bayu-kurnia"
+  href="/"
+  data-turbo-permanent
+  class={styles.bayuKurnia}
+>
   <svg
     class={styles.strokeBg}
     viewBox="0 0 147 115"
@@ -113,13 +119,13 @@ import styles from './Logo.css'
       stroke-width="4"
       stroke-linecap="round"></path>
   </svg>
-</bayu-kurnia>
+</a>
 
 <script>
   import { gsap } from 'gsap'
   import styles from './Logo.css'
 
-  class BayuKurnia extends HTMLElement {
+  class BayuKurnia extends HTMLAnchorElement {
     tl: gsap.core.Timeline
     paths: NodeListOf<SVGPathElement>
 
@@ -133,14 +139,16 @@ import styles from './Logo.css'
 
       this.paths = this.logo.querySelectorAll('path')
       this.createTimeline()
+      this.tl.seek('hidden')
+      this.tl.play()
     }
 
     connectedCallback() {
-      this.addEventListener('mouseenter', this.playAnimation)
+      this.addEventListener('click', this.playAnimation)
     }
 
     disconnectedCallback() {
-      this.removeEventListener('mouseenter', this.playAnimation)
+      this.removeEventListener('click', this.playAnimation)
     }
 
     createTimeline() {
@@ -153,7 +161,7 @@ import styles from './Logo.css'
         this.tl.fromTo(
           path,
           { strokeDashoffset: 0, strokeDasharray: l },
-          { strokeDashoffset: -l, duration: l }
+          { strokeDashoffset: -l, duration: l / 3 }
         )
       })
 
@@ -178,6 +186,8 @@ import styles from './Logo.css'
     }
 
     playAnimation() {
+      if (this.tl.isActive()) return
+
       this.tl.restart()
     }
 
@@ -186,5 +196,5 @@ import styles from './Logo.css'
     }
   }
 
-  customElements.define('bayu-kurnia', BayuKurnia)
+  customElements.define('bayu-kurnia', BayuKurnia, { extends: 'a' })
 </script>
