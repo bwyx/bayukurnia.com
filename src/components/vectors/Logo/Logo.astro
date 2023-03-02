@@ -132,11 +132,10 @@ import styles from './Logo.css'
         .paused(true)
 
       this.paths = this.logo.querySelectorAll('path')
+      this.createTimeline()
     }
 
     connectedCallback() {
-      this.createTimeline()
-
       this.addEventListener('mouseenter', this.playAnimation)
     }
 
