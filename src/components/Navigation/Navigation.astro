@@ -12,9 +12,7 @@ const isPage = (pageName: string) => pathname.startsWith(`/${pageName}`)
 
 <aside class={styles.aside}>
   <div class={styles.logoAndThemeToggle}>
-    <a aria-label="Bayu Kurnia" href="/" class={styles.home}>
-      <Logo className={styles.logo} animated={isHome} />
-    </a>
+    <Logo />
     <ThemeToggle />
   </div>
 
