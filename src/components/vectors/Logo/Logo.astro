@@ -137,10 +137,12 @@ import styles from './Logo.css'
     connectedCallback() {
       this.createTimeline()
 
-      this.addEventListener('mouseenter', () => this.tl.restart())
+      this.addEventListener('mouseenter', this.playAnimation)
     }
 
-    disconnectedCallback() {}
+    disconnectedCallback() {
+      this.removeEventListener('mouseenter', this.playAnimation)
+    }
 
     createTimeline() {
       this.tl.addLabel('beforeHide')
@@ -174,6 +176,10 @@ import styles from './Logo.css'
       })
 
       this.tl.addLabel('shown')
+    }
+
+    playAnimation() {
+      this.tl.restart()
     }
 
     get logo() {
