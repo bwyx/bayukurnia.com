@@ -82,10 +82,6 @@ const styles = {
   ]),
   navItemActive: style({
     opacity: 1
-  }),
-  logo: style({
-    width: 'auto',
-    height: 40
   })
 }
 
