@@ -123,11 +123,25 @@ import styles from './Logo.css'
 
 <script>
   import { gsap } from 'gsap'
+  import CustomEase from 'gsap/CustomEase'
+  gsap.registerPlugin(CustomEase)
+
   import styles from './Logo.css'
 
   class BayuKurnia extends HTMLAnchorElement {
     tl: gsap.core.Timeline
     paths: NodeListOf<SVGPathElement>
+
+    eases = {
+      show: CustomEase.create(
+        'custom',
+        'M0,0,C0.05,0.099,0.195,0.44,0.5,0.5,0.602,0.52,0.782,0.958,1,1'
+      ),
+      play: CustomEase.create(
+        'custom',
+        'M0,0,C0.222,0.22,0.32,0.564,0.626,0.616,0.728,0.633,0.782,0.958,1,1'
+      )
+    }
 
     constructor() {
       super()
@@ -139,16 +153,15 @@ import styles from './Logo.css'
 
       this.paths = this.logo.querySelectorAll('path')
       this.createTimeline()
-      this.tl.seek('hidden')
-      this.tl.play()
+      this.show()
     }
 
     connectedCallback() {
-      this.addEventListener('click', this.playAnimation)
+      document.addEventListener('turbo:before-visit', this.play)
     }
 
     disconnectedCallback() {
-      this.removeEventListener('click', this.playAnimation)
+      document.removeEventListener('turbo:before-visit', this.play)
     }
 
     createTimeline() {
@@ -185,10 +198,18 @@ import styles from './Logo.css'
       this.tl.addLabel('shown')
     }
 
-    playAnimation() {
-      if (this.tl.isActive()) return
+    play = () => {
+      this.tl.tweenFromTo('beforeHide', 'shown', {
+        ease: this.eases.play,
+        duration: 2.5
+      })
+    }
 
-      this.tl.restart()
+    show = () => {
+      return this.tl.tweenFromTo('hidden', 'shown', {
+        ease: this.eases.show,
+        duration: 2
+      })
     }
 
     get logo() {
