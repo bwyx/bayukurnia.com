@@ -14,7 +14,10 @@ const posts = await getCollection('blog')
 ---
 
 <MainLayout title="Home">
-  <Header title="blog" description="yes. sometimes. random things" />
+  <Header
+    title="blog"
+    description="yes. once in a while. about random things"
+  />
   <section class={styles.content}>
     <blog-post-wrapper class={styles.postWrapper}>
       {posts.map((post) => <PostCard {...post} />)}
