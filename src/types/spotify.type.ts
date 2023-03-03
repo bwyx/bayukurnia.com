@@ -6,4 +6,5 @@ export type NowPlayingResponse =
       artists: string
       spotifyUrl: string
       cover: string
+      srcset: string
     }
