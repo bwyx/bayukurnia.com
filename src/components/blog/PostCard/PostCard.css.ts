@@ -11,14 +11,12 @@ export const postCard = style({
 export const coverHover = style({
   top: -180,
   left: 0,
-  opacity: 0,
+  display: 'none',
   pointerEvents: 'none',
   transform: 'translate(var(--x), var(--y))',
-  transition: 'opacity .15s',
   selectors: {
     [`${postCard}:hover &`]: {
-      opacity: 1,
-      transition: 'opacity 0s'
+      display: 'block'
     }
   }
 })
