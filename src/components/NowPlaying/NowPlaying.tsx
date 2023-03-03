@@ -37,6 +37,7 @@ const NowPlaying = () => {
           {music?.isPlaying ? (
             <img
               src={music.cover}
+              srcSet={music.srcset}
               alt={`[${music.title}] Cover Album`}
               height={42}
               width={42}
