@@ -27,32 +27,49 @@ const posts = await getCollection('blog')
 </MainLayout>
 
 <script>
-  import { gsap } from 'gsap'
-
   class BlogPostWrapper extends HTMLElement {
+    rect: DOMRect
+    gsap: typeof gsap | null
     constructor() {
       super()
+
+      this.gsap = null
+      this.rect = this.getBoundingClientRect()
     }
 
     connectedCallback() {
       this.addEventListener('mousemove', this.handleMouseMove)
+      document.addEventListener('resize', this.handleDocumentResize)
+      document.addEventListener('turbo:load', this.loadGsap)
     }
 
     disconnectedCallback() {
       this.removeEventListener('mousemove', this.handleMouseMove)
+      document.removeEventListener('resize', this.handleDocumentResize)
+      document.removeEventListener('turbo:load', this.loadGsap)
     }
 
     handleMouseMove = (e: MouseEvent) => {
-      const { left, top } = this.getBoundingClientRect()
-      const x = e.clientX - left
-      const y = e.clientY - top
+      const x = e.clientX - this.rect.left
+      const y = e.clientY - this.rect.top
 
-      gsap.to(this, {
+      this.gsap?.to(this, {
         '--x': `${x}px`,
         '--y': `${y}px`,
         duration: 1.5,
         ease: 'expo.out'
       })
+    }
+
+    handleDocumentResize = () => {
+      this.rect = this.getBoundingClientRect()
+    }
+
+    loadGsap = async () => {
+      if (this.gsap) return
+
+      const { gsap } = await import('gsap')
+      this.gsap = gsap
     }
   }
 
