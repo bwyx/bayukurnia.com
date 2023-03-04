@@ -39,12 +39,12 @@ const posts = await getCollection('blog')
 
     connectedCallback() {
       this.addEventListener('mousemove', this.handleMouseMove)
-      document.addEventListener('resize', this.handleDocumentResize)
+      window.addEventListener('resize', this.handleDocumentResize)
     }
 
     disconnectedCallback() {
       this.removeEventListener('mousemove', this.handleMouseMove)
-      document.removeEventListener('resize', this.handleDocumentResize)
+      window.removeEventListener('resize', this.handleDocumentResize)
     }
 
     handleMouseMove = (e: MouseEvent) => {
@@ -65,6 +65,7 @@ const posts = await getCollection('blog')
     }
 
     handleDocumentResize = () => {
+      console.log('resize')
       this.rect = this.getBoundingClientRect()
     }
 
