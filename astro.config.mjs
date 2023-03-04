@@ -12,6 +12,7 @@ export default defineConfig({
   output: 'server',
   adapter: cloudflare({ mode: 'advanced' }),
   integrations: [react(), mdx(), sitemap()],
+  build: { assets: '_' },
   vite: {
     plugins: [vanillaExtractPlugin()],
     define: {
