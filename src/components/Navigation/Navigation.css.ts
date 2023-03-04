@@ -9,7 +9,7 @@ const styles = {
       marginTop: space[6],
       paddingBottom: 0,
       '@media': {
-        [media.md]: {
+        [media.lg]: {
           marginTop: 0,
           top: space[32],
           paddingBottom: space[20]
@@ -44,7 +44,7 @@ const styles = {
       marginBottom: space[4],
       minWidth: 150,
       '@media': {
-        [media.md]: {
+        [media.lg]: {
           marginTop: space[8],
           flexDirection: 'column',
           paddingRight: space[12]
@@ -67,7 +67,7 @@ const styles = {
         color: `rgb(${rgb.fg1})`
       },
       '@media': {
-        [media.md]: {
+        [media.lg]: {
           marginLeft: calc.multiply(space[2], -1),
           marginRight: calc.multiply(space[2], -1)
         }

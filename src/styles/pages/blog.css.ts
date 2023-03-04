@@ -1,25 +1,34 @@
 import { globalStyle, style } from '@vanilla-extract/css'
 import { box, text } from '~/styles/sprinkles'
 import { postCard } from '~/components/blog/PostCard/PostCard.css'
-import { space } from '~/styles/variables.css'
+import { media, space } from '~/styles/variables.css'
 
-const postWrapper = style({
-  position: 'relative',
-  display: 'block',
-  marginTop: space[2]
-})
+const posts = style([
+  { marginTop: space[2] },
+  box({
+    display: 'block',
+    position: 'relative'
+  })
+])
 
-globalStyle(`${postWrapper}:hover ${postCard}`, {
+globalStyle(`${posts}:hover ${postCard}`, {
   opacity: 0.5
 })
 
-globalStyle(`${postWrapper}:hover ${postCard}:hover`, {
+globalStyle(`${posts}:hover ${postCard}:hover`, {
   opacity: 1
 })
 
 const styles = {
-  postWrapper,
-  content: box({ flexGrow: 1 }),
+  posts,
+  content: style({
+    marginTop: space[4],
+    '@media': {
+      [media.lg]: {
+        marginTop: 0
+      }
+    }
+  }),
   heading: text({
     lineHeight: 'tight',
     fontWeight: 'extrabold',

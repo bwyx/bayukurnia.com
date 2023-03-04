@@ -14,20 +14,20 @@ const posts = await getCollection('blog')
 ---
 
 <MainLayout title="Home">
-  <Header
-    title="blog"
-    description="yes. once in a while. about random things"
-  />
-  <section class={styles.content}>
-    <blog-post-wrapper class={styles.postWrapper}>
+  <article class={styles.content}>
+    <Header
+      title="blog"
+      description="yes. once in a while. about random things"
+    />
+    <b-posts class={styles.posts}>
       {posts.map((post) => <PostCard {...post} />)}
-    </blog-post-wrapper>
-  </section>
+    </b-posts>
+  </article>
   <Footer />
 </MainLayout>
 
 <script>
-  class BlogPostWrapper extends HTMLElement {
+  class BPosts extends HTMLElement {
     rect: DOMRect
     gsap: typeof gsap | null
     constructor() {
@@ -76,5 +76,5 @@ const posts = await getCollection('blog')
     }
   }
 
-  customElements.define('blog-post-wrapper', BlogPostWrapper)
+  customElements.define('b-posts', BPosts)
 </script>

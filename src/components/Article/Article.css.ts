@@ -70,8 +70,7 @@ globalStyle(`.dark  ${prose}`, {
 })
 
 globalStyle(prose, {
-  color: $.body,
-  maxWidth: '50ch'
+  color: $.body
 })
 
 globalStyle(`${prose} [class~="lead"]`, {
@@ -387,20 +386,20 @@ globalStyle(`${prose} blockquote`, {
   }
 })
 
-globalStyle(`${prose} h1`, {
-  fontSize: em(36, 16),
-  marginTop: 0,
-  marginBottom: em(32, 36),
-  lineHeight: round(40 / 36),
-  '@media': {
-    [media.lg]: {
-      fontSize: em(48, 18),
-      marginTop: 0,
-      marginBottom: em(40, 48),
-      lineHeight: round(48 / 48)
-    }
-  }
-})
+// globalStyle(`${prose} h1`, {
+//   fontSize: em(36, 16),
+//   marginTop: 0,
+//   marginBottom: em(32, 36),
+//   lineHeight: round(40 / 36),
+//   '@media': {
+//     [media.lg]: {
+//       fontSize: em(48, 18),
+//       marginTop: 0,
+//       marginBottom: em(40, 48),
+//       lineHeight: round(48 / 48)
+//     }
+//   }
+// })
 
 globalStyle(`${prose} h2`, {
   fontSize: em(24, 16),
@@ -762,10 +761,10 @@ globalStyle(`${prose} :not(pre) > code`, {
 })
 
 globalStyle(`${prose} code`, {
-  fontSize: em(13.6, 16),
+  fontSize: em(13.6, 18),
   '@media': {
     [media.lg]: {
-      fontSize: em(15, 18)
+      fontSize: em(15, 20)
     }
   }
 })
