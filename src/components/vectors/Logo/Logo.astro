@@ -77,6 +77,7 @@ import styles from './Logo.css'
       stroke-linecap="round"></path>
     <path
       data-name="k1"
+      data-delay="0.1"
       d="M26 51C26 51 25 68.5 25 81C25 93.5 26 107.5 26 107.5"
       stroke="currentColor"
       stroke-width="4"
@@ -107,6 +108,7 @@ import styles from './Logo.css'
       stroke-linecap="round"></path>
     <path
       data-name="dot"
+      data-delay="0.1"
       d="M113 54C112.5 54.5 111.646 55.1464 112 55.5C112.5 56 113.5 55 113.5 54.5"
       stroke="currentColor"
       stroke-width="4"
@@ -115,98 +117,93 @@ import styles from './Logo.css'
 </a>
 
 <script>
-  import { gsap } from 'gsap'
-
   import styles from './Logo.css'
 
   class BayuKurnia extends HTMLAnchorElement {
-    tl: gsap.core.Timeline
+    tl: gsap.core.Timeline | null
     paths: NodeListOf<SVGPathElement>
     totalPathsLength = 0
-
-    delays = {
-      b: 0,
-      ayu: 0,
-      k1: 0.25,
-      k2: 0,
-      ur: 0,
-      ni: 0,
-      a: 0,
-      dot: 0.1
-    }
 
     constructor() {
       super()
 
-      this.tl = gsap
-        .timeline({ defaults: { duration: 1, ease: 'none' } })
-        .paused(true)
+      this.tl = null
 
       this.paths = this.logo.querySelectorAll('path')
       this.paths.forEach((path) => {
         this.totalPathsLength += Math.ceil(path.getTotalLength())
       })
-
-      this.createTimeline()
-      this.show()
     }
 
     connectedCallback() {
       document.addEventListener('turbo:before-visit', this.play)
+      document.addEventListener('turbo:load', this.loadGsap)
     }
 
     disconnectedCallback() {
       document.removeEventListener('turbo:before-visit', this.play)
+      document.removeEventListener('turbo:load', this.loadGsap)
+    }
+
+    loadGsap = async () => {
+      if (this.tl) return
+
+      const { gsap } = await import('gsap')
+      this.tl = gsap
+        .timeline({ defaults: { duration: 1, ease: 'none' } })
+        .paused(true)
+      this.createTimeline()
     }
 
     createTimeline() {
-      this.tl.addLabel('beforeHide')
+      const tl = this.tl
+      if (!tl) return
+
+      tl.addLabel('beforeHide')
 
       // Out
       this.paths.forEach((path) => {
         const l = Math.ceil(path.getTotalLength())
 
-        this.tl.fromTo(
+        tl.fromTo(
           path,
           { strokeDashoffset: 0, strokeDasharray: l },
           { strokeDashoffset: -l, duration: l / this.totalPathsLength }
         )
       })
 
-      this.tl.addLabel('hidden')
+      tl.addLabel('hidden')
 
       this.paths.forEach((path) => {
         const l = Math.ceil(path.getTotalLength())
 
-        this.tl.set(path, { strokeDashoffset: l })
+        tl.set(path, { strokeDashoffset: l })
       })
 
-      this.tl.addLabel('beforeShow')
+      tl.addLabel('beforeShow')
 
       // In
       this.paths.forEach((path) => {
         const l = Math.ceil(path.getTotalLength())
 
-        const name = path.dataset.name as keyof typeof this.delays
-
-        this.tl.to(path, {
+        tl.to(path, {
           strokeDashoffset: 0,
           duration: l / this.totalPathsLength,
-          delay: this.delays[name]
+          delay: path.dataset.delay || 0
         })
       })
 
-      this.tl.addLabel('shown')
+      tl.addLabel('shown')
     }
 
     play = () => {
-      this.tl.tweenFromTo('beforeHide', 'shown', {
+      this.tl?.tweenFromTo('beforeHide', 'shown', {
         ease: 'power4.out'
       })
     }
 
     show = () => {
-      return this.tl.tweenFromTo('hidden', 'shown', {
+      this.tl?.tweenFromTo('hidden', 'shown', {
         ease: 'power4.out'
       })
     }
