@@ -32,7 +32,10 @@ const { title, body } = Astro.props
       type="font/woff2"
       crossorigin="true"
     />
-    <script src="~/lib/turbo.ts"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.min.js"
+      defer
+    ></script>
     <title>{title}</title>
   </head>
   <body {...body}>
