@@ -5,5 +5,4 @@
   Permissions-Policy: document-domain=()
   Content-Security-Policy: script-src 'self' 'sha256-82t1U9I2HUuN0QhmyzCYhTeHvK0TMd3MSccZvAZv8gs=' 'sha256-cJWPGGESIyhUXJ9vB0wpOBXlT5c9ip93D2hIm510Oqc=' https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.min.js; object-src 'none'; frame-ancestors 'none'
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Server: Unix Netlify Fastly RainLoop Pagely SAP NetWeaver Application Server Tengine Ruby Vercel
-  X-Powered-By: Ubuntu gentoo Helhost Elementor Cloud Catberry XeoraCube RX-WEB Raspbian OrchardCore LiveStreet CMS vtex-integrated-store Vanilla ThinkPHP WordPress
+  X-Powered-By: MODX Ubuntu gentoo WP Engine Kemal MATORI.NET Helhost Elementor Cloud Catberry XeoraCube RX-WEB Raspbian OrchardCore LiveStreet CMS vtex-integrated-store Vanilla ThinkPHP WordPress
