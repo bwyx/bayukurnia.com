@@ -1,6 +1,5 @@
 import { style } from '@vanilla-extract/css'
 import { container } from '~/styles/primitives'
-import { box } from '~/styles/sprinkles'
 import { media, space } from '~/styles/variables.css'
 
 const styles = {
@@ -10,23 +9,22 @@ const styles = {
       flexDirection: 'column',
       minHeight: '100vh',
       '@media': {
-        [media.md]: {
+        [media.lg]: {
           flexDirection: 'row',
           alignItems: 'start',
           paddingTop: space[32]
         }
       }
     },
-    container({ size: 'medium' })
+    container({ size: 'large' })
   ]),
-  main: style([
-    box({
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      flexGrow: 1
-    })
-  ])
+  main: style({
+    '@media': {
+      [media.lg]: {
+        maxWidth: 'calc(100% - 150px)'
+      }
+    }
+  })
 }
 
 export default styles

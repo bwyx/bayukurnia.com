@@ -12,7 +12,5 @@ const { title, description } = Astro.props
 
 <header>
   <h1 class={styles.title}>{title}</h1>
-  <slot>
-    <p class={styles.description}>{description}</p>
-  </slot>
+  <p class={styles.description}>{description}</p>
 </header>

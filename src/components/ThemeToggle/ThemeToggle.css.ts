@@ -8,7 +8,7 @@ const styles = {
       padding: space[3],
       margin: calc.multiply(space[3], -1),
       '@media': {
-        [media.md]: {
+        [media.lg]: {
           bottom: 0,
           position: 'absolute'
         }

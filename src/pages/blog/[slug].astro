@@ -5,7 +5,8 @@ import { format } from 'date-fns'
 import { getCollection } from 'astro:content'
 
 import MainLayout from '~/layouts/Main.layout.astro'
-import Header, { headerStyles } from '~/components/blog/Header/Header.astro'
+import { headerStyles } from '~/components/blog/Header/Header.astro'
+import Image from '~/components/BlurImage/Image.astro'
 import Footer from '~/components/Footer/Footer.astro'
 
 import { prose } from '~/components/Article/Article.css'
@@ -22,17 +23,34 @@ export async function getStaticPaths() {
 const { post } = Astro.props
 const { Content } = await post.render()
 
-const { title, publishedAt } = post.data
+const { slug } = post
+const { title, cover, publishedAt } = post.data
 ---
 
 <MainLayout title={title}>
-  <Header title={title}>
-    <time class={headerStyles.description} datetime={publishedAt.toISOString()}>
-      {format(publishedAt, 'LLLL d, yyyy')}
-    </time>
-  </Header>
-  <article class:list={[prose, styles.article]}>
-    <Content />
-  </article>
+  <div class={styles.post}>
+    <article class:list={[prose, styles.article]}>
+      <header>
+        <h1 class={headerStyles.title}>{title}</h1>
+        <time
+          class={headerStyles.description}
+          datetime={publishedAt.toISOString()}
+        >
+          {format(publishedAt, 'LLLL d, yyyy')}
+        </time>
+      </header>
+      <Content />
+    </article>
+    <aside class={styles.aside}>
+      <Image
+        src={`blog/${slug}/${cover}`}
+        alt={`${title}'s Avatar`}
+        width={250}
+        height={250}
+        loading="lazy"
+      />
+      <div class={styles.stickySidebar}>Sticky</div>
+    </aside>
+  </div>
   <Footer />
 </MainLayout>
