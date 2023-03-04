@@ -137,12 +137,10 @@ import styles from './Logo.css'
 
     connectedCallback() {
       document.addEventListener('turbo:before-visit', this.play)
-      document.addEventListener('turbo:load', this.loadGsap)
     }
 
     disconnectedCallback() {
       document.removeEventListener('turbo:before-visit', this.play)
-      document.removeEventListener('turbo:load', this.loadGsap)
     }
 
     loadGsap = async () => {
@@ -157,7 +155,10 @@ import styles from './Logo.css'
 
     createTimeline() {
       const tl = this.tl
-      if (!tl) return
+      if (!tl) {
+        this.loadGsap()
+        return
+      }
 
       tl.addLabel('beforeHide')
 
@@ -196,7 +197,9 @@ import styles from './Logo.css'
       tl.addLabel('shown')
     }
 
-    play = () => {
+    play = async () => {
+      if (!this.tl) await this.loadGsap()
+
       this.tl?.tweenFromTo('beforeHide', 'shown', {
         ease: 'power4.out'
       })
