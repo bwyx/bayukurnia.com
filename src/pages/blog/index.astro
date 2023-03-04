@@ -40,16 +40,19 @@ const posts = await getCollection('blog')
     connectedCallback() {
       this.addEventListener('mousemove', this.handleMouseMove)
       document.addEventListener('resize', this.handleDocumentResize)
-      document.addEventListener('turbo:load', this.loadGsap)
     }
 
     disconnectedCallback() {
       this.removeEventListener('mousemove', this.handleMouseMove)
       document.removeEventListener('resize', this.handleDocumentResize)
-      document.removeEventListener('turbo:load', this.loadGsap)
     }
 
     handleMouseMove = (e: MouseEvent) => {
+      if (!this.gsap) {
+        this.loadGsap()
+        return
+      }
+
       const x = e.clientX - this.rect.left
       const y = e.clientY - this.rect.top
 
