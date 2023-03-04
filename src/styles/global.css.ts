@@ -12,7 +12,8 @@ globalStyle('html', {
 
 globalStyle('body', {
   color: `rgb(${rgb.fg1})`,
-  background: `rgb(${rgb.bg})`
+  background: `rgb(${rgb.bg})`,
+  overflowX: 'hidden'
 })
 
 globalStyle('.turbo-progress-bar', {
