@@ -14,9 +14,13 @@ export const coverHover = style({
   display: 'none',
   pointerEvents: 'none',
   transform: 'translate(var(--x), var(--y))',
-  selectors: {
-    [`${postCard}:hover &`]: {
-      display: 'block'
+  '@media': {
+    ['(pointer: fine)']: {
+      selectors: {
+        [`${postCard}:hover &`]: {
+          display: 'block'
+        }
+      }
     }
   }
 })
