@@ -28,11 +28,14 @@ const posts = await getCollection('blog')
 
 <script>
   class BPosts extends HTMLElement {
+    hasCursor: boolean
     rect: DOMRect
     gsap: typeof gsap | null
+
     constructor() {
       super()
 
+      this.hasCursor = matchMedia('pointer: fine').matches
       this.gsap = null
       this.rect = this.getBoundingClientRect()
     }
@@ -48,6 +51,7 @@ const posts = await getCollection('blog')
     }
 
     handleMouseMove = (e: MouseEvent) => {
+      if (!this.hasCursor) return
       if (!this.gsap) {
         this.loadGsap()
         return
