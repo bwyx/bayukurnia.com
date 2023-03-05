@@ -34,27 +34,6 @@ const styles = {
       }
     },
     box({ flexShrink: 0 })
-  ]),
-  stickySidebar: style([
-    {
-      '@media': {
-        [media.md]: {
-          top: space[8],
-          position: 'sticky'
-        },
-        [media.lg]: {
-          top: space[32]
-        }
-      }
-    }
-  ]),
-  sidebarHeading: style([
-    { marginLeft: space[4], marginBottom: space[2] },
-    text({
-      fontFamily: 'sans',
-      fontWeight: 'semibold',
-      letterSpacing: 'tight'
-    })
   ])
 }
 

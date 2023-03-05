@@ -10,6 +10,7 @@ interface TocItemProps {
 }
 
 const TOC = ({ headings }: { headings: MarkdownHeading[] }) => {
+  const [open, setOpen] = useState(false)
   const [currentHeading, setCurrentHeading] = useState({
     slug: headings[0].slug,
     text: headings[0].text
@@ -31,7 +32,7 @@ const TOC = ({ headings }: { headings: MarkdownHeading[] }) => {
     const observerOptions: IntersectionObserverInit = {
       // Negative top margin accounts for `scroll-margin`.
       // Negative bottom margin means heading needs to be towards top of viewport to trigger intersection.
-      rootMargin: '128px 0% -66%',
+      rootMargin: '15% 0% -66%',
       threshold: 1
     }
 
@@ -42,7 +43,7 @@ const TOC = ({ headings }: { headings: MarkdownHeading[] }) => {
 
     // Observe all the headings in the main page content.
     document
-      .querySelectorAll('article :is(h1,h2,h3,h4,h5)')
+      .querySelectorAll('article :is(h1,h2,h3,h4)')
       .forEach((h) => headingsObserver.observe(h))
 
     // Stop observing when the component is unmounted.
@@ -72,7 +73,46 @@ const TOC = ({ headings }: { headings: MarkdownHeading[] }) => {
     )
   }
 
-  return <TocItem items={generateToc(headings)} />
+  return (
+    <div className={styles.outer}>
+      <div className={styles.toc[open ? 'show' : 'hide']}>
+        <TocItem
+          items={generateToc([
+            { depth: 2, slug: 'overview', text: 'Overview' },
+            ...headings
+          ])}
+        />
+      </div>
+      <div className={styles.titleWrapper}>
+        <h2 className={styles.title}>on this page</h2>
+        <button
+          className={styles.currentHeading}
+          onClick={() => setOpen(!open)}
+        >
+          {currentHeading.slug !== 'overview'
+            ? currentHeading.text
+            : 'Overview'}
+          <svg
+            className={styles.currentHeadingIcon[open ? 'rotate' : 'normal']}
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              id="Stroke 1"
+              d="M5 15.5C5 15.5 9.144 8.5 12 8.5C14.855 8.5 19 15.5 19 15.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  )
 }
 
 export default TOC
