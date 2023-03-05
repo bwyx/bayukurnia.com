@@ -49,20 +49,7 @@ const { title, cover, publishedAt } = post.data
         width={250}
         height={250}
       />
-      <div class={styles.stickySidebar}>
-        <h2 class={styles.sidebarHeading}>on this page</h2>
-        <TOC
-          client:idle
-          headings={[
-            {
-              depth: 2,
-              slug: 'overview',
-              text: 'Overview'
-            },
-            ...headings
-          ]}
-        />
-      </div>
+      <TOC client:idle headings={headings} />
     </aside>
   </div>
   <Footer />

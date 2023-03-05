@@ -1,5 +1,5 @@
 import { globalStyle, globalFontFace } from '@vanilla-extract/css'
-import { rgb } from '~/styles/variables.css'
+import { media, rgb } from '~/styles/variables.css'
 
 import '~/styles/preflight.css'
 import '~/styles/themes.css'
@@ -9,7 +9,12 @@ import '~/styles/fonts/erode.css'
 globalStyle('html', {
   fontFeatureSettings: "'cv02','cv03','cv04','cv11'",
   scrollBehavior: 'smooth',
-  scrollPaddingTop: 128
+  scrollPaddingTop: 32,
+  '@media': {
+    [media.lg]: {
+      scrollPaddingTop: 128
+    }
+  }
 })
 
 globalStyle('body', {
