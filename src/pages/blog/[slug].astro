@@ -8,6 +8,9 @@ import MainLayout from '~/layouts/Main.layout.astro'
 import { headerStyles } from '~/components/blog/Header/Header.astro'
 import Image from '~/components/BlurImage/Image.astro'
 import Footer from '~/components/Footer/Footer.astro'
+import TOC from '~/components/blog/TOC/TOC.astro'
+
+import generateToc from '~/utils/generateToc'
 
 import { prose } from '~/components/Article/Article.css'
 import styles from '~/styles/pages/blogPost.css'
@@ -21,7 +24,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
-const { Content } = await post.render()
+const { Content, headings } = await post.render()
 
 const { slug } = post
 const { title, cover, publishedAt } = post.data
@@ -49,7 +52,10 @@ const { title, cover, publishedAt } = post.data
         height={250}
         loading="lazy"
       />
-      <div class={styles.stickySidebar}>Sticky</div>
+      <div class={styles.stickySidebar}>
+        <h2 class={styles.sidebarHeading}>on this page</h2>
+        <TOC items={generateToc(headings)} />
+      </div>
     </aside>
   </div>
   <Footer />
