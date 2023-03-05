@@ -1,0 +1,26 @@
+---
+import type { TocItem } from '~/utils/generateToc'
+
+import styles from './TOC.css'
+
+export interface Props {
+  items: TocItem[]
+}
+
+const { items } = Astro.props
+---
+
+<ul class={styles.ul}>
+  {
+    items.map(({ slug, text, depth, childrens }) => {
+      return (
+        <li class={styles.item}>
+          <a href={`#${slug}`} class={styles.link}>
+            {text}
+          </a>
+          {childrens.length ? <Astro.self items={childrens} /> : null}
+        </li>
+      )
+    })
+  }
+</ul>

@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { box } from '~/styles/sprinkles'
+import { box, text } from '~/styles/sprinkles'
 import { media, space } from '~/styles/variables.css'
 
 const styles = {
@@ -49,6 +49,14 @@ const styles = {
         }
       }
     }
+  ]),
+  sidebarHeading: style([
+    { marginLeft: space[4], marginBottom: space[2] },
+    text({
+      fontFamily: 'sans',
+      fontWeight: 'semibold',
+      letterSpacing: 'tight'
+    })
   ])
 }
 
