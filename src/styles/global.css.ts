@@ -7,7 +7,9 @@ import '~/styles/fonts/plusJakartaSans.css'
 import '~/styles/fonts/erode.css'
 
 globalStyle('html', {
-  fontFeatureSettings: "'cv02','cv03','cv04','cv11'"
+  fontFeatureSettings: "'cv02','cv03','cv04','cv11'",
+  scrollBehavior: 'smooth',
+  scrollPaddingTop: 128
 })
 
 globalStyle('body', {

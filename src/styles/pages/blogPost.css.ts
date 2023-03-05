@@ -37,8 +37,6 @@ const styles = {
   ]),
   stickySidebar: style([
     {
-      position: 'fixed',
-      bottom: space[8],
       '@media': {
         [media.md]: {
           top: space[8],
