@@ -14,8 +14,8 @@ const { items } = Astro.props
   {
     items.map(({ slug, text, depth, childrens }) => {
       return (
-        <li class={styles.item}>
-          <a href={`#${slug}`} class={styles.link}>
+        <li data-depth={depth} class={styles.li}>
+          <a data-turbo="false" href={`#${slug}`} class={styles.link}>
             {text}
           </a>
           {childrens.length ? <Astro.self items={childrens} /> : null}
