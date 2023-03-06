@@ -121,18 +121,11 @@ import styles from './Logo.css'
 
   class BayuKurnia extends HTMLAnchorElement {
     tl: gsap.core.Timeline | null
-    paths: NodeListOf<SVGPathElement>
-    totalPathsLength = 0
 
     constructor() {
       super()
 
       this.tl = null
-
-      this.paths = this.logo.querySelectorAll('path')
-      this.paths.forEach((path) => {
-        this.totalPathsLength += Math.ceil(path.getTotalLength())
-      })
     }
 
     connectedCallback() {
@@ -154,6 +147,14 @@ import styles from './Logo.css'
     }
 
     createTimeline() {
+      const logo = this.querySelector(`svg.${styles.logo}`) as SVGSVGElement
+      const paths = logo.querySelectorAll('path')
+      let totalPathsLength: number = 0
+
+      paths.forEach((path) => {
+        totalPathsLength += Math.ceil(path.getTotalLength())
+      })
+
       const tl = this.tl
       if (!tl) {
         this.loadGsap()
@@ -163,19 +164,19 @@ import styles from './Logo.css'
       tl.addLabel('beforeHide')
 
       // Out
-      this.paths.forEach((path) => {
+      paths.forEach((path) => {
         const l = Math.ceil(path.getTotalLength())
 
         tl.fromTo(
           path,
           { strokeDashoffset: 0, strokeDasharray: l },
-          { strokeDashoffset: -l, duration: l / this.totalPathsLength }
+          { strokeDashoffset: -l, duration: l / totalPathsLength }
         )
       })
 
       tl.addLabel('hidden')
 
-      this.paths.forEach((path) => {
+      paths.forEach((path) => {
         const l = Math.ceil(path.getTotalLength())
 
         tl.set(path, { strokeDashoffset: l })
@@ -184,12 +185,12 @@ import styles from './Logo.css'
       tl.addLabel('beforeShow')
 
       // In
-      this.paths.forEach((path) => {
+      paths.forEach((path) => {
         const l = Math.ceil(path.getTotalLength())
 
         tl.to(path, {
           strokeDashoffset: 0,
-          duration: l / this.totalPathsLength,
+          duration: l / totalPathsLength,
           delay: path.dataset.delay || 0
         })
       })
@@ -203,16 +204,6 @@ import styles from './Logo.css'
       this.tl?.tweenFromTo('beforeHide', 'shown', {
         ease: 'power4.out'
       })
-    }
-
-    show = () => {
-      this.tl?.tweenFromTo('hidden', 'shown', {
-        ease: 'power4.out'
-      })
-    }
-
-    get logo() {
-      return this.querySelector(`svg.${styles.logo}`) as SVGSVGElement
     }
   }
 
