@@ -9,11 +9,20 @@ interface TocItemProps {
   items: ReturnType<typeof generateToc>
 }
 
-const TOC = ({ headings }: { headings: MarkdownHeading[] }) => {
+const TOC = ({
+  headings,
+  title = 'Overview'
+}: {
+  headings: MarkdownHeading[]
+  title?: string
+}) => {
+  const h1 = { depth: 2, slug: 'overview', text: title }
+  const items = [h1, ...headings]
+
   const [open, setOpen] = useState(false)
   const [currentHeading, setCurrentHeading] = useState({
-    slug: headings[0].slug,
-    text: headings[0].text
+    slug: h1.slug,
+    text: h1.text
   })
 
   useEffect(() => {
@@ -43,7 +52,7 @@ const TOC = ({ headings }: { headings: MarkdownHeading[] }) => {
 
     // Observe all the headings in the main page content.
     document
-      .querySelectorAll('article :is(h1,h2,h3,h4)')
+      .querySelectorAll('article :is(h1,h2,h3,h4,h5,h6)')
       .forEach((h) => headingsObserver.observe(h))
 
     // Stop observing when the component is unmounted.
@@ -76,12 +85,7 @@ const TOC = ({ headings }: { headings: MarkdownHeading[] }) => {
   return (
     <div className={styles.outer}>
       <div className={styles.toc[open ? 'show' : 'hide']}>
-        <TocItem
-          items={generateToc([
-            { depth: 2, slug: 'overview', text: 'Overview' },
-            ...headings
-          ])}
-        />
+        <TocItem items={generateToc(items)} />
       </div>
       <div className={styles.titleWrapper}>
         <h2 className={styles.title}>on this page</h2>
@@ -89,9 +93,7 @@ const TOC = ({ headings }: { headings: MarkdownHeading[] }) => {
           className={styles.currentHeading}
           onClick={() => setOpen(!open)}
         >
-          {currentHeading.slug !== 'overview'
-            ? currentHeading.text
-            : 'Overview'}
+          {currentHeading.slug !== 'overview' ? currentHeading.text : h1.text}
           <svg
             className={styles.currentHeadingIcon[open ? 'rotate' : 'normal']}
             width="20"

@@ -13,7 +13,9 @@ const baseLink = style([
     borderLeft: `2px solid transparent`,
     selectors: {
       "[data-depth='3'] &": { paddingLeft: space[8] },
-      "[data-depth='4'] &": { paddingLeft: space[12] }
+      "[data-depth='4'] &": { paddingLeft: space[12] },
+      "[data-depth='5'] &": { paddingLeft: space[16] },
+      "[data-depth='6'] &": { paddingLeft: space[20] }
     },
     ':hover': {
       color: `rgb(${rgb.fg1})`
@@ -103,7 +105,12 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: space[1],
-    paddingLeft: space[4]
+    paddingLeft: space[4],
+    '@media': {
+      [media.lg]: {
+        marginBottom: space[2]
+      }
+    }
   }),
   currentHeading: style([
     {
@@ -141,13 +148,7 @@ const styles = {
   title: style([
     {
       whiteSpace: 'nowrap',
-      marginTop: -2,
-      '@media': {
-        [media.lg]: {
-          marginLeft: space[4],
-          marginBottom: space[2]
-        }
-      }
+      marginTop: -2
     },
     text({
       fontSize: {
