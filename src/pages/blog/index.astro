@@ -36,7 +36,6 @@ const posts = await getCollection('blog')
       super()
 
       this.hasCursor = matchMedia('(pointer: fine)').matches
-      console.log(this.hasCursor)
       this.gsap = null
       this.rect = this.getBoundingClientRect()
     }
