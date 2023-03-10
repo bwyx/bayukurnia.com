@@ -74,7 +74,12 @@ const styles = {
         vars: {
           [$.bgOpacity]: '0.75'
         },
-        backdropFilter: 'saturate(180%) blur(1rem)'
+        backdropFilter: 'saturate(100%) blur(1rem)',
+        '@media': {
+          [media.md]: {
+            backdropFilter: 'none'
+          }
+        }
       }
     },
     '@media': {
