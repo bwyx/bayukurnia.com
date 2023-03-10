@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import cloudflare from '@astrojs/cloudflare'
+import sitemap from '@astrojs/sitemap'
 import react from '@astrojs/react'
 import mdx from '@astrojs/mdx'
 
-import sitemap from '@astrojs/sitemap'
+import gruvbox from './gruvbox-material-dark.json'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +14,11 @@ export default defineConfig({
   adapter: cloudflare({ mode: 'advanced' }),
   integrations: [react(), mdx(), sitemap()],
   build: { assets: '_' },
+  markdown: {
+    shikiConfig: {
+      theme: gruvbox
+    }
+  },
   vite: {
     plugins: [vanillaExtractPlugin()],
     define: {
