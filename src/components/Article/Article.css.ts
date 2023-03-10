@@ -29,18 +29,18 @@ const color = (key: keyof typeof rgb) => `rgb(${rgb[key]})`
 
 globalStyle(`.light ${prose}`, {
   vars: {
-    [$.body]: color('text-600'),
-    [$.headings]: color('text-900'),
-    [$.lead]: color('text-600'),
-    [$.links]: color('text-900'),
-    [$.bold]: color('text-900'),
+    [$.body]: color('text-500'),
+    [$.headings]: color('text-800'),
+    [$.lead]: color('text-500'),
+    [$.links]: color('text-800'),
+    [$.bold]: color('text-800'),
     [$.counters]: color('text-500'),
     [$.bullets]: color('text-300'),
     [$.hr]: color('text-200'),
-    [$.quotes]: color('text-900'),
+    [$.quotes]: color('text-800'),
     [$.quoteBorders]: color('text-200'),
     [$.captions]: color('text-500'),
-    [$.code]: color('text-900'),
+    [$.code]: color('text-800'),
     [$.preCode]: color('text-200'),
     [$.preBg]: color('text-800'),
     [$.thBorders]: color('text-300'),
@@ -50,18 +50,18 @@ globalStyle(`.light ${prose}`, {
 
 globalStyle(`.dark  ${prose}`, {
   vars: {
-    [$.body]: color('text-400'),
-    [$.headings]: '#fff',
-    [$.lead]: color('text-400'),
-    [$.links]: '#fff',
-    [$.bold]: '#fff',
-    [$.counters]: color('text-400'),
+    [$.body]: color('text-300'),
+    [$.headings]: color('text-100'),
+    [$.lead]: color('text-300'),
+    [$.links]: color('text-100'),
+    [$.bold]: color('text-100'),
+    [$.counters]: color('text-300'),
     [$.bullets]: color('text-600'),
     [$.hr]: color('text-700'),
     [$.quotes]: color('text-100'),
     [$.quoteBorders]: color('text-700'),
-    [$.captions]: color('text-400'),
-    [$.code]: '#fff',
+    [$.captions]: color('text-300'),
+    [$.code]: color('text-100'),
     [$.preCode]: color('text-300'),
     [$.preBg]: 'rgb(0 0 0 / 50%)',
     [$.thBorders]: color('text-600'),
@@ -265,12 +265,25 @@ globalStyle(`${prose} figcaption`, {
 //   color: 'inherit'
 // })
 
-// globalStyle(`${prose} pre`, {
-//   color: $.preCode,
-//   backgroundColor: $.preBg,
-//   overflowX: 'auto',
-//   fontWeight: '400'
-// })
+globalStyle(`${prose} pre`, {
+  vars: {
+    '--astro-code-color-text': `rgb(${rgb.brown})`,
+    '--astro-code-token-constant': `rgb(${rgb.purple})`,
+    '--astro-code-token-string': `rgb(${rgb.green})`,
+    '--astro-code-token-comment': `rgb(${rgb.gray})`,
+    '--astro-code-token-keyword': `rgb(${rgb.red})`,
+    '--astro-code-token-parameter': `rgb(${rgb.yellow})`,
+    '--astro-code-token-function': `rgb(${rgb.purple})`,
+    '--astro-code-token-string-expression': `rgb(${rgb.orange})`,
+    '--astro-code-token-punctuation': `rgb(${rgb.cyan})`,
+    '--astro-code-token-link': `rgb(${rgb.blue})`
+  },
+  lineHeight: 1.1,
+  color: $.preCode,
+  backgroundColor: $.preBg,
+  overflowX: 'auto',
+  fontWeight: '450'
+})
 
 // globalStyle(`${prose} pre code`, {
 //   backgroundColor: 'transparent',

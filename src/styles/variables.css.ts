@@ -13,18 +13,6 @@ export const media = {
 }
 
 export const globalVars = createGlobalTheme(':root', {
-  rgb: {
-    'text-50': '255 255 255', // #ffffff
-    'text-100': '242 243 242', // #f2f3f2
-    'text-200': '217 218 216', // #d9dad8
-    'text-300': '191 193 189', // #bfc1bd
-    'text-400': '166 168 163', // #a6a8a3
-    'text-500': '140 144 137', // #8c9089
-    'text-600': '112 116 109', // #70746d
-    'text-700': '84 87 82', // #545752
-    'text-800': '56 58 54', // #383a36
-    'text-900': '28 29 27' // #1c1d02
-  },
   space: {
     px: '1px',
     0: '0px',
@@ -113,6 +101,17 @@ export const globalVars = createGlobalTheme(':root', {
 
 export const themeVars = createThemeContract({
   rgb: {
+    'text-50': null,
+    'text-100': null,
+    'text-200': null,
+    'text-300': null,
+    'text-400': null,
+    'text-500': null,
+    'text-600': null,
+    'text-700': null,
+    'text-800': null,
+    'text-900': null,
+
     brand: null,
     accent: null,
     fg1: null,
@@ -129,10 +128,10 @@ export const themeVars = createThemeContract({
     green: null,
     blue: null,
     purple: null,
-    pink: null,
+    cyan: null,
     red: null
   }
 })
 
-export const rgb = { ...globalVars.rgb, ...themeVars.rgb }
+export const { rgb } = themeVars
 export const { space, fonts, radii, sizes, zIndices, borderWidths } = globalVars
