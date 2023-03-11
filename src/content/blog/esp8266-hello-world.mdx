@@ -6,7 +6,6 @@ cover: hello-esp8266.png
 ---
 
 import Callout from '~/components/mdx/Callout/Callout'
-import Tab from '~/components/mdx/Tab/Tab'
 import Text from '~/components/mdx/Text'
 
 > Hal besar selalu berawal dari sebuah hello world
@@ -47,7 +46,7 @@ Untuk menggukanannya bisa langsung dengan fn berikut pada object `Serial`:
 - `println()` untuk ouput dengan _line break_
 - `printf()` untuk output dengan [specifier format](http://www.cplusplus.com/reference/cstdio/printf/)
 
-```ino {1-11}
+```c {1-11}
 void setup(){
   Serial.begin(74880);
 
@@ -78,7 +77,7 @@ Disini saya hanya fokus pada Web Server, untuk hal lain seperti WiFi akan saya t
 ### Install Library
 
 ```diff {7}
-// platformio.ini
+# platformio.ini
 
 [env:development]
 platform = espressif8266
@@ -107,7 +106,7 @@ Pastikan ESP dapat connect ke jaringan WiFi dan mendapatkan IP address. Oiya, co
 
 Web Server ini akan menjadi dasar untuk SSE dan WebSocket.
 
-```ino {1,5,18-22} showLineNumbers
+```c {1,5,18-22} showLineNumbers
 #include <ESPAsyncWebServer.h>
 
 #include "config.h"
@@ -164,7 +163,7 @@ Jika ingin menjalankan server dengan file statis, seperti HTML, CSS, JavaScript,
 buat file `index.html`:
 
 ```html {3-11}
-// {projectRoot}/data/www/index.html
+<!-- {projectRoot}/data/www/index.html -->
 
 <!DOCTYPE html>
 <html>
@@ -180,7 +179,7 @@ buat file `index.html`:
 Ada 2 pilihan filesystem yang bisa digunakan; SPIFFS dan LittleFS. Gunakan LittleFS karena SPIFFS sudah tidak didukung lagi, hanya tinggal menunggu waktu.
 
 ```diff {8}
-// platformio.ini
+# platformio.ini
 
 [env:development]
 platform = espressif8266
@@ -192,13 +191,13 @@ lib_deps = ottowinter/ESPAsyncWebServer-esphome@^2.1.0
 
 upload file yang ada di folder data ke MCU:
 
-```shell-session {1}
+```sh {1}
 $ pio run -t uploadfs
 ```
 
 Ada sedikit tambahan untuk menjalankan server dengan file statis.
 
-```ino {1,4,6}
+```c {1,4,6}
 #include <LittleFS.h>
 ...
 setup() {
@@ -216,7 +215,7 @@ SSE adalah protokol satu arah dimana server dapat mengirimkan data dalam sebuah 
 
 Untuk SSE hanya perlu attach instance `AsyncEventSource` ke `AsyncWebServer` sebagai handler.
 
-```ino {3,7}
+```c {3,7}
 ...
 AsyncWebServer server(80);
 AsyncEventSource events("/events");
@@ -237,7 +236,7 @@ Untuk mengirim pesan, `AsyncEventSource` memiliki method `send()` yang membutuhk
 
 Misal kita ingin mengirimkan event `"hello"` dengan pesan `"Hello World!"` dan id generated dari `millis()`:
 
-```ino {1}
+```c {1}
 events.send("Hello World!", "hello", millis());
 ```
 
@@ -277,10 +276,9 @@ if (!!window.EventSource) {
 
 contoh lengkap SSE dengan event waktu booting ESP:
 
-<Tab>
-  <Tab.Item title="src/main.cpp">
+```c {1-39} showLineNumbers
+// src/main.cpp
 
-```ino {1-39} showLineNumbers
 #include <ESPAsyncWebServer.h>
 #include <LittleFS.h>
 
@@ -322,10 +320,9 @@ void loop() {
 }
 ```
 
-</Tab.Item>
-
-<Tab.Item title="data/www/index.html">
 ```html {1-42} showLineNumbers
+<!-- data/www/index.html -->
+
 <!DOCTYPE html>
 
 <html>
@@ -365,12 +362,8 @@ void loop() {
         )
       }
     </script>
-
   </body>
 </html>
 ```
-
-</Tab.Item>
-</Tab>
 
 masih males ngelanjutin, panjang juga ternyata..

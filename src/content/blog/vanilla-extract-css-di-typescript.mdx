@@ -6,7 +6,6 @@ cover: vanilla-extract.png
 ---
 
 import Callout from '~/components/mdx/Callout/Callout'
-import Tab from '~/components/mdx/Tab/Tab'
 import Text from '~/components/mdx/Text'
 
 import ZeroRuntimeButton from '~/components/mdx/blog/vanilla-extract-css-di-typescript/ZeroRuntimeButton'
@@ -30,10 +29,10 @@ CSS in JS banyak dipilih salah satu alasannya karena _developer-experience_ yang
 
 Meskipun Vanilla Extract bisa dikategorikan CSS in JS, tool ini tidak menambah bundle JavaScript karena semua styles di extract waktu build menjadi file CSS sehingga performance menjadi kelebihan Vanilla Extract, semua tanpa mengorbankan DX yang didapatkan di CSS in JS lain.
 
-<Tab>
-  <Tab.Item title="Button.css.ts">
 
 ```ts {0-99}
+// Button.css.ts
+
 import { style } from '@vanilla-extract/css'
 
 const styles = {
@@ -52,10 +51,9 @@ const styles = {
 export default styles
 ```
 
-  </Tab.Item>
-  <Tab.Item title="Button.tsx">
-
 ```tsx {0-99}
+// Button.tsx
+
 import styles from './Button.css.ts'
 
 const Button = () => {
@@ -65,15 +63,11 @@ const Button = () => {
 export default Button
 ```
 
-  </Tab.Item>
-</Tab>
-
 Kode tersebut akan di proses oleh Vanilla Extract menjadi:
 
-<Tab>
-  <Tab.Item title="button.css">
-
 ```css {0-99}
+/* button.css */
+
 ._1w6sasr0 {
   padding: 0.5rem 1.5rem;
   font-weight: 500;
@@ -86,15 +80,10 @@ Kode tersebut akan di proses oleh Vanilla Extract menjadi:
 }
 ```
 
-  </Tab.Item>
-  <Tab.Item title="button.html">
-
 ```html {0-99}
+<!-- button.html -->
 <button class="_1w6sasr0">Button</button>
 ```
-
-  </Tab.Item>
-</Tab>
 
 ### Preview
 
@@ -132,10 +121,9 @@ Dengan begitu bundle CSS bisa menjadi sangat kecil karena <s>sizenya pindah ke m
 
 Mari buat sprinkles lalu menggunakannya ke _stylesheets_ button kita tadi..
 
-<Tab>
-  <Tab.Item title="sprinkles.css.ts">
-
 ```ts {0-99}
+// sprinkles.css.ts
+
 import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles'
 
 const borderRadius = {
@@ -166,10 +154,9 @@ const interactiveProperties = defineProperties({
 export default createSprinkles(properties, interactiveProperties)
 ```
 
-  </Tab.Item>
-  <Tab.Item title="Button.css.ts">
-
 ```ts {0-99}
+// Button.css.ts
+
 import { style } from '@vanilla-extract/css'
 import sprinkles from './sprinkles.css'
 
@@ -193,15 +180,11 @@ const styles = {
 export default styles
 ```
 
-  </Tab.Item>
-</Tab>
-
 output:
 
-<Tab>
-  <Tab.Item title="button.css">
-
 ```css {0-12,25-33} showLineNumbers
+/* button.css */
+
 /* sprinkles start */
 ._10euf70 {
   color: #fff;
@@ -237,17 +220,13 @@ output:
 }
 ```
 
-  </Tab.Item>
-  <Tab.Item title="button.html">
-
 ```html {0-99}
+<!-- button.html -->
+
 <button class="_1hx7eqw1 _10euf70 _10euf7b _10euf71 _10euf74">
   Sprinkles Button
 </button>
 ```
-
-  </Tab.Item>
-</Tab>
 
 Bisa dilihat bahwa semua properties di sprinkles akan digenerate oleh Vanilla Extract baik yang digunakan maupun tidak. Hal ini karena sprinkles dapat juga digunakan di client runtime dengan menggunakannya langsung di component kita _(bukan file .css.ts)_, jadi semua _possible-styles_ di sprinkles harus tersedia.
 
@@ -257,10 +236,10 @@ _"... We like to use Sprinkles for the most common 80% of your styles. ..."_
 
 Jadi sprinkles akan efektif ketika style memang digunakan di banyak components, kita harus pandai-pandai mengaturnya. Mari kita hilangkan _borderRadius_ dari sprinkles.
 
-<Tab>
-  <Tab.Item title="sprinkles.css.ts">
 
 ```diff {3-8,24} showLineNumbers
+# sprinkles.css.ts
+
 import { defineProperties, createSprinkles } from '@vanilla-extract/sprinkles'
 
 -const borderRadius = {
@@ -291,10 +270,9 @@ const interactiveProperties = defineProperties({
 export default createSprinkles(properties, interactiveProperties)
 ```
 
-  </Tab.Item>
-  <Tab.Item title="Button.css.ts">
-
 ```diff {9,13} showLineNumbers
+# Button.css.ts
+
 import { style } from '@vanilla-extract/css'
 import sprinkles from './sprinkles.css'
 
@@ -319,15 +297,11 @@ const styles = {
 export default styles
 ```
 
-  </Tab.Item>
-</Tab>
-
 Output setelahnya:
 
-<Tab>
-  <Tab.Item title="button.css">
-
 ```css {0-99} showLineNumbers
+/* button.css */
+
 /* sprinkles start */
 ._10euf70 {
   color: #fff;
@@ -348,15 +322,11 @@ Output setelahnya:
 }
 ```
 
-  </Tab.Item>
-  <Tab.Item title="button.html">
-
 ```html {0-99}
+<!-- button.html -->
+
 <button class="_1hx7eqw1 _10euf70 _10euf71 _10euf74">Sprinkles Button</button>
 ```
-
-  </Tab.Item>
-</Tab>
 
 ### Preview
 
@@ -419,20 +389,18 @@ export default { button }
 <br />
 <br />
 
-<Tab>
-  <Tab.Item title="ButtonVariants.tsx">
+```html {0-99}
+<!-- ButtonVariants.tsx -->
 
-```markup {0-99}
 <Button color="pink">Button</Button>
 <Button rounded>Button</Button>
 <Button color="gray">Button</Button>
 <Button color="gray" rounded>Button</Button>
 ```
 
-  </Tab.Item>
-  <Tab.Item title="Button.tsx">
-
 ```tsx {0-99}
+// Button.tsx
+
 import { RecipeVariants } from '@vanilla-extract/recipes'
 
 import button from './Button.css.ts'
@@ -441,9 +409,6 @@ function Button({ color, rounded }: RecipeVariants<typeof button>) {
   return <button className={button({ color, rounded })}>Button</button>
 }
 ```
-
-  </Tab.Item>
-</Tab>
 
 Dan Recipes API ini bisa dikombinasikan dengan [Sprinkles API](https://vanilla-extract.style/documentation/sprinkles-api), sehingga kita bisa re-use atomic styles yang sudah ada untuk compose variants.. mantab..
 
