@@ -31,7 +31,7 @@ jobs:
       - name: Cloudflare Pages GitHub Action
         uses: cloudflare/pages-action@v1.4.1
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ok
           accountId: ${{ vars.ACCOUNT_ID }}
           projectName: ${{ vars.PROJECT_NAME }}
           directory: ${{ vars.ASSET_DIRECTORY }}
