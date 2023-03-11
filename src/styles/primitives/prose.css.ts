@@ -797,5 +797,4 @@ globalStyle(`${prose} code`, {
   }
 })
 
-const styles = { prose }
-export default styles
+export default prose
