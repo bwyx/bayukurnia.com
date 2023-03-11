@@ -1,21 +1,20 @@
-name: Deploy to Cloudflare Page
-run-name: by ${{ github.actor }}
+name: CI + CD
 
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  deploy:
-    name: deploy
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
     steps:
       - uses: actions/checkout@v3
 
-      - uses: withastro/action@v0.2.0
+      - name: Build
+        uses: withastro/action@v0.2.0
         # with:
         #   path: . # The root location of your Astro project inside the repository. (optional)
         #   node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)
@@ -29,7 +28,40 @@ jobs:
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
 
-      - uses: cloudflare/pages-action@v1.4.1
+  # dev:
+  #   name: Deploy to Dev
+  #   if: github.event_name == 'pull_request'
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: Development
+  #     url: "http://dev.myapp.com"
+  #   steps:
+  #     - name: Deploy
+  #       run: echo I am deploying!
+
+  # staging:
+  #   name: Deploy to Staging
+  #   if: github.event.ref == 'refs/heads/main'
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: Staging
+  #     url: "http://test.myapp.com"
+  #   steps:
+  #     - name: Deploy
+  #       run: echo I am deploying!
+
+  prod:
+    name: Deploy to Production
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: deploy
+        uses: cloudflare/pages-action@v1.4.1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ vars.ACCOUNT_ID }}
