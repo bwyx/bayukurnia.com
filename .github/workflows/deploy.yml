@@ -14,12 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: withastro/action@v0.2.0
-        # with:
-        #   path: . # The root location of your Astro project inside the repository. (optional)
-        #   node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)
-        #   package-manager: yarn # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
-        #   resolve-dep-from-path: false # If the dependency file should be resolved from the root location of your Astro project. Defaults to `true`. (optional)
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      # - run: npm test
+      - run: npm run build
         env:
           SITE_URL: ${{ vars.SITE_URL }}
           CLOUDINARY_CLOUD_NAME: ${{ vars.CLOUDINARY_CLOUD_NAME }}
@@ -27,6 +27,12 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+      - run: echo ${{ github.workspace }} && ls -la
+
+      # - uses: actions/upload-artifact@v3
+      #   with:
+      #     name: bayukurnia-com
+      #     path: ${{ github.workspace }}
 
   # dev:
   #   name: Deploy to Dev
@@ -52,19 +58,23 @@ jobs:
   #     - name: Deploy
   #       run: echo I am deploying!
 
-  prod:
-    name: Deploy to Production
-    needs: [build]
-    runs-on: ubuntu-latest
-    environment:
-      name: Production
-      url: "https://bayukurnia.com"
-    steps:
-      - name: deploy
-        uses: cloudflare/pages-action@v1.4.1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ vars.ACCOUNT_ID }}
-          projectName: ${{ vars.PROJECT_NAME }}
-          directory: ${{ vars.ASSET_DIRECTORY }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+  # prod:
+  #   name: Deploy to Production
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: Production
+  #     url: "https://bayukurnia.com"
+  #   steps:
+  #     - uses: actions/download-artifact@v3
+  #       with:
+  #         name: github-pages
+
+  #     - name: deploy
+  #       uses: cloudflare/pages-action@v1.4.1
+  #       with:
+  #         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  #         accountId: ${{ vars.ACCOUNT_ID }}
+  #         projectName: ${{ vars.PROJECT_NAME }}
+  #         directory: ${{ vars.ASSET_DIRECTORY }}
+  #         gitHubToken: ${{ secrets.GITHUB_TOKEN }}
