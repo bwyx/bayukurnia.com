@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - run: ls -la src/content
 
       - uses: actions/setup-node@v3
         with:
