@@ -18,7 +18,7 @@ createGlobalTheme('.light', themeVars, {
     accent: '180 113 9', //       #b47109
     fg1: rgb['text-900'],
     fg2: rgb['text-700'],
-    fg3: rgb['text-400'],
+    fg3: rgb['text-500'],
     bg: '250 250 235', //         #fafaeb
     glass: rgb.brand,
 
@@ -52,8 +52,8 @@ createGlobalTheme('.dark', themeVars, {
     brand: '169 182 101', //      #a9b665
     accent: '216 166 87', //      #d8a657
     fg1: rgb['text-50'],
-    fg2: rgb['text-200'],
-    fg3: rgb['text-300'],
+    fg2: rgb['text-100'],
+    fg3: rgb['text-200'],
     bg: '41 40 40', //            #292828
     glass: rgb['text-200'], //    #C1B9AB
 
