@@ -27,12 +27,11 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-      - run: echo ${{ github.workspace }} && ls -la
 
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: bayukurnia-com
-      #     path: ${{ github.workspace }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: bayukurnia-com
+          path: ${{ github.workspace }}/dist
 
   # dev:
   #   name: Deploy to Dev
@@ -58,23 +57,25 @@ jobs:
   #     - name: Deploy
   #       run: echo I am deploying!
 
-  # prod:
-  #   name: Deploy to Production
-  #   needs: [build]
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: Production
-  #     url: "https://bayukurnia.com"
-  #   steps:
-  #     - uses: actions/download-artifact@v3
-  #       with:
-  #         name: github-pages
+  prod:
+    name: Deploy to Production
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: "https://bayukurnia.com"
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: bayukurnia-com
 
-  #     - name: deploy
-  #       uses: cloudflare/pages-action@v1.4.1
-  #       with:
-  #         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-  #         accountId: ${{ vars.ACCOUNT_ID }}
-  #         projectName: ${{ vars.PROJECT_NAME }}
-  #         directory: ${{ vars.ASSET_DIRECTORY }}
-  #         gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - run: ls -la
+
+      - name: deploy
+        uses: cloudflare/pages-action@v1.4.1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ vars.ACCOUNT_ID }}
+          projectName: ${{ vars.PROJECT_NAME }}
+          directory: ${{ vars.ASSET_DIRECTORY }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
