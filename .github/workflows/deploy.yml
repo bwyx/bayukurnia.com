@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Production
-      url: ${{ steps.deploy.outputs.url }}
+      url: "https://bayukurnia.com"
     steps:
       - name: deploy
         uses: cloudflare/pages-action@v1.4.1
