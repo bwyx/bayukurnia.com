@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Production
-      url: "https://bayukurnia.com"
+      url: ${{ vars.SITE_URL }}
     steps:
       - uses: actions/download-artifact@v3
         with:
@@ -75,7 +75,7 @@ jobs:
         uses: cloudflare/pages-action@v1.4.1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ vars.ACCOUNT_ID }}
-          projectName: ${{ vars.PROJECT_NAME }}
-          directory: ${{ vars.ASSET_DIRECTORY }}
+          accountId: ${{ secrets.ACCOUNT_ID }}
+          projectName: bayukurnia-com
+          directory: .
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
