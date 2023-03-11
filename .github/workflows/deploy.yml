@@ -3,7 +3,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  deploy:
     name: build
     runs-on: ubuntu-latest
     permissions:
@@ -28,11 +28,6 @@ jobs:
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
 
-  deploy:
-    name: deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Cloudflare Pages GitHub Action
         uses: cloudflare/pages-action@v1.4.1
         with:
