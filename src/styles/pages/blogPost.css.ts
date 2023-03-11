@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css'
-import { box, text } from '~/styles/sprinkles'
+import { box } from '~/styles/sprinkles'
 import { media, space } from '~/styles/variables.css'
 
 const styles = {
@@ -20,7 +20,7 @@ const styles = {
   article: style({
     '@media': {
       [media.md]: {
-        paddingRight: space[8],
+        marginRight: space[8],
         maxWidth: 'min(100% - 200px, 65ch)'
       },
       [media.lg]: { maxWidth: 'min(100% - 250px, 65ch)' }

@@ -1,7 +1,8 @@
 // styles from `@tailwindcss/typography`
 import { createVar, globalStyle, style } from '@vanilla-extract/css'
+import { calc } from '@vanilla-extract/css-utils'
 
-import { fonts, media, rgb } from '~/styles/variables.css'
+import { fonts, media, rgb, space } from '~/styles/variables.css'
 import { round, rem, em } from '~/styles/utils.css'
 
 export const prose = style({})
@@ -278,11 +279,25 @@ globalStyle(`${prose} pre`, {
     '--astro-code-token-punctuation': `rgb(${rgb.cyan})`,
     '--astro-code-token-link': `rgb(${rgb.blue})`
   },
+  padding: space[4],
+  borderWidth: 2,
+  borderColor: `rgb(${rgb.fg3} / 0.25)`,
+  borderStyle: 'dashed',
   lineHeight: 1.1,
   color: $.preCode,
   backgroundColor: $.preBg,
   overflowX: 'auto',
-  fontWeight: '450'
+  fontWeight: '450',
+  '@media': {
+    [media.md]: {
+      marginLeft: calc.multiply(space[4], -1),
+      marginRight: calc.multiply(space[4], -1)
+    }
+  }
+})
+
+globalStyle(`${prose} pre + pre`, {
+  borderTopWidth: 0
 })
 
 // globalStyle(`${prose} pre code`, {
