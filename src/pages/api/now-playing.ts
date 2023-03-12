@@ -1,4 +1,4 @@
-import { getAccessToken, getCurrentlyPlaying } from '~/lib/spotify'
+import { getAccessToken, getCurrentlyPlaying, Auth } from '~/lib/spotify'
 import { getRuntime } from '@astrojs/cloudflare/runtime'
 
 import { CloudinaryImage } from '@cloudinary/url-gen'
@@ -8,16 +8,29 @@ import type { APIRoute } from 'astro'
 import type { NowPlayingResponse } from '~/types/spotify.type'
 
 export const get: APIRoute = async ({ request }) => {
-  const runtime = getRuntime<ENV>(request)
-  const cloudName = runtime.env.CLOUDINARY_CLOUD_NAME
-  const auth = {
-    clientId: runtime.env.SPOTIFY_CLIENT_ID,
-    clientSecret: runtime.env.SPOTIFY_CLIENT_SECRET,
-    refreshToken: runtime.env.SPOTIFY_REFRESH_TOKEN
+  const cloudflareRuntime = getRuntime<ImportMetaEnv>(request)
+
+  let cloudName: string
+  let auth: Auth
+
+  if (cloudflareRuntime) {
+    cloudName = cloudflareRuntime.env.CLOUDINARY_CLOUD_NAME
+    auth = {
+      clientId: cloudflareRuntime.env.SPOTIFY_CLIENT_ID,
+      clientSecret: cloudflareRuntime.env.SPOTIFY_CLIENT_SECRET,
+      refreshToken: cloudflareRuntime.env.SPOTIFY_REFRESH_TOKEN
+    }
+  } else {
+    cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME
+    auth = {
+      clientId: import.meta.env.SPOTIFY_CLIENT_ID,
+      clientSecret: import.meta.env.SPOTIFY_CLIENT_SECRET,
+      refreshToken: import.meta.env.SPOTIFY_REFRESH_TOKEN
+    }
   }
 
-  const { access_token } = await getAccessToken(auth)
-  const music = await getCurrentlyPlaying(access_token)
+  const accessToken = await getAccessToken(auth, cloudflareRuntime?.env.CACHE)
+  const music = await getCurrentlyPlaying(accessToken)
 
   let data: NowPlayingResponse
 

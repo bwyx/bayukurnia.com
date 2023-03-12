@@ -1,7 +1,7 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-interface ENV {
+interface ImportMetaEnv {
   readonly SITE_URL: string
 
   readonly CLOUDINARY_CLOUD_NAME: string
@@ -13,5 +13,5 @@ interface ENV {
 }
 
 interface ImportMeta {
-  readonly env: ENV
+  readonly env: ImportMetaEnv
 }
