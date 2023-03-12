@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  ARTIFACT_NAME: bayukurnia-com-${{ github.sha }}@${{ github.run_attempt }}
+  ARTIFACT_NAME: bayukurnia-com-${{ github.sha }}
 
 jobs:
   build:
