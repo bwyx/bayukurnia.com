@@ -33,7 +33,9 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: bayukurnia-com
-          path: ${{ github.workspace }}/dist
+          path: |
+            .
+            !./node_modules
 
   preview:
     name: Deploy to Preview
@@ -52,7 +54,6 @@ jobs:
         id: upload-to-cloudflare
         uses: cloudflare/pages-action@v1.4.1
         with:
-          branch: ${{ github.head_ref }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.ACCOUNT_ID }}
           projectName: bayukurnia-com
@@ -75,7 +76,6 @@ jobs:
         id: upload-to-cloudflare
         uses: cloudflare/pages-action@v1.4.1
         with:
-          branch: ${{ github.base_ref }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.ACCOUNT_ID }}
           projectName: bayukurnia-com
