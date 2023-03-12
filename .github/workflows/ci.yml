@@ -35,7 +35,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: $ARTIFACT_NAME
+          name: ${{ env.ARTIFACT_NAME }}
           path: |
             .
             !./node_modules
@@ -51,17 +51,17 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: $ARTIFACT_NAME
+          name: ${{ env.ARTIFACT_NAME }}
 
       - name: Upload to Cloudflare Pages
         id: upload-to-cloudflare
         uses: cloudflare/pages-action@v1.4.1
         with:
-          branch: ${{ github.ref_name }}
+          branch: preview-${{ github.ref_name }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.ACCOUNT_ID }}
           projectName: bayukurnia-com
-          directory: .
+          directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
   prod:
@@ -74,7 +74,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: $ARTIFACT_NAME
+          name: ${{ env.ARTIFACT_NAME }}
 
       - name: Upload to Cloudflare Pages
         id: upload-to-cloudflare
@@ -84,5 +84,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.ACCOUNT_ID }}
           projectName: bayukurnia-com
-          directory: .
+          directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
