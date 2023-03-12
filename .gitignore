@@ -29,13 +29,13 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.dev.vars
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-
 
 # Astro
 .astro
