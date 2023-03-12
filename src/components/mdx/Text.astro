@@ -1,15 +1,19 @@
 ---
+import type { HTMLTag } from 'astro/types'
+
 import text from '~/styles/sprinkles/text.css'
 
 type TextProps = Parameters<typeof text>[0]
 
 export interface Props extends TextProps {
-  as: React.ElementType
+  as?: HTMLTag
 }
 
 const { as, ...styles } = Astro.props
+
+const Element = as || 'span'
 ---
 
-<as class={text(styles)}>
+<Element class={text(styles)}>
   <slot />
-</as>
+</Element>
