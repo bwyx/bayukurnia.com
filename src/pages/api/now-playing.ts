@@ -16,8 +16,8 @@ export const get: APIRoute = async ({ request }) => {
     refreshToken: runtime.env.SPOTIFY_REFRESH_TOKEN
   }
 
-  const accessToken = await getAccessToken(auth)
-  const music = await getCurrentlyPlaying(accessToken)
+  const { access_token } = await getAccessToken(auth)
+  const music = await getCurrentlyPlaying(access_token)
 
   let data: NowPlayingResponse
 
