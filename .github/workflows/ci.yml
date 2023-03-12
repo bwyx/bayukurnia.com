@@ -17,8 +17,6 @@ jobs:
           submodules: true
           token: ${{ secrets.CI_TOKEN }}
 
-      - run: ls -la src/content
-
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -38,34 +36,37 @@ jobs:
           name: bayukurnia-com
           path: ${{ github.workspace }}/dist
 
-  # dev:
-  #   name: Deploy to Dev
-  #   if: github.event_name == 'pull_request'
-  #   needs: [build]
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: Development
-  #     url: "http://dev.myapp.com"
-  #   steps:
-  #     - name: Deploy
-  #       run: echo I am deploying!
+  preview:
+    name: Deploy to Preview
+    if: github.event_name == 'pull_request'
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+    environment:
+      name: Production
+      url: ${{ steps.upload-to-cloudflare.outputs.url }}
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: bayukurnia-com
 
-  # staging:
-  #   name: Deploy to Staging
-  #   if: github.event.ref == 'refs/heads/main'
-  #   needs: [build]
-  #   runs-on: ubuntu-latest
-  #   environment:
-  #     name: Staging
-  #     url: "http://test.myapp.com"
-  #   steps:
-  #     - name: Deploy
-  #       run: echo I am deploying!
+      - name: Upload to Cloudflare Pages
+        id: upload-to-cloudflare
+        uses: cloudflare/pages-action@v1.4.1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.ACCOUNT_ID }}
+          projectName: bayukurnia-com
+          directory: .
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
   prod:
     name: Deploy to Production
-    needs: [build]
+    needs: [preview]
     runs-on: ubuntu-latest
+    permissions:
+      deployments: write
     environment:
       name: Production
       url: ${{ vars.SITE_URL }}
@@ -73,8 +74,6 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: bayukurnia-com
-
-      - run: ls -la
 
       - name: deploy
         uses: cloudflare/pages-action@v1.4.1
