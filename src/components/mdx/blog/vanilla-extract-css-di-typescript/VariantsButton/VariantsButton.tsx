@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import styles from './VariantsButton.css'
 
 import type { ButtonVariants } from './VariantsButton.css'

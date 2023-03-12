@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import styles from './ZeroRuntimeButton.css'
 
 const Button = () => {
