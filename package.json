@@ -5,7 +5,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "wrangler pages dev ./dist",
+    "preview": "wrangler pages dev ./dist --kv=CACHE",
     "astro": "astro"
   },
   "dependencies": {
