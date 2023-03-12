@@ -1,5 +1,5 @@
 import type { MarkdownHeading } from 'astro'
-import { useEffect, useState } from 'react'
+import { For, createSignal, onMount } from 'solid-js'
 
 import generateToc from '~/utils/generateToc'
 
@@ -19,13 +19,13 @@ const TOC = ({
   const h1 = { depth: 2, slug: 'overview', text: title }
   const items = [h1, ...headings]
 
-  const [open, setOpen] = useState(false)
-  const [currentHeading, setCurrentHeading] = useState({
+  const [open, setOpen] = createSignal(false)
+  const [currentHeading, setCurrentHeading] = createSignal({
     slug: h1.slug,
     text: h1.text
   })
 
-  useEffect(() => {
+  onMount(() => {
     const setCurrent: IntersectionObserverCallback = (entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
@@ -57,45 +57,48 @@ const TOC = ({
 
     // Stop observing when the component is unmounted.
     return () => headingsObserver.disconnect()
-  }, [])
+  })
 
   const TocItem = ({ items }: TocItemProps) => {
     return (
-      <ul className={styles.ul}>
-        {items.map(({ slug, text, depth, childrens }) => {
-          return (
-            <li key={slug} data-depth={depth} className={styles.li}>
-              <a
-                data-turbo="false"
-                href={`#${slug}`}
-                className={
-                  styles.a[currentHeading.slug === slug ? 'active' : 'inactive']
-                }
-              >
-                {text}
-              </a>
-              {childrens.length ? <TocItem items={childrens} /> : null}
-            </li>
-          )
-        })}
+      <ul class={styles.ul}>
+        <For each={items}>
+          {({ slug, text, depth, childrens }) => {
+            return (
+              <li data-depth={depth} class={styles.li}>
+                <a
+                  data-turbo="false"
+                  href={`#${slug}`}
+                  class={
+                    styles.a[
+                      currentHeading().slug === slug ? 'active' : 'inactive'
+                    ]
+                  }
+                >
+                  {text}
+                </a>
+                {childrens.length ? <TocItem items={childrens} /> : null}
+              </li>
+            )
+          }}
+        </For>
       </ul>
     )
   }
 
   return (
-    <div className={styles.outer}>
-      <div className={styles.toc[open ? 'show' : 'hide']}>
+    <div class={styles.outer}>
+      <div class={styles.toc[open() ? 'show' : 'hide']}>
         <TocItem items={generateToc(items)} />
       </div>
-      <div className={styles.titleWrapper}>
-        <h2 className={styles.title}>on this page</h2>
-        <button
-          className={styles.currentHeading}
-          onClick={() => setOpen(!open)}
-        >
-          {currentHeading.slug !== 'overview' ? currentHeading.text : h1.text}
+      <div class={styles.titleWrapper}>
+        <h2 class={styles.title}>on this page</h2>
+        <button class={styles.currentHeading} onClick={() => setOpen(!open())}>
+          {currentHeading().slug !== 'overview'
+            ? currentHeading().text
+            : h1.text}
           <svg
-            className={styles.currentHeadingIcon[open ? 'rotate' : 'normal']}
+            class={styles.currentHeadingIcon[open() ? 'rotate' : 'normal']}
             width="20"
             height="20"
             viewBox="0 0 24 24"
@@ -106,9 +109,9 @@ const TOC = ({
               id="Stroke 1"
               d="M5 15.5C5 15.5 9.144 8.5 12 8.5C14.855 8.5 19 15.5 19 15.5"
               stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             />
           </svg>
         </button>
