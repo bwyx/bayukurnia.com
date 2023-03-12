@@ -1,0 +1,15 @@
+---
+import type { RecipeVariants } from '@vanilla-extract/recipes'
+
+import styles from './Callout.css'
+
+export type Props = RecipeVariants<typeof styles.callout> & {
+  children: React.ReactNode
+}
+
+const { type } = Astro.props
+---
+
+<aside class={styles.callout({ type })}>
+  <slot />
+</aside>
