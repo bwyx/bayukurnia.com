@@ -1,13 +1,23 @@
-import { getCurrentlyPlaying } from '~/lib/spotify'
+import { getAccessToken, getCurrentlyPlaying } from '~/lib/spotify'
+import { getRuntime } from '@astrojs/cloudflare/runtime'
+
 import { CloudinaryImage } from '@cloudinary/url-gen'
 import { fill } from '@cloudinary/url-gen/actions/resize'
 
 import type { APIRoute } from 'astro'
 import type { NowPlayingResponse } from '~/types/spotify.type'
 
-export const get: APIRoute = async () => {
-  const music = await getCurrentlyPlaying()
-  const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME
+export const get: APIRoute = async ({ request }) => {
+  const runtime = getRuntime<ENV>(request)
+  const cloudName = runtime.env.CLOUDINARY_CLOUD_NAME
+  const auth = {
+    clientId: runtime.env.SPOTIFY_CLIENT_ID,
+    clientSecret: runtime.env.SPOTIFY_CLIENT_SECRET,
+    refreshToken: runtime.env.SPOTIFY_REFRESH_TOKEN
+  }
+
+  const accessToken = await getAccessToken(auth)
+  const music = await getCurrentlyPlaying(accessToken)
 
   let data: NowPlayingResponse
 
