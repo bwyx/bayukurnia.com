@@ -21,7 +21,6 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      # - run: npm test
       - run: npm run build
         env:
           SITE_URL: ${{ vars.SITE_URL }}
@@ -41,10 +40,8 @@ jobs:
     if: github.event_name == 'pull_request'
     needs: [build]
     runs-on: ubuntu-latest
-    permissions:
-      deployments: write
     environment:
-      name: Production
+      name: Preview
       url: ${{ steps.upload-to-cloudflare.outputs.url }}
     steps:
       - uses: actions/download-artifact@v3
@@ -65,17 +62,16 @@ jobs:
     name: Deploy to Production
     needs: [preview]
     runs-on: ubuntu-latest
-    permissions:
-      deployments: write
     environment:
       name: Production
-      url: ${{ vars.SITE_URL }}
+      url: ${{ steps.upload-to-cloudflare.outputs.url }}
     steps:
       - uses: actions/download-artifact@v3
         with:
           name: bayukurnia-com
 
-      - name: deploy
+      - name: Upload to Cloudflare Pages
+        id: upload-to-cloudflare
         uses: cloudflare/pages-action@v1.4.1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
