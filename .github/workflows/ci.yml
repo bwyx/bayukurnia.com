@@ -52,7 +52,7 @@ jobs:
         id: upload-to-cloudflare
         uses: cloudflare/pages-action@v1.4.1
         with:
-          branch: ${{ github.ref_name }}
+          branch: ${{ github.head_ref }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.ACCOUNT_ID }}
           projectName: bayukurnia-com
@@ -75,7 +75,7 @@ jobs:
         id: upload-to-cloudflare
         uses: cloudflare/pages-action@v1.4.1
         with:
-          branch: ${{ github.ref_name }}
+          branch: ${{ github.base_ref }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.ACCOUNT_ID }}
           projectName: bayukurnia-com
