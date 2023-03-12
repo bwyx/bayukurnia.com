@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import styles from './SprinklesButton.css'
 
 const SprinklesButton = () => {
