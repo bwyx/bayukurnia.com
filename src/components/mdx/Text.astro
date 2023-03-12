@@ -1,0 +1,15 @@
+---
+import text from '~/styles/sprinkles/text.css'
+
+type TextProps = Parameters<typeof text>[0]
+
+export interface Props extends TextProps {
+  as: React.ElementType
+}
+
+const { as, ...styles } = Astro.props
+---
+
+<as class={text(styles)}>
+  <slot />
+</as>
