@@ -37,8 +37,8 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: |
-            .
-            !./node_modules
+            .git
+            dist
 
   preview:
     name: Deploy to Preview
@@ -57,7 +57,7 @@ jobs:
         id: upload-to-cloudflare
         uses: cloudflare/pages-action@v1.4.1
         with:
-          branch: preview-${{ github.ref_name }}
+          branch: preview/${{ github.ref_name }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.ACCOUNT_ID }}
           projectName: bayukurnia-com
