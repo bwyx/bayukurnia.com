@@ -1,7 +1,39 @@
-import { style } from '@vanilla-extract/css'
+import { globalStyle, style } from '@vanilla-extract/css'
 import { calc } from '@vanilla-extract/css-utils'
 import { box, text } from '~/styles/sprinkles'
 import { media, rgb, space } from '~/styles/variables.css'
+
+const navItem = style([
+  {
+    paddingRight: space[2],
+    paddingLeft: space[2],
+    paddingTop: space[1],
+    paddingBottom: space[1],
+    color: `rgb(${rgb.fg3})`,
+    ':first-child': {
+      marginLeft: calc.multiply(space[2], -1)
+    },
+    ':hover': {
+      color: `rgb(${rgb.fg1})`
+    },
+    '@media': {
+      [media.lg]: {
+        marginLeft: calc.multiply(space[2], -1),
+        marginRight: calc.multiply(space[2], -1)
+      }
+    }
+  },
+  box({
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center'
+  }),
+  text({
+    fontFamily: 'sans',
+    fontWeight: 'semibold',
+    letterSpacing: 'tight'
+  })
+])
 
 const styles = {
   aside: style([
@@ -53,33 +85,16 @@ const styles = {
     },
     text({ fontWeight: 'medium' })
   ]),
-  navItem: style([
-    {
-      paddingRight: space[2],
-      paddingLeft: space[2],
-      paddingTop: space[1],
-      paddingBottom: space[1],
-      color: `rgb(${rgb.fg3})`,
-      ':first-child': {
-        marginLeft: calc.multiply(space[2], -1)
-      },
-      ':hover': {
-        color: `rgb(${rgb.fg1})`
-      },
-      '@media': {
-        [media.lg]: {
-          marginLeft: calc.multiply(space[2], -1),
-          marginRight: calc.multiply(space[2], -1)
-        }
+  navItem,
+  navItemIcon: style({
+    opacity: 0,
+    marginLeft: space[2],
+    selectors: {
+      [`${navItem}:hover &`]: {
+        opacity: 0.25
       }
-    },
-    box({ position: 'relative' }),
-    text({
-      fontFamily: 'sans',
-      fontWeight: 'semibold',
-      letterSpacing: 'tight'
-    })
-  ]),
+    }
+  }),
   navItemActive: style({
     color: `rgb(${rgb.fg1})`
   })
