@@ -43,12 +43,16 @@ const { title, cover, publishedAt } = post.data
       <Content />
     </article>
     <aside class={styles.aside}>
-      <Image
-        src={`blog/${slug}/${cover}`}
-        alt={`${title}'s Avatar`}
-        width={250}
-        height={250}
-      />
+      {
+        cover ? (
+          <Image
+            src={`blog/${slug}/${cover}`}
+            alt={`${title}'s Avatar`}
+            width={250}
+            height={250}
+          />
+        ) : null
+      }
       <TOC client:idle headings={headings} />
     </aside>
   </div>

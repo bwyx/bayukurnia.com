@@ -14,13 +14,17 @@ const { slug, collection, data } = Astro.props
 
 <a href={`/${collection}/${slug}`} class={styles.outer}>
   <div class={styles.coverHover}>
-    <Image
-      src={`blog/${slug}/${data.cover}`}
-      alt="Bayu Kurnia's Avatar"
-      width={180}
-      height={180}
-      loading="lazy"
-    />
+    {
+      data.cover ? (
+        <Image
+          src={`blog/${slug}/${data.cover}`}
+          alt="Bayu Kurnia's Avatar"
+          width={180}
+          height={180}
+          loading="lazy"
+        />
+      ) : null
+    }
   </div>
   <div>
     <time class={styles.publishedAt} date-time={data.publishedAt}>
