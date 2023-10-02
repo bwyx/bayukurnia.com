@@ -39,6 +39,7 @@ const styles = {
   aside: style([
     {
       marginTop: space[6],
+      marginBottom: space[4],
       paddingBottom: 0,
       '@media': {
         [media.lg]: {
@@ -87,11 +88,17 @@ const styles = {
   ]),
   navItem,
   navItemIcon: style({
+    display: 'none',
     opacity: 0,
     marginLeft: space[2],
     selectors: {
       [`${navItem}:hover &`]: {
         opacity: 0.25
+      }
+    },
+    '@media': {
+      [media.lg]: {
+        display: 'block'
       }
     }
   }),
