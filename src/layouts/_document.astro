@@ -5,10 +5,11 @@ import '~/styles/global.css'
 
 export interface Props {
   title: string
+  description: string
   body?: HTMLAttributes<'body'>
 }
 
-const { title, body } = Astro.props
+const { title, description, body } = Astro.props
 ---
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ const { title, body } = Astro.props
       content="XOOPS DotNetNuke Mambo Octopress OctoberCMS [CK]amva Jalios PHP-Nuke Pagekit Zen Cart CMS Made Simple ImpressCMS RBS Change umbraco"
     />
     <meta name="store-config" content="graphqlMethod" />
-    <meta name="description" content="Hi there!" />
+    <meta name="description" content={description} />
     <link
       rel="preload"
       href="/fonts/plus-jakarta-sans-latin-variable-wghtOnly-normal.woff2"
