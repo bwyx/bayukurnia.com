@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css'
+import { globalStyle, style } from '@vanilla-extract/css'
 import { box } from '~/styles/sprinkles'
 import { media, space } from '~/styles/variables.css'
 
@@ -36,5 +36,10 @@ const styles = {
     box({ flexShrink: 0 })
   ])
 }
+
+globalStyle(`${styles.article} giscus-widget`, {
+  display: 'block',
+  marginTop: space[24]
+})
 
 export default styles

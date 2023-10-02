@@ -40,6 +40,7 @@ const { title, body } = Astro.props
       src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.min.js"
       defer
     ></script>
+    <slot name="scripts" />
     <title>{title}</title>
   </head>
   <body {...body}>
@@ -49,6 +50,10 @@ const { title, body } = Astro.props
           document.documentElement.className = newTheme
           window.__theme = newTheme
           window.__onThemeChange(newTheme)
+
+          const comments = document.getElementById('comments')
+          if (!comments) return
+          comments.theme = newTheme
         }
         window.__onThemeChange = function () {}
         window.__setPreferredTheme = function (newTheme) {
