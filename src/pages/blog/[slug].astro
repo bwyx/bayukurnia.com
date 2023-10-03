@@ -1,16 +1,12 @@
 ---
 export const prerender = true
 
-import 'giscus'
-
 import { format } from 'date-fns'
 import { getCollection } from 'astro:content'
 
-import Document from '~/layouts/_document.astro'
-import mainLayoutStyles from '~/layouts/Main.layout/styles.css'
+import MainLayout from '~/layouts/Main.layout.astro'
 
 import { headerStyles } from '~/components/blog/Header/Header.astro'
-import Navigation from '~/components/Navigation/Navigation.astro'
 import Image from '~/components/BlurImage/Image.astro'
 import Footer from '~/components/Footer/Footer.astro'
 import TOC from '~/components/blog/TOC/TOC'
@@ -33,30 +29,22 @@ const { slug } = post
 const { title, cover, publishedAt, summary } = post.data
 ---
 
-<Document
-  title={title}
-  description={summary}
-  body={{ class: mainLayoutStyles.body }}
->
-  <script slot="scripts" type="module" src="https://unpkg.com/giscus?module"
-  ></script>
-
-  <Navigation />
-  <main class={mainLayoutStyles.main}>
-    <div class={styles.post}>
-      <article class:list={[prose, styles.article]}>
-        <header>
-          <h1 id="overview" class={headerStyles.title}>{title}</h1>
-          <time
-            class={headerStyles.description}
-            datetime={publishedAt.toISOString()}
-          >
-            {format(publishedAt, 'LLLL d, yyyy')}
-          </time>
-        </header>
-        <Content />
-        <script id="comments">
-          document.currentScript.outerHTML = `<giscus-widget
+<MainLayout title={title} description={summary}>
+  <div class={styles.post}>
+    <article class:list={[prose, styles.article]}>
+      <header>
+        <h1 id="overview" class={headerStyles.title}>{title}</h1>
+        <time
+          class={headerStyles.description}
+          datetime={publishedAt.toISOString()}
+        >
+          {format(publishedAt, 'LLLL d, yyyy')}
+        </time>
+      </header>
+      <Content />
+      <script src="giscus"></script>
+      <script id="comments">
+        document.currentScript.outerHTML = `<giscus-widget
             id="comments"
             repo="bwyx/bayukurnia.com"
             repoid="R_kgDOGlSEvw"
@@ -70,22 +58,21 @@ const { title, cover, publishedAt, summary } = post.data
             theme="${window.__theme}"
             lang="en"
             loading="lazy"></giscus-widget>`
-        </script>
-      </article>
-      <aside class={styles.aside}>
-        {
-          cover ? (
-            <Image
-              src={`blog/${slug}/${cover}`}
-              alt={`${title}'s Avatar`}
-              width={250}
-              height={250}
-            />
-          ) : null
-        }
-        <TOC client:idle headings={headings} />
-      </aside>
-    </div>
-    <Footer />
-  </main>
-</Document>
+      </script>
+    </article>
+    <aside class={styles.aside}>
+      {
+        cover ? (
+          <Image
+            src={`blog/${slug}/${cover}`}
+            alt={`${title}'s Avatar`}
+            width={250}
+            height={250}
+          />
+        ) : null
+      }
+      <TOC client:idle headings={headings} />
+    </aside>
+  </div>
+  <Footer />
+</MainLayout>
