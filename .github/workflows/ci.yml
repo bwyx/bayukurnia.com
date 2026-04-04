@@ -49,7 +49,7 @@ jobs:
       name: Preview
       url: ${{ steps.upload-to-cloudflare.outputs.url }}
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
 
