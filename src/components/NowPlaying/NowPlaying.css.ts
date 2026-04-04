@@ -22,7 +22,7 @@ const styles = {
     {
       inset: 0,
       paddingLeft: space[3],
-      paddingRight: space[4]
+      paddingRight: space[6]
     },
     box({
       display: 'flex',
@@ -32,7 +32,7 @@ const styles = {
     })
   ]),
   player: style([
-    { gap: space[2] },
+    { gap: space[3] },
     box({
       display: 'flex',
       alignItems: 'center'
@@ -43,7 +43,7 @@ const styles = {
       color: `rgb(${rgb.fg1} / 0.25)`,
       width: 42,
       height: 42,
-      borderRadius: 6
+      borderRadius: 28,
     },
     box({
       position: 'relative',
