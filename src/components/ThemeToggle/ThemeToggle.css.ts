@@ -5,6 +5,7 @@ import { media, space } from '~/styles/variables.css'
 const styles = {
   button: style([
     {
+      cursor: 'pointer',
       padding: space[3],
       margin: calc.multiply(space[3], -1),
       '@media': {
