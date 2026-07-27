@@ -65,39 +65,31 @@ import { nowPlaying } from './NowPlaying.css'
 <script>
   class NowPlayingSVG extends HTMLElement {
     hasCursor: boolean
-    rect: DOMRect
 
     constructor() {
       super()
 
       this.hasCursor = matchMedia('(pointer: fine)').matches
-      this.rect = this.getBoundingClientRect()
     }
 
     connectedCallback() {
       this.addEventListener('mousemove', this.handleMouseMove)
-      window.addEventListener('resize', this.handleBoundingChanged)
-      window.addEventListener('turbo:load', this.handleBoundingChanged)
     }
 
     disconnectedCallback() {
       this.removeEventListener('mousemove', this.handleMouseMove)
-      window.removeEventListener('resize', this.handleBoundingChanged)
-      window.removeEventListener('turbo:load', this.handleBoundingChanged)
     }
 
     handleMouseMove = (e: MouseEvent) => {
       if (!this.hasCursor) return
+      
+      const rect = this.getBoundingClientRect()
 
-      const x = e.clientX - this.rect.left
-      const y = e.clientY - this.rect.top
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
 
       const radialGradient = this.querySelector('#radial')
       radialGradient?.setAttribute('gradientTransform', `translate(${x} ${y}) rotate(22.2368) scale(141.371 111.267)`)
-    }
-
-    handleBoundingChanged = () => {
-      this.rect = this.getBoundingClientRect()
     }
   }
 
